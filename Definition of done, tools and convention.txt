@@ -1,0 +1,22 @@
+DEFINITION OF DONE
+
+Done means:
+- codified according to established tools and conventions
+- appropriately commented
+- which meets the acceptance criteria
+- automatically tested with JUnit (first individually and then integrated)
+
+Tools:
+IDE NetBeans 12.5
+Java
+JavaFX
+SceneBuilder 19.0.0
+JUnit 4.13.2
+GitHub.com 
+Trello.com
+draw.io
+ 
+Convention:
+The first letter of methods must be lowercase
+The first letter of classes must be uppercase
+CamelCase for multi-word names
