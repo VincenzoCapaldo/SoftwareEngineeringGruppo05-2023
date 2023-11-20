@@ -1,53 +1,46 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/UnitTests/JUnit5TestClass.java to edit this template
- */
 package rules;
 
 import actions.Action;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.After;
+import org.junit.AfterClass;
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
+import static org.junit.Assert.*;
 import triggers.Trigger;
 
-/**
- *
- * @author maria
- */
 public class RuleTest {
+
     private Action action;
     private Trigger trigger;
     private Rule testRule;
-    
+
     public RuleTest() {
     }
-    
-    @BeforeAll
+
+    @BeforeClass
     public static void setUpClass() {
     }
-    
-    @AfterAll
+
+    @AfterClass
     public static void tearDownClass() {
     }
-    
-    @BeforeEach
+
+    @Before
     public void setUp() {
-        action= () -> {
-        System.out.println("Action executed");
-    };
-    
-        trigger= () -> {
-        System.out.println("Trigger verified"); 
-        return true;
-    };
-            
-        testRule= new Rule("TestRule", action, trigger);
+        action = () -> {
+            System.out.println("Action executed");
+        };
+
+        trigger = () -> {
+            System.out.println("Trigger verified");
+            return true;
+        };
+
+        testRule = new Rule("TestRule", action, trigger);
     }
-    
-    @AfterEach
+
+    @After
     public void tearDown() {
     }
 
@@ -92,11 +85,11 @@ public class RuleTest {
     @Test
     public void testSetAction() {
         System.out.println("setAction");
-        Action action = () -> {
+        Action newAction = () -> {
             System.out.println("NewAction executed");
         };
         Rule instance = testRule;
-        instance.setAction(action);
+        instance.setAction(newAction);
     }
 
     /**
@@ -117,12 +110,12 @@ public class RuleTest {
     @Test
     public void testSetTrigger() {
         System.out.println("setTrigger");
-        Trigger trigger = () -> {
-            System.out.println("Trigger verified"); 
+        Trigger newTrigger = () -> {
+            System.out.println("NewTrigger verified");
             return true;
         };
         Rule instance = testRule;
-        instance.setTrigger(trigger);
+        instance.setTrigger(newTrigger);
     }
 
     /**
@@ -134,5 +127,4 @@ public class RuleTest {
         Rule instance = testRule;
         instance.checkTrigger();
     }
-    
 }
