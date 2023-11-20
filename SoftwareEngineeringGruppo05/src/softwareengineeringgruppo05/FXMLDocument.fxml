@@ -13,7 +13,6 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
 <StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="softwareengineeringgruppo05.FXMLDocumentController">
    <children>
       <AnchorPane fx:id="window1" prefHeight="400.0" prefWidth="600.0" stylesheets="@../css/style.css">
@@ -56,7 +55,7 @@
                               </ScrollPane>
                               <HBox alignment="CENTER_RIGHT" prefHeight="103.0" prefWidth="598.0" styleClass="main_background" stylesheets="@../css/style.css">
                                  <children>
-                                    <Button fx:id="newRule" mnemonicParsing="false" onAction="#goToWindowThree" styleClass="white_background" stylesheets="@../../../../../ProvaInterfaccia2/provaInterfacciaGrafica/src/style/style.css" text="New Rule">
+                                    <Button fx:id="newRule" mnemonicParsing="false" onAction="#goToWindowThree" styleClass="white_background" stylesheets="@../css/style.css" text="New Rule">
                                        <HBox.margin>
                                           <Insets right="20.0" />
                                        </HBox.margin>
@@ -71,7 +70,7 @@
             </SplitPane>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="window3" prefHeight="200.0" prefWidth="200.0" stylesheets="@../css/style.css" visible="false">
+      <AnchorPane fx:id="window3" prefHeight="200.0" prefWidth="200.0" stylesheets="@../css/style.css">
          <children>
             <VBox layoutX="250.0" layoutY="100.0" prefHeight="200.0" prefWidth="100.0" stylesheets="@../css/style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
@@ -98,7 +97,7 @@
                                     </HBox>
                                     <ScrollPane prefHeight="290.0" prefWidth="296.0" stylesheets="@../css/style.css">
                                        <content>
-                                          <VBox fx:id="scrollAllActions" prefHeight="662.0" prefWidth="281.0" styleClass="light_main_background" stylesheets="@../../../../../ProvaInterfaccia2/provaInterfacciaGrafica/src/style/style.css" />
+                                          <VBox fx:id="scrollAllActions" prefHeight="662.0" prefWidth="281.0" styleClass="light_main_background" stylesheets="@../css/style.css" />
                                        </content>
                                     </ScrollPane>
                                  </children>
@@ -123,7 +122,7 @@
                                     </HBox>
                                     <ScrollPane prefHeight="290.0" prefWidth="296.0" stylesheets="@../css/style.css">
                                        <content>
-                                          <VBox fx:id="scrollAllTriggers" prefHeight="663.0" prefWidth="281.0" styleClass="light_main_background" stylesheets="@../../../../../ProvaInterfaccia2/provaInterfacciaGrafica/src/style/style.css" />
+                                          <VBox fx:id="scrollAllTriggers" prefHeight="663.0" prefWidth="281.0" styleClass="light_main_background" stylesheets="@../css/style.css" />
                                        </content>
                                     </ScrollPane>
                                  </children>
