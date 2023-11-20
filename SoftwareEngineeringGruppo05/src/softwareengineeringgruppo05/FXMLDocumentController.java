@@ -1,6 +1,6 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXML2.java to edit this template
+ * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
  */
 package softwareengineeringgruppo05;
 
@@ -9,26 +9,56 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Label;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
 
 /**
+ * FXML Controller class
  *
- * @author maria
+ * @author enzo0
  */
 public class FXMLDocumentController implements Initializable {
-    
+
     @FXML
-    private Label label;
-    
+    private AnchorPane window1;
     @FXML
-    private void handleButtonAction(ActionEvent event) {
-        System.out.println("You clicked me!");
-        label.setText("Hello World!");
-    }
-    
+    private Button rulesButton;
+    @FXML
+    private VBox scrollRules;
+    @FXML
+    private Button newRule;
+    @FXML
+    private AnchorPane window3;
+    @FXML
+    private VBox scrollAllActions;
+    @FXML
+    private VBox scrollAllTriggers;
+    @FXML
+    private TextField nameRuleTextField;
+    @FXML
+    private Button createRuleButton;
+
+    /**
+     * Initializes the controller class.
+     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        window1.visibleProperty().set(true);
+        window3.visibleProperty().set(false);
     }    
+
+    @FXML
+    private void goToWindowThree(ActionEvent event) {
+        window3.visibleProperty().set(true);
+        window1.visibleProperty().set(false);
+    }
+
+    @FXML
+    private void goToWindowOne(ActionEvent event) {
+        window1.visibleProperty().set(true);
+        window3.visibleProperty().set(false);
+    }
     
 }
