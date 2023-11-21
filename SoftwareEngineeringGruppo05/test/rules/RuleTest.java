@@ -63,8 +63,9 @@ public class RuleTest {
     public void testSetName() {
         System.out.println("setName");
         String name = "newName";
-        Rule instance = new Rule("newName", null, null);
+        Rule instance = testRule;
         instance.setName(name);
+        assertEquals(name, instance.getName());
     }
 
     /**
@@ -90,6 +91,7 @@ public class RuleTest {
         };
         Rule instance = testRule;
         instance.setAction(newAction);
+        assertEquals(newAction, instance.getAction());
     }
 
     /**
@@ -116,15 +118,7 @@ public class RuleTest {
         };
         Rule instance = testRule;
         instance.setTrigger(newTrigger);
+        assertEquals(newTrigger, instance.getTrigger());
     }
-
-    /**
-     * Test of checkTrigger method, of class Rule.
-     */
-    @Test
-    public void testCheckTrigger() {
-        System.out.println("checkTrigger");
-        Rule instance = testRule;
-        instance.checkTrigger();
-    }
+    
 }
