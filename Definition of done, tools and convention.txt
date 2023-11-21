@@ -20,3 +20,5 @@ Convention:
 The first letter of methods must be lowercase
 The first letter of classes must be uppercase
 CamelCase for multi-word names
+
+Estimated team velocity: 48
