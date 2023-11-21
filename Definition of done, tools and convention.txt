@@ -8,11 +8,10 @@ Done means:
 
 Tools:
 IDE NetBeans 12.5
-Java
 JavaFXML
 SceneBuilder 19.0.0
-GitHub.com 
-Trello.com
+gitHub.com 
+trello.com
 draw.io
 
 Libraries:
