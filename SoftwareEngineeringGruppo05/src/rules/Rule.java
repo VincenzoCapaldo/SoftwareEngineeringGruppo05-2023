@@ -45,10 +45,4 @@ public class Rule {
     public void setTrigger(Trigger trigger){
         this.trigger = trigger;
     }
-    
-    public void checkTrigger(){ 
-        if(trigger.verify()){
-            action.execute();
-        }
-    }
 }
