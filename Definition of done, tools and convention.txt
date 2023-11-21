@@ -9,13 +9,16 @@ Done means:
 Tools:
 IDE NetBeans 12.5
 Java
-JavaFX
+JavaFXML
 SceneBuilder 19.0.0
-JUnit 4.13.2
 GitHub.com 
 Trello.com
 draw.io
- 
+
+Libraries:
+JUnit 4.13.2
+Hamcrest 1.3
+
 Convention:
 The first letter of methods must be lowercase
 The first letter of classes must be uppercase
