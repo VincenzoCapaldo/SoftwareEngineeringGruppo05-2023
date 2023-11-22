@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<HBox fx:id="timeTriggerBox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="155.0" prefWidth="261.0" styleClass="round_border" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="softwareengineeringgruppo05.TimeTriggerController">
+   <children>
+      <VBox prefHeight="155.0" prefWidth="434.0" spacing="30.0" stylesheets="@../css/style.css">
+         <children>
+            <RadioButton fx:id="timeTriggerRB" mnemonicParsing="false" prefHeight="35.0" prefWidth="121.0" styleClass="white_text" stylesheets="@../css/style.css" text="Time">
+               <font>
+                  <Font size="22.0" />
+               </font>
+               <toggleGroup>
+                  <ToggleGroup fx:id="selectActionTG" />
+               </toggleGroup>
+            </RadioButton>
+            <TextField fx:id="timeTextField" prefHeight="25.0" prefWidth="147.0" promptText="hh:mm" styleClass="white_background" stylesheets="@../css/style.css" />
+         </children>
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </padding>
+         <styleClass>
+            <String fx:value="main_background" />
+            <String fx:value="round_border" />
+         </styleClass>
+      </VBox>
+   </children>
+</HBox>

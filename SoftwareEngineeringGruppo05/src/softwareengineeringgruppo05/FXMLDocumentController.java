@@ -46,8 +46,6 @@ public class FXMLDocumentController implements Initializable {
     private TextField nameRuleTextField;
     @FXML
     private Button createRuleButton;
-    @FXML 
-    private ToggleGroup toggleGroup;
 
     /**
      * Initializes the controller class.
@@ -98,8 +96,19 @@ public class FXMLDocumentController implements Initializable {
         scrollAllActions.getChildren().add(messageActionBox);
     }
     
-    private void loadAllTriggersCards(){
+    //load all triggers in winwod3. The user can visualize all triggers.
+    private void loadAllTriggersCards() throws IOException{
+        scrollAllTriggers.getChildren().clear();
         
+        ToggleGroup triggerToggleGroup = new ToggleGroup();
+        
+        //load timeTrigger card
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setLocation(getClass().getResource("/triggers/TimeTrigger.fxml"));
+        HBox timeTriggerBox = fxmlLoader.load();
+        TimeTriggerController timeTriggerController = fxmlLoader.getController();
+        timeTriggerController.setToggleGroup(triggerToggleGroup);
+        scrollAllTriggers.getChildren().add(timeTriggerBox);
     }
     
     
