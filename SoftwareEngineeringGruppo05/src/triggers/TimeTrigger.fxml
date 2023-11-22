@@ -9,9 +9,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<HBox fx:id="timeTriggerBox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="155.0" prefWidth="261.0" styleClass="round_border" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="softwareengineeringgruppo05.TimeTriggerController">
+<HBox fx:id="timeTriggerBox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="137.0" prefWidth="261.0" styleClass="round_border" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="softwareengineeringgruppo05.TimeTriggerController">
    <children>
-      <VBox prefHeight="155.0" prefWidth="434.0" spacing="30.0" stylesheets="@../css/style.css">
+      <VBox prefHeight="155.0" prefWidth="261.0" spacing="30.0" stylesheets="@../css/style.css">
          <children>
             <RadioButton fx:id="timeTriggerRB" mnemonicParsing="false" prefHeight="35.0" prefWidth="121.0" styleClass="white_text" stylesheets="@../css/style.css" text="Time">
                <font>
@@ -21,7 +21,12 @@
                   <ToggleGroup fx:id="selectActionTG" />
                </toggleGroup>
             </RadioButton>
-            <TextField fx:id="timeTextField" prefHeight="25.0" prefWidth="147.0" promptText="hh:mm" styleClass="white_background" stylesheets="@../css/style.css" />
+            <HBox alignment="CENTER" prefHeight="34.0" prefWidth="241.0" spacing="20.0">
+               <children>
+                  <TextField fx:id="timeTextFieldHours" alignment="CENTER" prefHeight="33.0" prefWidth="70.0" promptText="hh" styleClass="white_background" stylesheets="@../css/style.css" />
+                  <TextField fx:id="timeTextFieldMinutes" alignment="CENTER" prefHeight="33.0" prefWidth="70.0" promptText="mm" styleClass="white_background" stylesheets="@../css/style.css" />
+               </children>
+            </HBox>
          </children>
          <padding>
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />

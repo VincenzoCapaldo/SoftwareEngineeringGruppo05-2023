@@ -27,7 +27,9 @@ public class TimeTriggerController implements Initializable {
     @FXML
     private ToggleGroup selectActionTG;
     @FXML
-    private TextField timeTextField;
+    private TextField timeTextFieldHours;
+    @FXML
+    private TextField timeTextFieldMinutes;
 
     /**
      * Initializes the controller class.
