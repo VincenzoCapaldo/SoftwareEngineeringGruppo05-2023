@@ -1,12 +1,8 @@
 package triggers;
 
-import java.time.LocalTime;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.*;
 import static org.junit.Assert.*;
+import java.time.LocalTime;
 
 /**
  *
@@ -16,25 +12,6 @@ public class TimeTriggerTest {
     
     private TimeTrigger timetrigger;
     
-    public TimeTriggerTest() {
-    }
-    
-    @BeforeClass
-    public static void setUpClass() {
-    }
-    
-    @AfterClass
-    public static void tearDownClass() {
-    }
-    
-    @Before
-    public void setUp() {
-    }
-    
-    @After
-    public void tearDown() {
-    }
-
     /**
      * Test of verify method, of class TimeTrigger.
      */

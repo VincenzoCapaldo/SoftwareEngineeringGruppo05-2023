@@ -1,12 +1,8 @@
 package rules;
 
-import actions.Action;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.*;
 import static org.junit.Assert.*;
+import actions.Action;
 import triggers.Trigger;
 
 public class RuleTest {
@@ -14,17 +10,6 @@ public class RuleTest {
     private Action action;
     private Trigger trigger;
     private Rule testRule;
-
-    public RuleTest() {
-    }
-
-    @BeforeClass
-    public static void setUpClass() {
-    }
-
-    @AfterClass
-    public static void tearDownClass() {
-    }
 
     @Before
     public void setUp() {
@@ -38,10 +23,6 @@ public class RuleTest {
         };
 
         testRule = new Rule("TestRule", action, trigger);
-    }
-
-    @After
-    public void tearDown() {
     }
 
     /**

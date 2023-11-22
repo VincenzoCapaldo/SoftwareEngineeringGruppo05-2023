@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package triggers;
 
 import java.time.LocalTime;
@@ -22,6 +18,5 @@ public class TimeTrigger implements Trigger{
         return (LocalTime.now().getHour()==this.time.getHour() && 
                 LocalTime.now().getMinute()==this.time.getMinute());
     }
-    
-    
+        
 }
