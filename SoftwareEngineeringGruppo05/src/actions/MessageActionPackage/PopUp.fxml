@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #E8F5E5;" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="softwareengineeringgruppo05.PopUpController">
+   <children>
+      <Label alignment="CENTER" layoutX="10.0" layoutY="145.0" prefHeight="66.0" prefWidth="580.0" stylesheets="@../../css/style.css" text="Messaggio desiderato " textAlignment="CENTER" textFill="#7bc534">
+         <font>
+            <Font size="45.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

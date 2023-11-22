@@ -97,7 +97,11 @@
                                     </HBox>
                                     <ScrollPane prefHeight="290.0" prefWidth="296.0" stylesheets="@../css/style.css">
                                        <content>
-                                          <VBox fx:id="scrollAllActions" prefHeight="662.0" prefWidth="281.0" styleClass="light_main_background" stylesheets="@../css/style.css" />
+                                          <VBox fx:id="scrollAllActions" prefHeight="662.0" prefWidth="281.0" stylesheets="@../css/style.css">
+                                             <styleClass>
+                                                <String fx:value="light_main_background" />
+                                                <String fx:value="margin_cards" />
+                                             </styleClass></VBox>
                                        </content>
                                     </ScrollPane>
                                  </children>

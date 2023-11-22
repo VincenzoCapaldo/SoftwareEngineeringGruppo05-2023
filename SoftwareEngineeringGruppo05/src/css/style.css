@@ -10,10 +10,19 @@
 }
 
 .main_background {
-    -fx-background-color: #2a9d8f;
+    -fx-background-color: #7BC534;
 }
 
 .light_main_background {
-    -fx-background-color: #45BFB1;
+    -fx-background-color: E8F5E5;
 }
 
+.margin_cards{
+    -fx-spacing: 10px;
+    -fx-padding: 10px;
+}
+
+.round_border{
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
+}
