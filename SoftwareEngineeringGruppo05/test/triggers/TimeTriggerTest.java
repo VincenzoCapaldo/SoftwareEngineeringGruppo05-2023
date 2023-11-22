@@ -33,7 +33,7 @@ public class TimeTriggerTest {
     public void testVerify2() {
         System.out.print("Test case2 verify: ");
         
-        int hour = LocalTime.now().getHour() - 1;
+        int hour = (LocalTime.now().getHour() + 1)%24;
         int minute = LocalTime.now().getMinute();
         TimeTrigger instance = new TimeTrigger(hour, minute);
         boolean expResult = false;
@@ -46,10 +46,10 @@ public class TimeTriggerTest {
     
     @Test
     public void testVerify3() {
-        System.out.print("Test case2 verify: ");
+        System.out.print("Test case3 verify: ");
         
         int hour = LocalTime.now().getHour();
-        int minute = LocalTime.now().getMinute() - 1;
+        int minute = (LocalTime.now().getMinute() + 1)%24;
         TimeTrigger instance = new TimeTrigger(hour, minute);
         boolean expResult = false;
         boolean result = instance.verify();
