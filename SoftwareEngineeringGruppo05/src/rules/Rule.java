@@ -41,4 +41,15 @@ public class Rule {
     public void setTrigger(Trigger trigger){
         this.trigger = trigger;
     }
+    
+    public void checkTrigger(){
+        int flag=0;
+        while(flag==0){
+            if(trigger.verify()){
+                action.execute();
+                flag=1;
+            }
+        }
+    }
+
 }

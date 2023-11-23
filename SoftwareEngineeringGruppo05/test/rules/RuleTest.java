@@ -24,7 +24,7 @@ public class RuleTest {
 
         testRule = new Rule("TestRule", action, trigger);
     }
-
+ 
     /**
      * Test of getName method, of class Rule.
      */
