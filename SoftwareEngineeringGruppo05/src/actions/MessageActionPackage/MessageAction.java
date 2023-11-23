@@ -17,14 +17,15 @@ import softwareengineeringgruppo05.PopUpController;
  *
  * @author maria
  */
-public class MessageAction {
+public class MessageAction implements Action{
     private String message;
 
     public MessageAction(String message) {
         this.message = message;
     }
     
-    public void execute() throws IOException{
+    @Override
+    public void execute(){
         try{
             
             // Loading the FXML file
