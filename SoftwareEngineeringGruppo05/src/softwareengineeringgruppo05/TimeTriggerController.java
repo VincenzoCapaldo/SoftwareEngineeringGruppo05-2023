@@ -42,4 +42,37 @@ public class TimeTriggerController implements Initializable {
     public void setToggleGroup(ToggleGroup toggleGroup) {
         timeTriggerRB.setToggleGroup(toggleGroup);
     }
+    
+    public int getHours(){
+        return validateHours();
+    }
+    
+    public int getMinutes(){
+        return validateMinutes();
+    }
+    
+    private int validateHours(){
+        try {
+            int hours = Integer.parseInt(timeTextFieldHours.getText());
+            if (hours < 0 || hours > 23) {
+                return -1;
+            }
+            return hours;
+        } catch (NumberFormatException e) {
+            return -1;
+        }
+    }
+    
+    private int validateMinutes(){
+        try {
+                int hours = Integer.parseInt(timeTextFieldMinutes.getText());
+                if (hours < 0 || hours > 59) {
+                    return -1;
+                }
+                return hours;
+            } catch (NumberFormatException e) {
+                return -1;
+            }
+    }
+    
 }

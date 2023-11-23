@@ -40,4 +40,8 @@ public class MessageActionController implements Initializable {
     public void setToggleGroup(ToggleGroup toggleGroup) {
         messageActionRB.setToggleGroup(toggleGroup);
     }
+    
+    public String getTextArea(){
+        return messageTextArea.getText();
+    }
 }
