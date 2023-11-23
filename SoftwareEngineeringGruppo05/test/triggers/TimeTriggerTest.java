@@ -49,7 +49,7 @@ public class TimeTriggerTest {
         System.out.print("Test case3 verify: ");
         
         int hour = LocalTime.now().getHour();
-        int minute = (LocalTime.now().getMinute() + 1)%24;
+        int minute = (LocalTime.now().getMinute() + 1)%60;
         TimeTrigger instance = new TimeTrigger(hour, minute);
         boolean expResult = false;
         boolean result = instance.verify();

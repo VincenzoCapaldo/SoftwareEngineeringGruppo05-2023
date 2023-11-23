@@ -43,11 +43,13 @@ public class Rule {
     }
     
     public void checkTrigger(){
-        int flag=0;
-        while(flag==0){
+        /* l'azione viene eseguita una sola volta
+        (una volta che è stata eseguita il trigger non viene più controllato) */
+        boolean executed=false;
+        while(!executed){
             if(trigger.verify()){
                 action.execute();
-                flag=1;
+                executed=true;
             }
         }
     }

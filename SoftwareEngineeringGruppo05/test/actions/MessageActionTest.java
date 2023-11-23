@@ -4,7 +4,7 @@
  */
 package actions;
 
-import actions.MessageActionPackage.MessageAction;
+import actions.MessageAction.MessageAction;
 import java.io.IOException;
 import org.junit.After;
 import org.junit.AfterClass;

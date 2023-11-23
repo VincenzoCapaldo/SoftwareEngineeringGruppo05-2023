@@ -1,17 +1,11 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-package actions.MessageActionPackage;
+package actions.MessageAction;
 
 import actions.Action;
-import java.io.IOException;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import softwareengineeringgruppo05.PopUpController;
-
 
 /**
  *
@@ -50,7 +44,7 @@ public class MessageAction implements Action{
             System.out.println("Cant load new window");
         }
     }
- 
+    
     public void add(Action a){
          throw new UnsupportedOperationException("Cannot add an action to MessageAction.");
     }
@@ -58,4 +52,5 @@ public class MessageAction implements Action{
     public void remove(Action a){
         throw new UnsupportedOperationException("Cannot remove an action from MessageAction.");
     }
+    
 }

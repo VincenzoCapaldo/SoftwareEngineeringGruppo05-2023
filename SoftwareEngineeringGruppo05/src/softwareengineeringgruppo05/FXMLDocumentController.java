@@ -78,17 +78,17 @@ public class FXMLDocumentController implements Initializable {
         //create a togglegroup, so the user can select only one card.
         ToggleGroup toggleGroup = new ToggleGroup();
 
-        //load SoundAction card
+        //load AudioAction card
         FXMLLoader fxmlLoader = new FXMLLoader();
-        fxmlLoader.setLocation(getClass().getResource("/actions/SoundActionPackage/SoundAction.fxml"));
+        fxmlLoader.setLocation(getClass().getResource("/actions/AudioAction/AudioAction.fxml"));
         HBox soundActionBox = fxmlLoader.load();
-        SoundActionController soundActionController = fxmlLoader.getController();
+        AudioActionController soundActionController = fxmlLoader.getController();
         soundActionController.setToggleGroup(toggleGroup);
         scrollAllActions.getChildren().add(soundActionBox);
         
         //load MessageAction card
         FXMLLoader fxmlLoader2 = new FXMLLoader();
-        fxmlLoader2.setLocation(getClass().getResource("/actions/MessageActionPackage/MessageAction.fxml"));
+        fxmlLoader2.setLocation(getClass().getResource("/actions/MessageAction/MessageAction.fxml"));
         HBox messageActionBox = fxmlLoader2.load();
         MessageActionController messageActionController = fxmlLoader2.getController();
         messageActionController.setToggleGroup(toggleGroup);

@@ -19,7 +19,7 @@ import javafx.scene.layout.HBox;
  *
  * @author enzo0
  */
-public class SoundActionController implements Initializable {
+public class AudioActionController implements Initializable {
 
     @FXML
     private HBox soundActionBox;
