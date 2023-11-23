@@ -3,103 +3,63 @@ package rules;
 import org.junit.*;
 import static org.junit.Assert.*;
 import actions.Action;
+import actions.MessageAction.MessageAction;
+import triggers.TimeTrigger;
 import triggers.Trigger;
 
 public class RuleTest {
 
     private Action action;
     private Trigger trigger;
-    private Rule testRule;
+    private Rule rule;
 
     @Before
     public void setUp() {
-        action = () -> {
-            System.out.println("Action executed");
-        };
-
-        trigger = () -> {
-            System.out.println("Trigger verified");
-            return true;
-        };
-
-        testRule = new Rule("TestRule", action, trigger);
+        action = new MessageAction("Ciao");
+        trigger = new TimeTrigger(11,37);
+        rule = new Rule("TestRule", action, trigger);
     }
  
-    /**
-     * Test of getName method, of class Rule.
-     */
     @Test
     public void testGetName() {
-        System.out.println("getName");
-        Rule instance = testRule;
         String expResult = "TestRule";
-        String result = instance.getName();
+        String result = rule.getName();
         assertEquals(expResult, result);
     }
 
-    /**
-     * Test of setName method, of class Rule.
-     */
     @Test
     public void testSetName() {
-        System.out.println("setName");
         String name = "newName";
-        Rule instance = testRule;
-        instance.setName(name);
-        assertEquals(name, instance.getName());
+        rule.setName(name);
+        assertEquals(name, rule.getName());
     }
 
-    /**
-     * Test of getAction method, of class Rule.
-     */
     @Test
     public void testGetAction() {
-        System.out.println("getAction");
-        Rule instance = testRule;
         Action expResult = action;
-        Action result = instance.getAction();
+        Action result = rule.getAction();
         assertEquals(expResult, result);
     }
 
-    /**
-     * Test of setAction method, of class Rule.
-     */
     @Test
     public void testSetAction() {
-        System.out.println("setAction");
-        Action newAction = () -> {
-            System.out.println("NewAction executed");
-        };
-        Rule instance = testRule;
-        instance.setAction(newAction);
-        assertEquals(newAction, instance.getAction());
+        action = new MessageAction("Ciao2");
+        rule.setAction(action);
+        assertEquals(action, rule.getAction());
     }
 
-    /**
-     * Test of getTrigger method, of class Rule.
-     */
     @Test
     public void testGetTrigger() {
-        System.out.println("getTrigger");
-        Rule instance = testRule;
         Trigger expResult = trigger;
-        Trigger result = instance.getTrigger();
+        Trigger result = rule.getTrigger();
         assertEquals(expResult, result);
     }
 
-    /**
-     * Test of setTrigger method, of class Rule.
-     */
     @Test
     public void testSetTrigger() {
-        System.out.println("setTrigger");
-        Trigger newTrigger = () -> {
-            System.out.println("NewTrigger verified");
-            return true;
-        };
-        Rule instance = testRule;
-        instance.setTrigger(newTrigger);
-        assertEquals(newTrigger, instance.getTrigger());
+        trigger = new TimeTrigger(23,22);
+        rule.setTrigger(trigger);
+        assertEquals(trigger, rule.getTrigger());
     }
     
 }

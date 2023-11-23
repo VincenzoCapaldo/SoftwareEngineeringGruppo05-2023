@@ -3,8 +3,10 @@ package rules;
 import org.junit.*;
 import static org.junit.Assert.*;
 import actions.Action;
+import actions.MessageAction.MessageAction;
 import triggers.Trigger;
 import java.util.List;
+import triggers.TimeTrigger;
 
 /**
  *
@@ -18,25 +20,17 @@ public class RuleManagerTest {
     private RuleManager ruleManager;
 
     @Before
-    public void setUp() {
-        ruleManager = RuleManager.getInstance();
-        
-        //regola di prova
-        action = () -> {
-            System.out.println("Action executed");
-        };
-        trigger = () -> {
-            System.out.println("Trigger verified");
-            return true;
-        };
+    public void setUp() {       
+        action = new MessageAction("Ciao");
+        trigger = new TimeTrigger(11,37);
         rule = new Rule("TestRule", action, trigger);
+        ruleManager = RuleManager.getInstance(); 
     }
 
     @Test
     public void testGetInstance() {
         RuleManager instance1 = RuleManager.getInstance();
         RuleManager instance2 = RuleManager.getInstance();
-        
         assertSame(instance1, instance2);
         /* assertSame verifica che due oggetti siano la stessa istanza,
         cioè che puntino allo stesso oggetto in memoria. */
