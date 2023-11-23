@@ -4,7 +4,6 @@
  */
 package softwareengineeringgruppo05;
 
-import actions.MessageActionPackage.MessageAction;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -68,7 +67,7 @@ public class FXMLDocumentController implements Initializable {
     }
 
     @FXML
-    private void goToWindowOne(ActionEvent event) throws IOException {
+    private void goToWindowOne(ActionEvent event) {
         window1.visibleProperty().set(true);
         window3.visibleProperty().set(false);
     }
