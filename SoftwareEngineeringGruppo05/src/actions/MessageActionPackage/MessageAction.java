@@ -10,6 +10,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import softwareengineeringgruppo05.PopUpController;
 
 
 /**
@@ -25,12 +26,25 @@ public class MessageAction {
     
     public void execute() throws IOException{
         try{
+            
+            // Loading the FXML file
             FXMLLoader fxmlLoader= new FXMLLoader(getClass().getResource("PopUp.fxml"));
             Parent root1= (Parent) fxmlLoader.load();
+            
+            // Getting the controller after loading the FXML file
+            PopUpController controller = fxmlLoader.getController();
+
+            // Setting the new text on the Label using the method defined in the controller
+            controller.setLabelText(message);
+        
+            // Creating the new stage
             Stage stage= new Stage();
-            stage.setTitle("ciao");
+            stage.setTitle("New message"); // Setting the title of the window
             stage.setScene(new Scene(root1));
+            
+            // Showing the new window
             stage.show();
+            
         }catch(Exception e){
             System.out.println("Cant load new window");
         }
