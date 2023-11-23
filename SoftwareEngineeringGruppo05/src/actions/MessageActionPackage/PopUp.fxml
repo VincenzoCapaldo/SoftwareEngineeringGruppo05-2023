@@ -7,7 +7,7 @@
 
 <AnchorPane id="AnchorPane" prefHeight="168.0" prefWidth="312.0" stylesheets="@../../css/style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="softwareengineeringgruppo05.PopUpController">
    <children>
-      <Label fx:id="messageString" alignment="CENTER" layoutX="34.0" layoutY="157.0" opacity="0.9" prefHeight="50.0" prefWidth="552.0" style="-fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 30, 0, 30, 30);" stylesheets="@../../css/style.css" text="Messaggio desiderato " textAlignment="JUSTIFY" textFill="#7bc534" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
+      <Label fx:id="messageString" alignment="CENTER" layoutX="34.0" layoutY="157.0" opacity="0.9" prefHeight="50.0" prefWidth="552.0" style="-fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 30, 0, 30, 30);" stylesheets="@../../css/style.css" text="New message" textAlignment="JUSTIFY" textFill="#7bc534" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
          <font>
             <Font name="Georgia" size="12.0" />
          </font>
