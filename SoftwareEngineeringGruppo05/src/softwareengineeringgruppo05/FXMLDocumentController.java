@@ -27,7 +27,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import rules.Rule;
 import rules.RuleManager;
-import triggers.TimeTrigger;
+import triggers.TimeTrigger.TimeTrigger;
 import triggers.Trigger;
 
 /**

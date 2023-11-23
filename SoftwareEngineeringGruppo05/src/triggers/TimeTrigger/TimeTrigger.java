@@ -1,6 +1,7 @@
-package triggers;
+package triggers.TimeTrigger;
 
 import java.time.LocalTime;
+import triggers.Trigger;
 
 /**
  *

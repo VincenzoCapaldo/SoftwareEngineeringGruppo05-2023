@@ -6,7 +6,7 @@ import actions.Action;
 import actions.MessageAction.MessageAction;
 import triggers.Trigger;
 import java.util.List;
-import triggers.TimeTrigger;
+import triggers.TimeTrigger.TimeTrigger;
 
 /**
  *

@@ -4,9 +4,13 @@ import org.junit.*;
 import static org.junit.Assert.*;
 import actions.Action;
 import actions.MessageAction.MessageAction;
-import triggers.TimeTrigger;
+import triggers.TimeTrigger.TimeTrigger;
 import triggers.Trigger;
 
+/**
+ *
+ * @author Paolo
+ */
 public class RuleTest {
 
     private Action action;
