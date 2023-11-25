@@ -1,6 +1,4 @@
-package softwareengineeringgruppo05;
-
-import rules.Rule;
+package rules;
 
 /**
  *
@@ -15,7 +13,8 @@ public class ThreadRule implements Runnable {
 
     @Override
     public void run() {
-        rule.checkRule();
+        if(rule.getTrigger().checkTrigger())
+            rule.getAction().execute();
     }
 
 }

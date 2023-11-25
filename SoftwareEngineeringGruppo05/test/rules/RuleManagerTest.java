@@ -50,4 +50,25 @@ public class RuleManagerTest {
         assertTrue(rules.contains(rule));
     }
     
+    @Test
+    public void testDeleteRule() {
+        ruleManager.deleteRule(rule);
+        List<Rule> rules = ruleManager.getRules();
+        assertFalse(rules.contains(rule));
+    }
+    
+    public void testDeactivateRule() {
+        ruleManager.deactivateRule(rule);
+        boolean expResult = false;
+        boolean result = rule.getState();
+        assertEquals(expResult, result);
+    }
+    
+    public void testReactivateRule() {
+        ruleManager.reactivateRule(rule);
+        boolean expResult = true;
+        boolean result = rule.getState();
+        assertEquals(expResult, result); 
+    }
+    
 }

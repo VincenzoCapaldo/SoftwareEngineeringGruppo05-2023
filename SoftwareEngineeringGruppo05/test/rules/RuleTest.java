@@ -67,15 +67,17 @@ public class RuleTest {
     }
     
     @Test
-    public void testSetState() {
-        Boolean state = true;
-        rule.setState(state);
-        assertEquals(state, rule.isState());
+    public void testGetState() {
+        boolean expResult = false;
+        boolean result = rule.getState();
+        assertEquals(expResult, result);
     }
-
+    
     @Test
-    public void testIsState() {
-        assertEquals(false, rule.isState());
+    public void testSetState() {
+        boolean state = true;
+        rule.setState(state);
+        assertEquals(state, rule.getState());
     }
     
 }

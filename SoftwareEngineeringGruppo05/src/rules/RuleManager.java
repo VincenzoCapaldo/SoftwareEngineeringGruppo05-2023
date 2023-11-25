@@ -30,5 +30,17 @@ public class RuleManager {
     public void addRule(Rule newRule) {
         rules.add(newRule);
     }
-
+    
+    public void deleteRule(Rule oldRule) {
+        rules.remove(oldRule);
+    }
+    
+    public void deactivateRule(Rule rule) {
+        rule.setState(false);
+    }
+    
+    public void reactivateRule(Rule rule) {
+        rule.setState(true);    
+    }
+    
 }

@@ -32,9 +32,9 @@ public class TimeTrigger implements Trigger{
             } catch (InterruptedException ex) {
                 Logger.getLogger(TimeTrigger.class.getName()).log(Level.SEVERE, null, ex);
             }
-        }else if(!this.verify()){
+        }else{
             try {
-                Thread.sleep(86400000 - Duration.between(time, LocalTime.now()).toMillis());
+                Thread.sleep(86400000 - Duration.between(time, LocalTime.now()).toMillis()); //86400000 sono i millisecondi in una giornata
             } catch (InterruptedException ex) {
                 Logger.getLogger(TimeTrigger.class.getName()).log(Level.SEVERE, null, ex);
             }

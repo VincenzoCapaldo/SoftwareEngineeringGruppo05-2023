@@ -4,6 +4,7 @@
  */
 package softwareengineeringgruppo05;
 
+import rules.ThreadRule;
 import actions.Action;
 import actions.AudioAction.AudioAction;
 import actions.MessageAction.MessageAction;

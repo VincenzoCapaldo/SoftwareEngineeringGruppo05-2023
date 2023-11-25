@@ -44,26 +44,12 @@ public class Rule {
         this.trigger = trigger;
     }
 
-    public boolean isState() {
+    public boolean getState() {
         return state;
     }
 
     public void setState(boolean state) {
         this.state = state;
-    }
-    
-    public void checkRule(){
-        /* l'azione viene eseguita una sola volta
-        (una volta che è stata eseguita il trigger non viene più controllato) */
-        boolean executed=false;
-        while(!executed){
-            if(trigger.checkTrigger()){
-                action.execute();
-                executed=true;
-            }else{
-                System.out.println("checkTrigger error");
-            }
-        }
     }
 
 }
