@@ -4,7 +4,6 @@
  */
 package softwareengineeringgruppo05;
 
-import rules.ThreadRule;
 import actions.Action;
 import actions.AudioAction.AudioAction;
 import actions.MessageAction.MessageAction;
@@ -22,16 +21,19 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Toggle;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import rules.Rule;
 import rules.RuleManager;
+import rules.ThreadRule;
 import triggers.TimeTrigger.TimeTrigger;
 import triggers.Trigger;
 
@@ -67,6 +69,19 @@ public class FXMLDocumentController implements Initializable {
     private MessageActionController messageActionController;
     private TimeTriggerController timeTriggerController;
     private RuleManager ruleManager;
+    @FXML
+    private CheckBox repetitionCheck;
+    @FXML
+    private HBox sleeping;
+    @FXML
+    private TextField dayText;
+    @FXML
+    private TextField hourText;
+    @FXML
+    private TextField minuteText;
+    @FXML
+    private VBox boxSleeping;
+
     
     /**
      * Initializes the controller class.
@@ -76,7 +91,7 @@ public class FXMLDocumentController implements Initializable {
         window1.visibleProperty().set(true);
         window3.visibleProperty().set(false);
         ruleManager = RuleManager.getInstance();
-        
+        boxSleeping.getChildren().remove(sleeping); 
         loadAllRules();
     }    
 
@@ -184,6 +199,50 @@ public class FXMLDocumentController implements Initializable {
         timeTriggerController = fxmlLoader.getController();
         timeTriggerController.setToggleGroup(triggerToggleGroup);
         scrollAllTriggers.getChildren().add(timeTriggerBox);
+    }
+
+    @FXML
+    private void repetitionIsChecked(ActionEvent event) {
+        boolean isChecked = repetitionCheck.isSelected();
+       if(isChecked){
+           boxSleeping.getChildren().add(sleeping);
+       }else
+          boxSleeping.getChildren().remove(sleeping); 
+    }
+
+    @FXML
+    private void onDayChanged(KeyEvent event) {
+        if(!dayText.getText().matches("\\d+")){
+            dayText.clear();
+        }
+    }
+
+    @FXML
+    private void onHourChanged(KeyEvent event) {
+        int hours = 0;
+        
+        if(!hourText.getText().matches("\\d+")){
+            hourText.clear();
+        }else{
+             hours = Integer.parseInt(hourText.getText());
+             if (hours < 0 || hours > 23) {
+                hourText.clear();
+            }
+        }
+    }
+
+    @FXML
+    private void onMinuteChaged(KeyEvent event) {
+        int minutes=0;
+        
+        if(!minuteText.getText().matches("\\d+")){
+            minuteText.clear();
+        }else{
+             minutes = Integer.parseInt(minuteText.getText());
+             if (minutes < 0 || minutes > 59) {
+                minuteText.clear();
+             }
+        }
     }
     
 }
