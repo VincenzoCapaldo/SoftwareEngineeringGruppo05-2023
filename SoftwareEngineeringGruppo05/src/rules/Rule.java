@@ -42,14 +42,16 @@ public class Rule {
         this.trigger = trigger;
     }
     
-    public void checkTrigger(){
+    public void checkRule(){
         /* l'azione viene eseguita una sola volta
         (una volta che è stata eseguita il trigger non viene più controllato) */
         boolean executed=false;
         while(!executed){
-            if(trigger.verify()){
+            if(trigger.checkTrigger()){
                 action.execute();
                 executed=true;
+            }else{
+                System.out.println("checkTrigger error");
             }
         }
     }

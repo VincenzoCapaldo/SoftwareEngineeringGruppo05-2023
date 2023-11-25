@@ -6,4 +6,5 @@ package triggers;
  */
 public interface Trigger {
     public boolean verify();
+    public boolean checkTrigger();
 }

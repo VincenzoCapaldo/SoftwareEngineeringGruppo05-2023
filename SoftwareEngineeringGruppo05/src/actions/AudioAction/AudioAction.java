@@ -51,8 +51,12 @@ public class AudioAction implements Action{
     @Override
     public void execute() {
         clip.start(); // Avvia Clip
+        
+        // Funziona solo con start
+        /*
         clip.drain(); // Attende la fine della riproduzione
         clip.close(); // Chiude Clip
+        */
     }
     
     @Override

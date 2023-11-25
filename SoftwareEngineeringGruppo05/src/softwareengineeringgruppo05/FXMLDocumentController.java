@@ -103,8 +103,8 @@ public class FXMLDocumentController implements Initializable {
         
         RadioButton selectedAction = (RadioButton) actionToggleGroup.getSelectedToggle();
         RadioButton selectedTrigger = (RadioButton) triggerToggleGroup.getSelectedToggle();
-        
-        if("Sound".equals(selectedAction.getText())){
+             
+        if("Audio".equals(selectedAction.getText())){
             action = new AudioAction(audioActionController.getFilePath());
         }else if("Message".equals(selectedAction.getText())){         
             action = new MessageAction(messageActionController.getTextArea());
@@ -116,6 +116,9 @@ public class FXMLDocumentController implements Initializable {
         
         Rule rule = new Rule(nameRuleTextField.getText(), action, trigger);
         ruleManager.addRule(rule);
+        
+        Thread t = new Thread(new ThreadRule(rule));
+        t.start();
         
         loadAllRules();
     }

@@ -15,7 +15,7 @@ public class ThreadRule implements Runnable {
 
     @Override
     public void run() {
-        rule.checkTrigger();
+        rule.checkRule();
     }
 
 }
