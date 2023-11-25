@@ -11,12 +11,13 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
 
 /**
  * FXML Controller class
  *
- * @author enzo0
+ * @author maria
  */
 public class TimeTriggerController implements Initializable {
 
@@ -44,35 +45,39 @@ public class TimeTriggerController implements Initializable {
     }
     
     public int getHours(){
-        return validateHours();
+        return Integer.parseInt(timeTextFieldHours.getText());
     }
     
     public int getMinutes(){
-        return validateMinutes();
+        return Integer.parseInt(timeTextFieldMinutes.getText());
     }
-    
-    private int validateHours(){
-        try {
-            int hours = Integer.parseInt(timeTextFieldHours.getText());
-            if (hours < 0 || hours > 23) {
-                return -1;
-            }
-            return hours;
-        } catch (NumberFormatException e) {
-            return -1;
+
+    @FXML
+    private void onChangedHour(KeyEvent event) {
+        int hours = 0;
+        
+        if(!timeTextFieldHours.getText().matches("\\d+")){
+            timeTextFieldHours.clear();
+        }else{
+             hours = Integer.parseInt(timeTextFieldHours.getText());
+             if (hours < 0 || hours > 23) {
+                timeTextFieldHours.clear();
+             }
         }
     }
-    
-    private int validateMinutes(){
-        try {
-                int hours = Integer.parseInt(timeTextFieldMinutes.getText());
-                if (hours < 0 || hours > 59) {
-                    return -1;
-                }
-                return hours;
-            } catch (NumberFormatException e) {
-                return -1;
-            }
+
+    @FXML
+    private void onChangedMinute(KeyEvent event) {
+        int minutes=0;
+        
+        if(!timeTextFieldMinutes.getText().matches("\\d+")){
+            timeTextFieldMinutes.clear();
+        }else{
+             minutes = Integer.parseInt(timeTextFieldMinutes.getText());
+             if (minutes < 0 || minutes > 59) {
+                timeTextFieldMinutes.clear();
+             }
+        }
     }
     
 }

@@ -10,9 +10,12 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.RadioButton;
+import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
@@ -33,6 +36,18 @@ public class AudioActionController implements Initializable {
     private Button browseButton;
     
     private java.io.File selectedFile;
+    @FXML
+    private VBox vBox;
+    @FXML
+    private CheckBox repetitionCheck;
+    @FXML
+    private HBox sleeping;
+    @FXML
+    private TextField dayText;
+    @FXML
+    private TextField hourText;
+    @FXML
+    private TextField minuteText;
 
     /**
      * Initializes the controller class.
@@ -60,5 +75,9 @@ public class AudioActionController implements Initializable {
     
     public String getFilePath(){
         return this.selectedFile.getAbsolutePath();
+    }
+
+    @FXML
+    private void repetitionIsChecked(ActionEvent event) {
     }
 }
