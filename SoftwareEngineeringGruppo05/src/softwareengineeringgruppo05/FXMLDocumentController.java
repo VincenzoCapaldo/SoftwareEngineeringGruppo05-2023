@@ -5,13 +5,17 @@
 package softwareengineeringgruppo05;
 
 import actions.Action;
+import actions.AudioAction.AudioAction;
 import actions.MessageAction.MessageAction;
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
+import javafx.beans.binding.Bindings;
+import javafx.beans.binding.BooleanBinding;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.value.ObservableStringValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -83,6 +87,8 @@ public class FXMLDocumentController implements Initializable {
         loadAllActionsCards();
         loadAllTriggersCards();
         
+        BooleanBinding bb = nameRuleTextField.textProperty().isEmpty().or(actionToggleGroup.selectedToggleProperty().isNull()).or(triggerToggleGroup.selectedToggleProperty().isNull()); 
+        createRuleButton.disableProperty().bind(bb);
         
     }
 
@@ -98,13 +104,13 @@ public class FXMLDocumentController implements Initializable {
         RadioButton selectedAction = (RadioButton) actionToggleGroup.getSelectedToggle();
         RadioButton selectedTrigger = (RadioButton) triggerToggleGroup.getSelectedToggle();
         
-        if(selectedAction.getText() == "Sound"){
-            
-        }else if(selectedAction.getText() == "Message"){         
+        if("Sound".equals(selectedAction.getText())){
+            action = new AudioAction(audioActionController.getFilePath());
+        }else if("Message".equals(selectedAction.getText())){         
             action = new MessageAction(messageActionController.getTextArea());
         }
         
-        if(selectedTrigger.getText() == "Time"){           
+        if("Time".equals(selectedTrigger.getText())){           
             trigger = new TimeTrigger(timeTriggerController.getHours(), timeTriggerController.getMinutes());
         }
         
@@ -137,11 +143,11 @@ public class FXMLDocumentController implements Initializable {
         
     }
     
-    
     //load all actions in window3, so the user can visualize all action cards
     private void loadAllActionsCards() throws IOException {
         scrollAllActions.getChildren().clear();
-        //create a togglegroup, so the user can select only one card.
+        
+//create a togglegroup, so the user can select only one card.
         actionToggleGroup = new ToggleGroup();
 
         //load AudioAction card
@@ -169,14 +175,11 @@ public class FXMLDocumentController implements Initializable {
         
         //load timeTrigger card
         FXMLLoader fxmlLoader = new FXMLLoader();
-        fxmlLoader.setLocation(getClass().getResource("/triggers/TimeTrigger.fxml"));
+        fxmlLoader.setLocation(getClass().getResource("/triggers/TimeTrigger/TimeTrigger.fxml"));
         HBox timeTriggerBox = fxmlLoader.load();
         timeTriggerController = fxmlLoader.getController();
         timeTriggerController.setToggleGroup(triggerToggleGroup);
         scrollAllTriggers.getChildren().add(timeTriggerBox);
     }
     
-    
 }
-
-    

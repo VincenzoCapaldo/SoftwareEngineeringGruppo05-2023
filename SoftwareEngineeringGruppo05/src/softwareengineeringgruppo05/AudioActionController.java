@@ -47,7 +47,6 @@ public class AudioActionController implements Initializable {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Select an audio file");
 
-        // Configura il filtro del tipo di file se necessario
         fileChooser.getExtensionFilters().addAll(
                 new FileChooser.ExtensionFilter("Audio File", "*.mp3*", "*.wav"));
         
