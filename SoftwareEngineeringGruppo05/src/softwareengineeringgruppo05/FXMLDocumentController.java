@@ -114,7 +114,7 @@ public class FXMLDocumentController implements Initializable {
             trigger = new TimeTrigger(timeTriggerController.getHours(), timeTriggerController.getMinutes());
         }
         
-        Rule rule = new Rule(nameRuleTextField.getText(), action, trigger);
+        Rule rule = new Rule(nameRuleTextField.getText(), action, trigger, true);
         ruleManager.addRule(rule);
         
         Thread t = new Thread(new ThreadRule(rule));

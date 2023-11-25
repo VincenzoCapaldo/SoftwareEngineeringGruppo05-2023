@@ -23,7 +23,7 @@ public class RuleManagerTest {
     public void setUp() {       
         action = new MessageAction("Ciao");
         trigger = new TimeTrigger(11,37);
-        rule = new Rule("TestRule", action, trigger);
+        rule = new Rule("TestRule", action, trigger, true);
         ruleManager = RuleManager.getInstance(); 
     }
 

@@ -9,7 +9,7 @@ import triggers.Trigger;
 
 /**
  *
- * @author Paolo
+ * @author Maria
  */
 public class RuleTest {
 
@@ -21,7 +21,7 @@ public class RuleTest {
     public void setUp() {
         action = new MessageAction("Ciao");
         trigger = new TimeTrigger(11,37);
-        rule = new Rule("TestRule", action, trigger);
+        rule = new Rule("TestRule", action, trigger, false);
     }
  
     @Test
@@ -64,6 +64,18 @@ public class RuleTest {
         trigger = new TimeTrigger(23,22);
         rule.setTrigger(trigger);
         assertEquals(trigger, rule.getTrigger());
+    }
+    
+    @Test
+    public void testSetState() {
+        Boolean state = true;
+        rule.setState(state);
+        assertEquals(state, rule.isState());
+    }
+
+    @Test
+    public void testIsState() {
+        assertEquals(false, rule.isState());
     }
     
 }

@@ -11,11 +11,13 @@ public class Rule {
     private String name;
     private Action action;
     private Trigger trigger;
-    
-    public Rule(String name, Action action, Trigger trigger){
+    private boolean state;
+
+    public Rule(String name, Action action, Trigger trigger, boolean state) {
         this.name = name;
         this.action = action;
         this.trigger = trigger;
+        this.state = state;
     }
     
     public String getName(){
@@ -40,6 +42,14 @@ public class Rule {
     
     public void setTrigger(Trigger trigger){
         this.trigger = trigger;
+    }
+
+    public boolean isState() {
+        return state;
+    }
+
+    public void setState(boolean state) {
+        this.state = state;
     }
     
     public void checkRule(){
