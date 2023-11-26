@@ -16,26 +16,21 @@ public class ThreadRule implements Runnable {
 
     @Override
     public void run() {
-        /*check trigger one time*/
-        if(rule.getTrigger().checkTrigger())
-           rule.getAction().execute();
-        
-        /*verify repetition and sleeping settings. If sleeping is 0 millis repeat rule each 10 millis*/
-        long newSleeping=rule.getSleeping().toMillis();
-        if(rule.getRepeate()&&newSleeping==0){
-            newSleeping=10000;
-        }
-        
-        /*repetition*/
-        while(rule.getRepeate()){
-            try {
-                Thread.sleep(newSleeping);
+        //while(!Thread.currentThread().isInterrupted()){
+            try{
+                /*check trigger one time*/
+                if(rule.getTrigger().checkTrigger())
+                   rule.getAction().execute();
+
+                /*repetition*/
+                while(rule.getRepeate() && rule.getSleeping().toMillis()!=0){
+                        Thread.sleep(rule.getSleeping().toMillis());
+                        rule.getAction().execute(); 
+                }   
             } catch (InterruptedException ex) {
                 Logger.getLogger(ThreadRule.class.getName()).log(Level.SEVERE, null, ex);
             }
-            rule.getAction().execute();
-        }
-
+        //}
     }
 
 }

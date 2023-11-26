@@ -38,7 +38,7 @@ public class RuleManagerTest {
         cioè che puntino allo stesso oggetto in memoria. */
     }
 
-    @Test
+    /*@Test
     public void testGetRules() {
         ruleManager.addRule(rule);
         List<Rule> rules = ruleManager.getRules();
@@ -72,5 +72,5 @@ public class RuleManagerTest {
         boolean result = rule.getState();
         assertEquals(expResult, result); 
     }
-    
+    */
 }

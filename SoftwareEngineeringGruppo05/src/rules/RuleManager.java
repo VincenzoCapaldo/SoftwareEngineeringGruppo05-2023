@@ -1,7 +1,8 @@
 package rules;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
 
 /**
  *
@@ -9,10 +10,10 @@ import java.util.List;
  */
 public class RuleManager {
     private static RuleManager instance = null;
-    private List<Rule> rules;
+    private Map<Rule, Thread> mapRules;
 
     private RuleManager() {
-        rules = new ArrayList<>();
+        mapRules= new HashMap<>();
     }
 
     public static RuleManager getInstance() {
@@ -23,28 +24,30 @@ public class RuleManager {
         return instance;
     }
 
-    public List<Rule> getRules() {
+    public Set<Rule> getRules() {
+        Set rules= mapRules.keySet();
         return rules;
     }
 
     public void addRule(Rule newRule) {
-        rules.add(newRule);
-        System.out.println(rules.size());
+        Thread t = new Thread(new ThreadRule(newRule));
+        mapRules.put(newRule, t);
+        t.start();
     }
     
     public void deleteRule(Rule oldRule) {
-        rules.remove(oldRule);
-        System.out.println(rules.size());
+        mapRules.get(oldRule).interrupt();
+        mapRules.remove(oldRule);
     }
     
     public void deactivateRule(Rule rule) {
         rule.setState(false);
-        System.out.println(rule.getState());
+        mapRules.get(rule).interrupt();
     }
     
     public void reactivateRule(Rule rule) {
-        rule.setState(true);        
-        System.out.println(rule.getState());
+        rule.setState(true);  
+        this.addRule(rule);
     }
     
 }

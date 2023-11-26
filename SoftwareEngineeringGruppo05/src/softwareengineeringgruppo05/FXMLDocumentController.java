@@ -10,13 +10,9 @@ import actions.MessageAction.MessageAction;
 import java.io.IOException;
 import java.net.URL;
 import java.time.Duration;
-import java.util.List;
 import java.util.ResourceBundle;
-import javafx.beans.binding.Bindings;
+import java.util.Set;
 import javafx.beans.binding.BooleanBinding;
-import javafx.beans.property.BooleanProperty;
-import javafx.beans.property.SimpleBooleanProperty;
-import javafx.beans.value.ObservableStringValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -25,16 +21,13 @@ import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
-import javafx.scene.control.Toggle;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import rules.Rule;
 import rules.RuleManager;
-import rules.ThreadRule;
 import triggers.TimeTrigger.TimeTrigger;
 import triggers.Trigger;
 
@@ -100,13 +93,24 @@ public class FXMLDocumentController implements Initializable {
     private void goToWindowThree(ActionEvent event) throws IOException {
         nameRuleTextField.clear();
         repetitionCheck.setSelected(false);
+        dayText.clear();
+        hourText.clear();
+        minuteText.clear();
         window3.visibleProperty().set(true);
         window1.visibleProperty().set(false);
         
         loadAllActionsCards();
         loadAllTriggersCards();
         
-        BooleanBinding bb = nameRuleTextField.textProperty().isEmpty().or(actionToggleGroup.selectedToggleProperty().isNull()).or(triggerToggleGroup.selectedToggleProperty().isNull()); 
+        BooleanBinding bb1 = nameRuleTextField.textProperty().isEmpty();
+        BooleanBinding bb2 = actionToggleGroup.selectedToggleProperty().isNull().or(triggerToggleGroup.selectedToggleProperty().isNull());
+        BooleanBinding bb3 = repetitionCheck.selectedProperty().and(
+                                dayText.textProperty().isEmpty().or(
+                                hourText.textProperty().isEmpty()).or(
+                                minuteText.textProperty().isEmpty()));
+        
+        BooleanBinding bb= bb1.or(bb2).or(bb3);
+        
         createRuleButton.disableProperty().bind(bb);
         
     }
@@ -141,9 +145,6 @@ public class FXMLDocumentController implements Initializable {
         
         Rule rule = new Rule(nameRuleTextField.getText(), action, trigger, true, repetition, duration);
         ruleManager.addRule(rule);
-        
-        Thread t = new Thread(new ThreadRule(rule));
-        t.start();
                 
         loadAllRules();
     }
@@ -152,7 +153,7 @@ public class FXMLDocumentController implements Initializable {
     private void loadAllRules(){
         scrollRules.getChildren().clear();
         
-        List<Rule> rules = ruleManager.getRules();
+        Set<Rule> rules = ruleManager.getRules();
 
         for (Rule rule : rules) {
             try {
@@ -257,23 +258,14 @@ public class FXMLDocumentController implements Initializable {
     }
     
     public int getDaysSleeping(){
-        if(dayText.getText().isEmpty()){
-            return 0;
-        }
         return Integer.parseInt(dayText.getText());
     }
         
     public int getHoursSleeping(){
-        if(hourText.getText().isEmpty()){
-            return 0;
-        }
         return Integer.parseInt(hourText.getText());
     }
  
     public int getMinutesSleeping(){
-        if(minuteText.getText().isEmpty()){
-            return 0;
-        }
         return Integer.parseInt(minuteText.getText());
     }
     
