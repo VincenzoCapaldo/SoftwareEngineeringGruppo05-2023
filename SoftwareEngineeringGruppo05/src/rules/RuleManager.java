@@ -29,18 +29,22 @@ public class RuleManager {
 
     public void addRule(Rule newRule) {
         rules.add(newRule);
+        System.out.println(rules.size());
     }
     
     public void deleteRule(Rule oldRule) {
         rules.remove(oldRule);
+        System.out.println(rules.size());
     }
     
     public void deactivateRule(Rule rule) {
         rule.setState(false);
+        System.out.println(rule.getState());
     }
     
     public void reactivateRule(Rule rule) {
-        rule.setState(true);    
+        rule.setState(true);        
+        System.out.println(rule.getState());
     }
     
 }

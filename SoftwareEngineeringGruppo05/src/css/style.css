@@ -26,3 +26,7 @@
     -fx-background-radius: 10;
     -fx-border-radius: 10;
 }
+
+.deactivated_rule_background{
+    -fx-background-color: #BFBFBF;
+}

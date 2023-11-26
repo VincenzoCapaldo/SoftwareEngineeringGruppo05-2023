@@ -144,7 +144,7 @@ public class FXMLDocumentController implements Initializable {
         
         Thread t = new Thread(new ThreadRule(rule));
         t.start();
-        
+                
         loadAllRules();
     }
     
@@ -161,7 +161,9 @@ public class FXMLDocumentController implements Initializable {
                 HBox ruleBox = fxmlLoader.load();
 
                 RuleCardController ruleCardController = fxmlLoader.getController();
-                ruleCardController.setData(rule.getName());
+                ruleCardController.setRuleManager(ruleManager);
+                ruleCardController.setRule(rule);
+                ruleCardController.setData();
 
                 scrollRules.getChildren().add(ruleBox);
             } catch (IOException e) {
