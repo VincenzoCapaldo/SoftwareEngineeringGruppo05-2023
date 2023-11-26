@@ -9,6 +9,7 @@ import actions.AudioAction.AudioAction;
 import actions.MessageAction.MessageAction;
 import java.io.IOException;
 import java.net.URL;
+import java.time.Duration;
 import java.util.List;
 import java.util.ResourceBundle;
 import javafx.beans.binding.Bindings;
@@ -72,8 +73,6 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private CheckBox repetitionCheck;
     @FXML
-    private HBox sleeping;
-    @FXML
     private TextField dayText;
     @FXML
     private TextField hourText;
@@ -81,6 +80,8 @@ public class FXMLDocumentController implements Initializable {
     private TextField minuteText;
     @FXML
     private VBox boxSleeping;
+    @FXML
+    private HBox Hsleeping;
 
     
     /**
@@ -91,12 +92,14 @@ public class FXMLDocumentController implements Initializable {
         window1.visibleProperty().set(true);
         window3.visibleProperty().set(false);
         ruleManager = RuleManager.getInstance();
-        boxSleeping.getChildren().remove(sleeping); 
+        boxSleeping.getChildren().remove(Hsleeping); 
         loadAllRules();
     }    
 
     @FXML
     private void goToWindowThree(ActionEvent event) throws IOException {
+        nameRuleTextField.clear();
+        repetitionCheck.setSelected(false);
         window3.visibleProperty().set(true);
         window1.visibleProperty().set(false);
         
@@ -130,7 +133,13 @@ public class FXMLDocumentController implements Initializable {
             trigger = new TimeTrigger(timeTriggerController.getHours(), timeTriggerController.getMinutes());
         }
         
-        Rule rule = new Rule(nameRuleTextField.getText(), action, trigger, true);
+        boolean repetition= repetitionCheck.isSelected();
+        Duration duration= Duration.ofDays(0).plusHours(0).plusMinutes(0);
+        if(repetition){
+            duration = Duration.ofDays(getDaysSleeping()).plusHours(getHoursSleeping()).plusMinutes(getMinutesSleeping());
+        }
+        
+        Rule rule = new Rule(nameRuleTextField.getText(), action, trigger, true, repetition, duration);
         ruleManager.addRule(rule);
         
         Thread t = new Thread(new ThreadRule(rule));
@@ -205,9 +214,9 @@ public class FXMLDocumentController implements Initializable {
     private void repetitionIsChecked(ActionEvent event) {
         boolean isChecked = repetitionCheck.isSelected();
        if(isChecked){
-           boxSleeping.getChildren().add(sleeping);
+           boxSleeping.getChildren().add(Hsleeping);
        }else
-          boxSleeping.getChildren().remove(sleeping); 
+          boxSleeping.getChildren().remove(Hsleeping); 
     }
 
     @FXML
@@ -243,6 +252,27 @@ public class FXMLDocumentController implements Initializable {
                 minuteText.clear();
              }
         }
+    }
+    
+    public int getDaysSleeping(){
+        if(dayText.getText().isEmpty()){
+            return 0;
+        }
+        return Integer.parseInt(dayText.getText());
+    }
+        
+    public int getHoursSleeping(){
+        if(hourText.getText().isEmpty()){
+            return 0;
+        }
+        return Integer.parseInt(hourText.getText());
+    }
+ 
+    public int getMinutesSleeping(){
+        if(minuteText.getText().isEmpty()){
+            return 0;
+        }
+        return Integer.parseInt(minuteText.getText());
     }
     
 }

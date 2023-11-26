@@ -4,6 +4,7 @@ import org.junit.*;
 import static org.junit.Assert.*;
 import actions.Action;
 import actions.MessageAction.MessageAction;
+import java.time.Duration;
 import triggers.Trigger;
 import java.util.List;
 import triggers.TimeTrigger.TimeTrigger;
@@ -23,7 +24,8 @@ public class RuleManagerTest {
     public void setUp() {       
         action = new MessageAction("Ciao");
         trigger = new TimeTrigger(11,37);
-        rule = new Rule("TestRule", action, trigger, true);
+        Duration d= Duration.ofMinutes(1);
+        rule = new Rule("TestRule", action, trigger, true, true, d);
         ruleManager = RuleManager.getInstance(); 
     }
 
