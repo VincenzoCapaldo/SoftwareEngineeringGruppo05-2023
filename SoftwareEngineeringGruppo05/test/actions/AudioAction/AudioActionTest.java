@@ -13,17 +13,17 @@ public class AudioActionTest {
     
     @Before
     public void setUp() {
-        action = new AudioAction("notificationSound.wav");
+        action = new AudioAction("test/actions/AudioAction/notificationSound.wav");
     }
     
     @Test(expected = RuntimeException.class)
     public void testFortmatFileAudioAction(){
-        AudioAction aa = new AudioAction("prova.txt");
+        AudioAction aa = new AudioAction("test/actions/AudioAction/prova.txt");
     }
     
     @Test(expected = RuntimeException.class)
     public void testFileNotFoundAction(){
-        AudioAction aa = new AudioAction("prova2.txt");
+        AudioAction aa = new AudioAction("test/actions/AudioAction/prova2.txt");
     }
     
     @Test(expected = RuntimeException.class)
