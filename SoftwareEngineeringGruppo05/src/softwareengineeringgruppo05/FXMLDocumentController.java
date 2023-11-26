@@ -75,6 +75,8 @@ public class FXMLDocumentController implements Initializable {
     private VBox boxSleeping;
     @FXML
     private HBox Hsleeping;
+    @FXML
+    private Button goBackButton;
 
     
     /**
@@ -267,6 +269,13 @@ public class FXMLDocumentController implements Initializable {
  
     public int getMinutesSleeping(){
         return Integer.parseInt(minuteText.getText());
+    }
+
+    @FXML
+    private void goToHome(ActionEvent event) {
+        window1.visibleProperty().set(true);
+        window3.visibleProperty().set(false);
+        loadAllRules();
     }
     
 }

@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="softwareengineeringgruppo05.FXMLDocumentController">
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="softwareengineeringgruppo05.FXMLDocumentController">
    <children>
       <AnchorPane fx:id="window1" prefHeight="400.0" prefWidth="600.0" stylesheets="@../css/style.css" visible="false">
          <children>
@@ -81,9 +81,14 @@
                            <children>
                               <VBox layoutX="98.0" layoutY="66.0" prefHeight="200.0" prefWidth="100.0" stylesheets="@../css/style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <children>
-                                    <HBox alignment="CENTER" prefHeight="55.0" prefWidth="296.0" styleClass="main_background" stylesheets="@../css/style.css">
+                                    <HBox alignment="CENTER_LEFT" prefHeight="55.0" prefWidth="296.0" styleClass="main_background" stylesheets="@../css/style.css">
                                        <children>
-                                          <Label alignment="CENTER" styleClass="white_text" stylesheets="@../css/style.css" text="Action">
+                                          <Button fx:id="goBackButton" mnemonicParsing="false" onAction="#goToHome" styleClass="white_background" stylesheets="@../css/style.css" text="GoBack">
+                                             <HBox.margin>
+                                                <Insets left="20.0" />
+                                             </HBox.margin>
+                                          </Button>
+                                          <Label alignment="CENTER" prefHeight="46.0" prefWidth="156.0" styleClass="white_text" stylesheets="@../css/style.css" text="Action">
                                              <font>
                                                 <Font name="Arial" size="22.0" />
                                              </font>
