@@ -111,5 +111,4 @@ public class RuleTest {
         assertEquals(d1, rule.getSleeping());
     }
     
-    
 }
