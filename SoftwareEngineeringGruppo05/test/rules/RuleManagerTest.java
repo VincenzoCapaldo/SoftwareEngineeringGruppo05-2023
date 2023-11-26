@@ -7,6 +7,7 @@ import actions.MessageAction.MessageAction;
 import java.time.Duration;
 import triggers.Trigger;
 import java.util.List;
+import java.util.Set;
 import triggers.TimeTrigger.TimeTrigger;
 
 /**
@@ -24,7 +25,7 @@ public class RuleManagerTest {
     public void setUp() {       
         action = new MessageAction("Ciao");
         trigger = new TimeTrigger(11,37);
-        Duration d= Duration.ofMinutes(1);
+        Duration d = Duration.ofMinutes(1);
         rule = new Rule("TestRule", action, trigger, true, true, d);
         ruleManager = RuleManager.getInstance(); 
     }
@@ -38,24 +39,25 @@ public class RuleManagerTest {
         cioè che puntino allo stesso oggetto in memoria. */
     }
 
-    /*@Test
+    @Test
     public void testGetRules() {
         ruleManager.addRule(rule);
-        List<Rule> rules = ruleManager.getRules();
+        Set<Rule> rules = ruleManager.getRules();
         assertFalse(rules.isEmpty());
     }
     
     @Test
     public void testAddRule() {
         ruleManager.addRule(rule);
-        List<Rule> rules = ruleManager.getRules();
+        Set<Rule> rules = ruleManager.getRules();
         assertTrue(rules.contains(rule));
     }
     
     @Test
     public void testDeleteRule() {
+        ruleManager.addRule(rule);
         ruleManager.deleteRule(rule);
-        List<Rule> rules = ruleManager.getRules();
+        Set<Rule> rules = ruleManager.getRules();
         assertFalse(rules.contains(rule));
     }
     
@@ -67,10 +69,11 @@ public class RuleManagerTest {
     }
     
     public void testReactivateRule() {
+        ruleManager.deactivateRule(rule);
         ruleManager.reactivateRule(rule);
         boolean expResult = true;
         boolean result = rule.getState();
         assertEquals(expResult, result); 
     }
-    */
+    
 }

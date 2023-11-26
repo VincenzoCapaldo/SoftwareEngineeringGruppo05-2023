@@ -16,7 +16,7 @@ public class ThreadRule implements Runnable {
 
     @Override
     public void run() {
-        //while(!Thread.currentThread().isInterrupted()){
+        
             try{
                 /*check trigger one time*/
                 if(rule.getTrigger().checkTrigger())
@@ -30,7 +30,6 @@ public class ThreadRule implements Runnable {
             } catch (InterruptedException ex) {
                 Logger.getLogger(ThreadRule.class.getName()).log(Level.SEVERE, null, ex);
             }
-        //}
     }
 
 }

@@ -178,7 +178,7 @@ public class FXMLDocumentController implements Initializable {
     private void loadAllActionsCards() throws IOException {
         scrollAllActions.getChildren().clear();
         
-//create a togglegroup, so the user can select only one card.
+        //create a togglegroup, so the user can select only one card.
         actionToggleGroup = new ToggleGroup();
 
         //load AudioAction card

@@ -63,7 +63,7 @@ public class AudioActionController implements Initializable {
         fileChooser.setTitle("Select an audio file");
 
         fileChooser.getExtensionFilters().addAll(
-                new FileChooser.ExtensionFilter("Audio File", "*.mp3", "*.wav","*.mp4"));
+                new FileChooser.ExtensionFilter("Audio File", "*.wav"));
         
         Stage stage = (Stage) browseButton.getScene().getWindow();
         selectedFile = fileChooser.showOpenDialog(stage);
