@@ -18,11 +18,11 @@ public class ThreadRule implements Runnable {
     public void run() {
         
             try{
-                /*check trigger one time*/
+                /* controlla il trigger una volta */
                 if(rule.getTrigger().checkTrigger())
                    rule.getAction().execute();
 
-                /*repetition*/
+                /* controlla il trigger ripetutamente */
                 while(rule.getRepeate() && rule.getSleeping().toMillis()!=0){
                         Thread.sleep(rule.getSleeping().toMillis());
                         rule.getAction().execute(); 
