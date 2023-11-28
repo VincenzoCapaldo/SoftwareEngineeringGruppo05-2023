@@ -13,7 +13,7 @@ public class RuleManager {
     private Map<Rule, Thread> mapRules;
 
     private RuleManager() {
-        mapRules = new HashMap<>();
+        mapRules= new HashMap<>();
     }
 
     public static RuleManager getInstance() {
@@ -25,7 +25,7 @@ public class RuleManager {
     }
 
     public Set<Rule> getRules() {
-        Set rules = mapRules.keySet();
+        Set rules= mapRules.keySet();
         return rules;
     }
 

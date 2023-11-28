@@ -23,7 +23,7 @@ public class RuleTest {
     public void setUp() {
         action = new MessageAction("Ciao");
         trigger = new TimeTrigger(11,37);
-        d = Duration.ofMinutes(1);
+        d= Duration.ofMinutes(1);
         rule = new Rule("TestRule", action, trigger, false, true, d);
     }
  

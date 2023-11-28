@@ -1,7 +1,6 @@
 package actions.MessageAction;
 
 import actions.Action;
-import java.io.IOException;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -43,7 +42,7 @@ public class MessageAction implements Action{
                 // Showing the new window
                 stage.show();
 
-            }catch(IOException e){
+            }catch(Exception e){
                 System.out.println("Cant load new window");
             }            
         });

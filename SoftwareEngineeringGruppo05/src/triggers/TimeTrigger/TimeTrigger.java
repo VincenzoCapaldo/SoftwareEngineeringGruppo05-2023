@@ -12,7 +12,6 @@ import triggers.Trigger;
  */
 public class TimeTrigger implements Trigger{
     private LocalTime time;
-    public static final int MILLISECONDS_DAY = 86400000; //millisecondi in un giorno
     
     public TimeTrigger(int hour, int minute){
         this.time = LocalTime.of(hour, minute);
@@ -35,7 +34,7 @@ public class TimeTrigger implements Trigger{
             }
         }else{
             try {
-                Thread.sleep(MILLISECONDS_DAY - Duration.between(time, LocalTime.now()).toMillis());
+                Thread.sleep(86400000 - Duration.between(time, LocalTime.now()).toMillis()); //86400000 sono i millisecondi in una giornata
             } catch (InterruptedException ex) {
                 Logger.getLogger(TimeTrigger.class.getName()).log(Level.SEVERE, null, ex);
             }
