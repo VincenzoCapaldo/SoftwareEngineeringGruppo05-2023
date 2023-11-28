@@ -139,11 +139,15 @@ public class FXMLDocumentController implements Initializable {
             trigger = new TimeTrigger(timeTriggerController.getHours(), timeTriggerController.getMinutes());
         }
         
-        Duration duration = Duration.ofDays(repetitionController.getDaysSleeping())
-            .plusHours(repetitionController.getHoursSleeping())
-            .plusMinutes(repetitionController.getMinutesSleeping());
+        Duration duration= null;
         
         boolean repetition= repetitionCheck.isSelected();
+        
+        if(repetition){
+            duration = Duration.ofDays(repetitionController.getDaysSleeping())
+            .plusHours(repetitionController.getHoursSleeping())
+            .plusMinutes(repetitionController.getMinutesSleeping());
+        }
         
         Rule rule = new Rule(nameRuleTextField.getText(), action, trigger, true, repetition, duration);
         ruleManager.addRule(rule);
