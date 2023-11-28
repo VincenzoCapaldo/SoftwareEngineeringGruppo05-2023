@@ -9,8 +9,11 @@ import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.RadioButton;
+import javafx.scene.control.Spinner;
+import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
 
@@ -28,16 +31,23 @@ public class TimeTriggerController implements Initializable {
     @FXML
     private ToggleGroup selectActionTG;
     @FXML
-    private TextField timeTextFieldHours;
+    private Spinner<Integer> timeSpinnerHours;
     @FXML
-    private TextField timeTextFieldMinutes;
+    private Spinner<Integer> timeSpinnerMinutes;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        // Creazione di una SpinnerValueFactory con valori massimo e minimo
+        SpinnerValueFactory<Integer> valueFactoryHours = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 23, 0);
+        SpinnerValueFactory<Integer> valueFactoryMinutes = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 59, 0);
+        
+        // Impostazione della SpinnerValueFactory per lo Spinner
+        timeSpinnerHours.setValueFactory(valueFactoryHours);
+        timeSpinnerMinutes.setValueFactory(valueFactoryMinutes);
+        
     }    
     
     public void setToggleGroup(ToggleGroup toggleGroup) {
@@ -45,39 +55,23 @@ public class TimeTriggerController implements Initializable {
     }
     
     public int getHours(){
-        return Integer.parseInt(timeTextFieldHours.getText());
+        return Integer.valueOf(timeSpinnerHours.getEditor().getText());
     }
     
     public int getMinutes(){
-        return Integer.parseInt(timeTextFieldMinutes.getText());
+        return Integer.valueOf(timeSpinnerMinutes.getEditor().getText());
     }
 
     @FXML
     private void onChangedHour(KeyEvent event) {
-        int hours = 0;
-        
-        if(!timeTextFieldHours.getText().matches("\\d+")){
-            timeTextFieldHours.clear();
-        }else{
-             hours = Integer.parseInt(timeTextFieldHours.getText());
-             if (hours < 0 || hours > 23) {
-                timeTextFieldHours.clear();
-             }
-        }
+        CheckTimeClass check = new CheckTimeClass();
+        check.checkTime(timeSpinnerHours, 0, 23);
     }
 
     @FXML
     private void onChangedMinute(KeyEvent event) {
-        int minutes=0;
-        
-        if(!timeTextFieldMinutes.getText().matches("\\d+")){
-            timeTextFieldMinutes.clear();
-        }else{
-             minutes = Integer.parseInt(timeTextFieldMinutes.getText());
-             if (minutes < 0 || minutes > 59) {
-                timeTextFieldMinutes.clear();
-             }
-        }
+        CheckTimeClass check = new CheckTimeClass();
+        check.checkTime(timeSpinnerMinutes, 0, 59);
     }
     
 }

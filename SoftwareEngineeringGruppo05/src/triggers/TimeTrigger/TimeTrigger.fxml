@@ -3,7 +3,7 @@
 <?import java.lang.String?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.RadioButton?>
-<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.Spinner?>
 <?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
@@ -23,8 +23,8 @@
             </RadioButton>
             <HBox alignment="CENTER" prefHeight="34.0" prefWidth="241.0" spacing="20.0">
                <children>
-                  <TextField fx:id="timeTextFieldHours" alignment="CENTER" onKeyReleased="#onChangedHour" prefHeight="33.0" prefWidth="70.0" promptText="hh" styleClass="white_background" stylesheets="@../css/style.css" />
-                  <TextField fx:id="timeTextFieldMinutes" alignment="CENTER" onKeyReleased="#onChangedMinute" prefHeight="33.0" prefWidth="70.0" promptText="mm" styleClass="white_background" stylesheets="@../css/style.css" />
+                  <Spinner fx:id="timeSpinnerHours" editable="true" onKeyReleased="#onChangedHour" prefHeight="26.0" prefWidth="102.0" />
+                  <Spinner fx:id="timeSpinnerMinutes" editable="true" onKeyReleased="#onChangedMinute" prefHeight="26.0" prefWidth="102.0" />
                </children>
             </HBox>
          </children>

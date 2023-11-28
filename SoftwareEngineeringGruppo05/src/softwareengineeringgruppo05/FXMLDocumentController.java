@@ -12,14 +12,19 @@ import java.net.URL;
 import java.time.Duration;
 import java.util.ResourceBundle;
 import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.beans.binding.BooleanBinding;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.RadioButton;
+import javafx.scene.control.Spinner;
+import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.input.KeyEvent;
@@ -63,20 +68,18 @@ public class FXMLDocumentController implements Initializable {
     private MessageActionController messageActionController;
     private TimeTriggerController timeTriggerController;
     private RuleManager ruleManager;
+    private RepetitionController repetitionController;
+    private HBox repetitionBox;
+    
     @FXML
     private CheckBox repetitionCheck;
-    @FXML
-    private TextField dayText;
-    @FXML
-    private TextField hourText;
-    @FXML
-    private TextField minuteText;
+
     @FXML
     private VBox boxSleeping;
     @FXML
-    private HBox Hsleeping;
-    @FXML
     private Button goBackButton;
+    @FXML
+    private HBox HSleeping;
 
     
     /**
@@ -87,7 +90,8 @@ public class FXMLDocumentController implements Initializable {
         window1.visibleProperty().set(true);
         window3.visibleProperty().set(false);
         ruleManager = RuleManager.getInstance();
-        boxSleeping.getChildren().remove(Hsleeping); 
+        boxSleeping.getChildren().remove(HSleeping);
+        
         loadAllRules();
     }    
 
@@ -95,9 +99,8 @@ public class FXMLDocumentController implements Initializable {
     private void goToWindowThree(ActionEvent event) throws IOException {
         nameRuleTextField.clear();
         repetitionCheck.setSelected(false);
-        dayText.clear();
-        hourText.clear();
-        minuteText.clear();
+        boxSleeping.getChildren().remove(HSleeping);
+
         window3.visibleProperty().set(true);
         window1.visibleProperty().set(false);
         
@@ -106,12 +109,8 @@ public class FXMLDocumentController implements Initializable {
         
         BooleanBinding bb1 = nameRuleTextField.textProperty().isEmpty();
         BooleanBinding bb2 = actionToggleGroup.selectedToggleProperty().isNull().or(triggerToggleGroup.selectedToggleProperty().isNull());
-        BooleanBinding bb3 = repetitionCheck.selectedProperty().and(
-                                dayText.textProperty().isEmpty().or(
-                                hourText.textProperty().isEmpty()).or(
-                                minuteText.textProperty().isEmpty()));
         
-        BooleanBinding bb= bb1.or(bb2).or(bb3);
+        BooleanBinding bb= bb1.or(bb2);
         
         createRuleButton.disableProperty().bind(bb);
         
@@ -119,7 +118,8 @@ public class FXMLDocumentController implements Initializable {
 
     //back to homepage after create a rule
     @FXML
-    private void goToWindowOne(ActionEvent event) {
+    private void goToWindowOne(ActionEvent event) throws IOException {
+        
         window1.visibleProperty().set(true);
         window3.visibleProperty().set(false);
         
@@ -139,15 +139,15 @@ public class FXMLDocumentController implements Initializable {
             trigger = new TimeTrigger(timeTriggerController.getHours(), timeTriggerController.getMinutes());
         }
         
+        Duration duration = Duration.ofDays(repetitionController.getDaysSleeping())
+            .plusHours(repetitionController.getHoursSleeping())
+            .plusMinutes(repetitionController.getMinutesSleeping());
+        
         boolean repetition= repetitionCheck.isSelected();
-        Duration duration= Duration.ofDays(0).plusHours(0).plusMinutes(0);
-        if(repetition){
-            duration = Duration.ofDays(getDaysSleeping()).plusHours(getHoursSleeping()).plusMinutes(getMinutesSleeping());
-        }
         
         Rule rule = new Rule(nameRuleTextField.getText(), action, trigger, true, repetition, duration);
         ruleManager.addRule(rule);
-                
+
         loadAllRules();
     }
     
@@ -216,60 +216,28 @@ public class FXMLDocumentController implements Initializable {
     }
 
     @FXML
-    private void repetitionIsChecked(ActionEvent event) {
+    private void repetitionIsChecked(ActionEvent event) throws IOException {
         boolean isChecked = repetitionCheck.isSelected();
-       if(isChecked){
-           boxSleeping.getChildren().add(Hsleeping);
-       }else
-          boxSleeping.getChildren().remove(Hsleeping); 
-    }
-
-    @FXML
-    private void onDayChanged(KeyEvent event) {
-        if(!dayText.getText().matches("\\d+")){
-            dayText.clear();
-        }
-    }
-
-    @FXML
-    private void onHourChanged(KeyEvent event) {
-        int hours = 0;
         
-        if(!hourText.getText().matches("\\d+")){
-            hourText.clear();
+
+        if (isChecked) {
+
+            boxSleeping.getChildren().add(HSleeping);
+            HSleeping.getChildren().clear(); // Rimuovi tutti i figli dal contenitore
+            // Se la checkbox è selezionata, carica l'HBox e aggiungilo al contenitore
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Repetition.fxml"));
+            repetitionBox = loader.load();
+            repetitionController = loader.getController();
+
+            // Aggiunta dell'HBox al contenitore
+            HSleeping.getChildren().add(repetitionBox);
         }else{
-             hours = Integer.parseInt(hourText.getText());
-             if (hours < 0 || hours > 23) {
-                hourText.clear();
-            }
+            
+            boxSleeping.getChildren().remove(HSleeping);
         }
     }
 
-    @FXML
-    private void onMinuteChaged(KeyEvent event) {
-        int minutes=0;
-        
-        if(!minuteText.getText().matches("\\d+")){
-            minuteText.clear();
-        }else{
-             minutes = Integer.parseInt(minuteText.getText());
-             if (minutes < 0 || minutes > 59) {
-                minuteText.clear();
-             }
-        }
-    }
-    
-    public int getDaysSleeping(){
-        return Integer.parseInt(dayText.getText());
-    }
-        
-    public int getHoursSleeping(){
-        return Integer.parseInt(hourText.getText());
-    }
- 
-    public int getMinutesSleeping(){
-        return Integer.parseInt(minuteText.getText());
-    }
+
 
     @FXML
     private void goToHome(ActionEvent event) {
