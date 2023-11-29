@@ -6,17 +6,18 @@ package softwareengineeringgruppo05;
 
 import java.net.URL;
 import java.util.ResourceBundle;
-import javafx.beans.property.BooleanProperty;
-import javafx.beans.property.SimpleBooleanProperty;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 import rules.Rule;
 import rules.RuleManager;
 
@@ -47,22 +48,49 @@ public class RuleCardController implements Initializable {
 
    @FXML
     private void deleteRuleAction(MouseEvent event) {
-        ruleManager.deleteRule(rule);
-        ((VBox) ruleBox.getParent()).getChildren().remove(ruleBox);
+        
+        
+        try{
+                //carico il file fxml relativo alla finestra di conferma cancellazione regola
+                FXMLLoader fxmlLoader= new FXMLLoader(getClass().getResource("/rules/DeleteRuleConfirmPopUp.fxml"));
+                Parent root2= (Parent) fxmlLoader.load();
+
+                //carico il controller del popup per passargli le informazioni che ha bisogno per effettuare le azioni
+                //di "cancel" e "delete"
+                DeleteRuleConfirmPopUpController deleteRuleConfirmPopUpController = fxmlLoader.getController();
+                deleteRuleConfirmPopUpController.setRuleManager(ruleManager);
+                deleteRuleConfirmPopUpController.setRule(rule);
+                deleteRuleConfirmPopUpController.setCard(ruleBox);
+                
+                //apro il popUp in una nuova finestra
+                Stage stage = new Stage();
+                stage.setTitle("Delete the rule " + rule.getName() + "?");
+                stage.setScene(new Scene(root2));
+                stage.show();
+
+            }catch(Exception e){
+                System.out.println("Cant load new window");
+            }
+        
+        
     }
     
+    //ho bisogno del ruleManager per effettuare l'eliminazione
     public void setRuleManager(RuleManager ruleManager){
         this.ruleManager = ruleManager;
     }
     
+    //ho bisogno di capire a quale regola fa riferimento la card
     public void setRule(Rule rule){
         this.rule = rule;
     }
     
+    //setto il nome della card con il nome della regola
     public void setData(){
         this.ruleName.setText(rule.getName());
     }
 
+    //restituisce all'utente un feedback visivo quando la regola cambia stato (attiva-disattiva)
     @FXML
     private void changeStateRule(ActionEvent event) {
         if (stateRule.isSelected()) {

@@ -30,3 +30,11 @@
 .deactivated_rule_background{
     -fx-background-color: #BFBFBF;
 }
+
+.red_button{
+    -fx-background-color: #F9476B;    
+}
+
+.grey_button{
+    -fx-background-color: #E1EAEF;
+}
