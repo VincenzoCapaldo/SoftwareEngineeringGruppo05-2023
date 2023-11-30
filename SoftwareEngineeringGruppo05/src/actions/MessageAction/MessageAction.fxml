@@ -9,9 +9,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<HBox fx:id="messageActionBox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="168.0" prefWidth="261.0" stylesheets="@../../css/style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="softwareengineeringgruppo05.MessageActionController">
+<HBox fx:id="messageActionBox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="168.0" prefWidth="261.0" stylesheets="@../../css/style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="softwareengineeringgruppo05.MessageActionController">
    <children>
-      <VBox prefHeight="168.0" prefWidth="312.0" stylesheets="@../../css/style.css">
+      <VBox fx:id="vboxMessage" prefHeight="50.0" prefWidth="262.0" stylesheets="@../../css/style.css">
          <children>
             <RadioButton fx:id="messageActionRB" mnemonicParsing="false" prefHeight="18.0" prefWidth="132.0" styleClass="white_text" stylesheets="@../../css/style.css" text="Message">
                <font>

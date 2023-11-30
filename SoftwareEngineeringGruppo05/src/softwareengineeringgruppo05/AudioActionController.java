@@ -4,8 +4,16 @@
  */
 package softwareengineeringgruppo05;
 
+import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.application.Platform;
+import javafx.beans.binding.Bindings;
+import javafx.beans.binding.BooleanBinding;
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -36,26 +44,38 @@ public class AudioActionController implements Initializable {
     private Button browseButton;
     
     private java.io.File selectedFile;
-    @FXML
-    private VBox vBox;
-    @FXML
-    private CheckBox repetitionCheck;
-    @FXML
-    private HBox sleeping;
-    @FXML
-    private TextField dayText;
-    @FXML
-    private TextField hourText;
-    @FXML
-    private TextField minuteText;
+    private BooleanProperty flagAudio;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-    }    
+        flagAudio = new SimpleBooleanProperty(true);
+        BooleanProperty isSoundActionSelected = soundActionRB.selectedProperty();
+        
+       
+        // Creazione di un binding personalizzato per la visibilità del pulsante
+        browseButton.visibleProperty().bind(Bindings.createBooleanBinding(
+            () -> {
+                boolean soundActionSelected = isSoundActionSelected.get();
+
+                // Aggiungi o rimuovi il pulsante dal layout in base allo stato del RadioButton: azione eseguita dal thread principale
+                Platform.runLater(() -> {
+                        if (!soundActionSelected) {
+                            soundActionBox.getChildren().remove(browseButton);
+                            soundActionBox.setPrefHeight(65);
+                            flagAudio.set(true);    
+                        } else {
+                            soundActionBox.getChildren().add(browseButton);
+                            soundActionBox.setPrefHeight(80);
+                        }
+                });
+                return soundActionSelected;
+            },
+            isSoundActionSelected
+        ));
+    }   
 
     @FXML
     private void browseSoundFile(ActionEvent event) {
@@ -67,6 +87,16 @@ public class AudioActionController implements Initializable {
         
         Stage stage = (Stage) browseButton.getScene().getWindow();
         selectedFile = fileChooser.showOpenDialog(stage);
+
+        // La flagAudio è vera solo quando non è stato selezionato un file
+        Platform.runLater(() -> {
+            if (selectedFile == null) {
+                flagAudio.set(true);
+            } else {
+                flagAudio.set(false);
+            }
+        });
+         
     }
     
     public void setToggleGroup(ToggleGroup toggleGroup) {
@@ -77,7 +107,8 @@ public class AudioActionController implements Initializable {
         return this.selectedFile.getAbsolutePath();
     }
 
-    @FXML
-    private void repetitionIsChecked(ActionEvent event) {
+    public BooleanProperty getFlagAudio() {
+        return flagAudio;
     }
+
 }

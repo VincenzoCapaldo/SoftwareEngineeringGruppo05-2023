@@ -14,7 +14,10 @@ import java.util.ResourceBundle;
 import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.beans.binding.Binding;
+import javafx.beans.binding.Bindings;
 import javafx.beans.binding.BooleanBinding;
+import javafx.beans.property.BooleanProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -70,10 +73,10 @@ public class FXMLDocumentController implements Initializable {
     private RuleManager ruleManager;
     private RepetitionController repetitionController;
     private HBox repetitionBox;
+    private HBox soundActionBox;
     
     @FXML
     private CheckBox repetitionCheck;
-
     @FXML
     private VBox boxSleeping;
     @FXML
@@ -109,8 +112,14 @@ public class FXMLDocumentController implements Initializable {
         
         BooleanBinding bb1 = nameRuleTextField.textProperty().isEmpty();
         BooleanBinding bb2 = actionToggleGroup.selectedToggleProperty().isNull().or(triggerToggleGroup.selectedToggleProperty().isNull());
+
+        BooleanProperty isAudioActionNotCompleted = audioActionController.getFlagAudio();
+        BooleanProperty isMessageActionNotCompleted = messageActionController.getFlagMessage();
+
+        // Aggiungere il nuovo controllo alla condizione bb3
+        BooleanBinding bb3 = isAudioActionNotCompleted.and(isMessageActionNotCompleted);
         
-        BooleanBinding bb= bb1.or(bb2);
+        BooleanBinding bb = bb1.or(bb2).or(bb3);
         
         createRuleButton.disableProperty().bind(bb);
         
@@ -139,9 +148,9 @@ public class FXMLDocumentController implements Initializable {
             trigger = new TimeTrigger(timeTriggerController.getHours(), timeTriggerController.getMinutes());
         }
         
-        Duration duration= null;
+        Duration duration = null;
         
-        boolean repetition= repetitionCheck.isSelected();
+        boolean repetition = repetitionCheck.isSelected();
         
         if(repetition){
             duration = Duration.ofDays(repetitionController.getDaysSleeping())
@@ -190,7 +199,7 @@ public class FXMLDocumentController implements Initializable {
         //load AudioAction card
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setLocation(getClass().getResource("/actions/AudioAction/AudioAction.fxml"));
-        HBox soundActionBox = fxmlLoader.load();
+        soundActionBox = fxmlLoader.load();
         audioActionController = fxmlLoader.getController();
         audioActionController.setToggleGroup(actionToggleGroup);
         scrollAllActions.getChildren().add(soundActionBox);
@@ -223,26 +232,19 @@ public class FXMLDocumentController implements Initializable {
     private void repetitionIsChecked(ActionEvent event) throws IOException {
         boolean isChecked = repetitionCheck.isSelected();
         
-
         if (isChecked) {
-
             boxSleeping.getChildren().add(HSleeping);
             HSleeping.getChildren().clear(); // Rimuovi tutti i figli dal contenitore
             // Se la checkbox è selezionata, carica l'HBox e aggiungilo al contenitore
             FXMLLoader loader = new FXMLLoader(getClass().getResource("Repetition.fxml"));
             repetitionBox = loader.load();
             repetitionController = loader.getController();
-
-            // Aggiunta dell'HBox al contenitore
             HSleeping.getChildren().add(repetitionBox);
-        }else{
-            
+        }else{          
             boxSleeping.getChildren().remove(HSleeping);
         }
     }
-
-
-
+    
     @FXML
     private void goToHome(ActionEvent event) {
         window1.visibleProperty().set(true);

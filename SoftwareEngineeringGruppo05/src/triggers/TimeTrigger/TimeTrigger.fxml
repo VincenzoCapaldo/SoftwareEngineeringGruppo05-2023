@@ -11,7 +11,7 @@
 
 <HBox fx:id="timeTriggerBox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="137.0" prefWidth="261.0" styleClass="round_border" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="softwareengineeringgruppo05.TimeTriggerController">
    <children>
-      <VBox prefHeight="155.0" prefWidth="261.0" spacing="30.0" stylesheets="@../css/style.css">
+      <VBox fx:id="vboxSpinner" prefHeight="56.0" prefWidth="262.0" stylesheets="@../css/style.css">
          <children>
             <RadioButton fx:id="timeTriggerRB" mnemonicParsing="false" prefHeight="35.0" prefWidth="121.0" styleClass="white_text" stylesheets="@../css/style.css" text="Time">
                <font>
@@ -20,17 +20,20 @@
                <toggleGroup>
                   <ToggleGroup fx:id="selectActionTG" />
                </toggleGroup>
+               <VBox.margin>
+                  <Insets left="20.0" top="20.0" />
+               </VBox.margin>
             </RadioButton>
-            <HBox alignment="CENTER" prefHeight="34.0" prefWidth="241.0" spacing="20.0">
+            <HBox fx:id="boxSpinnerTriggerTime" alignment="CENTER" prefHeight="34.0" prefWidth="241.0" spacing="20.0">
                <children>
                   <Spinner fx:id="timeSpinnerHours" editable="true" onKeyReleased="#onChangedHour" prefHeight="26.0" prefWidth="102.0" />
                   <Spinner fx:id="timeSpinnerMinutes" editable="true" onKeyReleased="#onChangedMinute" prefHeight="26.0" prefWidth="102.0" />
                </children>
+               <VBox.margin>
+                  <Insets top="20.0" />
+               </VBox.margin>
             </HBox>
          </children>
-         <padding>
-            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-         </padding>
          <styleClass>
             <String fx:value="main_background" />
             <String fx:value="round_border" />
