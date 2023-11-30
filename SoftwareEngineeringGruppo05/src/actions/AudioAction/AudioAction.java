@@ -17,7 +17,7 @@ import javax.sound.sampled.UnsupportedAudioFileException;
  *
  * @author Paolo
  */
-public class AudioAction implements Action{
+public class AudioAction implements Action {
     private Clip clip;
     
     /* Costruttore che accetta il percorso del file audio come stringa */

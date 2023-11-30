@@ -1,6 +1,7 @@
 package actions.MessageAction;
 
 import actions.Action;
+import java.io.IOException;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -21,8 +22,7 @@ public class MessageAction implements Action{
     
     @Override
     public void execute(){
-        
-            
+                
         Platform.runLater(() -> {
             try{
                 FXMLLoader fxmlLoader= new FXMLLoader(getClass().getResource("PopUp.fxml"));
@@ -42,13 +42,12 @@ public class MessageAction implements Action{
                 // Showing the new window
                 stage.show();
 
-            }catch(Exception e){
+            }catch(IOException e){
                 System.out.println("Cant load new window");
             }            
         });
     }
              
-    
     @Override
     public void add(Action a){
          throw new UnsupportedOperationException("Cannot add an action to MessageAction.");

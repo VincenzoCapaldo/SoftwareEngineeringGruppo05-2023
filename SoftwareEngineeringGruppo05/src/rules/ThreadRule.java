@@ -1,5 +1,6 @@
 package rules;
 
+import java.io.Serializable;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -16,13 +17,12 @@ public class ThreadRule implements Runnable {
 
     @Override
     public void run() {
-        
             try{
-                /*check trigger one time*/
+                /* controlla il trigger una volta */
                 if(rule.getTrigger().checkTrigger())
                    rule.getAction().execute();
 
-                /*repetition*/
+                /* controlla il trigger ripetutamente */
                 while(rule.getRepeate() && rule.getSleeping().toMillis()!=0){
                         Thread.sleep(rule.getSleeping().toMillis());
                         rule.getAction().execute(); 

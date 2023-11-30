@@ -1,6 +1,7 @@
 package rules;
 
 import actions.Action;
+import java.io.Serializable;
 import java.time.Duration;
 import triggers.Trigger;
 
@@ -8,7 +9,7 @@ import triggers.Trigger;
  *
  * @author maria
  */
-public class Rule {
+public class Rule implements Serializable{
     private String name;
     private Action action;
     private Trigger trigger;
