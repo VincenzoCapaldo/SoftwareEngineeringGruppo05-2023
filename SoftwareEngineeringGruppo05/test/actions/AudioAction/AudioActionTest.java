@@ -22,7 +22,7 @@ public class AudioActionTest {
     }
     
     @Test(expected = RuntimeException.class)
-    public void testFileNotFoundAction(){
+    public void testFileNotFoundAudioAction(){
         AudioAction aa = new AudioAction("test/actions/AudioAction/prova2.txt");
     }
     

@@ -25,11 +25,11 @@ import java.util.logging.Logger;
 public class RuleManager implements Serializable{
     private static RuleManager instance = null;
     private Map<Rule, Thread> mapRules;
-    private String pathFile;
+    private String filePath;
     
     private RuleManager() {
         this.mapRules = new HashMap<>();
-        this.pathFile = "src/rules/backup.bin";  
+        this.filePath = "src/rules/backup.bin";  
     }
 
     public static RuleManager getInstance() {
@@ -70,9 +70,9 @@ public class RuleManager implements Serializable{
     }
 
     public void saveRules(){
-        try (ObjectOutputStream oos = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream(this.pathFile)))) {
-            List<Rule> serializableRules = new ArrayList<>(this.getRules());
-            oos.writeObject(serializableRules);
+        try (ObjectOutputStream oos = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream(this.filePath)))) {
+            Set<Rule> rulesToSave = new HashSet<>(this.mapRules.keySet());
+            oos.writeObject(rulesToSave);
         } catch (FileNotFoundException ex) {
             Logger.getLogger(RuleManager.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
@@ -81,9 +81,8 @@ public class RuleManager implements Serializable{
     }
     
     public void loadRules() {
-        try (ObjectInputStream ois = new ObjectInputStream(new BufferedInputStream(new FileInputStream(this.pathFile)))) {
-            List<Rule> serializableRules = (List<Rule>) ois.readObject();
-            Set<Rule> rules = new HashSet<>(serializableRules);
+        try (ObjectInputStream ois = new ObjectInputStream(new BufferedInputStream(new FileInputStream(this.filePath)))) {
+            Set<Rule> rules = (Set<Rule>) ois.readObject();
             for (Rule rule : rules) {
                 this.addRule(rule);
                 if(!rule.getState())
