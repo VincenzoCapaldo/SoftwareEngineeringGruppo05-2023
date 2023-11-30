@@ -112,6 +112,5 @@ public class TimeTriggerController implements Initializable {
         // Aggiungi gli spinner al boxSpinnerTriggerTime
         boxSpinnerTriggerTime.getChildren().addAll(timeSpinnerHours, timeSpinnerMinutes);
         vboxSpinner.getChildren().add(boxSpinnerTriggerTime);
-
     }
 }
