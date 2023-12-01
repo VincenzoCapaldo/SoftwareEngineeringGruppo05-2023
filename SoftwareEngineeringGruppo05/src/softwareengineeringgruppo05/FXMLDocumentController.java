@@ -6,6 +6,7 @@ package softwareengineeringgruppo05;
 
 import actions.Action;
 import actions.AudioAction.AudioAction;
+import actions.FileAction.CopyFileAction;
 import actions.MessageAction.MessageAction;
 import actions.WriterAction.WriterAction;
 import java.io.IOException;
@@ -60,10 +61,13 @@ public class FXMLDocumentController implements Initializable {
     
     private ToggleGroup actionToggleGroup;
     private ToggleGroup triggerToggleGroup;
+    
     private AudioActionController audioActionController;
     private MessageActionController messageActionController;
     private WriterActionController writerActionController;
     private TimeTriggerController timeTriggerController;
+    private CopyFileActionController copyFileActionController;
+    
     private RuleManager ruleManager;
     private RepetitionController repetitionController;
     private HBox repetitionBox;
@@ -112,9 +116,10 @@ public class FXMLDocumentController implements Initializable {
         BooleanProperty isAudioActionNotCompleted = audioActionController.getFlagAudio();
         BooleanProperty isMessageActionNotCompleted = messageActionController.getFlagMessage();
         BooleanProperty isWriterActionNotCompleted = writerActionController.getFlagWriter();
-
+        BooleanProperty isCopyFileActionNotCompleted = copyFileActionController.getFlagCopyFile();
         // Aggiungere il nuovo controllo alla condizione bb3
-        BooleanBinding bb3 = isAudioActionNotCompleted.and(isMessageActionNotCompleted).and(isWriterActionNotCompleted);
+        BooleanBinding bb3 = isAudioActionNotCompleted.and(isMessageActionNotCompleted).and(isWriterActionNotCompleted)
+                .and(isCopyFileActionNotCompleted);
         
         BooleanBinding bb = bb1.or(bb2).or(bb3);
         
@@ -141,6 +146,8 @@ public class FXMLDocumentController implements Initializable {
             action = new MessageAction(messageActionController.getTextArea());
         }else if("Write".equals(selectedAction.getText())){
             action = new WriterAction(writerActionController.getFilePath(), writerActionController.getTextArea());
+        }else if("CopyFile".equals(selectedAction.getText())){
+            action = new CopyFileAction(copyFileActionController.getFilePath(), copyFileActionController.getDirectoryPath());
         }
         
         if("Time".equals(selectedTrigger.getText())){           
@@ -217,6 +224,14 @@ public class FXMLDocumentController implements Initializable {
         writerActionController = fxmlLoader3.getController();
         writerActionController.setToggleGroup(actionToggleGroup);
         scrollAllActions.getChildren().add(writerActionBox);
+        
+        //load CopyFileAction card
+        FXMLLoader fxmlLoader4 = new FXMLLoader();
+        fxmlLoader4.setLocation(getClass().getResource("/actions/FileAction/CopyFileAction.fxml"));
+        HBox copyFileActionBox = fxmlLoader4.load();
+        copyFileActionController = fxmlLoader4.getController();
+        copyFileActionController.setToggleGroup(actionToggleGroup);
+        scrollAllActions.getChildren().add(copyFileActionBox);    
         
     }
     

@@ -68,7 +68,7 @@ public class WriterActionController implements Initializable {
                         if (!writerActionSelected) {
                             vboxWriter.getChildren().remove(messageTextArea);
                             hboxWriter.getChildren().remove(browseButton);
-                            writerActionBox.setPrefHeight(50);
+                            writerActionBox.setPrefHeight(70);
                             messageTextArea.clear(); 
                         } else {
                             hboxWriter.getChildren().add(browseButton);
@@ -96,13 +96,13 @@ public class WriterActionController implements Initializable {
         selectedFile = fileChooser.showOpenDialog(stage);
 
         // La flagWriter è vera solo quando non è stato selezionato un file
-        //Platform.runLater(() -> {
+        Platform.runLater(() -> {
             if (selectedFile == null) {
                 flagWriter.set(true);
             } else {
                 flagWriter.set(false);
             }
-        //});
+        });
     }
     
     public void setToggleGroup(ToggleGroup toggleGroup) {
