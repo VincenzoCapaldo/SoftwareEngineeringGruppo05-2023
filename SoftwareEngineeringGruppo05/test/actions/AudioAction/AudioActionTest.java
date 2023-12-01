@@ -1,29 +1,30 @@
 package actions.AudioAction;
 
+import org.junit.*;
 import actions.Action;
-import org.junit.Before;
-import org.junit.Test;
 
 /**
  *
- * @author enzo0
+ * @author Paolo
  */
 public class AudioActionTest {
-    Action action;
+    
+    private Action action;
+    private final String pathFile = "test/actions/AudioAction/notificationSound.wav";
     
     @Before
     public void setUp() {
-        action = new AudioAction("test/actions/AudioAction/notificationSound.wav");
+        action = new AudioAction(pathFile);
     }
     
     @Test(expected = RuntimeException.class)
     public void testFortmatFileAudioAction(){
-        AudioAction aa = new AudioAction("test/actions/AudioAction/prova.txt");
+        AudioAction aa = new AudioAction("test/actions/AudioAction/formatoSbagliato.txt");
     }
     
     @Test(expected = RuntimeException.class)
     public void testFileNotFoundAudioAction(){
-        AudioAction aa = new AudioAction("test/actions/AudioAction/prova2.txt");
+        AudioAction aa = new AudioAction("test/actions/AudioAction/fileInesistente.wav");
     }
     
     @Test(expected = RuntimeException.class)

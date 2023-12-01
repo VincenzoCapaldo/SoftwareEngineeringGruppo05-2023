@@ -1,12 +1,8 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
- */
 package softwareengineeringgruppo05;
 
 import actions.Action;
 import actions.AudioAction.AudioAction;
-import actions.FileAction.CopyFileAction;
+import actions.CopyFileAction.CopyFileAction;
 import actions.MessageAction.MessageAction;
 import actions.WriterAction.WriterAction;
 import java.io.IOException;

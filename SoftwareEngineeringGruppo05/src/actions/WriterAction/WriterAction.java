@@ -23,7 +23,8 @@ public class WriterAction implements Action{
 
     @Override
     public void execute() {
-        try (PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter(filePath)))) {
+        try (PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter(filePath, true)))) {
+        //il parametro true imposterà la modalità di apertura del file su "append", consentendo di scrivere alla fine del file anziché sovrascriverlo.
             pw.append(message);
         } catch (IOException ex) {
             Logger.getLogger(WriterAction.class.getName()).log(Level.SEVERE, null, ex);
@@ -32,12 +33,12 @@ public class WriterAction implements Action{
 
     @Override
     public void add(Action a){
-         throw new UnsupportedOperationException("Cannot add an action to AudioAction.");
+         throw new UnsupportedOperationException("Cannot add an action to WriterAction.");
     }
     
     @Override
     public void remove(Action a){
-        throw new UnsupportedOperationException("Cannot remove an action from AudioAction.");
+        throw new UnsupportedOperationException("Cannot remove an action from WriterAction.");
     }
     
 }
