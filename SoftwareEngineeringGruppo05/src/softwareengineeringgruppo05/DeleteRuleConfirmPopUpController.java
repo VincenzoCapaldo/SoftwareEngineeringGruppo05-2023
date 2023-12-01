@@ -39,7 +39,7 @@ public class DeleteRuleConfirmPopUpController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        ruleManager = RuleManager.getInstance();
     }    
 
     //quando l'utente non ha intenzione di cancellare la regola allora semplicemente chiude la finestra
@@ -47,11 +47,6 @@ public class DeleteRuleConfirmPopUpController implements Initializable {
     private void cancelDeleteAction(ActionEvent event) {
         Stage stage = (Stage) deleteConfirmAnchorPane.getScene().getWindow();
         stage.close();
-    }
-    
-    //ho bisogno del rule manager nel caso in cui l'utente voglia cancellare la regola
-    public void setRuleManager(RuleManager ruleManager){
-        this.ruleManager = ruleManager;
     }
     
     //ho bisogno di capire quale regola devo cancellare, e quindi a quale regola fa riferimento la specifica card.

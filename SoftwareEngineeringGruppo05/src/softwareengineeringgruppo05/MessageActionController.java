@@ -63,7 +63,7 @@ public class MessageActionController implements Initializable {
                 Platform.runLater(() -> {
                     if (!messageActionSelected) {
                         vboxMessage.getChildren().remove(messageTextArea);
-                        messageActionBox.setPrefHeight(10);
+                        messageActionBox.setPrefHeight(70);
                         messageTextArea.clear();
                     } else{ 
                         vboxMessage.getChildren().add(messageTextArea);

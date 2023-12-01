@@ -43,7 +43,7 @@ public class RuleCardController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
+        ruleManager = RuleManager.getInstance();
     }
 
    @FXML
@@ -58,7 +58,6 @@ public class RuleCardController implements Initializable {
                 //carico il controller del popup per passargli le informazioni che ha bisogno per effettuare le azioni
                 //di "cancel" e "delete"
                 DeleteRuleConfirmPopUpController deleteRuleConfirmPopUpController = fxmlLoader.getController();
-                deleteRuleConfirmPopUpController.setRuleManager(ruleManager);
                 deleteRuleConfirmPopUpController.setRule(rule);
                 deleteRuleConfirmPopUpController.setCard(ruleBox);
                 
@@ -74,12 +73,7 @@ public class RuleCardController implements Initializable {
         
         
     }
-    
-    //ho bisogno del ruleManager per effettuare l'eliminazione
-    public void setRuleManager(RuleManager ruleManager){
-        this.ruleManager = ruleManager;
-    }
-    
+        
     //ho bisogno di capire a quale regola fa riferimento la card
     public void setRule(Rule rule){
         this.rule = rule;

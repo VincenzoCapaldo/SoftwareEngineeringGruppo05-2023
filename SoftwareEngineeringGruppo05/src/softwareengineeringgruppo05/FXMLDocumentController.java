@@ -7,6 +7,7 @@ package softwareengineeringgruppo05;
 import actions.Action;
 import actions.AudioAction.AudioAction;
 import actions.MessageAction.MessageAction;
+import actions.WriterAction.WriterAction;
 import java.io.IOException;
 import java.net.URL;
 import java.time.Duration;
@@ -61,6 +62,7 @@ public class FXMLDocumentController implements Initializable {
     private ToggleGroup triggerToggleGroup;
     private AudioActionController audioActionController;
     private MessageActionController messageActionController;
+    private WriterActionController writerActionController;
     private TimeTriggerController timeTriggerController;
     private RuleManager ruleManager;
     private RepetitionController repetitionController;
@@ -109,9 +111,10 @@ public class FXMLDocumentController implements Initializable {
 
         BooleanProperty isAudioActionNotCompleted = audioActionController.getFlagAudio();
         BooleanProperty isMessageActionNotCompleted = messageActionController.getFlagMessage();
+        BooleanProperty isWriterActionNotCompleted = writerActionController.getFlagWriter();
 
         // Aggiungere il nuovo controllo alla condizione bb3
-        BooleanBinding bb3 = isAudioActionNotCompleted.and(isMessageActionNotCompleted);
+        BooleanBinding bb3 = isAudioActionNotCompleted.and(isMessageActionNotCompleted).and(isWriterActionNotCompleted);
         
         BooleanBinding bb = bb1.or(bb2).or(bb3);
         
@@ -131,11 +134,13 @@ public class FXMLDocumentController implements Initializable {
         
         RadioButton selectedAction = (RadioButton) actionToggleGroup.getSelectedToggle();
         RadioButton selectedTrigger = (RadioButton) triggerToggleGroup.getSelectedToggle();
-             
+        
         if("Audio".equals(selectedAction.getText())){
             action = new AudioAction(audioActionController.getFilePath());
         }else if("Message".equals(selectedAction.getText())){         
             action = new MessageAction(messageActionController.getTextArea());
+        }else if("Write".equals(selectedAction.getText())){
+            action = new WriterAction(writerActionController.getFilePath(), writerActionController.getTextArea());
         }
         
         if("Time".equals(selectedTrigger.getText())){           
@@ -171,7 +176,6 @@ public class FXMLDocumentController implements Initializable {
                 HBox ruleBox = fxmlLoader.load();
 
                 RuleCardController ruleCardController = fxmlLoader.getController();
-                ruleCardController.setRuleManager(ruleManager);
                 ruleCardController.setRule(rule);
                 ruleCardController.setData();
 
@@ -205,6 +209,15 @@ public class FXMLDocumentController implements Initializable {
         messageActionController = fxmlLoader2.getController();
         messageActionController.setToggleGroup(actionToggleGroup);
         scrollAllActions.getChildren().add(messageActionBox);
+        
+        //load WriteAction card
+        FXMLLoader fxmlLoader3 = new FXMLLoader();
+        fxmlLoader3.setLocation(getClass().getResource("/actions/WriterAction/WriterAction.fxml"));
+        HBox writerActionBox = fxmlLoader3.load();
+        writerActionController = fxmlLoader3.getController();
+        writerActionController.setToggleGroup(actionToggleGroup);
+        scrollAllActions.getChildren().add(writerActionBox);
+        
     }
     
     //load all triggers in winwod3. The user can visualize all triggers.
