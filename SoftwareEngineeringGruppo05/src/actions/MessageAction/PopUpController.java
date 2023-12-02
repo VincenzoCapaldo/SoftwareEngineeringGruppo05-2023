@@ -1,4 +1,4 @@
-package softwareengineeringgruppo05;
+package actions.MessageAction;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -45,7 +45,6 @@ public class PopUpController implements Initializable {
      */
     @FXML
     private void closePopUp(ActionEvent event) {
-        
         // Get the current Stage and close the PopUp window
         Stage stage = (Stage) messageWindow.getScene().getWindow();
         stage.close();

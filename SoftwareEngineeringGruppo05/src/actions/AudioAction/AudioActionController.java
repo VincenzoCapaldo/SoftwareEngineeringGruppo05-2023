@@ -1,5 +1,6 @@
-package softwareengineeringgruppo05;
+package actions.AudioAction;
 
+import actions.ControllerAction;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.application.Platform;
@@ -21,7 +22,7 @@ import javafx.stage.Stage;
  *
  * @author enzo0
  */
-public class AudioActionController implements Initializable {
+public class AudioActionController implements Initializable, ControllerAction {
 
     @FXML
     private HBox soundActionBox;
@@ -43,7 +44,6 @@ public class AudioActionController implements Initializable {
         flagAudio = new SimpleBooleanProperty(true);
         BooleanProperty isSoundActionSelected = soundActionRB.selectedProperty();
         
-       
         // Creazione di un binding personalizzato per la visibilità del pulsante
         browseButton.visibleProperty().bind(Bindings.createBooleanBinding(
             () -> {
@@ -88,6 +88,7 @@ public class AudioActionController implements Initializable {
          
     }
     
+    @Override
     public void setToggleGroup(ToggleGroup toggleGroup) {
         soundActionRB.setToggleGroup(toggleGroup);
     }
@@ -96,7 +97,8 @@ public class AudioActionController implements Initializable {
         return this.selectedFile.getAbsolutePath();
     }
 
-    public BooleanProperty getFlagAudio() {
+    @Override
+    public BooleanProperty getFlag() {
         return flagAudio;
     }
 

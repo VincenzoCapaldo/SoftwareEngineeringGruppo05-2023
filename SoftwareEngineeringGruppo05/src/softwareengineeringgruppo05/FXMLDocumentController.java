@@ -1,7 +1,16 @@
 package softwareengineeringgruppo05;
 
+import rules.RuleCardController;
+import triggers.TimeTrigger.TimeTriggerController;
+import actions.WriterAction.WriterActionController;
+import actions.ProgramAction.ProgramActionController;
+import actions.MoveFileAction.MoveFileActionController;
+import actions.MessageAction.MessageActionController;
+import actions.CopyFileAction.CopyFileActionController;
+import actions.AudioAction.AudioActionController;
 import actions.Action;
 import actions.AudioAction.AudioAction;
+import actions.ControllerAction;
 import actions.CopyFileAction.CopyFileAction;
 import actions.MessageAction.MessageAction;
 import actions.MoveFileAction.MoveFileAction;
@@ -26,6 +35,7 @@ import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 import rules.Rule;
 import rules.RuleManager;
 import triggers.TimeTrigger.TimeTrigger;
@@ -39,7 +49,7 @@ import triggers.Trigger;
 public class FXMLDocumentController implements Initializable {
 
     @FXML
-    private AnchorPane window1;
+    private AnchorPane window1;//finestra riepilogo regole
     @FXML
     private Button rulesButton;
     @FXML
@@ -47,7 +57,7 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private Button newRule;
     @FXML
-    private AnchorPane window3;
+    private AnchorPane window3;//finestra creazione regola
     @FXML
     private VBox scrollAllActions;
     @FXML
@@ -71,6 +81,8 @@ public class FXMLDocumentController implements Initializable {
     private RepetitionController repetitionController;
     private HBox repetitionBox;
     private HBox soundActionBox;
+    private ControllerAction controller;
+
     
     @FXML
     private CheckBox repetitionCheck;
@@ -90,15 +102,17 @@ public class FXMLDocumentController implements Initializable {
         window1.visibleProperty().set(true);
         window3.visibleProperty().set(false);
         
-        ruleManager = RuleManager.getInstance();
-        ruleManager.loadRules();
-        boxSleeping.getChildren().remove(HSleeping);
+        ruleManager = RuleManager.getInstance();//istanziamento del RuleManager
         
-        loadAllRules();
+        ruleManager.loadRules();//carica le regole dal file
+    
+        loadAllRules();//caricamento grafico delle regole
     }    
 
+    //passaggio da window1 a window3 quando si seleziona createRuleButton 
     @FXML
     private void goToWindowThree(ActionEvent event) throws IOException {
+        //pulizia campi 
         nameRuleTextField.clear();
         repetitionCheck.setSelected(false);
         boxSleeping.getChildren().remove(HSleeping);
@@ -106,30 +120,35 @@ public class FXMLDocumentController implements Initializable {
         window3.visibleProperty().set(true);
         window1.visibleProperty().set(false);
         
-        loadAllActionsCards();
-        loadAllTriggersCards();
+        loadAllActionsCards();//caricamento grafico delle azioni
+        loadAllTriggersCards();//caricamento grafico dei trigger
         
+        //se il nome della regola non è inserito bb1=true
         BooleanBinding bb1 = nameRuleTextField.textProperty().isEmpty();
+        
+        //se non è selezionata almeno un'azione o almeno un trigger bb2=true
         BooleanBinding bb2 = actionToggleGroup.selectedToggleProperty().isNull().or(triggerToggleGroup.selectedToggleProperty().isNull());
 
-        BooleanProperty isAudioActionNotCompleted = audioActionController.getFlagAudio();
-        BooleanProperty isMessageActionNotCompleted = messageActionController.getFlagMessage();
-        BooleanProperty isWriterActionNotCompleted = writerActionController.getFlagWriter();
-        BooleanProperty isCopyFileActionNotCompleted = copyFileActionController.getFlagCopyFile();
-        BooleanProperty isMoveFileActionNotCompleted = moveFileActionController.getFlagMoveFile();
+        //se è selezionata xxxAction ma i campi previsti non sono compilati isxxxActionNotCompleted=true
+        BooleanProperty isAudioActionNotCompleted = audioActionController.getFlag();
+        BooleanProperty isMessageActionNotCompleted = messageActionController.getFlag();
+        BooleanProperty isWriterActionNotCompleted = writerActionController.getFlag();
+        BooleanProperty isCopyFileActionNotCompleted = copyFileActionController.getFlag();
+        BooleanProperty isMoveFileActionNotCompleted = moveFileActionController.getFlag();
+        //inserire isDeleteFileActionNoteCompleted
+        BooleanProperty isProgramActionNotCompleted = programActionController.getFlag();
         
-        BooleanProperty isProgramActionNotCompleted = programActionController.getFlagProgram();
-        
+        //se nessuna azione è completa bb3=true
         BooleanBinding bb3 = isAudioActionNotCompleted.and(isMessageActionNotCompleted).and(isWriterActionNotCompleted)
                 .and(isCopyFileActionNotCompleted).and(isMoveFileActionNotCompleted).and(isProgramActionNotCompleted);
         
+        //se non è stato inserito il nome della regola O non è selezionata un'azione/ trigger O l'azione selezionata non è completa bb=true
         BooleanBinding bb = bb1.or(bb2).or(bb3);
         
-        createRuleButton.disableProperty().bind(bb);
-        
+        createRuleButton.disableProperty().bind(bb);  
     }
 
-    //back to homepage after create a rule
+    //ritorna alla window1 dopo aver creato la regola
     @FXML
     private void goToWindowOne(ActionEvent event) throws IOException {
         
@@ -139,7 +158,10 @@ public class FXMLDocumentController implements Initializable {
         Action action = null; 
         Trigger trigger = null;
         
+        //restituisce l'azione selezionata dall'utente
         RadioButton selectedAction = (RadioButton) actionToggleGroup.getSelectedToggle();
+        
+        //restituisce il trigger selezionato dall'utente
         RadioButton selectedTrigger = (RadioButton) triggerToggleGroup.getSelectedToggle();
         
         if("Audio".equals(selectedAction.getText())){
@@ -177,7 +199,7 @@ public class FXMLDocumentController implements Initializable {
         loadAllRules();
     }
     
-    //load all rule cards 
+    //caricamente delle rulesCard 
     private void loadAllRules(){
         scrollRules.getChildren().clear();
         
@@ -202,70 +224,39 @@ public class FXMLDocumentController implements Initializable {
         
     }
     
-    //load all actions in window3, so the user can visualize all action cards
+    //caricamento delle azioni in window3, in modo tale che l'utente possa visualizzare le actionCards
     private void loadAllActionsCards() throws IOException {
         scrollAllActions.getChildren().clear();
         
         //crea un togglegroup da passare alle card. In questo modo l'utente può selezionare un'unica azione
         actionToggleGroup = new ToggleGroup();
 
-        //carica AudioAction card
-        FXMLLoader fxmlLoader = new FXMLLoader();
-        fxmlLoader.setLocation(getClass().getResource("/actions/AudioAction/AudioAction.fxml"));
-        soundActionBox = fxmlLoader.load();
-        audioActionController = fxmlLoader.getController();
-        audioActionController.setToggleGroup(actionToggleGroup);
-        scrollAllActions.getChildren().add(soundActionBox);
-        
-        //carica MessageAction card
-        FXMLLoader fxmlLoader2 = new FXMLLoader();
-        fxmlLoader2.setLocation(getClass().getResource("/actions/MessageAction/MessageAction.fxml"));
-        HBox messageActionBox = fxmlLoader2.load();
-        messageActionController = fxmlLoader2.getController();
-        messageActionController.setToggleGroup(actionToggleGroup);
-        scrollAllActions.getChildren().add(messageActionBox);
-        
-        //carica WriteAction card
-        FXMLLoader fxmlLoader3 = new FXMLLoader();
-        fxmlLoader3.setLocation(getClass().getResource("/actions/WriterAction/WriterAction.fxml"));
-        HBox writerActionBox = fxmlLoader3.load();
-        writerActionController = fxmlLoader3.getController();
-        writerActionController.setToggleGroup(actionToggleGroup);
-        scrollAllActions.getChildren().add(writerActionBox);
-        
-        //carica CopyFileAction card
-        FXMLLoader fxmlLoader4 = new FXMLLoader();
-        fxmlLoader4.setLocation(getClass().getResource("/actions/CopyFileAction/CopyFileAction.fxml"));
-        HBox copyFileActionBox = fxmlLoader4.load();
-        copyFileActionController = fxmlLoader4.getController();
-        copyFileActionController.setToggleGroup(actionToggleGroup);
-        scrollAllActions.getChildren().add(copyFileActionBox);    
-        
-        //carica MoveFileAction card
-        FXMLLoader fxmlLoader5 = new FXMLLoader();
-        fxmlLoader5.setLocation(getClass().getResource("/actions/MoveFileAction/MoveFileAction.fxml"));
-        HBox moveFileActionBox = fxmlLoader5.load();
-        moveFileActionController = fxmlLoader5.getController();
-        moveFileActionController.setToggleGroup(actionToggleGroup);
-        scrollAllActions.getChildren().add(moveFileActionBox); 
-        
-        
-        //carica ProgramAction card
-        FXMLLoader fxmlLoader7 = new FXMLLoader();
-        fxmlLoader7.setLocation(getClass().getResource("/actions/ProgramAction/ProgramAction.fxml"));
-        HBox programActionBox = fxmlLoader7.load();
-        programActionController = fxmlLoader7.getController();
-        programActionController.setToggleGroup(actionToggleGroup);
-        scrollAllActions.getChildren().add(programActionBox); 
+        audioActionController = (AudioActionController) createCard("/actions/AudioAction/AudioAction.fxml", audioActionController, actionToggleGroup);
+        messageActionController = (MessageActionController) createCard("/actions/MessageAction/MessageAction.fxml", messageActionController, actionToggleGroup);
+        writerActionController = (WriterActionController) createCard("/actions/WriterAction/WriterAction.fxml", writerActionController, actionToggleGroup);
+        copyFileActionController = (CopyFileActionController) createCard("/actions/CopyFileAction/CopyFileAction.fxml", copyFileActionController, actionToggleGroup);
+        moveFileActionController = (MoveFileActionController) createCard("/actions/MoveFileAction/MoveFileAction.fxml", moveFileActionController, actionToggleGroup);
+        programActionController = (ProgramActionController) createCard("/actions/ProgramAction/ProgramAction.fxml", programActionController, actionToggleGroup);
+
     }
     
-    //load all triggers in winwod3. The user can visualize all triggers.
+    private ControllerAction createCard(String pathFXML, ControllerAction controller, ToggleGroup toggleGroup) throws IOException{
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setLocation(getClass().getResource(pathFXML));
+        HBox hbox = fxmlLoader.load();
+        controller = fxmlLoader.getController();
+        controller.setToggleGroup(actionToggleGroup);
+        scrollAllActions.getChildren().add(hbox);
+        return controller;
+    }
+    
+    //caricamento triggers in window3. L'utente può visualizzare tutti i triggerCards.
     private void loadAllTriggersCards() throws IOException{
         scrollAllTriggers.getChildren().clear();
         
         triggerToggleGroup = new ToggleGroup();
         
-        //load timeTrigger card
+        //caricamento timeTrigger card
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setLocation(getClass().getResource("/triggers/TimeTrigger/TimeTrigger.fxml"));
         HBox timeTriggerBox = fxmlLoader.load();
@@ -291,6 +282,7 @@ public class FXMLDocumentController implements Initializable {
         }
     }
     
+    //pulsante goBack permette di tornare alla window1
     @FXML
     private void goToHome(ActionEvent event) {
         window1.visibleProperty().set(true);

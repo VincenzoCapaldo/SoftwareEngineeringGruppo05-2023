@@ -1,9 +1,11 @@
 package softwareengineeringgruppo05;
 
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 /**
@@ -19,6 +21,9 @@ public class SoftwareEngineeringGruppo05 extends Application {
         Scene scene = new Scene(root);
         
         stage.setScene(scene);
+        stage.setTitle("Your rules!");
+        // Imposta l'icona della finestra (accanto al titolo)
+        stage.getIcons().add(new Image("/css/book.png"));
         stage.show();
     }
 

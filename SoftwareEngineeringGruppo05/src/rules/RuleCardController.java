@@ -1,4 +1,4 @@
-package softwareengineeringgruppo05;
+package rules;
 
 import java.net.URL;
 import java.util.Observable;
@@ -16,6 +16,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import rules.Rule;
+import rules.Rule;
+import rules.RuleManager;
 import rules.RuleManager;
 
 /**

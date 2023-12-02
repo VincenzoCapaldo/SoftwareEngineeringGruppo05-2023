@@ -2,8 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
  */
-package softwareengineeringgruppo05;
+package actions.ProgramAction;
 
+import actions.ControllerAction;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.application.Platform;
@@ -27,7 +28,7 @@ import javafx.stage.Stage;
  *
  * @author Luca
  */
-public class ProgramActionController implements Initializable {
+public class ProgramActionController implements Initializable, ControllerAction {
 
     @FXML
     private VBox vBoxProgram;
@@ -88,10 +89,10 @@ public class ProgramActionController implements Initializable {
     @FXML
     private void browseProgram(ActionEvent event) {
         FileChooser fileChooser = new FileChooser();
-        fileChooser.setTitle("Select a text file");
+        fileChooser.setTitle("Select a executable program");
 
         fileChooser.getExtensionFilters().addAll(
-                new FileChooser.ExtensionFilter("Text File", "*.txt"));
+                new FileChooser.ExtensionFilter("Executable program", "*.jar"));
         
         Stage stage = (Stage) browseButton.getScene().getWindow();
         selectedFile = fileChooser.showOpenDialog(stage);
@@ -106,6 +107,7 @@ public class ProgramActionController implements Initializable {
         });
     }
     
+    @Override
     public void setToggleGroup(ToggleGroup toggleGroup) {
         programActionRB.setToggleGroup(toggleGroup);
     }
@@ -118,7 +120,8 @@ public class ProgramActionController implements Initializable {
         return this.selectedFile.getAbsolutePath();
     }
     
-    public BooleanProperty getFlagProgram() {
+    @Override
+    public BooleanProperty getFlag() {
         return flagProgram;
     }
     

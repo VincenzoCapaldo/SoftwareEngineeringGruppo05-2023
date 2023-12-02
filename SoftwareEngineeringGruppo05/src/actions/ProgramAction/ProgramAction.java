@@ -7,6 +7,8 @@ package actions.ProgramAction;
 
 import actions.Action;
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -32,9 +34,9 @@ public class ProgramAction implements Action{
             Process process = processBuilder.start();
             int exitCode = process.waitFor();
             
-        } catch (IOException | InterruptedException e) {
-            e.printStackTrace();
-        }
+        } catch (IOException | InterruptedException ex) {
+            Logger.getLogger(ProgramAction.class.getName()).log(Level.SEVERE, null, ex);
+        } 
     }
 
      @Override

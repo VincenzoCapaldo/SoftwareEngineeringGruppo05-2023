@@ -1,4 +1,4 @@
-package softwareengineeringgruppo05;
+package triggers.TimeTrigger;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -14,6 +14,7 @@ import javafx.scene.control.ToggleGroup;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import softwareengineeringgruppo05.CheckTimeClass;
 
 /**
  * FXML Controller class

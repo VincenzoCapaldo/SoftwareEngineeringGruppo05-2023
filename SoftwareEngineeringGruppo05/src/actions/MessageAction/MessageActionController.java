@@ -1,5 +1,6 @@
-package softwareengineeringgruppo05;
+package actions.MessageAction;
 
+import actions.ControllerAction;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.application.Platform;
@@ -19,7 +20,7 @@ import javafx.scene.layout.VBox;
  *
  * @author enzo0
  */
-public class MessageActionController implements Initializable {
+public class MessageActionController implements Initializable, ControllerAction {
 
     @FXML
     private HBox messageActionBox;
@@ -70,6 +71,7 @@ public class MessageActionController implements Initializable {
         ));
     }    
     
+    @Override
     public void setToggleGroup(ToggleGroup toggleGroup) {
         messageActionRB.setToggleGroup(toggleGroup);
     }
@@ -78,7 +80,8 @@ public class MessageActionController implements Initializable {
         return messageTextArea.getText();
     }
 
-    public BooleanProperty getFlagMessage() {
+    @Override
+    public BooleanProperty getFlag() {
         return flagMessage;
     }
 

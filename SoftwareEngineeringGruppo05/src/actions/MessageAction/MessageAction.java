@@ -6,8 +6,8 @@ import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
-import softwareengineeringgruppo05.PopUpController;
 
 /**
  *
@@ -37,6 +37,7 @@ public class MessageAction implements Action{
                 // Creating the new stage
                 Stage stage = new Stage();
                 stage.setTitle("New message"); // Setting the title of the window
+                stage.getIcons().add(new Image("/css/message.png"));
                 stage.setScene(new Scene(root1));
 
                 // Showing the new window
