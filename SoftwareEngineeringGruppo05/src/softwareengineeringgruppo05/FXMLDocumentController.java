@@ -5,6 +5,7 @@ import actions.AudioAction.AudioAction;
 import actions.CopyFileAction.CopyFileAction;
 import actions.MessageAction.MessageAction;
 import actions.MoveFileAction.MoveFileAction;
+import actions.ProgramAction.ProgramAction;
 import actions.WriterAction.WriterAction;
 import java.io.IOException;
 import java.net.URL;
@@ -65,6 +66,7 @@ public class FXMLDocumentController implements Initializable {
     private TimeTriggerController timeTriggerController;
     private CopyFileActionController copyFileActionController;
     private MoveFileActionController moveFileActionController;
+    private ProgramActionController programActionController;
     private RuleManager ruleManager;
     private RepetitionController repetitionController;
     private HBox repetitionBox;
@@ -115,9 +117,11 @@ public class FXMLDocumentController implements Initializable {
         BooleanProperty isWriterActionNotCompleted = writerActionController.getFlagWriter();
         BooleanProperty isCopyFileActionNotCompleted = copyFileActionController.getFlagCopyFile();
         BooleanProperty isMoveFileActionNotCompleted = moveFileActionController.getFlagMoveFile();
-        // Aggiungere il nuovo controllo alla condizione bb3
+        
+        BooleanProperty isProgramActionNotCompleted = programActionController.getFlagProgram();
+        
         BooleanBinding bb3 = isAudioActionNotCompleted.and(isMessageActionNotCompleted).and(isWriterActionNotCompleted)
-                .and(isCopyFileActionNotCompleted).and(isMoveFileActionNotCompleted);
+                .and(isCopyFileActionNotCompleted).and(isMoveFileActionNotCompleted).and(isProgramActionNotCompleted);
         
         BooleanBinding bb = bb1.or(bb2).or(bb3);
         
@@ -148,6 +152,8 @@ public class FXMLDocumentController implements Initializable {
             action = new CopyFileAction(copyFileActionController.getFilePath(), copyFileActionController.getDirectoryPath());
         }else if("MoveFile".equals(selectedAction.getText())){
             action = new MoveFileAction(moveFileActionController.getFilePath(), moveFileActionController.getDirectoryPath());
+        }else if("Program".equals(selectedAction.getText())){
+            action = new ProgramAction(programActionController.getFilePath(), programActionController.getTextArea());
         }
         
         if("Time".equals(selectedTrigger.getText())){           
@@ -241,6 +247,14 @@ public class FXMLDocumentController implements Initializable {
         moveFileActionController.setToggleGroup(actionToggleGroup);
         scrollAllActions.getChildren().add(moveFileActionBox); 
         
+        
+        //carica ProgramAction card
+        FXMLLoader fxmlLoader7 = new FXMLLoader();
+        fxmlLoader7.setLocation(getClass().getResource("/actions/ProgramAction/ProgramAction.fxml"));
+        HBox programActionBox = fxmlLoader7.load();
+        programActionController = fxmlLoader7.getController();
+        programActionController.setToggleGroup(actionToggleGroup);
+        scrollAllActions.getChildren().add(programActionBox); 
     }
     
     //load all triggers in winwod3. The user can visualize all triggers.
