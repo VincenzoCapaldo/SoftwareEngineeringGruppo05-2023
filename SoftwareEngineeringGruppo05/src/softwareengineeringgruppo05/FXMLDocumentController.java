@@ -223,7 +223,7 @@ public class FXMLDocumentController implements Initializable {
         
         //load CopyFileAction card
         FXMLLoader fxmlLoader4 = new FXMLLoader();
-        fxmlLoader4.setLocation(getClass().getResource("/actions/FileAction/CopyFileAction.fxml"));
+        fxmlLoader4.setLocation(getClass().getResource("/actions/CopyFileAction/CopyFileAction.fxml"));
         HBox copyFileActionBox = fxmlLoader4.load();
         copyFileActionController = fxmlLoader4.getController();
         copyFileActionController.setToggleGroup(actionToggleGroup);
