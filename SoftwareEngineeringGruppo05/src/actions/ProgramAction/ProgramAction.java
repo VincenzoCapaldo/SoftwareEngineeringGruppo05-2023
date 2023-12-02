@@ -1,9 +1,4 @@
 package actions.ProgramAction;
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-
 
 import actions.Action;
 import java.io.IOException;
@@ -30,11 +25,10 @@ public class ProgramAction implements Action{
             // Crea un processo per eseguire il programma specificato nel percorso
             ProcessBuilder processBuilder = new ProcessBuilder(programPath, commandLine);
             
-            // Avvia il processo e attendi che termini
-            Process process = processBuilder.start();
-            int exitCode = process.waitFor();
+            // Avvia il processo
+            processBuilder.start();
             
-        } catch (IOException | InterruptedException ex) {
+        } catch (IOException ex) {
             Logger.getLogger(ProgramAction.class.getName()).log(Level.SEVERE, null, ex);
         } 
     }

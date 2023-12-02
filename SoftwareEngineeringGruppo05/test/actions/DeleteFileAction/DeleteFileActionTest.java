@@ -3,8 +3,6 @@ package actions.DeleteFileAction;
 import org.junit.*;
 import static org.junit.Assert.*;
 import actions.Action;
-import java.io.BufferedWriter;
-import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -18,56 +16,39 @@ import java.util.logging.Logger;
  */
 public class DeleteFileActionTest {
 
-    private static final String TEST_FILE_PATH = getPath("testfile.txt");
-    private DeleteFileAction action;
-
-    public DeleteFileActionTest() {
-    }
-
-    @BeforeClass
-    public static void setUpClass() {
-         // Crea il file di test e scrivi "buongiorno!" in esso
-        try {
-            Path filePath = Paths.get(TEST_FILE_PATH);
-            Files.createFile(filePath);
-
-            // Scrivi "buongiorno!" nel file
-            try (BufferedWriter writer = Files.newBufferedWriter(filePath)) {
-                writer.write("buongiorno!");
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    @AfterClass
-    public static void tearDownClass() {
-    }
+    private Action action;
+    private final String filePath = "test/actions/DeleteFileAction/prova.txt";
 
     @Before
     public void setUp() {
-        action = new DeleteFileAction(TEST_FILE_PATH);
+        action = new DeleteFileAction(filePath);
     }
 
     @After
     public void tearDown() {
+        // elimino il file di prova
+        Path path = Paths.get(filePath);    
+        try {
+            Files.delete(path);
+        } catch (IOException ex) {
+            Logger.getLogger(DeleteFileActionTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
-    /**
-     * Test of execute method, of class DeleteFileAction.
-     */
     @Test
     public void testExecute() {
-        System.out.println("execute");
+        // creo un file di prova nella cartella
+        Path path = Paths.get(filePath);    
+        try {
+            Files.createFile(path);
+        } catch (IOException ex) {
+            Logger.getLogger(DeleteFileActionTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
-        // Crea l'istanza di CopyFileAction
-        DeleteFileAction instance = action;
+        action.execute();
 
-        // Esegui il test
-        instance.execute();
-
-        // Verifica che il file non esiste
-        assertTrue(Files.notExists(Paths.get(TEST_FILE_PATH)));    
+        // verifico che non ci sia più il file nella cartella
+        assertFalse(Files.exists(Paths.get(filePath)));  
     }
 
     @Test(expected = RuntimeException.class)
@@ -78,19 +59,6 @@ public class DeleteFileActionTest {
     @Test(expected = RuntimeException.class)
     public void testRemove() {
         action.remove(action);
-    }
-
-    private static String getPath(String relativePath) {
-        try {
-            // directory di lavoro del progetto
-            String projectDir = System.getProperty("user.dir");
-
-            //percorso completo utilizzando il separatore di percorso standard
-            return projectDir + File.separator + "test" + File.separator + "actions" + File.separator + "DeleteFileAction" + File.separator + relativePath;
-        } catch (Exception e) {
-            e.printStackTrace();
-            return null;
-        }
     }
 
 }

@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package actions.CopyFileAction;
 
 import actions.Action;
@@ -10,15 +6,16 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
-import javafx.stage.FileChooser;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author maria
  */
 public class CopyFileAction implements Action{
-    private String filePath;
-    private String newPath;
+    private String filePath; //path del file da copiare
+    private String newPath; //path della cartella di destinazione
 
     public CopyFileAction(String filePath, String newPath) {
         this.filePath = filePath;
@@ -28,15 +25,19 @@ public class CopyFileAction implements Action{
     @Override
     public void execute() {
         try {
+            
             Path sourcePath = Paths.get(filePath);
+            //ottiene un oggetto Path a partire dalla stringa           
+            
             Path destinationPath = Paths.get(newPath, sourcePath.getFileName().toString());
+            //il path di destinazione è dato dal path della cartella di destinazione unito al nome del file da copiare
 
-            // Copia il file con sovrascrittura
             Files.copy(sourcePath, destinationPath, StandardCopyOption.REPLACE_EXISTING);
-        } catch (IOException e) {
-            e.printStackTrace();
+            //copia il file dal sourcePath al destinationPath con eventuale sovrascrittura
+            
+        } catch (IOException ex) {
+            Logger.getLogger(CopyFileAction.class.getName()).log(Level.SEVERE, null, ex);
         }
-
     }
 
     @Override
@@ -48,5 +49,5 @@ public class CopyFileAction implements Action{
     public void remove(Action a) {
         throw new UnsupportedOperationException("Cannot remove an action from CopyFileAction.");
     }
-
+    
 }
