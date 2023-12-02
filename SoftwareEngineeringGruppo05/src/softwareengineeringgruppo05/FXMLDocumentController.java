@@ -4,6 +4,7 @@ import actions.Action;
 import actions.AudioAction.AudioAction;
 import actions.CopyFileAction.CopyFileAction;
 import actions.MessageAction.MessageAction;
+import actions.MoveFileAction.MoveFileAction;
 import actions.WriterAction.WriterAction;
 import java.io.IOException;
 import java.net.URL;
@@ -63,7 +64,7 @@ public class FXMLDocumentController implements Initializable {
     private WriterActionController writerActionController;
     private TimeTriggerController timeTriggerController;
     private CopyFileActionController copyFileActionController;
-    
+    private MoveFileActionController moveFileActionController;
     private RuleManager ruleManager;
     private RepetitionController repetitionController;
     private HBox repetitionBox;
@@ -113,9 +114,10 @@ public class FXMLDocumentController implements Initializable {
         BooleanProperty isMessageActionNotCompleted = messageActionController.getFlagMessage();
         BooleanProperty isWriterActionNotCompleted = writerActionController.getFlagWriter();
         BooleanProperty isCopyFileActionNotCompleted = copyFileActionController.getFlagCopyFile();
+        BooleanProperty isMoveFileActionNotCompleted = moveFileActionController.getFlagMoveFile();
         // Aggiungere il nuovo controllo alla condizione bb3
         BooleanBinding bb3 = isAudioActionNotCompleted.and(isMessageActionNotCompleted).and(isWriterActionNotCompleted)
-                .and(isCopyFileActionNotCompleted);
+                .and(isCopyFileActionNotCompleted).and(isMoveFileActionNotCompleted);
         
         BooleanBinding bb = bb1.or(bb2).or(bb3);
         
@@ -144,6 +146,8 @@ public class FXMLDocumentController implements Initializable {
             action = new WriterAction(writerActionController.getFilePath(), writerActionController.getTextArea());
         }else if("CopyFile".equals(selectedAction.getText())){
             action = new CopyFileAction(copyFileActionController.getFilePath(), copyFileActionController.getDirectoryPath());
+        }else if("MoveFile".equals(selectedAction.getText())){
+            action = new MoveFileAction(moveFileActionController.getFilePath(), moveFileActionController.getDirectoryPath());
         }
         
         if("Time".equals(selectedTrigger.getText())){           
@@ -194,10 +198,10 @@ public class FXMLDocumentController implements Initializable {
     private void loadAllActionsCards() throws IOException {
         scrollAllActions.getChildren().clear();
         
-        //create a togglegroup, so the user can select only one card.
+        //crea un togglegroup da passare alle card. In questo modo l'utente può selezionare un'unica azione
         actionToggleGroup = new ToggleGroup();
 
-        //load AudioAction card
+        //carica AudioAction card
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setLocation(getClass().getResource("/actions/AudioAction/AudioAction.fxml"));
         soundActionBox = fxmlLoader.load();
@@ -205,7 +209,7 @@ public class FXMLDocumentController implements Initializable {
         audioActionController.setToggleGroup(actionToggleGroup);
         scrollAllActions.getChildren().add(soundActionBox);
         
-        //load MessageAction card
+        //carica MessageAction card
         FXMLLoader fxmlLoader2 = new FXMLLoader();
         fxmlLoader2.setLocation(getClass().getResource("/actions/MessageAction/MessageAction.fxml"));
         HBox messageActionBox = fxmlLoader2.load();
@@ -213,7 +217,7 @@ public class FXMLDocumentController implements Initializable {
         messageActionController.setToggleGroup(actionToggleGroup);
         scrollAllActions.getChildren().add(messageActionBox);
         
-        //load WriteAction card
+        //carica WriteAction card
         FXMLLoader fxmlLoader3 = new FXMLLoader();
         fxmlLoader3.setLocation(getClass().getResource("/actions/WriterAction/WriterAction.fxml"));
         HBox writerActionBox = fxmlLoader3.load();
@@ -221,13 +225,21 @@ public class FXMLDocumentController implements Initializable {
         writerActionController.setToggleGroup(actionToggleGroup);
         scrollAllActions.getChildren().add(writerActionBox);
         
-        //load CopyFileAction card
+        //carica CopyFileAction card
         FXMLLoader fxmlLoader4 = new FXMLLoader();
-        fxmlLoader4.setLocation(getClass().getResource("/actions/FileAction/CopyFileAction.fxml"));
+        fxmlLoader4.setLocation(getClass().getResource("/actions/CopyFileAction/CopyFileAction.fxml"));
         HBox copyFileActionBox = fxmlLoader4.load();
         copyFileActionController = fxmlLoader4.getController();
         copyFileActionController.setToggleGroup(actionToggleGroup);
         scrollAllActions.getChildren().add(copyFileActionBox);    
+        
+        //carica MoveFileAction card
+        FXMLLoader fxmlLoader5 = new FXMLLoader();
+        fxmlLoader5.setLocation(getClass().getResource("/actions/MoveFileAction/MoveFileAction.fxml"));
+        HBox moveFileActionBox = fxmlLoader5.load();
+        moveFileActionController = fxmlLoader5.getController();
+        moveFileActionController.setToggleGroup(actionToggleGroup);
+        scrollAllActions.getChildren().add(moveFileActionBox); 
         
     }
     
