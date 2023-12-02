@@ -191,11 +191,9 @@ public class FXMLDocumentController implements Initializable {
 
                 RuleCardController ruleCardController = fxmlLoader.getController();
                 ruleCardController.setRule(rule);
-                ruleCardController.setData();
-
+                
                 rule.addObserver(ruleCardController);
-                
-                
+
                 scrollRules.getChildren().add(ruleBox);
             } catch (IOException e) {
                 e.printStackTrace();

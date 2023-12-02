@@ -17,6 +17,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import softwareengineeringgruppo05.RuleCardController;
 
 /**
  *
@@ -88,8 +89,7 @@ public class RuleManager implements Serializable{
             Set<Rule> rules = (Set<Rule>) ois.readObject();
             for (Rule rule : rules) {
                 this.addRule(rule);
-                //if(!rule.getState())
-                //    this.deactivateRule(rule);
+
             }
         } catch (FileNotFoundException ex) {
             Logger.getLogger(RuleManager.class.getName()).log(Level.SEVERE, null, ex);

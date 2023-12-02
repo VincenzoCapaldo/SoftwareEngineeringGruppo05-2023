@@ -29,12 +29,11 @@ public class RuleCardController implements Observer, Initializable {
     private HBox ruleBox;
     @FXML
     private Label ruleName;
-    
     private RuleManager ruleManager;
     private Rule rule;
     @FXML
     private CheckBox stateRule;
-
+ 
     /**
      * Initializes the controller class.
      */
@@ -74,6 +73,15 @@ public class RuleCardController implements Observer, Initializable {
     //ho bisogno di capire a quale regola fa riferimento la card
     public void setRule(Rule rule){
         this.rule = rule;
+        setData();
+        if (rule.getState()) {
+            ruleBox.getStyleClass().add("main_background");
+            ruleBox.getStyleClass().remove("deactivated_rule_background");
+        } else {
+            stateRule.setSelected(false);
+            ruleBox.getStyleClass().add("deactivated_rule_background");
+            ruleBox.getStyleClass().remove("main_background");
+        }
     }
     
     //setto il nome della card con il nome della regola
@@ -81,17 +89,14 @@ public class RuleCardController implements Observer, Initializable {
         this.ruleName.setText(rule.getName());
     }
 
+
     //restituisce all'utente un feedback visivo quando la regola cambia stato (attiva-disattiva)
     @FXML
     private void changeStateRule(ActionEvent event) {
         if (stateRule.isSelected()) {
             ruleManager.reactivateRule(rule);
-            ruleBox.getStyleClass().add("main_background");
-            ruleBox.getStyleClass().remove("deactivated_rule_background");
         } else {
             ruleManager.deactivateRule(rule);
-            ruleBox.getStyleClass().add("deactivated_rule_background");
-            ruleBox.getStyleClass().remove("main_background");
         }
     }
 
@@ -108,5 +113,6 @@ public class RuleCardController implements Observer, Initializable {
             ruleBox.getStyleClass().remove("main_background");
         }
     }
+
     
 }
