@@ -46,9 +46,12 @@ public class RuleManager implements Serializable{
     }
 
     public void addRule(Rule newRule) {
+        
         Thread t = new Thread(new ThreadRule(newRule));
         mapRules.put(newRule, t);
-        t.start();
+        if(newRule.getState())
+            t.start();
+        
         this.saveRules();
     }
     
@@ -85,8 +88,8 @@ public class RuleManager implements Serializable{
             Set<Rule> rules = (Set<Rule>) ois.readObject();
             for (Rule rule : rules) {
                 this.addRule(rule);
-                if(!rule.getState())
-                    this.deactivateRule(rule);
+                //if(!rule.getState())
+                //    this.deactivateRule(rule);
             }
         } catch (FileNotFoundException ex) {
             Logger.getLogger(RuleManager.class.getName()).log(Level.SEVERE, null, ex);

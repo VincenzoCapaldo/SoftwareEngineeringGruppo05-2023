@@ -1,6 +1,8 @@
 package softwareengineeringgruppo05;
 
 import java.net.URL;
+import java.util.Observable;
+import java.util.Observer;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -21,7 +23,7 @@ import rules.RuleManager;
  *
  * @author enzo0
  */
-public class RuleCardController implements Initializable {
+public class RuleCardController implements Observer, Initializable {
 
     @FXML
     private HBox ruleBox;
@@ -92,4 +94,19 @@ public class RuleCardController implements Initializable {
             ruleBox.getStyleClass().remove("main_background");
         }
     }
+
+    @Override
+    public void update(Observable subject, Object arg) {
+        Rule ruleSubject = (Rule)subject;
+        if(ruleSubject.getState()){
+            ruleManager.reactivateRule(rule);
+            ruleBox.getStyleClass().add("main_background");
+            ruleBox.getStyleClass().remove("deactivated_rule_background");
+        } else {
+            ruleManager.deactivateRule(rule);
+            ruleBox.getStyleClass().add("deactivated_rule_background");
+            ruleBox.getStyleClass().remove("main_background");
+        }
+    }
+    
 }

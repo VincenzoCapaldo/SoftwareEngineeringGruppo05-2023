@@ -171,6 +171,7 @@ public class FXMLDocumentController implements Initializable {
         }
         
         Rule rule = new Rule(nameRuleTextField.getText(), action, trigger, true, repetition, duration);
+        
         ruleManager.addRule(rule);
 
         loadAllRules();
@@ -192,6 +193,9 @@ public class FXMLDocumentController implements Initializable {
                 ruleCardController.setRule(rule);
                 ruleCardController.setData();
 
+                rule.addObserver(ruleCardController);
+                
+                
                 scrollRules.getChildren().add(ruleBox);
             } catch (IOException e) {
                 e.printStackTrace();

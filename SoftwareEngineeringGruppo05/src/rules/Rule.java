@@ -3,13 +3,14 @@ package rules;
 import actions.Action;
 import java.io.Serializable;
 import java.time.Duration;
+import java.util.Observable;
 import triggers.Trigger;
 
 /**
  *
  * @author maria
  */
-public class Rule implements Serializable{
+public class Rule extends Observable implements Serializable{
     private String name;
     private Action action;
     private Trigger trigger;
@@ -26,7 +27,6 @@ public class Rule implements Serializable{
         this.sleeping = sleeping;
     }
 
-    
     public String getName(){
         return name;
     }
@@ -55,8 +55,12 @@ public class Rule implements Serializable{
         return state;
     }
 
-    public void setState(boolean state) {
-        this.state = state;
+    public void setState(boolean newState) {
+        if(state != newState){
+            state = newState;
+            setChanged(); //indica che lo stato della regola è stato modificato
+        }
+        notifyObservers(); //avvisa gli oggetti Observers registrati (in caso di modifica) 
     }
 
     public boolean getRepeate() {
