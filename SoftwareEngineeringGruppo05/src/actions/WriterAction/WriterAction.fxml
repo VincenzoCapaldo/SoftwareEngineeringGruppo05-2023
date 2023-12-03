@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<HBox fx:id="writerActionBox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="181.0" prefWidth="261.0" styleClass="round_border" stylesheets="@../../css/style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="actions.WriterAction.WriterActionController">
+<HBox fx:id="writerActionBox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="181.0" prefWidth="261.0" styleClass="round_border" stylesheets="@../../css/style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="actions.WriterAction.WriterActionController">
    <children>
       <VBox fx:id="vboxWriter" prefHeight="197.0" prefWidth="261.0" stylesheets="@../../css/style.css">
          <children>
@@ -33,7 +33,7 @@
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </padding>
             </HBox>
-            <TextArea fx:id="messageTextArea" prefHeight="87.0" prefWidth="227.0">
+            <TextArea fx:id="messageTextArea" prefHeight="87.0" prefWidth="227.0" promptText="Write something...">
                <VBox.margin>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </VBox.margin></TextArea>

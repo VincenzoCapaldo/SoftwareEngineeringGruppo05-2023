@@ -80,12 +80,12 @@ public class DeleteFileActionController implements Initializable, ControllerActi
                             vboxDeleteFile.getChildren().removeAll(vbox1);
                             deleteFileActionBox.setPrefHeight(70);
                             vboxDeleteFile.setPrefHeight(70);
-                            flagDeleteFile.set(true);    
+                            fileNameTextField.clear();
                         } else {
                             vboxDeleteFile.getChildren().addAll(vbox1);
                             vbox1.getChildren().addAll(hbox1, hbox2);
                             hbox1.getChildren().addAll(deleteLabel, fileNameTextField);
-                            fileNameTextField.clear();
+                            
                             hbox2.getChildren().addAll(fromLabel, directoryButton);
                             deleteFileActionBox.setPrefHeight(163);
                             vboxDeleteFile.setPrefHeight(163);

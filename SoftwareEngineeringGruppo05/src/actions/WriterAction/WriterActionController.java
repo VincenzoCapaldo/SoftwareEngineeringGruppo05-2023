@@ -49,13 +49,7 @@ public class WriterActionController implements Initializable, ControllerAction {
     public void initialize(URL url, ResourceBundle rb) {
         flagWriter = new SimpleBooleanProperty(true);
         BooleanProperty isWriterActionSelected = writeActionRB.selectedProperty();
-        
-       
-        // Creazione di un binding personalizzato per la visibilità del pulsante
-        flagWriter.bind(Bindings.createBooleanBinding(
-                () -> messageTextArea.getText().isEmpty(),
-                messageTextArea.textProperty()
-        ));
+
         messageTextArea.visibleProperty().bind(Bindings.createBooleanBinding(
             () -> {
                 boolean writerActionSelected = isWriterActionSelected.get();
