@@ -10,7 +10,7 @@ import triggers.Trigger;
 
 /**
  *
- * @author Maria
+ * @author maria
  */
 public class RuleTest {
 

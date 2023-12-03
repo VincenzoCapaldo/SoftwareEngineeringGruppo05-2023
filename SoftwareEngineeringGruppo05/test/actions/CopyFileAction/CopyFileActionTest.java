@@ -25,31 +25,14 @@ public class CopyFileActionTest {
         action = new CopyFileAction(filePath, newPath);
     }
 
-    @After
-    public void tearDown() {
-        // elimino il file di prova nella cartella source
-        Path path1 = Paths.get(filePath);    
-        try {
-            Files.delete(path1);
-        } catch (IOException ex) {
-            Logger.getLogger(CopyFileActionTest.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        // elimino il file di prova nella cartella destination
-        Path path2 = Paths.get(newPath + "/prova.txt");    
-        try {
-            Files.delete(path2);
-        } catch (IOException ex) {
-            Logger.getLogger(CopyFileActionTest.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-
     @Test
     public void testExecute() {
+        Path pathSource = Paths.get(filePath);    
+        Path pathDestination = Paths.get(newPath + "/prova.txt");    
+        
         // creo un file di prova nella cartella source
-        Path path = Paths.get(filePath);    
         try {
-            Files.createFile(path);
+            Files.createFile(pathSource);
         } catch (IOException ex) {
             Logger.getLogger(CopyFileActionTest.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -57,10 +40,25 @@ public class CopyFileActionTest {
         action.execute();
 
         // verifico che ci sia ancora il file nella cartella source
-        assertTrue(Files.exists(Paths.get(filePath)));
+        assertTrue(Files.exists(pathSource));
 
         // verifico che ci sia il file nella cartella destination
-        assertTrue(Files.exists(Paths.get(newPath + "/prova.txt")));    
+        assertTrue(Files.exists(pathDestination));
+        
+        // elimino il file di prova nella cartella source
+        try {
+            Files.delete(pathSource);
+        } catch (IOException ex) {
+            Logger.getLogger(CopyFileActionTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        // elimino il file di prova nella cartella destination
+        try {
+            Files.delete(pathDestination);
+        } catch (IOException ex) {
+            Logger.getLogger(CopyFileActionTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    
     }
 
     @Test(expected = RuntimeException.class)

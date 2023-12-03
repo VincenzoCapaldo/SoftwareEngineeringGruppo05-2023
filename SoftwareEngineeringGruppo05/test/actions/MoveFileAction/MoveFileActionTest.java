@@ -24,24 +24,15 @@ public class MoveFileActionTest {
     public void setUp() {
         action = new MoveFileAction(filePath, newPath);
     }
-    
-    @After
-    public void tearDown() {
-        // elimino il file di prova nella cartella destination
-        Path path = Paths.get(newPath + "/prova.txt");    
-        try {
-            Files.delete(path);
-        } catch (IOException ex) {
-            Logger.getLogger(MoveFileActionTest.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
 
     @Test
     public void testExecute() {
+        Path pathSource = Paths.get(filePath);    
+        Path pathDestination = Paths.get(newPath + "/prova.txt");    
+        
         // creo un file di prova nella cartella source
-        Path path = Paths.get(filePath);    
         try {
-            Files.createFile(path);
+            Files.createFile(pathSource);
         } catch (IOException ex) {
             Logger.getLogger(MoveFileActionTest.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -49,10 +40,17 @@ public class MoveFileActionTest {
         action.execute();
         
         // verifico che non ci sia più il file nella cartella source
-        assertFalse(Files.exists(Paths.get(filePath)));
+        assertFalse(Files.exists(pathSource));
         
         // verifico che ci sia il file nella cartella destination
-        assertTrue(Files.exists(Paths.get(newPath + "/prova.txt")));    
+        assertTrue(Files.exists(pathDestination));
+        
+        // elimino il file di prova nella cartella destination
+        try {
+            Files.delete(pathDestination);
+        } catch (IOException ex) {
+            Logger.getLogger(MoveFileActionTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
     @Test(expected = RuntimeException.class)

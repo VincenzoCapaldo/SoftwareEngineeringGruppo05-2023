@@ -24,23 +24,22 @@ public class ProgramAction implements Action{
         try{
             // Crea un processo per eseguire il programma specificato nel percorso
             ProcessBuilder processBuilder = new ProcessBuilder(programPath, commandLine);
-            
+
             // Avvia il processo
-            processBuilder.start();
-            
+            processBuilder.start();            
         } catch (IOException ex) {
             Logger.getLogger(ProgramAction.class.getName()).log(Level.SEVERE, null, ex);
-        } 
+        }
     }
 
      @Override
     public void add(Action a) {
-         throw new UnsupportedOperationException("Cannot add an action to CopyFileAction.");
+         throw new UnsupportedOperationException("Cannot add an action to ProgramAction.");
     }
 
     @Override
     public void remove(Action a) {
-        throw new UnsupportedOperationException("Cannot remove an action from CopyFileAction.");
+        throw new UnsupportedOperationException("Cannot remove an action from ProgramAction.");
     }
 
 }

@@ -9,10 +9,8 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.logging.Level;
@@ -46,12 +44,10 @@ public class RuleManager implements Serializable{
     }
 
     public void addRule(Rule newRule) {
-        
         Thread t = new Thread(new ThreadRule(newRule));
         mapRules.put(newRule, t);
         if(newRule.getState())
             t.start();
-        
         this.saveRules();
     }
     
@@ -88,7 +84,6 @@ public class RuleManager implements Serializable{
             Set<Rule> rules = (Set<Rule>) ois.readObject();
             for (Rule rule : rules) {
                 this.addRule(rule);
-
             }
         } catch (FileNotFoundException ex) {
             Logger.getLogger(RuleManager.class.getName()).log(Level.SEVERE, null, ex);

@@ -24,21 +24,11 @@ public class DeleteFileActionTest {
         action = new DeleteFileAction(filePath);
     }
 
-    @After
-    public void tearDown() {
-        // elimino il file di prova
-        Path path = Paths.get(filePath);    
-        try {
-            Files.delete(path);
-        } catch (IOException ex) {
-            Logger.getLogger(DeleteFileActionTest.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-
     @Test
     public void testExecute() {
-        // creo un file di prova nella cartella
         Path path = Paths.get(filePath);    
+        
+        // creo un file di prova nella cartella
         try {
             Files.createFile(path);
         } catch (IOException ex) {
@@ -49,6 +39,13 @@ public class DeleteFileActionTest {
 
         // verifico che non ci sia più il file nella cartella
         assertFalse(Files.exists(Paths.get(filePath)));  
+        
+        // elimino il file di prova
+        try {
+            Files.delete(path);
+        } catch (IOException ex) {
+            Logger.getLogger(DeleteFileActionTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @Test(expected = RuntimeException.class)

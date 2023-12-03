@@ -1,14 +1,18 @@
 package actions.WriterAction;
 
+import org.junit.*;
+import static org.junit.Assert.*;
 import actions.Action;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import org.junit.Before;
-import org.junit.Test;
-import static org.junit.Assert.*;
 
 /**
  *
@@ -18,7 +22,7 @@ public class WriterActionTest {
     
     private Action action;
     private final String filePath = "test/actions/WriterAction/prova.txt";
-    private final String message = "Hello World!\n";
+    private final String message = "Hello World!";
     
     @Before
     public void setUp() {
@@ -27,17 +31,35 @@ public class WriterActionTest {
 
     @Test
     public void testExecute() {
-        action.execute(); //inserisco il messaggio alla fine del file
-
-        String fileContent = null;
+        Path path = Paths.get(filePath);    
+        
+        // creo un file di prova
         try {
-            // inserisco nella variabile fileContent il contenuto del file come stringa
-            fileContent = new String(Files.readAllBytes(Paths.get(filePath))); 
+            Files.createFile(path);
         } catch (IOException ex) {
             Logger.getLogger(WriterActionTest.class.getName()).log(Level.SEVERE, null, ex);
         }
-        // verifico se il file termina con il messaggio inserito dall'utente
-        assertTrue(fileContent.endsWith(message));
+
+        // scrivo qualcosa nel file di prova
+        String introMessage = "Good Morning!\n";
+        try (PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter(filePath)))){
+            pw.write(introMessage);
+        } catch (IOException ex) {
+            Logger.getLogger(WriterActionTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        action.execute(); // eseguo WriterAction
+        
+        // leggo il contenuto del file come una lista di stringhe
+        List<String> lines = null;
+        try {
+            lines = Files.readAllLines(path);
+        } catch (IOException ex) {
+            Logger.getLogger(WriterActionTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        // verifico se l'ultima riga del file contiene il messaggio inserito dall'utente
+        assertTrue(lines.get(lines.size()-1).endsWith(message));
     }
     
     @Test(expected = RuntimeException.class)
