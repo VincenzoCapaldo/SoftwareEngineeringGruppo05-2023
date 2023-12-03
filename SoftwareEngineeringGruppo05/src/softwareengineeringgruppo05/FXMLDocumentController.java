@@ -12,6 +12,8 @@ import actions.Action;
 import actions.AudioAction.AudioAction;
 import actions.ControllerAction;
 import actions.CopyFileAction.CopyFileAction;
+import actions.DeleteFileAction.DeleteFileAction;
+import actions.DeleteFileAction.DeleteFileActionController;
 import actions.MessageAction.MessageAction;
 import actions.MoveFileAction.MoveFileAction;
 import actions.ProgramAction.ProgramAction;
@@ -76,6 +78,7 @@ public class FXMLDocumentController implements Initializable {
     private TimeTriggerController timeTriggerController;
     private CopyFileActionController copyFileActionController;
     private MoveFileActionController moveFileActionController;
+    private DeleteFileActionController deleteFileActionController;
     private ProgramActionController programActionController;
     private RuleManager ruleManager;
     private RepetitionController repetitionController;
@@ -135,12 +138,13 @@ public class FXMLDocumentController implements Initializable {
         BooleanProperty isWriterActionNotCompleted = writerActionController.getFlag();
         BooleanProperty isCopyFileActionNotCompleted = copyFileActionController.getFlag();
         BooleanProperty isMoveFileActionNotCompleted = moveFileActionController.getFlag();
-        //inserire isDeleteFileActionNoteCompleted
+        BooleanProperty isDeleteFileActionNotCompleted = deleteFileActionController.getFlag();
         BooleanProperty isProgramActionNotCompleted = programActionController.getFlag();
         
         //se nessuna azione è completa bb3=true
         BooleanBinding bb3 = isAudioActionNotCompleted.and(isMessageActionNotCompleted).and(isWriterActionNotCompleted)
-                .and(isCopyFileActionNotCompleted).and(isMoveFileActionNotCompleted).and(isProgramActionNotCompleted);
+                .and(isCopyFileActionNotCompleted).and(isMoveFileActionNotCompleted).and(isDeleteFileActionNotCompleted)
+                .and(isProgramActionNotCompleted);
         
         //se non è stato inserito il nome della regola O non è selezionata un'azione/ trigger O l'azione selezionata non è completa bb=true
         BooleanBinding bb = bb1.or(bb2).or(bb3);
@@ -176,6 +180,9 @@ public class FXMLDocumentController implements Initializable {
             action = new MoveFileAction(moveFileActionController.getFilePath(), moveFileActionController.getDirectoryPath());
         }else if("Program".equals(selectedAction.getText())){
             action = new ProgramAction(programActionController.getFilePath(), programActionController.getTextArea());
+        }else if("DeleteFile".equals(selectedAction.getText())){
+            String completePath = deleteFileActionController.getDirectoryPath() + "/" + deleteFileActionController.getFileName();
+            action = new DeleteFileAction(completePath);
         }
         
         if("Time".equals(selectedTrigger.getText())){           
@@ -236,6 +243,7 @@ public class FXMLDocumentController implements Initializable {
         writerActionController = (WriterActionController) createCard("/actions/WriterAction/WriterAction.fxml", writerActionController, actionToggleGroup);
         copyFileActionController = (CopyFileActionController) createCard("/actions/CopyFileAction/CopyFileAction.fxml", copyFileActionController, actionToggleGroup);
         moveFileActionController = (MoveFileActionController) createCard("/actions/MoveFileAction/MoveFileAction.fxml", moveFileActionController, actionToggleGroup);
+        deleteFileActionController = (DeleteFileActionController) createCard("/actions/DeleteFileAction/DeleteFileAction.fxml", deleteFileActionController, actionToggleGroup);
         programActionController = (ProgramActionController) createCard("/actions/ProgramAction/ProgramAction.fxml", programActionController, actionToggleGroup);
 
     }
