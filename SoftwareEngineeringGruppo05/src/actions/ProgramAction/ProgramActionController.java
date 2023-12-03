@@ -1,10 +1,5 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
- */
 package actions.ProgramAction;
 
-import actions.AudioAction.AudioAction;
 import actions.ControllerAction;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -87,7 +82,7 @@ public class ProgramActionController implements Initializable, ControllerAction 
         fileChooser.setTitle("Select a executable program");
 
         fileChooser.getExtensionFilters().addAll(
-                new FileChooser.ExtensionFilter("Executable program", "*.jar"));
+            new FileChooser.ExtensionFilter("Executable program", "*.bat"));
         
         Stage stage = (Stage) browseButton.getScene().getWindow();
         selectedFile = fileChooser.showOpenDialog(stage);

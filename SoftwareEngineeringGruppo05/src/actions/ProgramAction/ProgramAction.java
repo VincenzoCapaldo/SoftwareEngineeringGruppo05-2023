@@ -23,13 +23,16 @@ public class ProgramAction implements Action{
     public void execute() {
         try{
             // Crea un processo per eseguire il programma specificato nel percorso
-            ProcessBuilder processBuilder = new ProcessBuilder(programPath, commandLine);
-
+            ProcessBuilder processBuilder = new ProcessBuilder("cmd", "/K", "start", programPath, commandLine);
+            System.out.print(programPath);
             // Avvia il processo
-            processBuilder.start();            
+            processBuilder.start();
+            
         } catch (IOException ex) {
             Logger.getLogger(ProgramAction.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+        
     }
 
      @Override
