@@ -12,6 +12,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
@@ -61,7 +62,8 @@ public class RuleCardController implements Observer, Initializable {
                 
                 //apro il popUp in una nuova finestra
                 Stage stage = new Stage();
-                stage.setTitle("Delete the rule " + rule.getName() + "?");
+                stage.setTitle("Delete " + rule.getName() + "?");
+                stage.getIcons().add(new Image("/css/email.png"));
                 stage.setScene(new Scene(root2));
                 stage.show();
 

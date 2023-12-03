@@ -64,8 +64,9 @@ public class DeleteFileActionController implements Initializable, ControllerActi
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         flagDeleteFile = new SimpleBooleanProperty(true);
-        BooleanProperty isDeleteFileActionSelected = deleteFileActionRB.selectedProperty();
         
+        BooleanProperty isDeleteFileActionSelected = deleteFileActionRB.selectedProperty();
+      
         vbox1.visibleProperty().bind(Bindings.createBooleanBinding(
             () -> {
                 boolean DeleteFileSelected = isDeleteFileActionSelected.get();
@@ -84,6 +85,7 @@ public class DeleteFileActionController implements Initializable, ControllerActi
                             vboxDeleteFile.getChildren().addAll(vbox1);
                             vbox1.getChildren().addAll(hbox1, hbox2);
                             hbox1.getChildren().addAll(deleteLabel, fileNameTextField);
+                            fileNameTextField.clear();
                             hbox2.getChildren().addAll(fromLabel, directoryButton);
                             deleteFileActionBox.setPrefHeight(163);
                             vboxDeleteFile.setPrefHeight(163);
@@ -104,11 +106,10 @@ public class DeleteFileActionController implements Initializable, ControllerActi
         selectedDirectory = directoryChooser.showDialog(stage);
         
         Platform.runLater(() -> {
-            if (selectedDirectory == null) {
-                flagDeleteFile.set(true);
-            } else {
-                flagDeleteFile.set(false);
-            }
+             flagDeleteFile.bind(Bindings.createBooleanBinding(
+                () -> selectedDirectory == null || fileNameTextField.getText().isEmpty(),
+                fileNameTextField.textProperty()
+            ));
         });
     }
     
@@ -129,4 +130,5 @@ public class DeleteFileActionController implements Initializable, ControllerActi
     public BooleanProperty getFlag() {
         return flagDeleteFile;
     }
+
 }

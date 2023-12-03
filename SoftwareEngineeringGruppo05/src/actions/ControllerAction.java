@@ -15,7 +15,7 @@ import javafx.scene.control.ToggleGroup;
  */
 public interface ControllerAction {
     
-     public void setToggleGroup(ToggleGroup toggleGroup);
-      public BooleanProperty getFlag();
- 
+    public void setToggleGroup(ToggleGroup toggleGroup);
+    public BooleanProperty getFlag();
+
 }

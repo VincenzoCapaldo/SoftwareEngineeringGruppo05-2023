@@ -94,11 +94,10 @@ public class WriterActionController implements Initializable, ControllerAction {
 
         // La flagWriter è vera solo quando non è stato selezionato un file
         Platform.runLater(() -> {
-            if (selectedFile == null) {
-                flagWriter.set(true);
-            } else {
-                flagWriter.set(false);
-            }
+             flagWriter.bind(Bindings.createBooleanBinding(
+                () -> selectedFile == null || messageTextArea.getText().isEmpty(),
+                messageTextArea.textProperty()
+            ));
         });
     }
     

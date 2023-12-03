@@ -4,6 +4,7 @@
  */
 package actions.ProgramAction;
 
+import actions.AudioAction.AudioAction;
 import actions.ControllerAction;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -54,13 +55,7 @@ public class ProgramActionController implements Initializable, ControllerAction 
     public void initialize(URL url, ResourceBundle rb) {
         flagProgram = new SimpleBooleanProperty(true);
         BooleanProperty isWriterActionSelected = programActionRB.selectedProperty();
-        
-       
-        // Creazione di un binding personalizzato per la visibilità del pulsante
-        flagProgram.bind(Bindings.createBooleanBinding(
-                () -> commandTextArea.getText().isEmpty(),
-                commandTextArea.textProperty()
-        ));
+ 
         commandTextArea.visibleProperty().bind(Bindings.createBooleanBinding(
             () -> {
                 boolean writerActionSelected = isWriterActionSelected.get();
@@ -124,5 +119,6 @@ public class ProgramActionController implements Initializable, ControllerAction 
     public BooleanProperty getFlag() {
         return flagProgram;
     }
+
     
 }
