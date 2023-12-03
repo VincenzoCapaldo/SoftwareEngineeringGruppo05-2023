@@ -10,3 +10,6 @@
 
 <h2>Sprint 1 Artifacts</h2>
 <a href="https://docs.google.com/document/d/1G1Uwg8tHWgXUBMuiGjng8JWZdNYu5vcKQSUfuCtbQAs/edit?usp=sharing"> Clicca qui </a>
+
+<h2>Sprint 2 Artifacts</h2>
+<a href="https://docs.google.com/document/d/1qLlWgub3hV3cR61AEgt1Xu6WZ1W4jJP0yyvUI-O11kI/edit?usp=sharing"> Clicca qui </a>
