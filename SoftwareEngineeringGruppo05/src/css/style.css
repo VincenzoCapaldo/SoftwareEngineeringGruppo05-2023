@@ -10,11 +10,11 @@
 }
 
 .main_background {
-    -fx-background-color: #7BC534;
+    -fx-background-color: #0077b3;
 }
 
 .light_main_background {
-    -fx-background-color: E8F5E5;
+    -fx-background-color: #dbe6f2;
 }
 
 .margin_cards{
@@ -28,7 +28,7 @@
 }
 
 .deactivated_rule_background{
-    -fx-background-color: #BFBFBF;
+    -fx-background-color: #8FA0AA;
 }
 
 .red_button{
