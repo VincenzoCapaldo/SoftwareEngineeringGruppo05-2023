@@ -1,6 +1,12 @@
 @echo off
 cls
 echo.
-echo ciao
+if "%1"=="" (
+    set /p nome=Inserisci il tuo nome: 
+) else (
+    set "nome=%1"
+)
 echo.
-pause 
+echo Ciao, %nome%!
+echo.
+pause
