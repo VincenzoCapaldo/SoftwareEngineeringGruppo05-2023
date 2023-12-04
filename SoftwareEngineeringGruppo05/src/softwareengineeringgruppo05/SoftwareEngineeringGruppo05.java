@@ -7,6 +7,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
+import rules.RuleManager;
 
 /**
  *
@@ -14,8 +16,11 @@ import javafx.stage.Stage;
  */
 public class SoftwareEngineeringGruppo05 extends Application {
     
+    private RuleManager ruleManager;
+    
     @Override
     public void start(Stage stage) throws Exception {
+        ruleManager = RuleManager.getInstance();
         Parent root = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
         
         Scene scene = new Scene(root);
@@ -25,6 +30,9 @@ public class SoftwareEngineeringGruppo05 extends Application {
         // Imposta l'icona della finestra (accanto al titolo)
         stage.getIcons().add(new Image("/css/book.png"));
         stage.show();
+        
+        // Imposta l'azione di chiusura della finestra
+        stage.setOnCloseRequest(this::handleWindowClose);
     }
 
     /**
@@ -32,6 +40,10 @@ public class SoftwareEngineeringGruppo05 extends Application {
      */
     public static void main(String[] args) {
         launch(args);
+    }
+
+    private void handleWindowClose(WindowEvent event) {
+        ruleManager.interrupThread();
     }
     
 }

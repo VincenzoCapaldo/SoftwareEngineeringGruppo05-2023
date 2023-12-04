@@ -92,4 +92,10 @@ public class RuleManager implements Serializable{
         }
     }
 
+    public void interrupThread() {
+        for(Rule rule : mapRules.keySet()){
+            mapRules.get(rule).interrupt();
+        }
+    }
+
 }
