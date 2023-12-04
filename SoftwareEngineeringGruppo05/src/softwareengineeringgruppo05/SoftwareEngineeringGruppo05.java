@@ -2,6 +2,7 @@ package softwareengineeringgruppo05;
 
 
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -44,6 +45,8 @@ public class SoftwareEngineeringGruppo05 extends Application {
 
     private void handleWindowClose(WindowEvent event) {
         ruleManager.interrupThread();
+        Platform.exit(); //chiede a javaFX l'uscita dalla piattaforma: chiude JavaFX
+        System.exit(0); //termina il processo Java
     }
     
 }
