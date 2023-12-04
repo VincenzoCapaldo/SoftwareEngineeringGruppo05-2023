@@ -1,52 +1,39 @@
 package actions.MessageAction;
 
 import actions.Action;
-import java.io.IOException;
-import javafx.application.Platform;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.image.Image;
-import javafx.stage.Stage;
+import java.util.Observable;
 
 /**
  *
  * @author maria
  */
-public class MessageAction implements Action{
+public class MessageAction extends Observable implements Action {
     private String message;
+    private boolean condition;
 
     public MessageAction(String message) {
         this.message = message;
+        condition = false;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public boolean getCondition() {
+        return condition;
+    }
+
+    public void setCondition() {
+
+        condition = !condition;
+        setChanged(); 
+        notifyObservers(); 
     }
     
     @Override
     public void execute(){
-                
-        Platform.runLater(() -> {
-            try{
-                FXMLLoader fxmlLoader= new FXMLLoader(getClass().getResource("PopUp.fxml"));
-                Parent root1= (Parent) fxmlLoader.load();
-
-                // Getting the controller after loading the FXML file
-                PopUpController controller = fxmlLoader.getController();
-
-                // Setting the new text on the Label using the method defined in the controller
-                controller.setLabelText(message);
-
-                // Creating the new stage
-                Stage stage = new Stage();
-                stage.setTitle("New message"); // Setting the title of the window
-                stage.getIcons().add(new Image("/css/message.png"));
-                stage.setScene(new Scene(root1));
-
-                // Showing the new window
-                stage.show();
-
-            }catch(IOException e){
-                System.out.println("Cant load new window");
-            }            
-        });
+        setCondition();
     }
              
     @Override

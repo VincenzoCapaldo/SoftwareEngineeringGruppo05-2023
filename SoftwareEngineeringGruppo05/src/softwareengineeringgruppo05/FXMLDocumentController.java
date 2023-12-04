@@ -37,7 +37,6 @@ import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
 import rules.Rule;
 import rules.RuleManager;
 import triggers.TimeTrigger.TimeTrigger;
@@ -172,6 +171,7 @@ public class FXMLDocumentController implements Initializable {
             action = new AudioAction(audioActionController.getFilePath());
         }else if("Message".equals(selectedAction.getText())){         
             action = new MessageAction(messageActionController.getTextArea());
+            ((MessageAction) action).addObserver(messageActionController);
         }else if("Write".equals(selectedAction.getText())){
             action = new WriterAction(writerActionController.getFilePath(), writerActionController.getTextArea());
         }else if("CopyFile".equals(selectedAction.getText())){
@@ -240,6 +240,7 @@ public class FXMLDocumentController implements Initializable {
 
         audioActionController = (AudioActionController) createCard("/actions/AudioAction/AudioAction.fxml", audioActionController, actionToggleGroup);
         messageActionController = (MessageActionController) createCard("/actions/MessageAction/MessageAction.fxml", messageActionController, actionToggleGroup);
+        
         writerActionController = (WriterActionController) createCard("/actions/WriterAction/WriterAction.fxml", writerActionController, actionToggleGroup);
         copyFileActionController = (CopyFileActionController) createCard("/actions/CopyFileAction/CopyFileAction.fxml", copyFileActionController, actionToggleGroup);
         moveFileActionController = (MoveFileActionController) createCard("/actions/MoveFileAction/MoveFileAction.fxml", moveFileActionController, actionToggleGroup);
