@@ -23,8 +23,8 @@ public class ThreadRule implements Runnable {
 
                 /* controlla il trigger ripetutamente */
                 while(rule.getRepeate() && rule.getSleeping().toMillis()!=0){
-                        Thread.sleep(rule.getSleeping().toMillis());
-                        rule.getAction().execute(); 
+                    Thread.sleep(rule.getSleeping().toMillis());
+                    rule.getAction().execute(); 
                 }   
             } catch (InterruptedException ex) {
                 Logger.getLogger(ThreadRule.class.getName()).log(Level.SEVERE, null, ex);

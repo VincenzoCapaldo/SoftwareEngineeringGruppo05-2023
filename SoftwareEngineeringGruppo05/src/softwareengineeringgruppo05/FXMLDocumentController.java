@@ -23,6 +23,8 @@ import java.net.URL;
 import java.time.Duration;
 import java.util.ResourceBundle;
 import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.beans.binding.BooleanBinding;
 import javafx.beans.property.BooleanProperty;
 import javafx.event.ActionEvent;
@@ -206,7 +208,7 @@ public class FXMLDocumentController implements Initializable {
         loadAllRules();
     }
     
-    //caricamente delle rulesCard 
+    //caricamento delle ruleCards 
     private void loadAllRules(){
         scrollRules.getChildren().clear();
         
@@ -215,6 +217,7 @@ public class FXMLDocumentController implements Initializable {
         for (Rule rule : rules) {
             try {
                 FXMLLoader fxmlLoader = new FXMLLoader();
+                
                 fxmlLoader.setLocation(getClass().getResource("/rules/RuleCard.fxml")); 
                 HBox ruleBox = fxmlLoader.load();
 
@@ -224,8 +227,8 @@ public class FXMLDocumentController implements Initializable {
                 rule.addObserver(ruleCardController);
 
                 scrollRules.getChildren().add(ruleBox);
-            } catch (IOException e) {
-                e.printStackTrace();
+            } catch (IOException ex) {
+                Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
         

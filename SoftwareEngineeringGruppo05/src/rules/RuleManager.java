@@ -92,8 +92,8 @@ public class RuleManager implements Serializable{
         }
     }
 
-    public void interrupThread() {
-        for(Rule rule : mapRules.keySet()){
+    public void interruptThread() {
+        for(Rule rule : this.getRules()){
             mapRules.get(rule).interrupt();
         }
     }

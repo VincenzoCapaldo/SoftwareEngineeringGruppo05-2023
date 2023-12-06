@@ -73,5 +73,4 @@ public class RepetitionController implements Initializable {
         return Integer.valueOf(minuteSpinnerTime.getEditor().getText());
     }
     
-    
 }

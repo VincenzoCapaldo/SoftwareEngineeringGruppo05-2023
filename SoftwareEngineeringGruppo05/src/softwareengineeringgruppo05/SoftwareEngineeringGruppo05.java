@@ -44,7 +44,7 @@ public class SoftwareEngineeringGruppo05 extends Application {
     }
 
     private void handleWindowClose(WindowEvent event) {
-        ruleManager.interrupThread();
+        ruleManager.interruptThread();
         Platform.exit(); //chiede a javaFX l'uscita dalla piattaforma: chiude JavaFX
         System.exit(0); //termina il processo Java
     }
