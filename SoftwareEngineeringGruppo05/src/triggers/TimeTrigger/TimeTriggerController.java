@@ -45,7 +45,6 @@ public class TimeTriggerController implements Initializable, ControllerTrigger {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-       // createSpinners();
         BooleanProperty isTriggerTimeSelected = timeTriggerRB.selectedProperty();
         boxSpinnerTriggerTime.visibleProperty().bind(Bindings.createBooleanBinding(
             () -> {

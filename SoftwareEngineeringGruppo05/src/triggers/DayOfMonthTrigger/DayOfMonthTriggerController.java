@@ -5,9 +5,7 @@
 package triggers.DayOfMonthTrigger;
 
 import java.net.URL;
-import java.time.DayOfWeek;
 import java.time.LocalDate;
-import java.time.YearMonth;
 import java.util.ResourceBundle;
 import javafx.application.Platform;
 import javafx.beans.binding.Bindings;
@@ -44,7 +42,6 @@ public class DayOfMonthTriggerController implements Initializable, ControllerTri
     
     private LocalDate currentDate  = LocalDate.now();
         
-    private int daysInMonth = YearMonth.from(currentDate).lengthOfMonth();
     /**
      * Initializes the controller class.
      */
@@ -81,7 +78,7 @@ public class DayOfMonthTriggerController implements Initializable, ControllerTri
     
     private void createSpinner(){
 
-        SpinnerValueFactory<Integer> valueFactoryMonth = new SpinnerValueFactory.IntegerSpinnerValueFactory(1, daysInMonth, currentDate.getDayOfMonth());
+        SpinnerValueFactory<Integer> valueFactoryMonth = new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 31, currentDate.getDayOfMonth());
         
         dayOfMonthSpinner.setValueFactory(valueFactoryMonth);
     }
@@ -89,7 +86,7 @@ public class DayOfMonthTriggerController implements Initializable, ControllerTri
     @FXML
     private void onChangedDayOfMonth(KeyEvent event) {
         CheckValueClass check = new CheckValueClass();
-        check.checkValue(dayOfMonthSpinner, 1, daysInMonth);
+        check.checkValue(dayOfMonthSpinner, 1, 31);
     }
     
      public int getDayOfMonth(){

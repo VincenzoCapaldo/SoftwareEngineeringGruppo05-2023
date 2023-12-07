@@ -44,6 +44,7 @@ import rules.RuleManager;
 import triggers.ControllerTrigger;
 import triggers.DayOfWeekTrigger.DayOfWeekTriggerController;
 import triggers.DayOfMonthTrigger.DayOfMonthTriggerController;
+import triggers.DateTrigger.DateTriggerController;
 import triggers.TimeTrigger.TimeTrigger;
 import triggers.Trigger;
 
@@ -87,6 +88,7 @@ public class FXMLDocumentController implements Initializable {
     private TimeTriggerController timeTriggerController;
     private DayOfWeekTriggerController dayOfWeekTriggerController;
     private DayOfMonthTriggerController dayOfMonthTriggerController;
+    private DateTriggerController dateTriggerController;
     
     private RuleManager ruleManager;
     private RepetitionController repetitionController;
@@ -279,6 +281,7 @@ public class FXMLDocumentController implements Initializable {
         timeTriggerController = (TimeTriggerController) createCardTrigger("/triggers/TimeTrigger/TimeTrigger.fxml", timeTriggerController);
         dayOfWeekTriggerController = (DayOfWeekTriggerController) createCardTrigger("/triggers/DayOfWeekTrigger/DayOfWeekTrigger.fxml", dayOfWeekTriggerController);
         dayOfMonthTriggerController = (DayOfMonthTriggerController) createCardTrigger("/triggers/DayOfMonthTrigger/DayOfMonthTrigger.fxml", dayOfMonthTriggerController);
+        dateTriggerController = (DateTriggerController) createCardTrigger("/triggers/DateTrigger/DateTrigger.fxml", dateTriggerController);
     }
     
     private ControllerTrigger createCardTrigger(String pathFXML, ControllerTrigger controller) throws IOException{
