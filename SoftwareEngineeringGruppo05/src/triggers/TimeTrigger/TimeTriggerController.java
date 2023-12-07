@@ -74,7 +74,7 @@ public class TimeTriggerController implements Initializable, ControllerTrigger {
                         createSpinners();
                         vboxSpinner.getChildren().addAll(boxSpinnerTriggerTime, vboxRepetition);
                         vboxRepetition.getChildren().removeAll(hboxRepetition);
-                        timeTriggerBox.setPrefHeight(156);
+                        timeTriggerBox.setPrefHeight(180);
                     }
                 });
                 return timeTriggerSelected;
@@ -144,10 +144,11 @@ public class TimeTriggerController implements Initializable, ControllerTrigger {
             repetitionTimeSpinnerMinutes.setValueFactory(valueFactoryMinutes);
             vboxRepetition.getChildren().add(hboxRepetition);
             hboxRepetition.getChildren().addAll(repetitionTimeSpinnerDays, repetitionTimeSpinnerHours, repetitionTimeSpinnerMinutes);
-            timeTriggerBox.setPrefHeight(217);
+            timeTriggerBox.setPrefHeight(230);
         }else{
             hboxRepetition.getChildren().clear();
             vboxRepetition.getChildren().remove(hboxRepetition);
+            timeTriggerBox.setPrefHeight(180);
         }
     }
     
