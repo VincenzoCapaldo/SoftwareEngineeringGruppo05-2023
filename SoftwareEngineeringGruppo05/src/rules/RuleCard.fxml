@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<HBox fx:id="ruleBox" alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="89.0" prefWidth="543.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="rules.RuleCardController">
+<HBox fx:id="ruleBox" alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="89.0" prefWidth="543.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="rules.RuleCardController">
    <children>
       <CheckBox fx:id="stateRule" mnemonicParsing="false" onAction="#changeStateRule" prefHeight="41.0" prefWidth="79.0" selected="true">
          <font>
@@ -21,7 +21,7 @@
             <Font size="23.0" />
          </font>
       </Label>
-      <ImageView fitHeight="50.0" fitWidth="67.0" onMouseClicked="#deleteRuleAction" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="deletePicker" fitHeight="50.0" fitWidth="67.0" onMouseClicked="#deleteRuleAction" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../css/delete.png" />
          </image>

@@ -45,8 +45,6 @@ public class DateTriggerController implements Initializable, ControllerTrigger {
     @FXML
     private DatePicker datePicker;
 
-
-
     /**
      * Initializes the controller class.
      */

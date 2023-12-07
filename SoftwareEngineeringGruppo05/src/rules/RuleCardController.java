@@ -14,13 +14,14 @@ import javafx.scene.Scene;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import rules.Rule;
-import rules.Rule;
 import rules.RuleManager;
-import rules.RuleManager;
+import javafx.stage.Modality;
+
 
 /**
  * FXML Controller class
@@ -37,6 +38,8 @@ public class RuleCardController implements Observer, Initializable {
     private Rule rule;
     @FXML
     private CheckBox stateRule;
+    @FXML
+    private ImageView deletePicker;
  
     /**
      * Initializes the controller class.
@@ -60,12 +63,17 @@ public class RuleCardController implements Observer, Initializable {
             deleteRuleConfirmPopUpController.setRule(rule);
             deleteRuleConfirmPopUpController.setCard(ruleBox);
                 
-            //apro il popUp in una nuova finestra
-            Stage stage = new Stage();
-            stage.setTitle("Delete " + rule.getName() + "?");
-            stage.getIcons().add(new Image("/css/email.png"));
-            stage.setScene(new Scene(root2));
-            stage.show();
+            // Crea una nuova finestra modale
+            Stage modalStage = new Stage();
+            modalStage.initModality(Modality.APPLICATION_MODAL);
+            modalStage.initOwner(deletePicker.getScene().getWindow());
+
+            modalStage.setTitle("Delete " + rule.getName() + "?");
+            modalStage.getIcons().add(new Image("/css/email.png"));
+            modalStage.setScene(new Scene(root2));
+            
+            // Mostra la finestra modale e blocca l'interazione con la finestra sottostante
+            modalStage.showAndWait();
 
         }catch(IOException e){
             System.out.println("Cant load new window");
