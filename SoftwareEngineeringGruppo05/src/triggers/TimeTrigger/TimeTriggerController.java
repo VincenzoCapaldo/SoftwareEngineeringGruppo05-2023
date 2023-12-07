@@ -1,13 +1,16 @@
 package triggers.TimeTrigger;
 
 import java.net.URL;
+import java.time.Duration;
 import java.time.LocalTime;
 import java.util.ResourceBundle;
 import javafx.application.Platform;
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.BooleanProperty;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.SpinnerValueFactory;
@@ -39,7 +42,18 @@ public class TimeTriggerController implements Initializable, ControllerTrigger {
     private HBox boxSpinnerTriggerTime;
     @FXML
     private VBox vboxSpinner;
-
+    @FXML
+    private CheckBox repetitionCheckBox;
+    @FXML
+    private HBox hboxRepetition;
+    @FXML
+    private Spinner<Integer> repetitionTimeSpinnerDays;
+    @FXML
+    private Spinner<Integer> repetitionTimeSpinnerHours;
+    @FXML
+    private Spinner<Integer> repetitionTimeSpinnerMinutes;
+    @FXML
+    private VBox vboxRepetition;
     /**
      * Initializes the controller class.
      */
@@ -53,12 +67,14 @@ public class TimeTriggerController implements Initializable, ControllerTrigger {
                 // Aggiungi o rimuovi il pulsante dal layout in base allo stato del RadioButton: azione eseguita dal thread principale
                 Platform.runLater(() -> {
                     if (!timeTriggerSelected) {
-                        vboxSpinner.getChildren().remove(boxSpinnerTriggerTime);
+                        vboxSpinner.getChildren().removeAll(boxSpinnerTriggerTime, vboxRepetition);
                         timeTriggerBox.setPrefHeight(75);
                     } else {
+                        repetitionCheckBox.setSelected(false);
                         createSpinners();
-                        vboxSpinner.getChildren().add(boxSpinnerTriggerTime);
-                        timeTriggerBox.setPrefHeight(137);
+                        vboxSpinner.getChildren().addAll(boxSpinnerTriggerTime, vboxRepetition);
+                        vboxRepetition.getChildren().removeAll(hboxRepetition);
+                        timeTriggerBox.setPrefHeight(156);
                     }
                 });
                 return timeTriggerSelected;
@@ -79,7 +95,7 @@ public class TimeTriggerController implements Initializable, ControllerTrigger {
     public int getMinutes(){
         return Integer.valueOf(timeSpinnerMinutes.getEditor().getText());
     }
-
+    
     @FXML
     private void onChangedHour(KeyEvent event) {
         CheckValueClass check = new CheckValueClass();
@@ -112,5 +128,38 @@ public class TimeTriggerController implements Initializable, ControllerTrigger {
 
         boxSpinnerTriggerTime.getChildren().addAll(timeSpinnerHours, timeSpinnerMinutes);
         
+    }
+
+    @FXML
+    private void repetitionCheckBoxOnAction(ActionEvent event) {
+        if(repetitionCheckBox.isSelected()){
+            hboxRepetition.getChildren().clear();
+            SpinnerValueFactory<Integer> valueFactoryDays = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 366, 0);
+            SpinnerValueFactory<Integer> valueFactoryHours = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 23, 0);
+            SpinnerValueFactory<Integer> valueFactoryMinutes = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 59, 0);
+
+            // Impostazione della SpinnerValueFactory per gli Spinner
+            repetitionTimeSpinnerDays.setValueFactory(valueFactoryDays);
+            repetitionTimeSpinnerHours.setValueFactory(valueFactoryHours);
+            repetitionTimeSpinnerMinutes.setValueFactory(valueFactoryMinutes);
+            vboxRepetition.getChildren().add(hboxRepetition);
+            hboxRepetition.getChildren().addAll(repetitionTimeSpinnerDays, repetitionTimeSpinnerHours, repetitionTimeSpinnerMinutes);
+            timeTriggerBox.setPrefHeight(217);
+        }else{
+            hboxRepetition.getChildren().clear();
+            vboxRepetition.getChildren().remove(hboxRepetition);
+        }
+    }
+    
+    public Boolean repetitionIsSelected(){
+        return repetitionCheckBox.isSelected();
+    }
+    
+    public Duration getSleeping(){
+        Duration duration = Duration.ofDays(Integer.valueOf(repetitionTimeSpinnerDays.getEditor().getText()))
+            .plusHours(Integer.valueOf(repetitionTimeSpinnerHours.getEditor().getText()))
+            .plusMinutes(Integer.valueOf(repetitionTimeSpinnerMinutes.getEditor().getText()));
+        
+        return duration;
     }
 }

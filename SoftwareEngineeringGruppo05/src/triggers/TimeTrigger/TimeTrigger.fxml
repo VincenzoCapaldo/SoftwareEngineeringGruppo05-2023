@@ -2,6 +2,7 @@
 
 <?import java.lang.String?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.Spinner?>
 <?import javafx.scene.control.ToggleGroup?>
@@ -9,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<HBox fx:id="timeTriggerBox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="137.0" prefWidth="320.0" stylesheets="@../../css/style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="triggers.TimeTrigger.TimeTriggerController">
+<HBox fx:id="timeTriggerBox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="217.0" prefWidth="320.0" stylesheets="@../../css/style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="triggers.TimeTrigger.TimeTriggerController">
    <children>
       <VBox fx:id="vboxSpinner" prefHeight="56.0" prefWidth="320.0" stylesheets="@../css/style.css">
          <children>
@@ -33,6 +34,25 @@
                   <Insets top="20.0" />
                </VBox.margin>
             </HBox>
+            <VBox fx:id="vboxRepetition" prefHeight="112.0" prefWidth="320.0">
+               <children>
+                  <CheckBox fx:id="repetitionCheckBox" mnemonicParsing="false" onAction="#repetitionCheckBoxOnAction" styleClass="white_text" stylesheets="@../../css/style.css" text="Repeate">
+                     <font>
+                        <Font size="21.0" />
+                     </font>
+                  </CheckBox>
+                  <HBox fx:id="hboxRepetition" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                     <children>
+                        <Spinner fx:id="repetitionTimeSpinnerDays" prefHeight="25.0" prefWidth="75.0" />
+                        <Spinner fx:id="repetitionTimeSpinnerHours" prefHeight="25.0" prefWidth="75.0" />
+                        <Spinner fx:id="repetitionTimeSpinnerMinutes" prefHeight="25.0" prefWidth="75.0" />
+                     </children>
+                  </HBox>
+               </children>
+               <padding>
+                  <Insets bottom="20.0" left="25.0" right="20.0" top="10.0" />
+               </padding>
+            </VBox>
          </children>
          <styleClass>
             <String fx:value="main_background" />
