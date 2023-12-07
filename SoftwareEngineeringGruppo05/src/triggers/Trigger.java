@@ -9,4 +9,5 @@ import java.io.Serializable;
 public interface Trigger extends Serializable {
     public void checkTrigger();
     public boolean isVerified();
+    public boolean isRepeated();
 }

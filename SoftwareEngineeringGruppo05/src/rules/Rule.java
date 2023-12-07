@@ -16,11 +16,13 @@ public class Rule extends Observable implements Serializable, Observer{
     private Trigger trigger;
     private boolean state;
 
+
     public Rule(String name, Action action, Trigger trigger) {
         this.name = name;
         this.action = action;
         this.trigger = trigger;
         this.state = true;
+
     }
 
     public String getName(){
@@ -63,8 +65,10 @@ public class Rule extends Observable implements Serializable, Observer{
     public void update(Observable subject, Object arg) {
         Trigger trigger = (Trigger) subject;
         if (trigger.isVerified()){
-            System.out.print("eseguo per davvero");
             this.getAction().execute();
+            if(!trigger.isRepeated()){
+                RuleManager.getInstance().deactivateRule(this);
+            }
         }
     }
     

@@ -157,10 +157,12 @@ public class TimeTriggerController implements Initializable, ControllerTrigger {
     }
     
     public Duration getSleeping(){
-        Duration duration = Duration.ofDays(Integer.valueOf(repetitionTimeSpinnerDays.getEditor().getText()))
+        Duration duration = null;
+        if(repetitionCheckBox.isSelected()){
+            duration = Duration.ofDays(Integer.valueOf(repetitionTimeSpinnerDays.getEditor().getText()))
             .plusHours(Integer.valueOf(repetitionTimeSpinnerHours.getEditor().getText()))
             .plusMinutes(Integer.valueOf(repetitionTimeSpinnerMinutes.getEditor().getText()));
-        
+        }
         return duration;
     }
 }

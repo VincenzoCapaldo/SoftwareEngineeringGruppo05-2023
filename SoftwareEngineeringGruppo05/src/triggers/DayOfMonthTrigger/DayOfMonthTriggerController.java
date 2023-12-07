@@ -62,6 +62,7 @@ public class DayOfMonthTriggerController implements Initializable, ControllerTri
                         dayOfMonthVbox.getChildren().removeAll(dayOfMonthSpinner,  repetitionCheckBox);
                         dayOfMonthBox.setPrefHeight(75);
                     } else {
+                        repetitionCheckBox.setSelected(false);
                         createSpinner();
                         dayOfMonthVbox.getChildren().addAll(dayOfMonthSpinner,  repetitionCheckBox);
                         dayOfMonthBox.setPrefHeight(180);  

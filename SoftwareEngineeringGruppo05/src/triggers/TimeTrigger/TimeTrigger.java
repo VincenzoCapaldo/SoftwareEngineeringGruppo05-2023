@@ -31,6 +31,10 @@ public class TimeTrigger extends Observable implements Trigger{
         return verified;
     }
 
+    public boolean isRepeated() {
+        return repetition;
+    }
+
     @Override
     public void checkTrigger() {
         

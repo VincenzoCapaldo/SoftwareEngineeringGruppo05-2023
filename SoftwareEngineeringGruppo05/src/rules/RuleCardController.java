@@ -118,6 +118,7 @@ public class RuleCardController implements Observer, Initializable {
             ruleBox.getStyleClass().add("main_background");
             ruleBox.getStyleClass().remove("deactivated_rule_background");
         } else {
+            stateRule.setSelected(false);
             ruleBox.getStyleClass().add("deactivated_rule_background");
             ruleBox.getStyleClass().remove("main_background");
         }

@@ -58,6 +58,7 @@ public class DayOfWeekTriggerController implements Initializable, ControllerTrig
                         dayOfWeekVbox.getChildren().removeAll(dayOfWeekCombo, repetitionCheckBox);
                         dayOfWeekBox.setPrefHeight(75);
                     } else {
+                        repetitionCheckBox.setSelected(false);
                         // Aggiungi il boxSpinnerTriggerTime
                         dayOfWeekVbox.getChildren().addAll(dayOfWeekCombo, repetitionCheckBox);
                         dayOfWeekBox.setPrefHeight(180);

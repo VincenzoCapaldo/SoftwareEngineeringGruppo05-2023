@@ -43,4 +43,9 @@ public class FileTrigger extends Observable implements Trigger{
         
     }
 
+    @Override
+    public boolean isRepeated() {
+        return false;
+    }
+
 }
