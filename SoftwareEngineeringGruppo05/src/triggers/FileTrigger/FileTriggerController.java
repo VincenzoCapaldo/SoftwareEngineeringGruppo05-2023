@@ -55,14 +55,15 @@ public class FileTriggerController implements Initializable, ControllerTrigger {
     
     private File selectedDirectory;
     private BooleanProperty flagFileTrigger; 
+    private BooleanProperty isFileTriggerSelected;
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        flagFileTrigger = new SimpleBooleanProperty(true);
-        
-        BooleanProperty isFileTriggerSelected = fileTriggerRB.selectedProperty();
+        flagFileTrigger = new SimpleBooleanProperty(false);
+
+        isFileTriggerSelected = fileTriggerRB.selectedProperty();
         hbox1.visibleProperty().bind(Bindings.createBooleanBinding(
             () -> {
                 boolean fileTriggerSelected = isFileTriggerSelected.get();
@@ -70,10 +71,15 @@ public class FileTriggerController implements Initializable, ControllerTrigger {
                 // Aggiungi o rimuovi il pulsante dal layout in base allo stato del RadioButton: azione eseguita dal thread principale
                 Platform.runLater(() -> {
                     if (!fileTriggerSelected) {
+                        selectedDirectory=null;
+                        fileNameTextField.clear();
                         vboxFileTrigger.getChildren().removeAll(hbox1, hbox2);
                         fileTriggerBox.setPrefHeight(75);
                     } else {
-                        
+                        flagFileTrigger.bind(Bindings.createBooleanBinding(
+                           () -> fileTriggerRB.isSelected() && (selectedDirectory == null || fileNameTextField.getText().isEmpty()) ,
+                           fileNameTextField.textProperty()
+                        ));
                         vboxFileTrigger.getChildren().addAll(hbox1, hbox2);
                         fileTriggerBox.setPrefHeight(163);
                     }
@@ -91,13 +97,7 @@ public class FileTriggerController implements Initializable, ControllerTrigger {
 
         Stage stage = (Stage) directoryButton.getScene().getWindow();
         selectedDirectory = directoryChooser.showDialog(stage);
-        
-        Platform.runLater(() -> {
-             flagFileTrigger.bind(Bindings.createBooleanBinding(
-                () -> selectedDirectory == null || fileNameTextField.getText().isEmpty(),
-                fileNameTextField.textProperty()
-            ));
-        });
+   
     }
 
     @Override
