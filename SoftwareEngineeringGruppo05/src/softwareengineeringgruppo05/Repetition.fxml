@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<HBox fx:id="HRepetition" alignment="CENTER" prefHeight="50.0" prefWidth="600.0" spacing="20.0" styleClass="main_background" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="softwareengineeringgruppo05.RepetitionController">
+<HBox fx:id="HRepetition" alignment="CENTER" prefHeight="50.0" prefWidth="3000.0" spacing="20.0" styleClass="main_background" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="softwareengineeringgruppo05.RepetitionController">
    <children>
       <Label prefHeight="21.0" prefWidth="72.0" styleClass="white_text" stylesheets="@../css/style.css" text="Sleeping:">
          <font>
@@ -20,4 +20,7 @@
       <Spinner fx:id="hourSpinnerTime" editable="true" onKeyReleased="#onHourChanged" prefHeight="26.0" prefWidth="102.0" />
       <Spinner fx:id="minuteSpinnerTime" editable="true" onKeyReleased="#onMinuteChaged" prefHeight="26.0" prefWidth="102.0" />
    </children>
+   <padding>
+      <Insets left="20.0" />
+   </padding>
 </HBox>

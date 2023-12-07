@@ -11,9 +11,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<HBox fx:id="deleteFileActionBox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="163.0" prefWidth="261.0" stylesheets="@../../css/style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="actions.DeleteFileAction.DeleteFileActionController">
+<HBox fx:id="deleteFileActionBox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="163.0" prefWidth="320.0" stylesheets="@../../css/style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="actions.DeleteFileAction.DeleteFileActionController">
    <children>
-      <VBox fx:id="vboxDeleteFile" prefHeight="106.0" prefWidth="241.0" spacing="10.0" stylesheets="@../../css/style.css">
+      <VBox fx:id="vboxDeleteFile" prefHeight="106.0" prefWidth="300.0" spacing="10.0" stylesheets="@../../css/style.css">
          <children>
             <RadioButton fx:id="deleteFileActionRB" mnemonicParsing="false" prefHeight="31.0" prefWidth="142.0" styleClass="white_text" stylesheets="@../../css/style.css" text="DeleteFile">
                <font>
@@ -27,22 +27,22 @@
                <children>
                   <HBox fx:id="hbox1" alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="10.0" stylesheets="@../../css/style.css">
                      <children>
-                        <Label fx:id="deleteLabel" styleClass="white_text" stylesheets="@../../css/style.css" text="Delete">
+                        <Label fx:id="deleteLabel" prefHeight="21.0" prefWidth="74.0" styleClass="white_text" stylesheets="@../../css/style.css" text="Delete">
                            <font>
                               <Font size="15.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="fileNameTextField" promptText="file name" stylesheets="@../../css/style.css" />
+                        <TextField fx:id="fileNameTextField" prefHeight="25.0" prefWidth="216.0" promptText="file name" stylesheets="@../../css/style.css" />
                      </children>
                   </HBox>
                   <HBox fx:id="hbox2" alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="10.0" stylesheets="@../../css/style.css">
                      <children>
-                        <Label fx:id="fromLabel" prefHeight="21.0" prefWidth="43.0" styleClass="white_text" stylesheets="@../../css/style.css" text="From">
+                        <Label fx:id="fromLabel" prefHeight="21.0" prefWidth="63.0" styleClass="white_text" stylesheets="@../../css/style.css" text="From">
                            <font>
                               <Font size="15.0" />
                            </font>
                         </Label>
-                        <Button fx:id="directoryButton" mnemonicParsing="false" onAction="#directoryButtonAction" prefHeight="31.0" prefWidth="79.0" styleClass="white_background" stylesheets="@../../css/style.css" text="Directory..." />
+                        <Button fx:id="directoryButton" mnemonicParsing="false" onAction="#directoryButtonAction" prefHeight="31.0" prefWidth="100.0" styleClass="white_background" stylesheets="@../../css/style.css" text="Directory" />
                      </children>
                   </HBox>
                </children>
