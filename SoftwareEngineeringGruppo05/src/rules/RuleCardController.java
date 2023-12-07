@@ -1,5 +1,6 @@
 package rules;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.Observable;
 import java.util.Observer;
@@ -48,29 +49,27 @@ public class RuleCardController implements Observer, Initializable {
    @FXML
     private void deleteRuleAction(MouseEvent event) {
         
-        
         try{
-                //carico il file fxml relativo alla finestra di conferma cancellazione regola
-                FXMLLoader fxmlLoader= new FXMLLoader(getClass().getResource("/rules/DeleteRuleConfirmPopUp.fxml"));
-                Parent root2= (Parent) fxmlLoader.load();
+            //carico il file fxml relativo alla finestra di conferma cancellazione regola
+            FXMLLoader fxmlLoader= new FXMLLoader(getClass().getResource("/rules/DeleteRuleConfirmPopUp.fxml"));
+            Parent root2= (Parent) fxmlLoader.load();
 
-                //carico il controller del popup per passargli le informazioni che ha bisogno per effettuare le azioni
-                //di "cancel" e "delete"
-                DeleteRuleConfirmPopUpController deleteRuleConfirmPopUpController = fxmlLoader.getController();
-                deleteRuleConfirmPopUpController.setRule(rule);
-                deleteRuleConfirmPopUpController.setCard(ruleBox);
+            //carico il controller del popup per passargli le informazioni che ha bisogno per effettuare le azioni
+            //di "cancel" e "delete"
+            DeleteRuleConfirmPopUpController deleteRuleConfirmPopUpController = fxmlLoader.getController();
+            deleteRuleConfirmPopUpController.setRule(rule);
+            deleteRuleConfirmPopUpController.setCard(ruleBox);
                 
-                //apro il popUp in una nuova finestra
-                Stage stage = new Stage();
-                stage.setTitle("Delete " + rule.getName() + "?");
-                stage.getIcons().add(new Image("/css/email.png"));
-                stage.setScene(new Scene(root2));
-                stage.show();
+            //apro il popUp in una nuova finestra
+            Stage stage = new Stage();
+            stage.setTitle("Delete " + rule.getName() + "?");
+            stage.getIcons().add(new Image("/css/email.png"));
+            stage.setScene(new Scene(root2));
+            stage.show();
 
-            }catch(Exception e){
-                System.out.println("Cant load new window");
-            }
-        
+        }catch(IOException e){
+            System.out.println("Cant load new window");
+        }
         
     }
         
@@ -108,11 +107,9 @@ public class RuleCardController implements Observer, Initializable {
     public void update(Observable subject, Object arg) {
         Rule ruleSubject = (Rule)subject;
         if(ruleSubject.getState()){
-            ruleManager.reactivateRule(rule);
             ruleBox.getStyleClass().add("main_background");
             ruleBox.getStyleClass().remove("deactivated_rule_background");
         } else {
-            ruleManager.deactivateRule(rule);
             ruleBox.getStyleClass().add("deactivated_rule_background");
             ruleBox.getStyleClass().remove("main_background");
         }

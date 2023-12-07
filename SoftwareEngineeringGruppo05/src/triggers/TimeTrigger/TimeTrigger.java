@@ -34,7 +34,11 @@ public class TimeTrigger extends Observable implements Trigger{
     @Override
     public void checkTrigger() {
         
-        if(!(LocalTime.now().getHour()==this.time.getHour() && LocalTime.now().getMinute()==this.time.getMinute())){
+        if(LocalTime.now().getHour()==this.time.getHour() && LocalTime.now().getMinute()==this.time.getMinute()){
+            verified = true;
+            setChanged();
+            notifyObservers();
+        }else{
             verified = false;
             setChanged();
             notifyObservers();
@@ -46,13 +50,13 @@ public class TimeTrigger extends Observable implements Trigger{
             }
             try {
                 Thread.sleep(attesa);
+                verified = true;
+                setChanged();
+                notifyObservers();
             } catch (InterruptedException ex) {
                 Logger.getLogger(TimeTrigger.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        verified = true;
-        setChanged();
-        notifyObservers();
         
         while(repetition){
             try {
@@ -60,12 +64,12 @@ public class TimeTrigger extends Observable implements Trigger{
                 setChanged();
                 notifyObservers();
                 Thread.sleep(sleeping.toMillis());
+                verified = true;
+                setChanged();
+                notifyObservers();
             } catch (InterruptedException ex) {
                 Logger.getLogger(TimeTrigger.class.getName()).log(Level.SEVERE, null, ex);
             }
-            verified = true;
-            setChanged();
-            notifyObservers();
         }
     }
 

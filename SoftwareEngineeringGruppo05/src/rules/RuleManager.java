@@ -64,8 +64,11 @@ public class RuleManager implements Serializable{
     }
     
     public void reactivateRule(Rule rule) {
-        rule.setState(true);  
-        this.addRule(rule);
+        rule.setState(true);
+        Thread t = new Thread(new ThreadRule(rule));
+        mapRules.replace(rule, t);
+        t.start();
+        this.saveRules();
     }
 
     public void saveRules(){

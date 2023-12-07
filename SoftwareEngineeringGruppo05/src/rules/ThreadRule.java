@@ -10,7 +10,7 @@ public class ThreadRule implements Runnable {
     public ThreadRule(Rule rule) {
         this.rule = rule;
     }
-    
+        
     @Override
     public void run() {
         rule.getTrigger().checkTrigger();

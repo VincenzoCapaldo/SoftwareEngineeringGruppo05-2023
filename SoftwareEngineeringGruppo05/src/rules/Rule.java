@@ -62,8 +62,10 @@ public class Rule extends Observable implements Serializable, Observer{
     @Override
     public void update(Observable subject, Object arg) {
         Trigger trigger = (Trigger) subject;
-        if (trigger.isVerified())
+        if (trigger.isVerified()){
+            System.out.print("eseguo per davvero");
             this.getAction().execute();
+        }
     }
     
 }
