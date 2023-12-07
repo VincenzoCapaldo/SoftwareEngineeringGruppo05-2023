@@ -6,7 +6,7 @@ import java.io.Serializable;
  *
  * @author Luca
  */
-public interface Trigger extends Serializable{
-    public boolean verify();
-    public boolean checkTrigger();
+public interface Trigger extends Serializable {
+    public void checkTrigger();
+    public boolean isVerified();
 }

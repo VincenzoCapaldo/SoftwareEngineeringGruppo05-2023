@@ -2,29 +2,25 @@ package rules;
 
 import actions.Action;
 import java.io.Serializable;
-import java.time.Duration;
 import java.util.Observable;
+import java.util.Observer;
 import triggers.Trigger;
 
 /**
  *
  * @author maria
  */
-public class Rule extends Observable implements Serializable{
+public class Rule extends Observable implements Serializable, Observer{
     private String name;
     private Action action;
     private Trigger trigger;
     private boolean state;
-    private boolean repeate;
-    private Duration sleeping;
 
-    public Rule(String name, Action action, Trigger trigger, boolean state, boolean repeate, Duration sleeping) {
+    public Rule(String name, Action action, Trigger trigger) {
         this.name = name;
         this.action = action;
         this.trigger = trigger;
-        this.state = state;
-        this.repeate = repeate;
-        this.sleeping = sleeping;
+        this.state = true;
     }
 
     public String getName(){
@@ -63,19 +59,11 @@ public class Rule extends Observable implements Serializable{
         notifyObservers(); //avvisa gli oggetti Observers registrati (in caso di modifica) 
     }
 
-    public boolean getRepeate() {
-        return repeate;
+    @Override
+    public void update(Observable subject, Object arg) {
+        Trigger trigger = (Trigger) subject;
+        if (trigger.isVerified())
+            this.getAction().execute();
     }
-
-    public void setRepeate(boolean repeate) {
-        this.repeate = repeate;
-    }
-
-    public Duration getSleeping() {
-        return sleeping;
-    }
-
-    public void setSleeping(Duration sleeping) {
-        this.sleeping = sleeping;
-    }
+    
 }

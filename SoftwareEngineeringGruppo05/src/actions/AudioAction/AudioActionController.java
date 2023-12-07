@@ -1,6 +1,7 @@
 package actions.AudioAction;
 
 import actions.ControllerAction;
+import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.application.Platform;
@@ -33,7 +34,7 @@ public class AudioActionController implements Initializable, ControllerAction {
     @FXML
     private Button browseButton;
     
-    private java.io.File selectedFile;
+    private File selectedFile;
     private BooleanProperty flagAudio;
 
     /**
@@ -72,7 +73,7 @@ public class AudioActionController implements Initializable, ControllerAction {
         fileChooser.setTitle("Select an audio file");
 
         fileChooser.getExtensionFilters().addAll(
-                new FileChooser.ExtensionFilter("Audio File", "*.wav"));
+            new FileChooser.ExtensionFilter("Audio File", "*.wav"));
         
         Stage stage = (Stage) browseButton.getScene().getWindow();
         selectedFile = fileChooser.showOpenDialog(stage);

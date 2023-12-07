@@ -160,14 +160,14 @@ public class FXMLDocumentController implements Initializable {
         window1.visibleProperty().set(true);
         window3.visibleProperty().set(false);
         
-        Action action = null; 
-        Trigger trigger = null;
-        
         //restituisce l'azione selezionata dall'utente
         RadioButton selectedAction = (RadioButton) actionToggleGroup.getSelectedToggle();
         
         //restituisce il trigger selezionato dall'utente
         RadioButton selectedTrigger = (RadioButton) triggerToggleGroup.getSelectedToggle();
+        
+        Action action = null;
+        Trigger trigger = null;
         
         if("Audio".equals(selectedAction.getText())){
             action = new AudioAction(audioActionController.getFilePath());
@@ -187,10 +187,6 @@ public class FXMLDocumentController implements Initializable {
             action = new DeleteFileAction(completePath);
         }
         
-        if("Time".equals(selectedTrigger.getText())){           
-            trigger = new TimeTrigger(timeTriggerController.getHours(), timeTriggerController.getMinutes());
-        }
-        
         Duration duration = null;
         
         boolean repetition = repetitionCheck.isSelected();
@@ -201,7 +197,12 @@ public class FXMLDocumentController implements Initializable {
             .plusMinutes(repetitionController.getMinutesSleeping());
         }
         
-        Rule rule = new Rule(nameRuleTextField.getText(), action, trigger, true, repetition, duration);
+        if("Time".equals(selectedTrigger.getText())){           
+            trigger = new TimeTrigger(timeTriggerController.getHours(), timeTriggerController.getMinutes(), repetition, duration);
+        }
+        
+        Rule rule = new Rule(nameRuleTextField.getText(), action, trigger);
+        ((TimeTrigger)trigger).addObserver(rule);
         
         ruleManager.addRule(rule);
 
@@ -241,18 +242,18 @@ public class FXMLDocumentController implements Initializable {
         //crea un togglegroup da passare alle card. In questo modo l'utente può selezionare un'unica azione
         actionToggleGroup = new ToggleGroup();
 
-        audioActionController = (AudioActionController) createCard("/actions/AudioAction/AudioAction.fxml", audioActionController, actionToggleGroup);
-        messageActionController = (MessageActionController) createCard("/actions/MessageAction/MessageAction.fxml", messageActionController, actionToggleGroup);
+        audioActionController = (AudioActionController) createCard("/actions/AudioAction/AudioAction.fxml", audioActionController);
+        messageActionController = (MessageActionController) createCard("/actions/MessageAction/MessageAction.fxml", messageActionController);
         
-        writerActionController = (WriterActionController) createCard("/actions/WriterAction/WriterAction.fxml", writerActionController, actionToggleGroup);
-        copyFileActionController = (CopyFileActionController) createCard("/actions/CopyFileAction/CopyFileAction.fxml", copyFileActionController, actionToggleGroup);
-        moveFileActionController = (MoveFileActionController) createCard("/actions/MoveFileAction/MoveFileAction.fxml", moveFileActionController, actionToggleGroup);
-        deleteFileActionController = (DeleteFileActionController) createCard("/actions/DeleteFileAction/DeleteFileAction.fxml", deleteFileActionController, actionToggleGroup);
-        programActionController = (ProgramActionController) createCard("/actions/ProgramAction/ProgramAction.fxml", programActionController, actionToggleGroup);
+        writerActionController = (WriterActionController) createCard("/actions/WriterAction/WriterAction.fxml", writerActionController);
+        copyFileActionController = (CopyFileActionController) createCard("/actions/CopyFileAction/CopyFileAction.fxml", copyFileActionController);
+        moveFileActionController = (MoveFileActionController) createCard("/actions/MoveFileAction/MoveFileAction.fxml", moveFileActionController);
+        deleteFileActionController = (DeleteFileActionController) createCard("/actions/DeleteFileAction/DeleteFileAction.fxml", deleteFileActionController);
+        programActionController = (ProgramActionController) createCard("/actions/ProgramAction/ProgramAction.fxml", programActionController);
 
     }
     
-    private ControllerAction createCard(String pathFXML, ControllerAction controller, ToggleGroup toggleGroup) throws IOException{
+    private ControllerAction createCard(String pathFXML, ControllerAction controller) throws IOException{
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setLocation(getClass().getResource(pathFXML));
         HBox hbox = fxmlLoader.load();
