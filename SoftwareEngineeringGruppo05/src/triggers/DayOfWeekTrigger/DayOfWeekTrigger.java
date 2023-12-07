@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package triggers.DayOfWeekTrigger;
 
 import java.time.DayOfWeek;
@@ -23,6 +19,7 @@ public class DayOfWeekTrigger extends Observable implements Trigger {
     DayOfWeek dayOfWeek;
     private boolean repetition;
     private boolean verified;
+
     private static final int MILLISECONDS_DAY = 86400000; //millisecondi in un giorno
     private static final int LENGHT_OF_WEEK = 7;
 
@@ -37,7 +34,6 @@ public class DayOfWeekTrigger extends Observable implements Trigger {
         return this.verified;
     }
     
-    
     @Override
     public boolean isRepeated() {
         return this.repetition;
@@ -46,19 +42,17 @@ public class DayOfWeekTrigger extends Observable implements Trigger {
     @Override
     public void checkTrigger() {
 
-
         verified = false;
-        DayOfWeek actualDayOfWeek = LocalDateTime.now().getDayOfWeek();
-
-        if (actualDayOfWeek.equals(dayOfWeek)) {
+    
+        if (LocalDateTime.now().getDayOfWeek().equals(dayOfWeek)) {
             verified = true;
             setChanged();
             notifyObservers();
         } else {
             long wait;
-            long difference = dayOfWeek.getValue() - actualDayOfWeek.getValue();
+            int difference = dayOfWeek.getValue() - LocalDateTime.now().getDayOfWeek().getValue();
             if (difference > 0) {
-                wait = ((difference) * MILLISECONDS_DAY) - Duration.between(LocalTime.MIDNIGHT, LocalTime.now()).toMillis();
+                wait = (difference * MILLISECONDS_DAY) - Duration.between(LocalTime.MIDNIGHT, LocalTime.now()).toMillis();
             } else {
                 wait = ((LENGHT_OF_WEEK + difference) * MILLISECONDS_DAY) - Duration.between(LocalTime.MIDNIGHT, LocalTime.now()).toMillis();
             }
@@ -76,7 +70,7 @@ public class DayOfWeekTrigger extends Observable implements Trigger {
 
         while (repetition) {
             try {
-                Thread.sleep(MILLISECONDS_DAY*LENGHT_OF_WEEK - Duration.between(LocalTime.MIDNIGHT, LocalTime.now()).toMillis());
+                Thread.sleep(MILLISECONDS_DAY * LENGHT_OF_WEEK);
                 verified = true;
                 setChanged();
                 notifyObservers();
@@ -87,5 +81,4 @@ public class DayOfWeekTrigger extends Observable implements Trigger {
 
     }
 
-    
 }

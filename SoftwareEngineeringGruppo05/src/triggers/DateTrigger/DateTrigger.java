@@ -27,6 +27,11 @@ public class DateTrigger extends Observable implements Trigger{
     }
 
     @Override
+    public boolean isRepeated() {
+        return false;
+    }
+    
+    @Override
     public void checkTrigger() {
         
         verified = false;
@@ -36,10 +41,10 @@ public class DateTrigger extends Observable implements Trigger{
             setChanged();
             notifyObservers();
         }else{
-            long attesa;
-            attesa = Duration.between(LocalDate.now().atTime(LocalTime.now()), data.atTime(0,0)).toMillis();
+            long wait;
+            wait = Duration.between(LocalDate.now().atTime(LocalTime.now()), data.atTime(0,0)).toMillis();
             try {
-                Thread.sleep(attesa);
+                Thread.sleep(wait);
                 verified = true;
                 setChanged();
                 notifyObservers();
@@ -48,11 +53,6 @@ public class DateTrigger extends Observable implements Trigger{
             }
         }
         
-    }
-
-    @Override
-    public boolean isRepeated() {
-        return false;
     }
 
 }

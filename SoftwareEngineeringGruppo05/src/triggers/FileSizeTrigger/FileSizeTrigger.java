@@ -28,6 +28,11 @@ public class FileSizeTrigger extends Observable implements Trigger{
     public boolean isVerified() {
         return verified;
     }
+    
+    @Override
+    public boolean isRepeated() {
+       return false;
+    }
 
     @Override
     public void checkTrigger() {
@@ -48,11 +53,6 @@ public class FileSizeTrigger extends Observable implements Trigger{
             }
         }
         
-    }
-
-    @Override
-    public boolean isRepeated() {
-       return false;
     }
 
 }

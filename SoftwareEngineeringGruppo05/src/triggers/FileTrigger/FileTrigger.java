@@ -27,6 +27,11 @@ public class FileTrigger extends Observable implements Trigger{
     }
 
     @Override
+    public boolean isRepeated() {
+        return false;
+    }
+
+    @Override
     public void checkTrigger() {
         
         Path sourcePath = Paths.get(directoryPath +  "/" + filePath);
@@ -41,11 +46,6 @@ public class FileTrigger extends Observable implements Trigger{
             }
         }
         
-    }
-
-    @Override
-    public boolean isRepeated() {
-        return false;
     }
 
 }

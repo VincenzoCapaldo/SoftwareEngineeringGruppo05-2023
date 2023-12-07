@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package triggers.DayOfMonthTrigger;
 
 import java.time.Duration;
@@ -22,6 +18,7 @@ public class DayOfMonthTrigger extends Observable implements Trigger{
     private int dayOfMonth;
     private boolean repetition;
     private boolean verified;
+   
     private static final int MILLISECONDS_DAY = 86400000; //millisecondi in un giorno
 
     public DayOfMonthTrigger(int dayOfMonth, boolean repetition) {
@@ -51,9 +48,9 @@ public class DayOfMonthTrigger extends Observable implements Trigger{
             notifyObservers();
         } else {
             long wait;
-            long difference = this.dayOfMonth - LocalDate.now().getDayOfMonth();
+            int difference = this.dayOfMonth - LocalDate.now().getDayOfMonth();
             if(difference > 0){
-                wait = ((difference) * MILLISECONDS_DAY) - Duration.between(LocalTime.MIDNIGHT, LocalTime.now()).toMillis();
+                wait = (difference * MILLISECONDS_DAY) - Duration.between(LocalTime.MIDNIGHT, LocalTime.now()).toMillis();
             }else{
                 wait = ((YearMonth.now().lengthOfMonth() + difference) * MILLISECONDS_DAY) - Duration.between(LocalTime.MIDNIGHT, LocalTime.now()).toMillis();
             }
@@ -71,7 +68,7 @@ public class DayOfMonthTrigger extends Observable implements Trigger{
 
         while (repetition) {
             try {
-                Thread.sleep(YearMonth.now().lengthOfMonth()*MILLISECONDS_DAY - Duration.between(LocalTime.MIDNIGHT, LocalTime.now()).toMillis());
+                Thread.sleep(YearMonth.now().lengthOfMonth() * MILLISECONDS_DAY);
                 verified = true;
                 setChanged();
                 notifyObservers();
@@ -80,8 +77,6 @@ public class DayOfMonthTrigger extends Observable implements Trigger{
             }   
         }
         
-        
     }
-
 
 }

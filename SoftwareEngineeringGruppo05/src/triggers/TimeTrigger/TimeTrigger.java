@@ -45,14 +45,14 @@ public class TimeTrigger extends Observable implements Trigger{
             setChanged();
             notifyObservers();
         }else{
-            long attesa;
+            long wait;
             if(LocalTime.now().isBefore(time)){
-                attesa = Duration.between(LocalTime.now(), time).toMillis();
+                wait = Duration.between(LocalTime.now(), time).toMillis();
             }else{
-                attesa = MILLISECONDS_DAY - Duration.between(time, LocalTime.now()).toMillis();
+                wait = MILLISECONDS_DAY - Duration.between(time, LocalTime.now()).toMillis();
             }
             try {
-                Thread.sleep(attesa);
+                Thread.sleep(wait);
                 verified = true;
                 setChanged();
                 notifyObservers();
