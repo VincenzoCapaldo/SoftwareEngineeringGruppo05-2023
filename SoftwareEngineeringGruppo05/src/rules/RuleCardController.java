@@ -94,7 +94,7 @@ public class RuleCardController implements Observer, Initializable {
     }
 
 
-    //restituisce all'utente un feedback visivo quando la regola cambia stato (attiva-disattiva)
+    //attiva la regola se la checkBox è selezionata, altrimenti la disattiva
     @FXML
     private void changeStateRule(ActionEvent event) {
         if (stateRule.isSelected()) {

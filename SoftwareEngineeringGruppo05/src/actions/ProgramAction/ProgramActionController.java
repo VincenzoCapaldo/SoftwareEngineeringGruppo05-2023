@@ -1,6 +1,7 @@
 package actions.ProgramAction;
 
 import actions.ControllerAction;
+import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.application.Platform;
@@ -36,7 +37,7 @@ public class ProgramActionController implements Initializable, ControllerAction 
     private ToggleGroup selectActionTG;
     @FXML
     private Button browseButton;
-    private java.io.File selectedFile;
+    private File selectedFile;
     private BooleanProperty flagProgram;
     @FXML
     private HBox programactionBox;
@@ -72,8 +73,7 @@ public class ProgramActionController implements Initializable, ControllerAction 
             },
             isWriterActionSelected
         ));
-        
-        
+ 
     }    
 
     @FXML

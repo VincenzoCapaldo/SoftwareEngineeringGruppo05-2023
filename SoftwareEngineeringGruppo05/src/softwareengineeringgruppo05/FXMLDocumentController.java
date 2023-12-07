@@ -41,6 +41,8 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import rules.Rule;
 import rules.RuleManager;
+import triggers.ControllerTrigger;
+import triggers.DayOfWeekTrigger.DayOfWeekTriggerController;
 import triggers.TimeTrigger.TimeTrigger;
 import triggers.Trigger;
 
@@ -76,11 +78,14 @@ public class FXMLDocumentController implements Initializable {
     private AudioActionController audioActionController;
     private MessageActionController messageActionController;
     private WriterActionController writerActionController;
-    private TimeTriggerController timeTriggerController;
     private CopyFileActionController copyFileActionController;
     private MoveFileActionController moveFileActionController;
     private DeleteFileActionController deleteFileActionController;
     private ProgramActionController programActionController;
+    
+    private TimeTriggerController timeTriggerController;
+    private DayOfWeekTriggerController dayOfWeekTriggerController;
+    
     private RuleManager ruleManager;
     private RepetitionController repetitionController;
     private HBox repetitionBox;
@@ -242,18 +247,18 @@ public class FXMLDocumentController implements Initializable {
         //crea un togglegroup da passare alle card. In questo modo l'utente può selezionare un'unica azione
         actionToggleGroup = new ToggleGroup();
 
-        audioActionController = (AudioActionController) createCard("/actions/AudioAction/AudioAction.fxml", audioActionController);
-        messageActionController = (MessageActionController) createCard("/actions/MessageAction/MessageAction.fxml", messageActionController);
+        audioActionController = (AudioActionController) createCardAction("/actions/AudioAction/AudioAction.fxml", audioActionController);
+        messageActionController = (MessageActionController) createCardAction("/actions/MessageAction/MessageAction.fxml", messageActionController);
         
-        writerActionController = (WriterActionController) createCard("/actions/WriterAction/WriterAction.fxml", writerActionController);
-        copyFileActionController = (CopyFileActionController) createCard("/actions/CopyFileAction/CopyFileAction.fxml", copyFileActionController);
-        moveFileActionController = (MoveFileActionController) createCard("/actions/MoveFileAction/MoveFileAction.fxml", moveFileActionController);
-        deleteFileActionController = (DeleteFileActionController) createCard("/actions/DeleteFileAction/DeleteFileAction.fxml", deleteFileActionController);
-        programActionController = (ProgramActionController) createCard("/actions/ProgramAction/ProgramAction.fxml", programActionController);
+        writerActionController = (WriterActionController) createCardAction("/actions/WriterAction/WriterAction.fxml", writerActionController);
+        copyFileActionController = (CopyFileActionController) createCardAction("/actions/CopyFileAction/CopyFileAction.fxml", copyFileActionController);
+        moveFileActionController = (MoveFileActionController) createCardAction("/actions/MoveFileAction/MoveFileAction.fxml", moveFileActionController);
+        deleteFileActionController = (DeleteFileActionController) createCardAction("/actions/DeleteFileAction/DeleteFileAction.fxml", deleteFileActionController);
+        programActionController = (ProgramActionController) createCardAction("/actions/ProgramAction/ProgramAction.fxml", programActionController);
 
     }
     
-    private ControllerAction createCard(String pathFXML, ControllerAction controller) throws IOException{
+    private ControllerAction createCardAction(String pathFXML, ControllerAction controller) throws IOException{
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setLocation(getClass().getResource(pathFXML));
         HBox hbox = fxmlLoader.load();
@@ -269,13 +274,26 @@ public class FXMLDocumentController implements Initializable {
         
         triggerToggleGroup = new ToggleGroup();
         
+        timeTriggerController = (TimeTriggerController) createCardTrigger("/triggers/TimeTrigger/TimeTrigger.fxml", timeTriggerController);
+        dayOfWeekTriggerController = (DayOfWeekTriggerController) createCardTrigger("/triggers/DayOfWeekTrigger/DayOfWeekTrigger.fxml", dayOfWeekTriggerController);
+        
         //caricamento timeTrigger card
-        FXMLLoader fxmlLoader = new FXMLLoader();
+        /*FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setLocation(getClass().getResource("/triggers/TimeTrigger/TimeTrigger.fxml"));
         HBox timeTriggerBox = fxmlLoader.load();
         timeTriggerController = fxmlLoader.getController();
         timeTriggerController.setToggleGroup(triggerToggleGroup);
-        scrollAllTriggers.getChildren().add(timeTriggerBox);
+        scrollAllTriggers.getChildren().add(timeTriggerBox);*/
+    }
+    
+    private ControllerTrigger createCardTrigger(String pathFXML, ControllerTrigger controller) throws IOException{
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setLocation(getClass().getResource(pathFXML));
+        HBox hbox = fxmlLoader.load();
+        controller = fxmlLoader.getController();
+        controller.setToggleGroup(triggerToggleGroup);
+        scrollAllTriggers.getChildren().add(hbox);
+        return controller;
     }
 
     @FXML

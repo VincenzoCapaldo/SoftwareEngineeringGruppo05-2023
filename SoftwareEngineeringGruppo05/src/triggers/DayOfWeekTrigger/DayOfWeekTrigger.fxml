@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<HBox fx:id="dayOfWeekBox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="137.0" prefWidth="320.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="triggers.DayOfWeekTrigger.DayOfWeekTriggerController">
+   <children>
+      <VBox fx:id="dayOfWeekVbox" prefHeight="56.0" prefWidth="320.0" stylesheets="@../../css/style.css">
+         <styleClass>
+            <String fx:value="main_background" />
+            <String fx:value="round_border" />
+         </styleClass>
+         <children>
+            <RadioButton fx:id="dayOfWeekRB" mnemonicParsing="false" prefHeight="35.0" prefWidth="222.0" styleClass="white_text" stylesheets="@../../css/style.css" text="DayOfWeek">
+               <font>
+                  <Font size="22.0" />
+               </font>
+               <toggleGroup>
+                  <ToggleGroup fx:id="selectActionTG" />
+               </toggleGroup>
+               <VBox.margin>
+                  <Insets left="20.0" top="20.0" />
+               </VBox.margin>
+            </RadioButton>
+            <ComboBox fx:id="dayOfWeekCombo" prefWidth="150.0">
+               <VBox.margin>
+                  <Insets left="20.0" top="20.0" />
+               </VBox.margin>
+            </ComboBox>
+         </children>
+      </VBox>
+   </children>
+</HBox>

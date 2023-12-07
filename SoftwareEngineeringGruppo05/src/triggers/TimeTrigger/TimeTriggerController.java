@@ -1,6 +1,7 @@
 package triggers.TimeTrigger;
 
 import java.net.URL;
+import java.time.LocalTime;
 import java.util.ResourceBundle;
 import javafx.application.Platform;
 import javafx.beans.binding.Bindings;
@@ -15,13 +16,14 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import softwareengineeringgruppo05.CheckTimeClass;
+import triggers.ControllerTrigger;
 
 /**
  * FXML Controller class
  *
  * @author maria
  */
-public class TimeTriggerController implements Initializable {
+public class TimeTriggerController implements Initializable, ControllerTrigger {
 
     @FXML
     private HBox timeTriggerBox;
@@ -43,7 +45,7 @@ public class TimeTriggerController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-
+       // createSpinners();
         BooleanProperty isTriggerTimeSelected = timeTriggerRB.selectedProperty();
         boxSpinnerTriggerTime.visibleProperty().bind(Bindings.createBooleanBinding(
             () -> {
@@ -52,15 +54,12 @@ public class TimeTriggerController implements Initializable {
                 // Aggiungi o rimuovi il pulsante dal layout in base allo stato del RadioButton: azione eseguita dal thread principale
                 Platform.runLater(() -> {
                     if (!timeTriggerSelected) {
-                        timeTriggerBox.getChildren().remove(boxSpinnerTriggerTime);
-                        timeTriggerBox.setPrefHeight(5);
-                        vboxSpinner.setPrefHeight(5);
-                        boxSpinnerTriggerTime.getChildren().clear();
+                        vboxSpinner.getChildren().remove(boxSpinnerTriggerTime);
+                        timeTriggerBox.setPrefHeight(75);
                     } else {
-                        // Aggiungi il boxSpinnerTriggerTime
-                        timeTriggerBox.getChildren().add(boxSpinnerTriggerTime);
-                        timeTriggerBox.setPrefHeight(137);
                         createSpinners();
+                        vboxSpinner.getChildren().add(boxSpinnerTriggerTime);
+                        timeTriggerBox.setPrefHeight(137);
                     }
                 });
                 return timeTriggerSelected;
@@ -69,6 +68,7 @@ public class TimeTriggerController implements Initializable {
         ));
     }
 
+    @Override
     public void setToggleGroup(ToggleGroup toggleGroup) {
         timeTriggerRB.setToggleGroup(toggleGroup);
     }
@@ -93,17 +93,25 @@ public class TimeTriggerController implements Initializable {
         check.checkTime(timeSpinnerMinutes, 0, 59);
     }
     
-    private void createSpinners(){
-        // Creazione di una SpinnerValueFactory con valori massimo e minimo
-        SpinnerValueFactory<Integer> valueFactoryHours = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 23, 0);
-        SpinnerValueFactory<Integer> valueFactoryMinutes = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 59, 0);
+    private void createSpinners() {
+       // Rimuovi gli Spinner esistenti, se presenti
+        boxSpinnerTriggerTime.getChildren().clear();
 
-        // Impostazione della SpinnerValueFactory per lo Spinner
+        // Imposta l'orario corrente
+        LocalTime currentTime = LocalTime.now();
+
+        // Aggiungi un minuto
+        LocalTime defaultTime = currentTime.plusMinutes(1);
+
+        // Creazione di nuove SpinnerValueFactory con valori massimo e minimo
+        SpinnerValueFactory<Integer> valueFactoryHours = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 23, defaultTime.getHour());
+        SpinnerValueFactory<Integer> valueFactoryMinutes = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 59, defaultTime.getMinute());
+
+        // Impostazione della SpinnerValueFactory per gli Spinner
         timeSpinnerHours.setValueFactory(valueFactoryHours);
         timeSpinnerMinutes.setValueFactory(valueFactoryMinutes);
-        
-        // Aggiungi gli spinner al boxSpinnerTriggerTime
+
         boxSpinnerTriggerTime.getChildren().addAll(timeSpinnerHours, timeSpinnerMinutes);
-        vboxSpinner.getChildren().add(boxSpinnerTriggerTime);
+        
     }
 }

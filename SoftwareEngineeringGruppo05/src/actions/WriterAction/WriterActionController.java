@@ -1,6 +1,7 @@
 package actions.WriterAction;
 
 import actions.ControllerAction;
+import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.application.Platform;
@@ -36,7 +37,7 @@ public class WriterActionController implements Initializable, ControllerAction {
     private Button browseButton;
     @FXML
     private TextArea messageTextArea;
-    private java.io.File selectedFile;
+    private File selectedFile;
     private BooleanProperty flagWriter;
     @FXML
     private VBox vboxWriter;
