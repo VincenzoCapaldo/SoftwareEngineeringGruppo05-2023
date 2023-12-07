@@ -42,6 +42,7 @@ import javafx.scene.layout.VBox;
 import rules.Rule;
 import rules.RuleManager;
 import triggers.ControllerTrigger;
+import triggers.DateTrigger.DateTrigger;
 import triggers.DayOfWeekTrigger.DayOfWeekTriggerController;
 import triggers.DayOfMonthTrigger.DayOfMonthTriggerController;
 import triggers.DateTrigger.DateTriggerController;
@@ -192,8 +193,7 @@ public class FXMLDocumentController implements Initializable {
         }else if("Program".equals(selectedAction.getText())){
             action = new ProgramAction(programActionController.getFilePath(), programActionController.getTextArea());
         }else if("DeleteFile".equals(selectedAction.getText())){
-            String completePath = deleteFileActionController.getDirectoryPath() + "/" + deleteFileActionController.getFileName();
-            action = new DeleteFileAction(completePath);
+            action = new DeleteFileAction(deleteFileActionController.getDirectoryPath(), deleteFileActionController.getFileName());
         }
         
         Duration duration = null;
@@ -209,9 +209,18 @@ public class FXMLDocumentController implements Initializable {
         if("Time".equals(selectedTrigger.getText())){           
             trigger = new TimeTrigger(timeTriggerController.getHours(), timeTriggerController.getMinutes(), repetition, duration);
         }
+        if("Date".equals(selectedTrigger.getText())){           
+            trigger = new DateTrigger(dateTriggerController.getDate());
+        }
         
         Rule rule = new Rule(nameRuleTextField.getText(), action, trigger);
-        ((TimeTrigger)trigger).addObserver(rule);
+        
+        if ("Time".equals(selectedTrigger.getText())){
+            ((TimeTrigger)trigger).addObserver(rule);
+        }
+        if("Date".equals(selectedTrigger.getText())){           
+            ((DateTrigger)trigger).addObserver(rule);
+        }
         
         ruleManager.addRule(rule);
 
