@@ -3,11 +3,7 @@ package triggers.FileTrigger;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.time.Duration;
-import java.time.LocalTime;
 import java.util.Observable;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import triggers.Trigger;
 
 /**
@@ -35,20 +31,13 @@ public class FileTrigger extends Observable implements Trigger{
         
         Path sourcePath = Paths.get(directoryPath +  "/" + filePath);
         
-        if(Files.exists(sourcePath)){
-            verified = true;
-            setChanged();
-            notifyObservers();
-        }else{
-            verified = false;
-            setChanged();
-            notifyObservers();
-            while (!verified) {
-                if (Files.exists(sourcePath)) {
-                    verified = true;
-                    setChanged();
-                    notifyObservers();
-                }
+        verified = false;
+        
+        while (!verified) {
+            if (Files.exists(sourcePath)) {
+                verified = true;
+                setChanged();
+                notifyObservers();
             }
         }
         

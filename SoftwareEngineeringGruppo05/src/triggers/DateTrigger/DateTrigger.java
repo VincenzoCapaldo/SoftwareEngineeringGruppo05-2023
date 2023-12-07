@@ -29,14 +29,13 @@ public class DateTrigger extends Observable implements Trigger{
     @Override
     public void checkTrigger() {
         
+        verified = false;
+        
         if(LocalDate.now().equals(data)){
             verified = true;
             setChanged();
             notifyObservers();
         }else{
-            verified = false;
-            setChanged();
-            notifyObservers();
             long attesa;
             attesa = Duration.between(LocalDate.now().atTime(LocalTime.now()), data.atTime(0,0)).toMillis();
             try {

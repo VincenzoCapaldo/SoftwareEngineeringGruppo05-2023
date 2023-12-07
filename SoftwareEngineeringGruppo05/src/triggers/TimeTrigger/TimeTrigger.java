@@ -34,14 +34,13 @@ public class TimeTrigger extends Observable implements Trigger{
     @Override
     public void checkTrigger() {
         
+        verified = false;
+        
         if(LocalTime.now().getHour()==this.time.getHour() && LocalTime.now().getMinute()==this.time.getMinute()){
             verified = true;
             setChanged();
             notifyObservers();
         }else{
-            verified = false;
-            setChanged();
-            notifyObservers();
             long attesa;
             if(LocalTime.now().isBefore(time)){
                 attesa = Duration.between(LocalTime.now(), time).toMillis();
@@ -58,11 +57,10 @@ public class TimeTrigger extends Observable implements Trigger{
             }
         }
         
+        verified = false;
+        
         while(repetition && sleeping.toMillis()!=0){
             try {
-                verified = false;
-                setChanged();
-                notifyObservers();
                 Thread.sleep(sleeping.toMillis());
                 verified = true;
                 setChanged();
