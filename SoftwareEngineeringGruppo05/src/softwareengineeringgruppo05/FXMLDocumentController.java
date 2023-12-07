@@ -46,6 +46,8 @@ import triggers.DateTrigger.DateTrigger;
 import triggers.DayOfWeekTrigger.DayOfWeekTriggerController;
 import triggers.DayOfMonthTrigger.DayOfMonthTriggerController;
 import triggers.DateTrigger.DateTriggerController;
+import triggers.FileSizeTrigger.FileSizeTrigger;
+import triggers.FileSizeTrigger.FileSizeTriggerController;
 import triggers.FileTrigger.FileTrigger;
 import triggers.FileTrigger.FileTriggerController;
 import triggers.TimeTrigger.TimeTrigger;
@@ -93,6 +95,7 @@ public class FXMLDocumentController implements Initializable {
     private DayOfMonthTriggerController dayOfMonthTriggerController;
     private DateTriggerController dateTriggerController;
     private FileTriggerController fileTriggerController;
+    private FileSizeTriggerController fileSizeTriggerController;
     
     private RuleManager ruleManager;
     private RepetitionController repetitionController;
@@ -151,13 +154,14 @@ public class FXMLDocumentController implements Initializable {
         
         
         BooleanProperty isFileTriggerNotCompleted = fileTriggerController.getFlag();
+        BooleanProperty isFileSizeTriggerNotCompleted = fileSizeTriggerController.getFlag();
         //se nessuna azione è completa bb3=true
         BooleanBinding bb3 = isAudioActionNotCompleted.and(isMessageActionNotCompleted).and(isWriterActionNotCompleted)
                 .and(isCopyFileActionNotCompleted).and(isMoveFileActionNotCompleted).and(isDeleteFileActionNotCompleted)
                 .and(isProgramActionNotCompleted);
         
         //se nessun trigger è completo, allora bb4 = true
-        BooleanProperty bb4 = isFileTriggerNotCompleted;
+        BooleanBinding bb4 = isFileTriggerNotCompleted.or(isFileSizeTriggerNotCompleted);
         
         //se non è stato inserito il nome della regola O non è selezionata un'azione/ trigger O l'azione selezionata non è completa bb=true
         BooleanBinding bb = bb1.or(bb2).or(bb3).or(bb4);
@@ -210,6 +214,9 @@ public class FXMLDocumentController implements Initializable {
         if("FileTrigger".equals(selectedTrigger.getText())){
             trigger = new FileTrigger(fileTriggerController.getDirectoryPath(), fileTriggerController.getFileName());
         }
+        if("FileSizeTrigger".equals(selectedTrigger.getText())){
+            trigger = new FileSizeTrigger(fileSizeTriggerController.getFilePath(),fileSizeTriggerController.getSize());
+        }
         
         Rule rule = new Rule(nameRuleTextField.getText(), action, trigger);
         
@@ -221,6 +228,9 @@ public class FXMLDocumentController implements Initializable {
         }
         if("FileTrigger".equals(selectedTrigger.getText())){
             ((FileTrigger)trigger).addObserver(rule);
+        }
+        if("FileSizeTrigger".equals(selectedTrigger.getText())){
+            ((FileSizeTrigger)trigger).addObserver(rule);
         }
         
         ruleManager.addRule(rule);
@@ -293,6 +303,7 @@ public class FXMLDocumentController implements Initializable {
         dayOfMonthTriggerController = (DayOfMonthTriggerController) createCardTrigger("/triggers/DayOfMonthTrigger/DayOfMonthTrigger.fxml", dayOfMonthTriggerController);
         dateTriggerController = (DateTriggerController) createCardTrigger("/triggers/DateTrigger/DateTrigger.fxml", dateTriggerController);
         fileTriggerController = (FileTriggerController) createCardTrigger("/triggers/FileTrigger/FileTrigger.fxml", fileTriggerController);
+        fileSizeTriggerController = (FileSizeTriggerController) createCardTrigger("/triggers/FileSizeTrigger/FileSizeTrigger.fxml", fileSizeTriggerController);
     }
     
     private ControllerTrigger createCardTrigger(String pathFXML, ControllerTrigger controller) throws IOException{
