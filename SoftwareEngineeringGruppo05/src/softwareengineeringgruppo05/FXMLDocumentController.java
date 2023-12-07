@@ -99,13 +99,9 @@ public class FXMLDocumentController implements Initializable {
 
     
     @FXML
-    private CheckBox repetitionCheck;
-    @FXML
     private VBox boxSleeping;
     @FXML
     private Button goBackButton;
-    @FXML
-    private HBox HSleeping;
 
     
     /**
@@ -128,8 +124,6 @@ public class FXMLDocumentController implements Initializable {
     private void goToWindowThree(ActionEvent event) throws IOException {
         //pulizia campi 
         nameRuleTextField.clear();
-        repetitionCheck.setSelected(false);
-        boxSleeping.getChildren().remove(HSleeping);
 
         window3.visibleProperty().set(true);
         window1.visibleProperty().set(false);
@@ -196,18 +190,11 @@ public class FXMLDocumentController implements Initializable {
             action = new DeleteFileAction(deleteFileActionController.getDirectoryPath(), deleteFileActionController.getFileName());
         }
         
-        Duration duration = null;
         
-        boolean repetition = repetitionCheck.isSelected();
-        
-        if(repetition){
-            duration = Duration.ofDays(repetitionController.getDaysSleeping())
-            .plusHours(repetitionController.getHoursSleeping())
-            .plusMinutes(repetitionController.getMinutesSleeping());
-        }
         
         if("Time".equals(selectedTrigger.getText())){           
-            trigger = new TimeTrigger(timeTriggerController.getHours(), timeTriggerController.getMinutes(), repetition, duration);
+            trigger = new TimeTrigger(timeTriggerController.getHours(), timeTriggerController.getMinutes(), 
+                    timeTriggerController.repetitionIsSelected(), timeTriggerController.getSleeping());
         }
         if("Date".equals(selectedTrigger.getText())){           
             trigger = new DateTrigger(dateTriggerController.getDate());
@@ -303,23 +290,6 @@ public class FXMLDocumentController implements Initializable {
         return controller;
     }
 
-    @FXML
-    private void repetitionIsChecked(ActionEvent event) throws IOException {
-        boolean isChecked = repetitionCheck.isSelected();
-        
-        if (isChecked) {
-            boxSleeping.getChildren().add(HSleeping);
-            HSleeping.getChildren().clear(); // Rimuovi tutti i figli dal contenitore
-            // Se la checkbox è selezionata, carica l'HBox e aggiungilo al contenitore
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("Repetition.fxml"));
-            repetitionBox = loader.load();
-            repetitionController = loader.getController();
-            HSleeping.getChildren().add(repetitionBox);
-        }else{          
-            boxSleeping.getChildren().remove(HSleeping);
-        }
-    }
-    
     //pulsante goBack permette di tornare alla window1
     @FXML
     private void goToHome(ActionEvent event) {

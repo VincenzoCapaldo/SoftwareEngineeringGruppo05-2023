@@ -12,6 +12,7 @@ import javafx.beans.binding.Bindings;
 import javafx.beans.property.BooleanProperty;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.SpinnerValueFactory;
@@ -41,6 +42,8 @@ public class DayOfMonthTriggerController implements Initializable, ControllerTri
     private Spinner<Integer> dayOfMonthSpinner;
     
     private LocalDate currentDate  = LocalDate.now();
+    @FXML
+    private CheckBox repetitionCheckBox;
         
     /**
      * Initializes the controller class.
@@ -56,13 +59,12 @@ public class DayOfMonthTriggerController implements Initializable, ControllerTri
                 // Aggiungi o rimuovi il pulsante dal layout in base allo stato del RadioButton: azione eseguita dal thread principale
                 Platform.runLater(() -> {
                     if (!dayOfMonthTriggerSelected) {
-                        dayOfMonthVbox.getChildren().remove(dayOfMonthSpinner);
+                        dayOfMonthVbox.getChildren().removeAll(dayOfMonthSpinner,  repetitionCheckBox);
                         dayOfMonthBox.setPrefHeight(75);
                     } else {
                         createSpinner();
-                        dayOfMonthVbox.getChildren().add(dayOfMonthSpinner);
-                        dayOfMonthBox.setPrefHeight(137);
-                        
+                        dayOfMonthVbox.getChildren().addAll(dayOfMonthSpinner,  repetitionCheckBox);
+                        dayOfMonthBox.setPrefHeight(180);  
                     }
                 });
                 return dayOfMonthTriggerSelected;
@@ -91,6 +93,10 @@ public class DayOfMonthTriggerController implements Initializable, ControllerTri
     
      public int getDayOfMonth(){
         return Integer.valueOf(dayOfMonthSpinner.getEditor().getText());
+    }
+     
+     public Boolean repetitionIsSelected(){
+        return repetitionCheckBox.isSelected();
     }
     
 }

@@ -10,8 +10,10 @@ import java.util.ResourceBundle;
 import javafx.application.Platform;
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.BooleanProperty;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
@@ -36,6 +38,8 @@ public class DayOfWeekTriggerController implements Initializable, ControllerTrig
     private HBox dayOfWeekBox;
     @FXML
     private VBox dayOfWeekVbox;
+    @FXML
+    private CheckBox repetitionCheckBox;
 
     /**
      * Initializes the controller class.
@@ -51,12 +55,12 @@ public class DayOfWeekTriggerController implements Initializable, ControllerTrig
                 // Aggiungi o rimuovi il pulsante dal layout in base allo stato del RadioButton: azione eseguita dal thread principale
                 Platform.runLater(() -> {
                     if (!dayOfWeekTriggerSelected) {
-                        dayOfWeekVbox.getChildren().remove(dayOfWeekCombo);
+                        dayOfWeekVbox.getChildren().removeAll(dayOfWeekCombo, repetitionCheckBox);
                         dayOfWeekBox.setPrefHeight(75);
                     } else {
                         // Aggiungi il boxSpinnerTriggerTime
-                        dayOfWeekVbox.getChildren().add(dayOfWeekCombo);
-                        dayOfWeekBox.setPrefHeight(137);
+                        dayOfWeekVbox.getChildren().addAll(dayOfWeekCombo, repetitionCheckBox);
+                        dayOfWeekBox.setPrefHeight(180);
                         dayOfWeekCombo.setValue(DayOfWeek.MONDAY);
                     }
                 });
@@ -87,5 +91,8 @@ public class DayOfWeekTriggerController implements Initializable, ControllerTrig
     public DayOfWeek getDayOfWeek(){
         return dayOfWeekCombo.getValue();
     }
-    
+
+    public Boolean repetitionIsSelected(){
+        return repetitionCheckBox.isSelected();
+    }
 }
