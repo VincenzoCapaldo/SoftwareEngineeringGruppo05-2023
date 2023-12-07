@@ -58,7 +58,7 @@ public class TimeTrigger extends Observable implements Trigger{
             }
         }
         
-        while(repetition){
+        while(repetition && sleeping.toMillis()!=0){
             try {
                 verified = false;
                 setChanged();
