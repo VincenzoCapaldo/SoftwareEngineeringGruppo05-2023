@@ -45,20 +45,20 @@ public class RepetitionController implements Initializable {
 
     @FXML
     private void onDayChanged(KeyEvent event) {
-        CheckTimeClass check= new CheckTimeClass();
-        check.checkTime(daySpinnerTime, 0, 365);
+        CheckValueClass check= new CheckValueClass();
+        check.checkValue(daySpinnerTime, 0, 365);
     }
 
     @FXML
     private void onHourChanged(KeyEvent event) {
-        CheckTimeClass check= new CheckTimeClass();
-        check.checkTime(hourSpinnerTime, 0, 23);
+        CheckValueClass check= new CheckValueClass();
+        check.checkValue(hourSpinnerTime, 0, 23);
     }
 
     @FXML
     private void onMinuteChaged(KeyEvent event) {
-        CheckTimeClass check= new CheckTimeClass();
-        check.checkTime(minuteSpinnerTime, 0, 59);
+        CheckValueClass check= new CheckValueClass();
+        check.checkValue(minuteSpinnerTime, 0, 59);
     }
     
     public int getDaysSleeping(){

@@ -6,9 +6,9 @@ import javafx.scene.control.Spinner;
  *
  * @author maria
  */
-public class CheckTimeClass {
+public class CheckValueClass {
     
-    public void checkTime(Spinner<Integer> timeSpinner, int minValue, int maxValue){
+    public void checkValue(Spinner<Integer> timeSpinner, int minValue, int maxValue){
         String inputText = timeSpinner.getEditor().getText();
 
         // Se l'inputText è vuoto, non fare nulla

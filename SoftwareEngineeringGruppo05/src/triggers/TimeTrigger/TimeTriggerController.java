@@ -15,7 +15,7 @@ import javafx.scene.control.ToggleGroup;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import softwareengineeringgruppo05.CheckTimeClass;
+import softwareengineeringgruppo05.CheckValueClass;
 import triggers.ControllerTrigger;
 
 /**
@@ -83,14 +83,14 @@ public class TimeTriggerController implements Initializable, ControllerTrigger {
 
     @FXML
     private void onChangedHour(KeyEvent event) {
-        CheckTimeClass check = new CheckTimeClass();
-        check.checkTime(timeSpinnerHours, 0, 23);
+        CheckValueClass check = new CheckValueClass();
+        check.checkValue(timeSpinnerHours, 0, 23);
     }
 
     @FXML
     private void onChangedMinute(KeyEvent event) {
-        CheckTimeClass check = new CheckTimeClass();
-        check.checkTime(timeSpinnerMinutes, 0, 59);
+        CheckValueClass check = new CheckValueClass();
+        check.checkValue(timeSpinnerMinutes, 0, 59);
     }
     
     private void createSpinners() {

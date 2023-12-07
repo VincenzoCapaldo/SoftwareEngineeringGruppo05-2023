@@ -43,6 +43,7 @@ import rules.Rule;
 import rules.RuleManager;
 import triggers.ControllerTrigger;
 import triggers.DayOfWeekTrigger.DayOfWeekTriggerController;
+import triggers.DayOfMonthTrigger.DayOfMonthTriggerController;
 import triggers.TimeTrigger.TimeTrigger;
 import triggers.Trigger;
 
@@ -85,6 +86,7 @@ public class FXMLDocumentController implements Initializable {
     
     private TimeTriggerController timeTriggerController;
     private DayOfWeekTriggerController dayOfWeekTriggerController;
+    private DayOfMonthTriggerController dayOfMonthTriggerController;
     
     private RuleManager ruleManager;
     private RepetitionController repetitionController;
@@ -276,14 +278,7 @@ public class FXMLDocumentController implements Initializable {
         
         timeTriggerController = (TimeTriggerController) createCardTrigger("/triggers/TimeTrigger/TimeTrigger.fxml", timeTriggerController);
         dayOfWeekTriggerController = (DayOfWeekTriggerController) createCardTrigger("/triggers/DayOfWeekTrigger/DayOfWeekTrigger.fxml", dayOfWeekTriggerController);
-        
-        //caricamento timeTrigger card
-        /*FXMLLoader fxmlLoader = new FXMLLoader();
-        fxmlLoader.setLocation(getClass().getResource("/triggers/TimeTrigger/TimeTrigger.fxml"));
-        HBox timeTriggerBox = fxmlLoader.load();
-        timeTriggerController = fxmlLoader.getController();
-        timeTriggerController.setToggleGroup(triggerToggleGroup);
-        scrollAllTriggers.getChildren().add(timeTriggerBox);*/
+        dayOfMonthTriggerController = (DayOfMonthTriggerController) createCardTrigger("/triggers/DayOfMonthTrigger/DayOfMonthTrigger.fxml", dayOfMonthTriggerController);
     }
     
     private ControllerTrigger createCardTrigger(String pathFXML, ControllerTrigger controller) throws IOException{
