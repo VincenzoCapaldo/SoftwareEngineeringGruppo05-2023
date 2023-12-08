@@ -189,10 +189,9 @@ public class FXMLDocumentController implements Initializable {
         //restituisce il trigger selezionato dall'utente
         RadioButton selectedTrigger = (RadioButton) triggerToggleGroup.getSelectedToggle();
         
-        Action action = null;
-        Trigger trigger = null;
+        //Action action = null;
         
-        if("Audio".equals(selectedAction.getText())){
+        /*if("Audio".equals(selectedAction.getText())){
             action = new AudioAction(audioActionController.getFilePath());
         }else if("Message".equals(selectedAction.getText())){         
             action = new MessageAction(messageActionController.getTextArea());
@@ -208,9 +207,12 @@ public class FXMLDocumentController implements Initializable {
             action = a.createProgramAction(programActionController.getFilePath(), programActionController.getTextArea());
         }else if("DeleteFile".equals(selectedAction.getText())){
             action = new DeleteFileAction(deleteFileActionController.getDirectoryPath(), deleteFileActionController.getFileName());
-        }
+        }*/
         
+        CreatorAction ca = new CreatorAction(actionMap,selectedAction.getText()); 
+        Action action = ca.createAction();
         
+        Trigger trigger = null;
         
         if("Time".equals(selectedTrigger.getText())){           
             trigger = new TimeTrigger(timeTriggerController.getHours(), timeTriggerController.getMinutes(), 
