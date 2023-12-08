@@ -11,7 +11,7 @@ import javafx.scene.control.ToggleGroup;
  *
  * @author maria
  */
-public interface ControllerTrigger {
+public interface TriggerController {
     public void setToggleGroup(ToggleGroup toggleGroup);
 
 }

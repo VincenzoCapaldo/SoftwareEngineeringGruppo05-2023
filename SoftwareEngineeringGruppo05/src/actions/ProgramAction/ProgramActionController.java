@@ -1,6 +1,5 @@
 package actions.ProgramAction;
 
-import actions.ControllerAction;
 import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -19,13 +18,14 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import actions.ActionController;
 
 /**
  * FXML Controller class
  *
  * @author Luca
  */
-public class ProgramActionController implements Initializable, ControllerAction {
+public class ProgramActionController implements Initializable, ActionController {
 
     @FXML
     private VBox vBoxProgram;

@@ -19,14 +19,14 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import triggers.ControllerTrigger;
+import triggers.TriggerController;
 
 /**
  * FXML Controller class
  *
  * @author maria
  */
-public class DayOfWeekTriggerController implements Initializable, ControllerTrigger {
+public class DayOfWeekTriggerController implements Initializable, TriggerController {
 
     @FXML
     private RadioButton dayOfWeekRB;

@@ -2,7 +2,7 @@ package softwareengineeringgruppo05;
 
 import rules.RuleCardController;
 import triggers.TimeTrigger.TimeTriggerController;
-import actions.WriterAction.WriterActionController;
+import actions.WriteFileAction.WriteFileActionController;
 import actions.ProgramAction.ProgramActionController;
 import actions.MoveFileAction.MoveFileActionController;
 import actions.MessageAction.MessageActionController;
@@ -10,17 +10,18 @@ import actions.CopyFileAction.CopyFileActionController;
 import actions.AudioAction.AudioActionController;
 import actions.Action;
 import actions.AudioAction.AudioAction;
-import actions.ControllerAction;
 import actions.CopyFileAction.CopyFileAction;
 import actions.DeleteFileAction.DeleteFileAction;
 import actions.DeleteFileAction.DeleteFileActionController;
 import actions.MessageAction.MessageAction;
 import actions.MoveFileAction.MoveFileAction;
 import actions.ProgramAction.ProgramAction;
-import actions.WriterAction.WriterAction;
+import actions.WriteFileAction.WriteFileAction;
 import java.io.IOException;
 import java.net.URL;
 import java.time.Duration;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.Set;
 import java.util.logging.Level;
@@ -41,7 +42,6 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import rules.Rule;
 import rules.RuleManager;
-import triggers.ControllerTrigger;
 import triggers.DateTrigger.DateTrigger;
 import triggers.DayOfWeekTrigger.DayOfWeekTriggerController;
 import triggers.DayOfMonthTrigger.DayOfMonthTriggerController;
@@ -54,6 +54,8 @@ import triggers.FileTrigger.FileTrigger;
 import triggers.FileTrigger.FileTriggerController;
 import triggers.TimeTrigger.TimeTrigger;
 import triggers.Trigger;
+import actions.ActionController;
+import triggers.TriggerController;
 
 /**
  * FXML Controller class
@@ -86,7 +88,7 @@ public class FXMLDocumentController implements Initializable {
     
     private AudioActionController audioActionController;
     private MessageActionController messageActionController;
-    private WriterActionController writerActionController;
+    private WriteFileActionController writeFileActionController;
     private CopyFileActionController copyFileActionController;
     private MoveFileActionController moveFileActionController;
     private DeleteFileActionController deleteFileActionController;
@@ -103,7 +105,7 @@ public class FXMLDocumentController implements Initializable {
     private RepetitionController repetitionController;
     private HBox repetitionBox;
     private HBox soundActionBox;
-    private ControllerAction controller;
+    private ActionController controller;
 
     
     @FXML
@@ -111,6 +113,8 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private Button goBackButton;
 
+    private Map<String, ActionController> actionMap = new HashMap<>();
+    private Map<String, TriggerController> triggerMap = new HashMap<>();
     
     /**
      * Initializes the controller class.
@@ -148,7 +152,7 @@ public class FXMLDocumentController implements Initializable {
         //se è selezionata xxxAction ma i campi previsti non sono compilati isxxxActionNotCompleted=true
         BooleanProperty isAudioActionNotCompleted = audioActionController.getFlag();
         BooleanProperty isMessageActionNotCompleted = messageActionController.getFlag();
-        BooleanProperty isWriterActionNotCompleted = writerActionController.getFlag();
+        BooleanProperty isWriterActionNotCompleted = writeFileActionController.getFlag();
         BooleanProperty isCopyFileActionNotCompleted = copyFileActionController.getFlag();
         BooleanProperty isMoveFileActionNotCompleted = moveFileActionController.getFlag();
         BooleanProperty isDeleteFileActionNotCompleted = deleteFileActionController.getFlag();
@@ -192,8 +196,8 @@ public class FXMLDocumentController implements Initializable {
         }else if("Message".equals(selectedAction.getText())){         
             action = new MessageAction(messageActionController.getTextArea());
             ((MessageAction) action).addObserver(messageActionController);
-        }else if("Write".equals(selectedAction.getText())){
-            action = new WriterAction(writerActionController.getFilePath(), writerActionController.getTextArea());
+        }else if("WriteFile".equals(selectedAction.getText())){
+            action = new WriteFileAction(writeFileActionController.getFilePath(), writeFileActionController.getTextArea());
         }else if("CopyFile".equals(selectedAction.getText())){
             action = new CopyFileAction(copyFileActionController.getFilePath(), copyFileActionController.getDirectoryPath());
         }else if("MoveFile".equals(selectedAction.getText())){
@@ -284,19 +288,25 @@ public class FXMLDocumentController implements Initializable {
         
         //crea un togglegroup da passare alle card. In questo modo l'utente può selezionare un'unica azione
         actionToggleGroup = new ToggleGroup();
-
-        audioActionController = (AudioActionController) createCardAction("/actions/AudioAction/AudioAction.fxml", audioActionController);
-        messageActionController = (MessageActionController) createCardAction("/actions/MessageAction/MessageAction.fxml", messageActionController);
         
-        writerActionController = (WriterActionController) createCardAction("/actions/WriterAction/WriterAction.fxml", writerActionController);
+        audioActionController = (AudioActionController) createCardAction("/actions/AudioAction/AudioAction.fxml", audioActionController);
+        actionMap.put("Audio", audioActionController);
+        messageActionController = (MessageActionController) createCardAction("/actions/MessageAction/MessageAction.fxml", messageActionController);
+        actionMap.put("Message", messageActionController);
+        writeFileActionController = (WriteFileActionController) createCardAction("/actions/WriteFileAction/WriteFileAction.fxml", writeFileActionController);
+        actionMap.put("WriteFile", writeFileActionController);
         copyFileActionController = (CopyFileActionController) createCardAction("/actions/CopyFileAction/CopyFileAction.fxml", copyFileActionController);
+        actionMap.put("CopyFile", copyFileActionController);
         moveFileActionController = (MoveFileActionController) createCardAction("/actions/MoveFileAction/MoveFileAction.fxml", moveFileActionController);
+        actionMap.put("MoveFile", moveFileActionController);
         deleteFileActionController = (DeleteFileActionController) createCardAction("/actions/DeleteFileAction/DeleteFileAction.fxml", deleteFileActionController);
+        actionMap.put("DeleteFile", deleteFileActionController);
         programActionController = (ProgramActionController) createCardAction("/actions/ProgramAction/ProgramAction.fxml", programActionController);
-
+        actionMap.put("Program", programActionController);
+        
     }
     
-    private ControllerAction createCardAction(String pathFXML, ControllerAction controller) throws IOException{
+    private ActionController createCardAction(String pathFXML, ActionController controller) throws IOException{
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setLocation(getClass().getResource(pathFXML));
         HBox hbox = fxmlLoader.load();
@@ -320,7 +330,7 @@ public class FXMLDocumentController implements Initializable {
         fileSizeTriggerController = (FileSizeTriggerController) createCardTrigger("/triggers/FileSizeTrigger/FileSizeTrigger.fxml", fileSizeTriggerController);
     }
     
-    private ControllerTrigger createCardTrigger(String pathFXML, ControllerTrigger controller) throws IOException{
+    private TriggerController createCardTrigger(String pathFXML, TriggerController controller) throws IOException{
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setLocation(getClass().getResource(pathFXML));
         HBox hbox = fxmlLoader.load();

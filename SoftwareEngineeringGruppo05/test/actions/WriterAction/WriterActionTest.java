@@ -1,5 +1,6 @@
 package actions.WriterAction;
 
+import actions.WriteFileAction.WriteFileAction;
 import org.junit.*;
 import static org.junit.Assert.*;
 import actions.Action;
@@ -26,7 +27,7 @@ public class WriterActionTest {
     
     @Before
     public void setUp() {
-        action = new WriterAction(filePath, message);
+        action = new WriteFileAction(filePath, message);
     }
 
     @Test

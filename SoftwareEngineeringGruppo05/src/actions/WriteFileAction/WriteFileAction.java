@@ -1,4 +1,4 @@
-package actions.WriterAction;
+package actions.WriteFileAction;
 
 import actions.Action;
 import java.io.BufferedWriter;
@@ -12,11 +12,11 @@ import java.util.logging.Logger;
  *
  * @author Paolo
  */
-public class WriterAction implements Action{
+public class WriteFileAction implements Action{
     public String filePath;
     public String message;
 
-    public WriterAction(String filePath, String message) {
+    public WriteFileAction(String filePath, String message) {
         this.filePath = filePath;
         this.message = message;
     }
@@ -27,7 +27,7 @@ public class WriterAction implements Action{
         //il parametro true imposterà la modalità di apertura del file su "append", consentendo di scrivere alla fine del file anziché sovrascriverlo.
             pw.append(message);
         } catch (IOException ex) {
-            Logger.getLogger(WriterAction.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(WriteFileAction.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

@@ -23,14 +23,14 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import softwareengineeringgruppo05.CheckValueClass;
-import triggers.ControllerTrigger;
+import triggers.TriggerController;
 
 /**
  * FXML Controller class
  *
  * @author maria
  */
-public class DateTriggerController implements Initializable, ControllerTrigger {
+public class DateTriggerController implements Initializable, TriggerController {
 
     @FXML
     private HBox dateTriggerBox;

@@ -4,7 +4,6 @@
  */
 package actions.DeleteFileAction;
 
-import actions.ControllerAction;
 import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -24,13 +23,14 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
+import actions.ActionController;
 
 /**
  * FXML Controller class
  *
  * @author enzo0
  */
-public class DeleteFileActionController implements Initializable, ControllerAction {
+public class DeleteFileActionController implements Initializable, ActionController {
 
     @FXML
     private HBox deleteFileActionBox;

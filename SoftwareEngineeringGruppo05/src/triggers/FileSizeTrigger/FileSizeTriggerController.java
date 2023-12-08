@@ -22,14 +22,14 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import triggers.ControllerTrigger;
+import triggers.TriggerController;
 
 /**
  * FXML Controller class
  *
  * @author enzo0
  */
-public class FileSizeTriggerController implements Initializable, ControllerTrigger {
+public class FileSizeTriggerController implements Initializable, TriggerController {
 
     @FXML
     private HBox fileSizeTriggerBox;
