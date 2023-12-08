@@ -15,6 +15,7 @@ import actions.DeleteFileAction.DeleteFileAction;
 import actions.DeleteFileAction.DeleteFileActionController;
 import actions.MessageAction.MessageAction;
 import actions.MoveFileAction.MoveFileAction;
+import actions.ProgramAction.CreateProgramAction;
 import actions.ProgramAction.ProgramAction;
 import actions.WriteFileAction.WriteFileAction;
 import java.io.IOException;
@@ -203,7 +204,8 @@ public class FXMLDocumentController implements Initializable {
         }else if("MoveFile".equals(selectedAction.getText())){
             action = new MoveFileAction(moveFileActionController.getFilePath(), moveFileActionController.getDirectoryPath());
         }else if("Program".equals(selectedAction.getText())){
-            action = new ProgramAction(programActionController.getFilePath(), programActionController.getTextArea());
+            CreateProgramAction a = new CreateProgramAction();
+            action = a.createProgramAction(programActionController.getFilePath(), programActionController.getTextArea());
         }else if("DeleteFile".equals(selectedAction.getText())){
             action = new DeleteFileAction(deleteFileActionController.getDirectoryPath(), deleteFileActionController.getFileName());
         }

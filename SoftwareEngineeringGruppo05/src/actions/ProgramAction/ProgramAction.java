@@ -9,7 +9,7 @@ import java.util.logging.Logger;
  *
  * @author Luca
  */
-public class ProgramAction implements Action{
+public abstract class ProgramAction implements Action{
     
     private String programPath;
     private String commandLine;
@@ -19,21 +19,16 @@ public class ProgramAction implements Action{
         this.commandLine = commandLine;
     }
 
-    @Override
-    public void execute() {
-        try{
-            // Crea un processo per eseguire il programma specificato nel percorso
-            ProcessBuilder processBuilder = new ProcessBuilder("cmd", "/K", "start", programPath, commandLine);
-            System.out.print(programPath);
-            // Avvia il processo
-            processBuilder.start();
-            
-        } catch (IOException ex) {
-            Logger.getLogger(ProgramAction.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        
+    public String getProgramPath() {
+        return programPath;
     }
+
+    public String getCommandLine() {
+        return commandLine;
+    }
+    
+    @Override
+    public abstract void execute();
 
      @Override
     public void add(Action a) {

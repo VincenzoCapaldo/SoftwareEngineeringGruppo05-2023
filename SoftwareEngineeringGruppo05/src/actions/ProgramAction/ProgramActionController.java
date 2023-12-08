@@ -81,8 +81,8 @@ public class ProgramActionController implements Initializable, ActionController 
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Select a executable program");
 
-        fileChooser.getExtensionFilters().addAll(
-            new FileChooser.ExtensionFilter("Executable program", "*.bat"));
+        /*fileChooser.getExtensionFilters().addAll(
+            new FileChooser.ExtensionFilter("Executable program", "*.bat"));*/
         
         Stage stage = (Stage) browseButton.getScene().getWindow();
         selectedFile = fileChooser.showOpenDialog(stage);
