@@ -65,6 +65,7 @@ public class FileSizeTriggerController implements Initializable, ControllerTrigg
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        createCombo();
         flagFileSizeTrigger = new SimpleBooleanProperty(false);
         BooleanProperty isFileSizeTriggerSelected = fileSizeTriggerRB.selectedProperty();
         hbox1.visibleProperty().bind(Bindings.createBooleanBinding(
@@ -83,7 +84,6 @@ public class FileSizeTriggerController implements Initializable, ControllerTrigg
                         vboxFileSizeTrigger.getChildren().addAll(hbox1, hbox2);
                         SpinnerValueFactory<Integer> valueFactorySize = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 100000, 0);
                         fileSizeSpinner.setValueFactory(valueFactorySize);  
-                        sizeCombo.getItems().addAll(FileSizeUnit.values());
                         sizeCombo.setValue(FileSizeUnit.B);
                         fileSizeTriggerBox.setPrefHeight(163); 
                     }
@@ -126,6 +126,11 @@ public class FileSizeTriggerController implements Initializable, ControllerTrigg
 
     public BooleanProperty getFlag() {
         return flagFileSizeTrigger;
+    }
+    
+    private void createCombo(){
+        sizeCombo.getItems().addAll(FileSizeUnit.values());
+        sizeCombo.setValue(FileSizeUnit.B);
     }
 
 
