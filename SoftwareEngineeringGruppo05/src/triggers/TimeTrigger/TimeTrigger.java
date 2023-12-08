@@ -28,7 +28,7 @@ public class TimeTrigger extends Observable implements Trigger{
     
     @Override
     public boolean isVerified() {
-        return verified;
+        return this.verified;
     }
 
     public boolean isRepeated() {
@@ -39,7 +39,8 @@ public class TimeTrigger extends Observable implements Trigger{
     public void checkTrigger() {
         
         verified = false;
-        
+        setChanged();
+            
         if(LocalTime.now().getHour()==this.time.getHour() && LocalTime.now().getMinute()==this.time.getMinute()){
             verified = true;
             setChanged();
@@ -61,9 +62,9 @@ public class TimeTrigger extends Observable implements Trigger{
             }
         }
         
-        verified = false;
-        
         while(repetition && sleeping.toMillis()!=0){
+            verified = false;
+            setChanged();
             try {
                 Thread.sleep(sleeping.toMillis());
                 verified = true;

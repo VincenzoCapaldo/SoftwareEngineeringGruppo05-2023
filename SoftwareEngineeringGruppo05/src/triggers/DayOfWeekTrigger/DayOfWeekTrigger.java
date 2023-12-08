@@ -43,7 +43,8 @@ public class DayOfWeekTrigger extends Observable implements Trigger {
     public void checkTrigger() {
 
         verified = false;
-    
+        setChanged();
+            
         if (LocalDateTime.now().getDayOfWeek().equals(dayOfWeek)) {
             verified = true;
             setChanged();
@@ -66,11 +67,11 @@ public class DayOfWeekTrigger extends Observable implements Trigger {
             }
         }
         
-        verified = false;
-
         while (repetition) {
+            verified = false;
+            setChanged();
             try {
-                Thread.sleep(MILLISECONDS_DAY * LENGHT_OF_WEEK);
+                Thread.sleep(MILLISECONDS_DAY*LENGHT_OF_WEEK - Duration.between(LocalTime.MIDNIGHT, LocalTime.now()).toMillis());
                 verified = true;
                 setChanged();
                 notifyObservers();

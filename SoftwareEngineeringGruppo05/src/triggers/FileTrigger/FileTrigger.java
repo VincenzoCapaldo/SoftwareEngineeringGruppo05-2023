@@ -23,7 +23,7 @@ public class FileTrigger extends Observable implements Trigger{
     
     @Override
     public boolean isVerified() {
-        return verified;
+        return this.verified;
     }
 
     @Override
@@ -37,7 +37,8 @@ public class FileTrigger extends Observable implements Trigger{
         Path sourcePath = Paths.get(directoryPath +  "/" + filePath);
         
         verified = false;
-        
+        setChanged();
+            
         while (!verified) {
             if (Files.exists(sourcePath)) {
                 verified = true;

@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<HBox fx:id="fileSizeTriggerBox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="163.0" prefWidth="320.0" stylesheets="@../../css/style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="triggers.FileSizeTrigger.FileSizeTriggerController">
+<HBox fx:id="fileSizeTriggerBox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="163.0" prefWidth="320.0" stylesheets="@../../css/style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="triggers.FileSizeTrigger.FileSizeTriggerController">
    <children>
       <VBox fx:id="vboxFileSizeTrigger" prefHeight="106.0" prefWidth="300.0" spacing="10.0" stylesheets="@../../css/style.css">
          <children>
@@ -42,7 +42,7 @@
                      </font>
                   </Label>
                   <Spinner fx:id="fileSizeSpinner" editable="true" prefHeight="25.0" prefWidth="113.0" />
-                  <ComboBox fx:id="sizeCombo" prefHeight="25.0" prefWidth="60.0" styleClass="white_background" stylesheets="@../../css/style.css" />
+                  <ComboBox fx:id="sizeCombo" prefHeight="25.0" prefWidth="100.0" styleClass="white_background" stylesheets="@../../css/style.css" />
                </children>
             </HBox>
          </children>

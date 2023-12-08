@@ -26,7 +26,7 @@ public class FileSizeTrigger extends Observable implements Trigger{
     
     @Override
     public boolean isVerified() {
-        return verified;
+        return this.verified;
     }
     
     @Override
@@ -40,7 +40,8 @@ public class FileSizeTrigger extends Observable implements Trigger{
         Path sourcePath = Paths.get(filePath);
                
         verified = false;
-        
+        setChanged();
+            
         while (!verified) {
             try {
                 if(Files.size(sourcePath) > size){

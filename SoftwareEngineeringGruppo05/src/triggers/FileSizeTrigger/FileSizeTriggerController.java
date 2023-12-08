@@ -10,7 +10,10 @@ import java.util.ResourceBundle;
 import javafx.application.Platform;
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.value.ObservableObjectValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -70,7 +73,6 @@ public class FileSizeTriggerController implements Initializable, ControllerTrigg
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         flagFileSizeTrigger = new SimpleBooleanProperty(false);
-        
         BooleanProperty isFileSizeTriggerSelected = fileSizeTriggerRB.selectedProperty();
         hbox1.visibleProperty().bind(Bindings.createBooleanBinding(
             () -> {
@@ -81,13 +83,16 @@ public class FileSizeTriggerController implements Initializable, ControllerTrigg
                     if (!fileSizeTriggerSelected) {
                         vboxFileSizeTrigger.getChildren().removeAll(hbox1, hbox2);
                         fileSizeTriggerBox.setPrefHeight(75);
+                        selectedFile = null;  
+                         flagFileSizeTrigger.setValue(false);
                     } else {
+                        flagFileSizeTrigger.setValue(true);
                         vboxFileSizeTrigger.getChildren().addAll(hbox1, hbox2);
                         SpinnerValueFactory<Integer> valueFactorySize = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 100000, 0);
                         fileSizeSpinner.setValueFactory(valueFactorySize);  
                         sizeCombo.getItems().addAll(FileSizeUnit.values());
                         sizeCombo.setValue(FileSizeUnit.B);
-                        fileSizeTriggerBox.setPrefHeight(163);
+                        fileSizeTriggerBox.setPrefHeight(163); 
                     }
                 });
                 return fileSizeTriggerSelected;
@@ -103,13 +108,11 @@ public class FileSizeTriggerController implements Initializable, ControllerTrigg
         
         Stage stage = (Stage) browseButton.getScene().getWindow();
         selectedFile = fileChooser.showOpenDialog(stage);
-        
-        Platform.runLater(() -> {
-            flagFileSizeTrigger.bind(Bindings.createBooleanBinding(
-               () -> selectedFile == null,
-                fileNameTextField.textProperty()
-            ));
-        });
+        if(selectedFile == null && fileSizeTriggerRB.isSelected()){
+            flagFileSizeTrigger.setValue(true);
+        }else{
+            flagFileSizeTrigger.setValue(false);
+        }
     }
     
     @Override
@@ -134,4 +137,6 @@ public class FileSizeTriggerController implements Initializable, ControllerTrigg
     public BooleanProperty getFlag() {
         return flagFileSizeTrigger;
     }
+
+
 }

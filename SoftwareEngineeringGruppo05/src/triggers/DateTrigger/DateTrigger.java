@@ -23,7 +23,7 @@ public class DateTrigger extends Observable implements Trigger{
     
     @Override
     public boolean isVerified() {
-        return verified;
+        return this.verified;
     }
 
     @Override
@@ -35,14 +35,15 @@ public class DateTrigger extends Observable implements Trigger{
     public void checkTrigger() {
         
         verified = false;
-        
+        setChanged();
+               
         if(LocalDate.now().equals(data)){
             verified = true;
             setChanged();
             notifyObservers();
         }else{
             long wait;
-            wait = Duration.between(LocalDate.now().atTime(LocalTime.now()), data.atTime(0,0)).toMillis();
+            wait = Duration.between(LocalDate.now().atTime(LocalTime.now()), data.atTime(LocalTime.MIDNIGHT)).toMillis();
             try {
                 Thread.sleep(wait);
                 verified = true;

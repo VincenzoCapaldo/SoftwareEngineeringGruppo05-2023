@@ -41,7 +41,8 @@ public class DayOfMonthTrigger extends Observable implements Trigger{
     public void checkTrigger() {
         
         verified = false;
-        
+        setChanged();
+            
         if (LocalDate.now().getDayOfMonth() == this.dayOfMonth) {    
             verified = true;
             setChanged();
@@ -64,11 +65,11 @@ public class DayOfMonthTrigger extends Observable implements Trigger{
             }
         }
         
-        verified = false;
-
         while (repetition) {
+            verified = false;
+            setChanged();
             try {
-                Thread.sleep(YearMonth.now().lengthOfMonth() * MILLISECONDS_DAY);
+                Thread.sleep(YearMonth.now().lengthOfMonth() * MILLISECONDS_DAY - Duration.between(LocalTime.MIDNIGHT, LocalTime.now()).toMillis());
                 verified = true;
                 setChanged();
                 notifyObservers();
