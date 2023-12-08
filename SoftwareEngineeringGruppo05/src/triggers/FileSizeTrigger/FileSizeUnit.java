@@ -30,5 +30,6 @@ public enum FileSizeUnit {
     public long getMultiplier() {
         return multiplier;
     }
+    
 }
 
