@@ -46,6 +46,8 @@ import triggers.DateTrigger.DateTrigger;
 import triggers.DayOfWeekTrigger.DayOfWeekTriggerController;
 import triggers.DayOfMonthTrigger.DayOfMonthTriggerController;
 import triggers.DateTrigger.DateTriggerController;
+import triggers.DayOfMonthTrigger.DayOfMonthTrigger;
+import triggers.DayOfWeekTrigger.DayOfWeekTrigger;
 import triggers.FileSizeTrigger.FileSizeTrigger;
 import triggers.FileSizeTrigger.FileSizeTriggerController;
 import triggers.FileTrigger.FileTrigger;
@@ -211,6 +213,12 @@ public class FXMLDocumentController implements Initializable {
         if("Date".equals(selectedTrigger.getText())){           
             trigger = new DateTrigger(dateTriggerController.getDate());
         }
+        if("DayOfWeek".equals(selectedTrigger.getText())){
+            trigger = new DayOfWeekTrigger(dayOfWeekTriggerController.getDayOfWeek(), dayOfWeekTriggerController.repetitionIsSelected());
+        }
+        if("DayOfMonth".equals(selectedTrigger.getText())){
+            trigger = new DayOfMonthTrigger(dayOfMonthTriggerController.getDayOfMonth(), dayOfWeekTriggerController.repetitionIsSelected());
+        }
         if("FileTrigger".equals(selectedTrigger.getText())){
             trigger = new FileTrigger(fileTriggerController.getDirectoryPath(), fileTriggerController.getFileName());
         }
@@ -225,6 +233,12 @@ public class FXMLDocumentController implements Initializable {
         }
         if("Date".equals(selectedTrigger.getText())){           
             ((DateTrigger)trigger).addObserver(rule);
+        }
+        if("DayOfWeek".equals(selectedTrigger.getText())){           
+            ((DayOfWeekTrigger)trigger).addObserver(rule);
+        }
+        if("DayOfMonth".equals(selectedTrigger.getText())){           
+            ((DayOfMonthTrigger)trigger).addObserver(rule);
         }
         if("FileTrigger".equals(selectedTrigger.getText())){
             ((FileTrigger)trigger).addObserver(rule);
