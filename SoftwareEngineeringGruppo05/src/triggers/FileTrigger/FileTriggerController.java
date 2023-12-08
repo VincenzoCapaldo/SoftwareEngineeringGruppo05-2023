@@ -78,7 +78,8 @@ public class FileTriggerController implements Initializable, ControllerTrigger {
                     } else {
                         flagFileTrigger.bind(Bindings.createBooleanBinding(
                            () -> fileTriggerRB.isSelected() && (selectedDirectory == null || fileNameTextField.getText().isEmpty()) ,
-                           fileNameTextField.textProperty()
+                           fileNameTextField.textProperty(),
+                           isFileTriggerSelected
                         ));
                         vboxFileTrigger.getChildren().addAll(hbox1, hbox2);
                         fileTriggerBox.setPrefHeight(163);
@@ -97,7 +98,11 @@ public class FileTriggerController implements Initializable, ControllerTrigger {
 
         Stage stage = (Stage) directoryButton.getScene().getWindow();
         selectedDirectory = directoryChooser.showDialog(stage);
-   
+       flagFileTrigger.bind(Bindings.createBooleanBinding(
+            () -> fileTriggerRB.isSelected() && (selectedDirectory == null || fileNameTextField.getText().isEmpty()) ,
+            fileNameTextField.textProperty(),
+            isFileTriggerSelected
+        ));
     }
 
     @Override

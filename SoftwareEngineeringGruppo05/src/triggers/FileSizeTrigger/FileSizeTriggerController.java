@@ -101,11 +101,8 @@ public class FileSizeTriggerController implements Initializable, ControllerTrigg
         
         Stage stage = (Stage) browseButton.getScene().getWindow();
         selectedFile = fileChooser.showOpenDialog(stage);
-        if(selectedFile == null && fileSizeTriggerRB.isSelected()){
-            flagFileSizeTrigger.setValue(true);
-        }else{
-            flagFileSizeTrigger.setValue(false);
-        }
+        flagFileSizeTrigger.setValue(selectedFile == null && fileSizeTriggerRB.isSelected());
+        
     }
     
     @Override
