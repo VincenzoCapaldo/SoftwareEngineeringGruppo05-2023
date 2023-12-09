@@ -20,7 +20,7 @@ public class Rule extends Observable implements Serializable, Observer{
         this.name = name;
         this.action = action;
         this.trigger = trigger;
-        this.state = true;
+        this.state = true; //quando l'utente crea una nuova regola è attiva di default
     }
 
     public String getName(){

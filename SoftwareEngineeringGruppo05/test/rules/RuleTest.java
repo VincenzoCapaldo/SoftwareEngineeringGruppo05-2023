@@ -23,9 +23,8 @@ public class RuleTest {
     @Before
     public void setUp() {
         action = new MessageAction("Ciao");
-        trigger = new TimeTrigger(11,37);
-        d = Duration.ofMinutes(1);
-        rule = new Rule("TestRule", action, trigger, false, true, d);
+        trigger = new TimeTrigger(11,37,true,Duration.ofMinutes(1));
+        rule = new Rule("TestRule", action, trigger);
     }
  
     @Test
@@ -36,24 +35,10 @@ public class RuleTest {
     }
 
     @Test
-    public void testSetName() {
-        String name = "newName";
-        rule.setName(name);
-        assertEquals(name, rule.getName());
-    }
-
-    @Test
     public void testGetAction() {
         Action expResult = action;
         Action result = rule.getAction();
         assertEquals(expResult, result);
-    }
-
-    @Test
-    public void testSetAction() {
-        action = new MessageAction("Ciao2");
-        rule.setAction(action);
-        assertEquals(action, rule.getAction());
     }
 
     @Test
@@ -64,52 +49,17 @@ public class RuleTest {
     }
 
     @Test
-    public void testSetTrigger() {
-        trigger = new TimeTrigger(23,22);
-        rule.setTrigger(trigger);
-        assertEquals(trigger, rule.getTrigger());
-    }
-    
-    @Test
     public void testGetState() {
-        boolean expResult = false;
+        boolean expResult = true;
         boolean result = rule.getState();
         assertEquals(expResult, result);
     }
     
     @Test
     public void testSetState() {
-        boolean state = true;
+        boolean state = false;
         rule.setState(state);
         assertEquals(state, rule.getState());
-    }
-    
-    @Test
-    public void testGetRepeat() {
-        boolean expResult = true;
-        boolean result = rule.getRepeate();
-        assertEquals(expResult, result);
-    }
-    
-    @Test
-    public void testSetRepeat() {
-        boolean repetition = false;
-        rule.setRepeate(repetition);
-        assertEquals(repetition, rule.getState());
-    }
-    
-    @Test
-    public void testGetSleeping() {
-        Duration expResult = d;
-        Duration result = rule.getSleeping();
-        assertEquals(expResult, result);
-    }
-    
-    @Test
-    public void testSetSleeping() {
-        Duration d1 = Duration.ofMinutes(2);
-        rule.setSleeping(d1);
-        assertEquals(d1, rule.getSleeping());
     }
     
 }

@@ -5,7 +5,6 @@ import java.time.LocalTime;
 import java.util.Observable;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import model.triggers.Trigger;
 
 /**
  *
