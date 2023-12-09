@@ -1,5 +1,6 @@
 package triggers.TimeTrigger;
 
+import java.time.Duration;
 import org.junit.*;
 import static org.junit.Assert.*;
 import java.time.LocalTime;
@@ -9,40 +10,49 @@ import java.time.LocalTime;
  * @author Luca
  */
 public class TimeTriggerTest {
-    
-    private TimeTrigger timetrigger;
-    
-    /* test con ora e minuti correnti */
+
+    /**
+     * Test of isVerified method, of class TimeTrigger.
+     */
     @Test
-    public void testVerify1() {
-        int hour = LocalTime.now().getHour();
-        int minute = LocalTime.now().getMinute();
-        TimeTrigger instance = new TimeTrigger(hour,minute);
+    public void testIsVerified() {
+
+
+        TimeTrigger instance = new TimeTrigger(0,0,false,Duration.ZERO);
+        boolean expResult = false;
+        boolean result = instance.isVerified();
+        assertEquals(expResult, result);
+
+    }
+
+    /**
+     * Test of isRepeated method, of class TimeTrigger.
+     */
+    @Test
+    public void testIsRepeated() {
+
+
+        TimeTrigger instance = new TimeTrigger(0,0,false,Duration.ZERO);
+        boolean expResult = false;
+        boolean result = instance.isRepeated();
+        assertEquals(expResult, result);
+
+    }
+
+    /**
+     * Test of checkTrigger method, of class TimeTrigger.
+     */
+    @Test
+    public void testCheckTrigger() {
+
+        int hours = LocalTime.now().getHour();
+        int minutes = LocalTime.now().getMinute();
+        TimeTrigger instance = new TimeTrigger(hours,minutes,false,Duration.ZERO);
+        instance.checkTrigger();
+        boolean result = instance.isVerified();
         boolean expResult = true;
-        boolean result = instance.verify();
-        assertEquals(expResult, result);
+        assertEquals(expResult,result);
+        
     }
-    
-    /* test con ora diversa da quella corrente */
-    @Test
-    public void testVerify2() {
-        int hour = (LocalTime.now().getHour() + 1)%24;
-        int minute = LocalTime.now().getMinute();
-        TimeTrigger instance = new TimeTrigger(hour, minute);
-        boolean expResult = false;
-        boolean result = instance.verify();
-        assertEquals(expResult, result);
-    }
-    
-    /* test con minuti diversi da quelli correnti */
-    @Test
-    public void testVerify3() {
-        int hour = LocalTime.now().getHour();
-        int minute = (LocalTime.now().getMinute() + 1)%60;
-        TimeTrigger instance = new TimeTrigger(hour, minute);
-        boolean expResult = false;
-        boolean result = instance.verify();
-        assertEquals(expResult, result);
-    }
-    
+
 }
