@@ -56,4 +56,8 @@ public class FileSizeTrigger extends Observable implements Trigger{
         
     }
 
+     @Override
+    public String toString(){
+        return "FileSize";
+    }
 }

@@ -40,4 +40,9 @@ public class WriteFileAction implements Action{
         throw new UnsupportedOperationException("Cannot remove an action from WriterAction.");
     }
     
+    @Override
+    public String toString(){
+        return "WriteFile";
+    }
+    
 }

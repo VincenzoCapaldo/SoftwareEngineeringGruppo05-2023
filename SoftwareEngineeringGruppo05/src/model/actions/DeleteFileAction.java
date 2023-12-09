@@ -16,9 +16,9 @@ public class DeleteFileAction implements Action{
     private String directoryPath; //directory del file da eliminare
     private String nameFile; //nome del file da eliminare
     
-    public DeleteFileAction(String directoryPath, String filePath) {
-        this.directoryPath = filePath;
-        this.nameFile = filePath;
+    public DeleteFileAction(String directoryPath, String namePath) {
+        this.directoryPath = directoryPath;
+        this.nameFile = namePath;
     }
 
     @Override
@@ -44,6 +44,11 @@ public class DeleteFileAction implements Action{
     @Override
     public void remove(Action a) {
         throw new UnsupportedOperationException("Cannot remove an action from DeleteFileAction.");
+    }
+    
+    @Override
+    public String toString(){
+        return "DeleteFile";
     }
     
 }

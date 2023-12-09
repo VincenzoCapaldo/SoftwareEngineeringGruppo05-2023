@@ -53,5 +53,10 @@ public class AudioAction implements Action {
     public void remove(Action a){
         throw new UnsupportedOperationException("Cannot remove an action from AudioAction.");
     }
+    
+    @Override
+    public String toString(){
+        return "Audio";
+    }
    
 }

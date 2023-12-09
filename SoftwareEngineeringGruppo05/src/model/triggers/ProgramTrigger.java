@@ -54,6 +54,10 @@ public abstract class ProgramTrigger extends Observable implements Trigger{
     @Override
     public abstract void checkTrigger();
     
+     @Override
+    public String toString(){
+        return "Program";
+    }
     
     
 }

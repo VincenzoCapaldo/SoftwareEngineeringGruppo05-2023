@@ -39,5 +39,10 @@ public abstract class ProgramAction implements Action{
     public void remove(Action a) {
         throw new UnsupportedOperationException("Cannot remove an action from ProgramAction.");
     }
+    
+    @Override
+    public String toString(){
+        return "Program";
+    }
 
 }

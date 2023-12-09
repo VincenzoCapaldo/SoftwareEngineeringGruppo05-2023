@@ -24,7 +24,6 @@ public class MessageAction extends Observable implements Action {
     }
 
     public void setCondition() {
-
         condition = !condition;
         setChanged(); 
         notifyObservers(); 
@@ -43,6 +42,11 @@ public class MessageAction extends Observable implements Action {
     @Override
     public void remove(Action a){
         throw new UnsupportedOperationException("Cannot remove an action from MessageAction.");
+    }
+    
+    @Override
+    public String toString(){
+        return "Message";
     }
     
 }

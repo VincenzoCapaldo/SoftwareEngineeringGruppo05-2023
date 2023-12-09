@@ -50,4 +50,9 @@ public class CopyFileAction implements Action{
         throw new UnsupportedOperationException("Cannot remove an action from CopyFileAction.");
     }
     
+    @Override
+    public String toString(){
+        return "CopyFile";
+    }
+    
 }

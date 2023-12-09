@@ -75,5 +75,10 @@ public class TimeTrigger extends Observable implements Trigger{
             }
         }
     }
+    
+     @Override
+    public String toString(){
+        return "Time";
+    }
 
 }

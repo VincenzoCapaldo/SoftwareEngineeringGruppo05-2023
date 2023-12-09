@@ -55,5 +55,10 @@ public class DateTrigger extends Observable implements Trigger{
         }
         
     }
+    
+     @Override
+    public String toString(){
+        return "Date";
+    }
 
 }

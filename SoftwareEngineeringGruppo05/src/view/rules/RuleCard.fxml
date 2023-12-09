@@ -63,6 +63,14 @@
                   <Insets top="10.0" />
                </VBox.margin>
             </Label>
+            <Label fx:id="repetition" prefHeight="30.0" prefWidth="429.0" styleClass="white_text" text="Label">
+               <font>
+                  <Font size="20.0" />
+               </font>
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </Label>
             <Label fx:id="status" prefHeight="30.0" prefWidth="429.0" styleClass="white_text" text="Label">
                <font>
                   <Font size="20.0" />

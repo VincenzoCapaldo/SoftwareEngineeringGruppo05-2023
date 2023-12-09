@@ -80,5 +80,10 @@ public class DayOfWeekTrigger extends Observable implements Trigger {
         }
 
     }
+    
+     @Override
+    public String toString(){
+        return "DayOfWeek";
+    }
 
 }
