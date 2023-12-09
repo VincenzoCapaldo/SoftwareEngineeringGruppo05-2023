@@ -1,4 +1,4 @@
-package actions;
+package controller;
 
 import javafx.beans.property.BooleanProperty;
 import javafx.scene.control.ToggleGroup;
@@ -7,9 +7,7 @@ import javafx.scene.control.ToggleGroup;
  *
  * @author maria
  */
-public interface ActionController {
-    
+public interface Controller {
     public void setToggleGroup(ToggleGroup toggleGroup);
     public BooleanProperty getFlag();
-
 }

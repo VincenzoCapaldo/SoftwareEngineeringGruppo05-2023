@@ -1,8 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
- */
-package triggers.FileTrigger;
+package controller;
 
 import java.io.File;
 import java.net.URL;
@@ -23,14 +19,13 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
-import triggers.TriggerController;
 
 /**
  * FXML Controller class
  *
  * @author enzo0
  */
-public class FileTriggerController implements Initializable, TriggerController {
+public class FileTriggerController implements Initializable, Controller {
 
     @FXML
     private HBox fileTriggerBox;
@@ -56,6 +51,7 @@ public class FileTriggerController implements Initializable, TriggerController {
     private File selectedDirectory;
     private BooleanProperty flagFileTrigger; 
     private BooleanProperty isFileTriggerSelected;
+    
     /**
      * Initializes the controller class.
      */
@@ -98,7 +94,7 @@ public class FileTriggerController implements Initializable, TriggerController {
 
         Stage stage = (Stage) directoryButton.getScene().getWindow();
         selectedDirectory = directoryChooser.showDialog(stage);
-       flagFileTrigger.bind(Bindings.createBooleanBinding(
+        flagFileTrigger.bind(Bindings.createBooleanBinding(
             () -> fileTriggerRB.isSelected() && (selectedDirectory == null || fileNameTextField.getText().isEmpty()) ,
             fileNameTextField.textProperty(),
             isFileTriggerSelected

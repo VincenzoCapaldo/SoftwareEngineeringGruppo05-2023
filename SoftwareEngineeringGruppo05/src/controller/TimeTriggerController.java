@@ -1,4 +1,4 @@
-package triggers.TimeTrigger;
+package controller;
 
 import java.net.URL;
 import java.time.Duration;
@@ -7,6 +7,7 @@ import java.util.ResourceBundle;
 import javafx.application.Platform;
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -19,14 +20,13 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import softwareengineeringgruppo05.CheckValueClass;
-import triggers.TriggerController;
 
 /**
  * FXML Controller class
  *
  * @author maria
  */
-public class TimeTriggerController implements Initializable, TriggerController {
+public class TimeTriggerController implements Initializable, Controller {
 
     @FXML
     private HBox timeTriggerBox;
@@ -165,4 +165,10 @@ public class TimeTriggerController implements Initializable, TriggerController {
         }
         return duration;
     }
+    
+    @Override
+    public BooleanProperty getFlag() {
+        return new SimpleBooleanProperty(false);
+    }
+    
 }

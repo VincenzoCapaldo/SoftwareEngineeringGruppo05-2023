@@ -1,4 +1,4 @@
-package actions.MessageAction;
+package controller;
 
 import java.io.IOException;
 import java.net.URL;
@@ -21,14 +21,16 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import actions.ActionController;
+import controller.Controller;
+import actions.MessageAction.MessageAction;
+import actions.MessageAction.PopUpController;
 
 /**
  * FXML Controller class
  *
  * @author enzo0
  */
-public class MessageActionController implements Initializable, ActionController, Observer {
+public class MessageActionController implements Initializable, Controller, Observer {
 
     @FXML
     private HBox messageActionBox;

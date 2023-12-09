@@ -1,8 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
- */
-package triggers.DayOfMonthTrigger;
+package controller;
 
 import java.net.URL;
 import java.time.LocalDate;
@@ -10,6 +6,7 @@ import java.util.ResourceBundle;
 import javafx.application.Platform;
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.CheckBox;
@@ -21,14 +18,13 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import softwareengineeringgruppo05.CheckValueClass;
-import triggers.TriggerController;
 
 /**
  * FXML Controller class
  *
  * @author maria
  */
-public class DayOfMonthTriggerController implements Initializable, TriggerController {
+public class DayOfMonthTriggerController implements Initializable, Controller {
 
     @FXML
     private HBox dayOfMonthBox;
@@ -98,6 +94,11 @@ public class DayOfMonthTriggerController implements Initializable, TriggerContro
      
      public Boolean repetitionIsSelected(){
         return repetitionCheckBox.isSelected();
+    }
+         
+    @Override
+    public BooleanProperty getFlag() {
+        return new SimpleBooleanProperty(false);
     }
     
 }

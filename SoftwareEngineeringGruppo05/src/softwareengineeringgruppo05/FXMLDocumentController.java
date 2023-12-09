@@ -1,27 +1,8 @@
 package softwareengineeringgruppo05;
 
 import rules.RuleCardController;
-import triggers.TimeTrigger.TimeTriggerController;
-import actions.WriteFileAction.WriteFileActionController;
-import actions.ProgramAction.ProgramActionController;
-import actions.MoveFileAction.MoveFileActionController;
-import actions.MessageAction.MessageActionController;
-import actions.CopyFileAction.CopyFileActionController;
-import actions.AudioAction.AudioActionController;
-import actions.Action;
-import actions.AudioAction.AudioAction;
-import actions.CopyFileAction.CopyFileAction;
-import actions.DeleteFileAction.DeleteFileAction;
-import actions.DeleteFileAction.DeleteFileActionController;
-import actions.MessageAction.MessageAction;
-import actions.MoveFileAction.MoveFileAction;
-import actions.ProgramAction.CreateProgramAction;
-import actions.ProgramAction.ProgramAction;
-import actions.WriteFileAction.WriteFileAction;
 import java.io.IOException;
 import java.net.URL;
-import java.time.Duration;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.Set;
@@ -34,7 +15,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
@@ -43,20 +23,24 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import rules.Rule;
 import rules.RuleManager;
-import triggers.DateTrigger.DateTrigger;
-import triggers.DayOfWeekTrigger.DayOfWeekTriggerController;
-import triggers.DayOfMonthTrigger.DayOfMonthTriggerController;
-import triggers.DateTrigger.DateTriggerController;
-import triggers.DayOfMonthTrigger.DayOfMonthTrigger;
-import triggers.DayOfWeekTrigger.DayOfWeekTrigger;
-import triggers.FileSizeTrigger.FileSizeTrigger;
-import triggers.FileSizeTrigger.FileSizeTriggerController;
-import triggers.FileTrigger.FileTrigger;
-import triggers.FileTrigger.FileTriggerController;
-import triggers.TimeTrigger.TimeTrigger;
-import triggers.Trigger;
-import actions.ActionController;
-import triggers.TriggerController;
+import manager.AudioActionManager;
+import manager.ActionManager;
+import manager.CopyFileActionManager;
+import manager.DeleteFileActionManager;
+import manager.MessageActionManager;
+import manager.MoveFileActionManager;
+import manager.ProgramActionManager;
+import manager.WriteFileActionManager;
+import manager.DateTriggerManager;
+import manager.DayOfMonthTriggerManager;
+import manager.DayOfWeekTriggerManager;
+import manager.FileSizeTriggerManager;
+import manager.FileTriggerManager;
+import manager.TimeTriggerManager;
+import manager.TriggerManager;
+import controller.Controller;
+import java.util.LinkedHashMap;
+import javafx.beans.property.SimpleBooleanProperty;
 
 /**
  * FXML Controller class
@@ -85,38 +69,22 @@ public class FXMLDocumentController implements Initializable {
     private Button createRuleButton;
     
     private ToggleGroup actionToggleGroup;
-    private ToggleGroup triggerToggleGroup;
-    
-    private AudioActionController audioActionController;
-    private MessageActionController messageActionController;
-    private WriteFileActionController writeFileActionController;
-    private CopyFileActionController copyFileActionController;
-    private MoveFileActionController moveFileActionController;
-    private DeleteFileActionController deleteFileActionController;
-    private ProgramActionController programActionController;
-    
-    private TimeTriggerController timeTriggerController;
-    private DayOfWeekTriggerController dayOfWeekTriggerController;
-    private DayOfMonthTriggerController dayOfMonthTriggerController;
-    private DateTriggerController dateTriggerController;
-    private FileTriggerController fileTriggerController;
-    private FileSizeTriggerController fileSizeTriggerController;
+    private ToggleGroup triggerToggleGroup;    
     
     private RuleManager ruleManager;
     private RepetitionController repetitionController;
     private HBox repetitionBox;
     private HBox soundActionBox;
-    private ActionController controller;
+    private Controller controller;
 
-    
     @FXML
     private VBox boxSleeping;
     @FXML
     private Button goBackButton;
 
-    private Map<String, ActionController> actionMap = new HashMap<>();
-    private Map<String, TriggerController> triggerMap = new HashMap<>();
-    
+    private Map<String,ActionManager> actionManager = new LinkedHashMap<>();
+    private Map<String,TriggerManager> triggerManager = new LinkedHashMap<>();
+        
     /**
      * Initializes the controller class.
      */
@@ -137,43 +105,62 @@ public class FXMLDocumentController implements Initializable {
     private void goToWindowThree(ActionEvent event) throws IOException {
         //pulizia campi 
         nameRuleTextField.clear();
-
+        scrollAllActions.getChildren().clear();
+        scrollAllTriggers.getChildren().clear();
+        
+        actionToggleGroup = new ToggleGroup();
+        triggerToggleGroup = new ToggleGroup();
+        
+        actionManager.put("Audio", new AudioActionManager());
+        actionManager.put("Message", new MessageActionManager());
+        actionManager.put("WriteFile", new WriteFileActionManager());
+        actionManager.put("CopyFile", new CopyFileActionManager());
+        actionManager.put("MoveFile", new MoveFileActionManager());
+        actionManager.put("DeleteFile", new DeleteFileActionManager());
+        actionManager.put("Program", new ProgramActionManager());
+        
+        triggerManager.put("Time", new TimeTriggerManager());
+        triggerManager.put("DayOfWeek", new DayOfWeekTriggerManager());
+        triggerManager.put("DayOfMonth", new DayOfMonthTriggerManager());
+        triggerManager.put("Date", new DateTriggerManager());
+        triggerManager.put("File", new FileTriggerManager());
+        triggerManager.put("FileSize", new FileSizeTriggerManager());
+        //triggerManager.put("Program", new ProgramTriggerManager());
+        
         window3.visibleProperty().set(true);
         window1.visibleProperty().set(false);
+
+        for (ActionManager am : actionManager.values()){
+            am.getController().setToggleGroup(actionToggleGroup);
+            scrollAllActions.getChildren().add(am.getHbox());
+        }
         
-        loadAllActionsCards();//caricamento grafico delle azioni
-        loadAllTriggersCards();//caricamento grafico dei trigger
+        for (TriggerManager am : triggerManager.values()){
+            am.getController().setToggleGroup(triggerToggleGroup);
+            scrollAllTriggers.getChildren().add(am.getHbox());
+        }
         
         //se il nome della regola non è inserito bb1=true
-        BooleanBinding bb1 = nameRuleTextField.textProperty().isEmpty();
+        BooleanBinding bbRuleName = nameRuleTextField.textProperty().isEmpty();
         
         //se non è selezionata almeno un'azione o almeno un trigger bb2=true
-        BooleanBinding bb2 = actionToggleGroup.selectedToggleProperty().isNull().or(triggerToggleGroup.selectedToggleProperty().isNull());
+        BooleanBinding bbToggleGroup = actionToggleGroup.selectedToggleProperty().isNull().or(triggerToggleGroup.selectedToggleProperty().isNull());
 
-        //se è selezionata xxxAction ma i campi previsti non sono compilati isxxxActionNotCompleted=true
-        BooleanProperty isAudioActionNotCompleted = audioActionController.getFlag();
-        BooleanProperty isMessageActionNotCompleted = messageActionController.getFlag();
-        BooleanProperty isWriterActionNotCompleted = writeFileActionController.getFlag();
-        BooleanProperty isCopyFileActionNotCompleted = copyFileActionController.getFlag();
-        BooleanProperty isMoveFileActionNotCompleted = moveFileActionController.getFlag();
-        BooleanProperty isDeleteFileActionNotCompleted = deleteFileActionController.getFlag();
-        BooleanProperty isProgramActionNotCompleted = programActionController.getFlag();
+        BooleanProperty bbAction = new SimpleBooleanProperty(true);
+        for (ActionManager am : actionManager.values()){
+            bbAction.and(am.isNotCompleted());
+        }
         
-        
-        BooleanProperty isFileTriggerNotCompleted = fileTriggerController.getFlag();
-        BooleanProperty isFileSizeTriggerNotCompleted = fileSizeTriggerController.getFlag();
-        //se nessuna azione è completa bb3=true
-        BooleanBinding bb3 = isAudioActionNotCompleted.and(isMessageActionNotCompleted).and(isWriterActionNotCompleted)
-                .and(isCopyFileActionNotCompleted).and(isMoveFileActionNotCompleted).and(isDeleteFileActionNotCompleted)
-                .and(isProgramActionNotCompleted);
-        
-        //se nessun trigger è completo, allora bb4 = true
-        BooleanBinding bb4 = isFileTriggerNotCompleted.or(isFileSizeTriggerNotCompleted);
+        BooleanProperty bbTrigger = new SimpleBooleanProperty(true);
+        for (TriggerManager tm : triggerManager.values()){
+            bbTrigger.and(tm.isNotCompleted());
+        }
         
         //se non è stato inserito il nome della regola O non è selezionata un'azione/ trigger O l'azione selezionata non è completa bb=true
-        BooleanBinding bb = bb1.or(bb2).or(bb3).or(bb4);
+        BooleanBinding bb = bbRuleName.or(bbToggleGroup).or(bbAction).or(bbTrigger);
         
         createRuleButton.disableProperty().bind(bb);  
+        
     }
 
     //ritorna alla window1 dopo aver creato la regola
@@ -189,79 +176,15 @@ public class FXMLDocumentController implements Initializable {
         //restituisce il trigger selezionato dall'utente
         RadioButton selectedTrigger = (RadioButton) triggerToggleGroup.getSelectedToggle();
         
-        //Action action = null;
+        RuleCreator.createRule(nameRuleTextField.getText(), actionManager, selectedAction.getText(), triggerManager, selectedTrigger.getText()); 
         
-        /*if("Audio".equals(selectedAction.getText())){
-            action = new AudioAction(audioActionController.getFilePath());
-        }else if("Message".equals(selectedAction.getText())){         
-            action = new MessageAction(messageActionController.getTextArea());
-            ((MessageAction) action).addObserver(messageActionController);
-        }else if("WriteFile".equals(selectedAction.getText())){
-            action = new WriteFileAction(writeFileActionController.getFilePath(), writeFileActionController.getTextArea());
-        }else if("CopyFile".equals(selectedAction.getText())){
-            action = new CopyFileAction(copyFileActionController.getFilePath(), copyFileActionController.getDirectoryPath());
-        }else if("MoveFile".equals(selectedAction.getText())){
-            action = new MoveFileAction(moveFileActionController.getFilePath(), moveFileActionController.getDirectoryPath());
-        }else if("Program".equals(selectedAction.getText())){
-            CreateProgramAction a = new CreateProgramAction();
-            action = a.createProgramAction(programActionController.getFilePath(), programActionController.getTextArea());
-        }else if("DeleteFile".equals(selectedAction.getText())){
-            action = new DeleteFileAction(deleteFileActionController.getDirectoryPath(), deleteFileActionController.getFileName());
-        }*/
-        
-        CreatorAction ca = new CreatorAction(actionMap,selectedAction.getText()); 
-        Action action = ca.createAction();
-        
-        Trigger trigger = null;
-        
-        if("Time".equals(selectedTrigger.getText())){           
-            trigger = new TimeTrigger(timeTriggerController.getHours(), timeTriggerController.getMinutes(), 
-                    timeTriggerController.repetitionIsSelected(), timeTriggerController.getSleeping());
-        }
-        if("Date".equals(selectedTrigger.getText())){           
-            trigger = new DateTrigger(dateTriggerController.getDate());
-        }
-        if("DayOfWeek".equals(selectedTrigger.getText())){
-            trigger = new DayOfWeekTrigger(dayOfWeekTriggerController.getDayOfWeek(), dayOfWeekTriggerController.repetitionIsSelected());
-        }
-        if("DayOfMonth".equals(selectedTrigger.getText())){
-            trigger = new DayOfMonthTrigger(dayOfMonthTriggerController.getDayOfMonth(), dayOfWeekTriggerController.repetitionIsSelected());
-        }
-        if("FileTrigger".equals(selectedTrigger.getText())){
-            trigger = new FileTrigger(fileTriggerController.getDirectoryPath(), fileTriggerController.getFileName());
-        }
-        if("FileSizeTrigger".equals(selectedTrigger.getText())){
-            trigger = new FileSizeTrigger(fileSizeTriggerController.getFilePath(),fileSizeTriggerController.getSize());
-        }
-        
-        Rule rule = new Rule(nameRuleTextField.getText(), action, trigger);
-        
-        if ("Time".equals(selectedTrigger.getText())){
-            ((TimeTrigger)trigger).addObserver(rule);
-        }
-        if("Date".equals(selectedTrigger.getText())){           
-            ((DateTrigger)trigger).addObserver(rule);
-        }
-        if("DayOfWeek".equals(selectedTrigger.getText())){           
-            ((DayOfWeekTrigger)trigger).addObserver(rule);
-        }
-        if("DayOfMonth".equals(selectedTrigger.getText())){           
-            ((DayOfMonthTrigger)trigger).addObserver(rule);
-        }
-        if("FileTrigger".equals(selectedTrigger.getText())){
-            ((FileTrigger)trigger).addObserver(rule);
-        }
-        if("FileSizeTrigger".equals(selectedTrigger.getText())){
-            ((FileSizeTrigger)trigger).addObserver(rule);
-        }
-        
-        ruleManager.addRule(rule);
-
         loadAllRules();
+    
     }
     
     //caricamento delle ruleCards 
     private void loadAllRules(){
+        
         scrollRules.getChildren().clear();
         
         Set<Rule> rules = ruleManager.getRules();
@@ -286,64 +209,6 @@ public class FXMLDocumentController implements Initializable {
         
     }
     
-    //caricamento delle azioni in window3, in modo tale che l'utente possa visualizzare le actionCards
-    private void loadAllActionsCards() throws IOException {
-        scrollAllActions.getChildren().clear();
-        
-        //crea un togglegroup da passare alle card. In questo modo l'utente può selezionare un'unica azione
-        actionToggleGroup = new ToggleGroup();
-        
-        audioActionController = (AudioActionController) createCardAction("/actions/AudioAction/AudioAction.fxml", audioActionController);
-        actionMap.put("Audio", audioActionController);
-        messageActionController = (MessageActionController) createCardAction("/actions/MessageAction/MessageAction.fxml", messageActionController);
-        actionMap.put("Message", messageActionController);
-        writeFileActionController = (WriteFileActionController) createCardAction("/actions/WriteFileAction/WriteFileAction.fxml", writeFileActionController);
-        actionMap.put("WriteFile", writeFileActionController);
-        copyFileActionController = (CopyFileActionController) createCardAction("/actions/CopyFileAction/CopyFileAction.fxml", copyFileActionController);
-        actionMap.put("CopyFile", copyFileActionController);
-        moveFileActionController = (MoveFileActionController) createCardAction("/actions/MoveFileAction/MoveFileAction.fxml", moveFileActionController);
-        actionMap.put("MoveFile", moveFileActionController);
-        deleteFileActionController = (DeleteFileActionController) createCardAction("/actions/DeleteFileAction/DeleteFileAction.fxml", deleteFileActionController);
-        actionMap.put("DeleteFile", deleteFileActionController);
-        programActionController = (ProgramActionController) createCardAction("/actions/ProgramAction/ProgramAction.fxml", programActionController);
-        actionMap.put("Program", programActionController);
-        
-    }
-    
-    private ActionController createCardAction(String pathFXML, ActionController controller) throws IOException{
-        FXMLLoader fxmlLoader = new FXMLLoader();
-        fxmlLoader.setLocation(getClass().getResource(pathFXML));
-        HBox hbox = fxmlLoader.load();
-        controller = fxmlLoader.getController();
-        controller.setToggleGroup(actionToggleGroup);
-        scrollAllActions.getChildren().add(hbox);
-        return controller;
-    }
-    
-    //caricamento triggers in window3. L'utente può visualizzare tutti i triggerCards.
-    private void loadAllTriggersCards() throws IOException{
-        scrollAllTriggers.getChildren().clear();
-        
-        triggerToggleGroup = new ToggleGroup();
-        
-        timeTriggerController = (TimeTriggerController) createCardTrigger("/triggers/TimeTrigger/TimeTrigger.fxml", timeTriggerController);
-        dayOfWeekTriggerController = (DayOfWeekTriggerController) createCardTrigger("/triggers/DayOfWeekTrigger/DayOfWeekTrigger.fxml", dayOfWeekTriggerController);
-        dayOfMonthTriggerController = (DayOfMonthTriggerController) createCardTrigger("/triggers/DayOfMonthTrigger/DayOfMonthTrigger.fxml", dayOfMonthTriggerController);
-        dateTriggerController = (DateTriggerController) createCardTrigger("/triggers/DateTrigger/DateTrigger.fxml", dateTriggerController);
-        fileTriggerController = (FileTriggerController) createCardTrigger("/triggers/FileTrigger/FileTrigger.fxml", fileTriggerController);
-        fileSizeTriggerController = (FileSizeTriggerController) createCardTrigger("/triggers/FileSizeTrigger/FileSizeTrigger.fxml", fileSizeTriggerController);
-    }
-    
-    private TriggerController createCardTrigger(String pathFXML, TriggerController controller) throws IOException{
-        FXMLLoader fxmlLoader = new FXMLLoader();
-        fxmlLoader.setLocation(getClass().getResource(pathFXML));
-        HBox hbox = fxmlLoader.load();
-        controller = fxmlLoader.getController();
-        controller.setToggleGroup(triggerToggleGroup);
-        scrollAllTriggers.getChildren().add(hbox);
-        return controller;
-    }
-
     //pulsante goBack permette di tornare alla window1
     @FXML
     private void goToHome(ActionEvent event) {

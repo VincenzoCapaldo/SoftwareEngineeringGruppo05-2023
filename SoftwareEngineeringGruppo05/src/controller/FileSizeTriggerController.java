@@ -1,4 +1,4 @@
-package triggers.FileSizeTrigger;
+package controller;
 
 import java.io.File;
 import java.net.URL;
@@ -22,14 +22,14 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import triggers.TriggerController;
+import triggers.FileSizeTrigger.FileSizeUnit;
 
 /**
  * FXML Controller class
  *
  * @author enzo0
  */
-public class FileSizeTriggerController implements Initializable, TriggerController {
+public class FileSizeTriggerController implements Initializable, Controller {
 
     @FXML
     private HBox fileSizeTriggerBox;

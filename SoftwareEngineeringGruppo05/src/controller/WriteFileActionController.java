@@ -1,4 +1,4 @@
-package actions.ProgramAction;
+package controller;
 
 import java.io.File;
 import java.net.URL;
@@ -18,92 +18,91 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import actions.ActionController;
+import controller.Controller;
 
 /**
  * FXML Controller class
  *
- * @author Luca
+ * @author enzo0
  */
-public class ProgramActionController implements Initializable, ActionController {
+public class WriteFileActionController implements Initializable, Controller {
 
     @FXML
-    private VBox vBoxProgram;
+    private HBox writerActionBox;
     @FXML
-    private TextArea commandTextArea;
-    @FXML
-    private RadioButton programActionRB;
+    private RadioButton writeActionRB;
     @FXML
     private ToggleGroup selectActionTG;
     @FXML
     private Button browseButton;
+    @FXML
+    private TextArea messageTextArea;
     private File selectedFile;
-    private BooleanProperty flagProgram;
+    private BooleanProperty flagWriter;
     @FXML
-    private HBox programactionBox;
+    private VBox vboxWriter;
     @FXML
-    private HBox hBoxProgram;
-
+    private HBox hboxWriter;
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        flagProgram = new SimpleBooleanProperty(true);
-        BooleanProperty isWriterActionSelected = programActionRB.selectedProperty();
- 
-        commandTextArea.visibleProperty().bind(Bindings.createBooleanBinding(
+        flagWriter = new SimpleBooleanProperty(true);
+        BooleanProperty isWriterActionSelected = writeActionRB.selectedProperty();
+
+        messageTextArea.visibleProperty().bind(Bindings.createBooleanBinding(
             () -> {
                 boolean writerActionSelected = isWriterActionSelected.get();
 
                 // Aggiungi o rimuovi il pulsante e la textArea dal layout in base allo stato del RadioButton: azione eseguita dal thread principale
                 Platform.runLater(() -> {
                         if (!writerActionSelected) {
-                            vBoxProgram.getChildren().remove(commandTextArea);
-                            hBoxProgram.getChildren().remove(browseButton);
-                            programactionBox.setPrefHeight(70);
-                            commandTextArea.clear(); 
+                            vboxWriter.getChildren().remove(messageTextArea);
+                            hboxWriter.getChildren().remove(browseButton);
+                            writerActionBox.setPrefHeight(70);
+                            messageTextArea.clear(); 
                         } else {
-                            hBoxProgram.getChildren().add(browseButton);
-                            vBoxProgram.getChildren().add(commandTextArea);
-                            programactionBox.setPrefHeight(181);
+                            hboxWriter.getChildren().add(browseButton);
+                            vboxWriter.getChildren().add(messageTextArea);
+                            writerActionBox.setPrefHeight(181);
                         }
                 });
                 return writerActionSelected;
             },
             isWriterActionSelected
         ));
- 
+        
+        
     }    
 
     @FXML
-    private void browseProgram(ActionEvent event) {
+    private void browseFile(ActionEvent event) {
         FileChooser fileChooser = new FileChooser();
-        fileChooser.setTitle("Select a executable program");
+        fileChooser.setTitle("Select a text file");
 
-        /*fileChooser.getExtensionFilters().addAll(
-            new FileChooser.ExtensionFilter("Executable program", "*.bat"));*/
+        fileChooser.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("Text File", "*.txt"));
         
         Stage stage = (Stage) browseButton.getScene().getWindow();
         selectedFile = fileChooser.showOpenDialog(stage);
 
         // La flagWriter è vera solo quando non è stato selezionato un file
         Platform.runLater(() -> {
-            if (selectedFile == null) {
-                flagProgram.set(true);
-            } else {
-                flagProgram.set(false);
-            }
+             flagWriter.bind(Bindings.createBooleanBinding(
+                () -> selectedFile == null || messageTextArea.getText().isEmpty(),
+                messageTextArea.textProperty()
+            ));
         });
     }
     
     @Override
     public void setToggleGroup(ToggleGroup toggleGroup) {
-        programActionRB.setToggleGroup(toggleGroup);
+        writeActionRB.setToggleGroup(toggleGroup);
     }
     
     public String getTextArea(){
-        return commandTextArea.getText();
+        return messageTextArea.getText();
     }
     
     public String getFilePath(){
@@ -112,8 +111,6 @@ public class ProgramActionController implements Initializable, ActionController 
     
     @Override
     public BooleanProperty getFlag() {
-        return flagProgram;
+        return flagWriter;
     }
-
-    
 }

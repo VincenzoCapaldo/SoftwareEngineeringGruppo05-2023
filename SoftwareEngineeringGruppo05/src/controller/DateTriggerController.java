@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
  */
-package triggers.DateTrigger;
+package controller;
 
 import java.net.URL;
 import java.time.LocalDate;
@@ -16,21 +16,16 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.DateCell;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.RadioButton;
-import javafx.scene.control.Spinner;
-import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.control.ToggleGroup;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import softwareengineeringgruppo05.CheckValueClass;
-import triggers.TriggerController;
 
 /**
  * FXML Controller class
  *
  * @author maria
  */
-public class DateTriggerController implements Initializable, TriggerController {
+public class DateTriggerController implements Initializable, Controller {
 
     @FXML
     private HBox dateTriggerBox;
@@ -93,6 +88,11 @@ public class DateTriggerController implements Initializable, TriggerController {
         });
         // Imposta il DatePicker sulla data corrente
         datePicker.setValue(LocalDate.now());
+    }
+
+    @Override
+    public BooleanProperty getFlag() {
+        return new SimpleBooleanProperty(false);
     }
     
 }

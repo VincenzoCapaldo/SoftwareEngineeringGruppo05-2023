@@ -11,11 +11,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<HBox fx:id="fileTriggerBox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="163.0" prefWidth="320.0" stylesheets="@../../css/style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="triggers.FileTrigger.FileTriggerController">
+<HBox fx:id="fileTriggerBox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="163.0" prefWidth="320.0" stylesheets="@../../css/style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.FileTriggerController">
    <children>
       <VBox fx:id="vboxFileTrigger" prefHeight="106.0" prefWidth="300.0" spacing="10.0" stylesheets="@../../css/style.css">
          <children>
-            <RadioButton fx:id="fileTriggerRB" mnemonicParsing="false" prefHeight="31.0" prefWidth="150.0" styleClass="white_text" stylesheets="@../../css/style.css" text="FileTrigger">
+            <RadioButton fx:id="fileTriggerRB" mnemonicParsing="false" prefHeight="31.0" prefWidth="150.0" styleClass="white_text" stylesheets="@../../css/style.css" text="File">
                <font>
                   <Font size="21.0" />
                </font>

@@ -1,4 +1,8 @@
-package actions.CopyFileAction;
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
+ */
+package controller;
 
 import java.io.File;
 import java.net.URL;
@@ -19,71 +23,68 @@ import javafx.scene.layout.VBox;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import actions.ActionController;
+import controller.Controller;
 
 /**
  * FXML Controller class
  *
  * @author enzo0
  */
-public class CopyFileActionController implements Initializable, ActionController {
+public class MoveFileActionController implements Initializable, Controller {
 
     @FXML
-    private HBox copyFileActionBox;
+    private HBox moveFileActionBox;
     @FXML
-    private VBox vboxCopyFile;
+    private VBox vboxMoveFile;
     @FXML
-    private RadioButton copyFileActionRB;
+    private RadioButton moveFileActionRB;
     @FXML
     private ToggleGroup selectActionTG;
     @FXML
+    private HBox hboxMoveFileOptions;
+    @FXML
+    private Label moveLabel;
+    @FXML
     private Button fileButton;
+    @FXML
+    private Label toLabel;
     @FXML
     private Button directoryButton;
     
     private File selectedFile;
     private File selectedDirectory;
-    
-    private BooleanProperty flagCopyFile;
-    @FXML
-    private Label copyLabel;
-    @FXML
-    private Label toLabel;
-    @FXML
-    private HBox hboxCopyFileOptions;
+    private BooleanProperty flagMoveFile;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        flagCopyFile = new SimpleBooleanProperty(true);
-        BooleanProperty isCopyFileActionSelected = copyFileActionRB.selectedProperty();
+        flagMoveFile = new SimpleBooleanProperty(true);
+        BooleanProperty isMoveFileActionSelected = moveFileActionRB.selectedProperty();
         
-        hboxCopyFileOptions.visibleProperty().bind(Bindings.createBooleanBinding(
+        hboxMoveFileOptions.visibleProperty().bind(Bindings.createBooleanBinding(
             () -> {
-                boolean CopyFileSelected = isCopyFileActionSelected.get();
+                boolean MoveFileSelected = isMoveFileActionSelected.get();
 
                 // Aggiungi o rimuovi elementi dal layout in base allo stato del RadioButton.
                 Platform.runLater(() -> {
-                        if (!CopyFileSelected) {
-                            hboxCopyFileOptions.getChildren().removeAll(copyLabel, fileButton, toLabel, directoryButton);
-                            hboxCopyFileOptions.setPrefHeight(70);
-                            copyFileActionBox.setPrefHeight(80);
-                            vboxCopyFile.setPrefHeight(70);
-                            flagCopyFile.set(true);    
+                        if (!MoveFileSelected) {
+                            hboxMoveFileOptions.getChildren().removeAll(moveLabel, fileButton, toLabel, directoryButton);
+                            moveFileActionBox.setPrefHeight(70);
+                            vboxMoveFile.setPrefHeight(70);
+                            flagMoveFile.set(true);    
                         } else {
-                            hboxCopyFileOptions.getChildren().addAll(copyLabel, fileButton, toLabel, directoryButton);
-                            copyFileActionBox.setPrefHeight(118);
-                            hboxCopyFileOptions.setPrefHeight(118);
-                            vboxCopyFile.setPrefHeight(118);
+                            hboxMoveFileOptions.getChildren().addAll(moveLabel, fileButton, toLabel, directoryButton);
+                            moveFileActionBox.setPrefHeight(118);
+                            hboxMoveFileOptions.setPrefHeight(118);
+                            vboxMoveFile.setPrefHeight(118);
                         }
                 });
-                return CopyFileSelected;
+                return MoveFileSelected;
             },
-            isCopyFileActionSelected
+            isMoveFileActionSelected
         ));
-         
     }    
 
     @FXML
@@ -95,9 +96,9 @@ public class CopyFileActionController implements Initializable, ActionController
         selectedFile = fileChooser.showOpenDialog(stage);
         Platform.runLater(() -> {
             if (!(selectedFile == null || selectedDirectory == null)) {
-                flagCopyFile.set(false);
+                flagMoveFile.set(false);
             } else {
-                flagCopyFile.set(true);
+                flagMoveFile.set(true);
             }
         });
     }
@@ -112,16 +113,16 @@ public class CopyFileActionController implements Initializable, ActionController
         
         Platform.runLater(() -> {
             if (!(selectedFile == null || selectedDirectory == null)) {
-                flagCopyFile.set(false);
+                flagMoveFile.set(false);
             } else {
-                flagCopyFile.set(true);
+                flagMoveFile.set(true);
             }
         });
     }
     
     @Override
     public void setToggleGroup(ToggleGroup toggleGroup) {
-        copyFileActionRB.setToggleGroup(toggleGroup);
+        moveFileActionRB.setToggleGroup(toggleGroup);
     }
     
     public String getFilePath(){
@@ -134,7 +135,7 @@ public class CopyFileActionController implements Initializable, ActionController
     
     @Override
     public BooleanProperty getFlag() {
-        return flagCopyFile;
+        return flagMoveFile;
     }
-
+    
 }

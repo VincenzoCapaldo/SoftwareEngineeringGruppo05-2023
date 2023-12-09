@@ -1,5 +1,6 @@
-package actions.AudioAction;
+package controller;
 
+import controller.Controller;
 import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -16,14 +17,13 @@ import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.HBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import actions.ActionController;
 
 /**
  * FXML Controller class
  *
  * @author enzo0
  */
-public class AudioActionController implements Initializable, ActionController {
+public class AudioActionController implements Initializable, Controller {
 
     @FXML
     private HBox soundActionBox;

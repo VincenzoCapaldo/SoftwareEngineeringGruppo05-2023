@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
  */
-package actions.DeleteFileAction;
+package controller;
 
 import java.io.File;
 import java.net.URL;
@@ -23,14 +23,14 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
-import actions.ActionController;
+import controller.Controller;
 
 /**
  * FXML Controller class
  *
  * @author enzo0
  */
-public class DeleteFileActionController implements Initializable, ActionController {
+public class DeleteFileActionController implements Initializable, Controller {
 
     @FXML
     private HBox deleteFileActionBox;
