@@ -1,12 +1,12 @@
 package softwareengineeringgruppo05;
 
-import actions.Action;
+import model.actions.Action;
 import java.util.Map;
 import manager.ActionManager;
 import manager.TriggerManager;
-import rules.Rule;
-import rules.RuleManager;
-import triggers.Trigger;
+import model.rules.Rule;
+import model.rules.RuleManager;
+import model.triggers.Trigger;
 
 /**
  *

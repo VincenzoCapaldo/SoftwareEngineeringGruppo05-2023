@@ -1,9 +1,9 @@
 package actions.WriterAction;
 
-import actions.WriteFileAction.WriteFileAction;
+import model.actions.WriteFileAction;
 import org.junit.*;
 import static org.junit.Assert.*;
-import actions.Action;
+import model.actions.Action;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;

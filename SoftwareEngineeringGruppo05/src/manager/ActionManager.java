@@ -1,6 +1,6 @@
 package manager;
 
-import actions.Action;
+import model.actions.Action;
 import javafx.beans.property.BooleanProperty;
 import javafx.fxml.FXMLLoader;
 import controller.Controller;

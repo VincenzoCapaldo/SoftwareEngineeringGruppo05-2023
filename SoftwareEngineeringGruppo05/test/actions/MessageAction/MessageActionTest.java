@@ -1,6 +1,7 @@
 package actions.MessageAction;
 
-import actions.Action;
+import model.actions.MessageAction;
+import model.actions.Action;
 import org.junit.Before;
 import org.junit.Test;
 

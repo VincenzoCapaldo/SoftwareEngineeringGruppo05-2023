@@ -4,6 +4,7 @@
  */
 package triggers.DayOfWeekTrigger;
 
+import model.triggers.DayOfWeekTrigger;
 import java.time.DayOfWeek;
 import org.junit.After;
 import org.junit.AfterClass;

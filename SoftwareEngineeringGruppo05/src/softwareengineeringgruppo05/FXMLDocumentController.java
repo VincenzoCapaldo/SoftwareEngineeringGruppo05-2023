@@ -1,6 +1,6 @@
 package softwareengineeringgruppo05;
 
-import rules.RuleCardController;
+import controller.rules.RuleCardController;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Map;
@@ -21,28 +21,28 @@ import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import rules.Rule;
-import rules.RuleManager;
-import manager.AudioActionManager;
+import model.rules.Rule;
+import model.rules.RuleManager;
+import manager.actions.AudioActionManager;
 import manager.ActionManager;
-import manager.CopyFileActionManager;
-import manager.DeleteFileActionManager;
-import manager.MessageActionManager;
-import manager.MoveFileActionManager;
-import manager.ProgramActionManager;
-import manager.WriteFileActionManager;
-import manager.DateTriggerManager;
-import manager.DayOfMonthTriggerManager;
-import manager.DayOfWeekTriggerManager;
-import manager.FileSizeTriggerManager;
-import manager.FileTriggerManager;
-import manager.TimeTriggerManager;
+import manager.actions.CopyFileActionManager;
+import manager.actions.DeleteFileActionManager;
+import manager.actions.MessageActionManager;
+import manager.actions.MoveFileActionManager;
+import manager.actions.ProgramActionManager;
+import manager.actions.WriteFileActionManager;
+import manager.triggers.DateTriggerManager;
+import manager.triggers.DayOfMonthTriggerManager;
+import manager.triggers.DayOfWeekTriggerManager;
+import manager.triggers.FileSizeTriggerManager;
+import manager.triggers.FileTriggerManager;
+import manager.triggers.TimeTriggerManager;
 import manager.TriggerManager;
 import controller.Controller;
 import java.util.LinkedHashMap;
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.SimpleBooleanProperty;
-import manager.ProgramTriggerManager;
+import manager.triggers.ProgramTriggerManager;
 
 /**
  * FXML Controller class
@@ -238,6 +238,14 @@ public class FXMLDocumentController implements Initializable {
     
     }
     
+    //pulsante goBack permette di tornare alla window1
+    @FXML
+    private void goToHome(ActionEvent event) {
+        window1.visibleProperty().set(true);
+        window3.visibleProperty().set(false);
+        loadAllRules();
+    }
+    
     //caricamento delle ruleCards 
     private void loadAllRules(){
         
@@ -263,14 +271,6 @@ public class FXMLDocumentController implements Initializable {
             }
         }
         
-    }
-    
-    //pulsante goBack permette di tornare alla window1
-    @FXML
-    private void goToHome(ActionEvent event) {
-        window1.visibleProperty().set(true);
-        window3.visibleProperty().set(false);
-        loadAllRules();
     }
     
 }
