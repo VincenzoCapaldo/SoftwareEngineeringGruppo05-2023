@@ -13,6 +13,7 @@ import java.util.logging.Logger;
  * @author Paolo
  */
 public class MoveFileAction implements Action{
+    
     private String filePath; //path del file da spostare
     private String newPath; //path della cartella di destinazione
 

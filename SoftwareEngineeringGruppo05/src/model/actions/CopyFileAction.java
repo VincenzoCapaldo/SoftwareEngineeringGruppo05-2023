@@ -13,6 +13,7 @@ import java.util.logging.Logger;
  * @author maria
  */
 public class CopyFileAction implements Action{
+    
     private String filePath; //path del file da copiare
     private String newPath; //path della cartella di destinazione
 

@@ -12,19 +12,25 @@ import java.util.logging.Logger;
  * @author maria
  */
 public class DeleteFileAction implements Action{
-    private String directoryPath;
-    private String filePath;
+    
+    private String directoryPath; //directory del file da eliminare
+    private String nameFile; //nome del file da eliminare
     
     public DeleteFileAction(String directoryPath, String filePath) {
         this.directoryPath = filePath;
-        this.filePath = filePath;
+        this.nameFile = filePath;
     }
 
     @Override
     public void execute() {
         try {
-            Path sourcePath = Paths.get(directoryPath +  "/" + filePath); //ottiene un oggetto Path a partire dalla stringa
-            Files.delete(sourcePath); //elimina il file con il Path indicato
+            
+            Path sourcePath = Paths.get(directoryPath +  "/" + nameFile);
+            //ottiene un oggetto Path a partire dalla stringa
+            
+            Files.delete(sourcePath);
+            //elimina il file con il Path indicato
+        
         } catch (IOException ex) {
             Logger.getLogger(DeleteFileAction.class.getName()).log(Level.SEVERE, null, ex);
         }
