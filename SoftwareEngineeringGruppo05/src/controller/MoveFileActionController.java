@@ -95,11 +95,7 @@ public class MoveFileActionController implements Initializable, Controller {
         Stage stage = (Stage) fileButton.getScene().getWindow();
         selectedFile = fileChooser.showOpenDialog(stage);
         Platform.runLater(() -> {
-            if (!(selectedFile == null || selectedDirectory == null)) {
-                flagMoveFile.set(false);
-            } else {
-                flagMoveFile.set(true);
-            }
+            flagMoveFile.setValue(selectedFile == null || selectedDirectory == null);
         });
     }
 
@@ -112,11 +108,7 @@ public class MoveFileActionController implements Initializable, Controller {
         selectedDirectory = directoryChooser.showDialog(stage);
         
         Platform.runLater(() -> {
-            if (!(selectedFile == null || selectedDirectory == null)) {
-                flagMoveFile.set(false);
-            } else {
-                flagMoveFile.set(true);
-            }
+           flagMoveFile.setValue(selectedFile == null || selectedDirectory == null);
         });
     }
     

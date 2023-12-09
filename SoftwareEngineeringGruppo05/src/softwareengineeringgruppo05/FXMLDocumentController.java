@@ -40,6 +40,8 @@ import manager.TimeTriggerManager;
 import manager.TriggerManager;
 import controller.Controller;
 import java.util.LinkedHashMap;
+import java.util.List;
+import javafx.beans.binding.Bindings;
 import javafx.beans.property.SimpleBooleanProperty;
 
 /**
@@ -146,15 +148,48 @@ public class FXMLDocumentController implements Initializable {
         //se non è selezionata almeno un'azione o almeno un trigger bb2=true
         BooleanBinding bbToggleGroup = actionToggleGroup.selectedToggleProperty().isNull().or(triggerToggleGroup.selectedToggleProperty().isNull());
 
-        BooleanProperty bbAction = new SimpleBooleanProperty(true);
-        for (ActionManager am : actionManager.values()){
-            bbAction.and(am.isNotCompleted());
+        ActionManager[] actionManagers = actionManager.values().toArray(new ActionManager[0]);
+        BooleanBinding bbAction = null;
+        for(int i=0; i<actionManagers.length; i=i+2){
+            ActionManager am = actionManagers[i];
+            // Controlla se c'è un ActionManager successivo
+            if (i + 1 < actionManagers.length) {
+                ActionManager nextAm = actionManagers[i + 1];
+
+                // Inizializza la BooleanBinding con l'and tra lo stato "non completato" di am e nextAm
+                BooleanBinding currentBinding = Bindings.and(am.isNotCompleted(), nextAm.isNotCompleted());
+
+                // Se bbAction è già inizializzata, effettua l'and con la nuova BooleanBinding
+                if (bbAction != null) {
+                    bbAction = bbAction.and(currentBinding);
+                } else {
+                    // Altrimenti, inizializza bbAction con la prima BooleanBinding
+                    bbAction = currentBinding;
+                }
+            }
         }
         
-        BooleanProperty bbTrigger = new SimpleBooleanProperty(true);
-        for (TriggerManager tm : triggerManager.values()){
-            bbTrigger.and(tm.isNotCompleted());
+        TriggerManager[] triggerManagers = triggerManager.values().toArray(new TriggerManager[0]);
+        BooleanBinding bbTrigger = null;
+        for(int i=0; i<triggerManagers.length; i=i+2){
+            TriggerManager tm = triggerManagers[i];
+            // Controlla se c'è un TriggerManager successivo
+            if (i + 1 < triggerManagers.length) {
+                TriggerManager nextTm = triggerManagers[i + 1];
+
+                // Inizializza la BooleanBinding con l'and tra lo stato "non completato" di tm e nextTm
+                BooleanBinding currentBinding = Bindings.and(tm.isNotCompleted(), nextTm.isNotCompleted());
+
+                // Se bbTrigger è già inizializzata, effettua l'and con la nuova BooleanBinding
+                if (bbTrigger != null) {
+                    bbTrigger = bbTrigger.and(currentBinding);
+                } else {
+                    // Altrimenti, inizializza bbAction con la prima BooleanBinding
+                    bbTrigger = currentBinding;
+                }
+            }
         }
+
         
         //se non è stato inserito il nome della regola O non è selezionata un'azione/ trigger O l'azione selezionata non è completa bb=true
         BooleanBinding bb = bbRuleName.or(bbToggleGroup).or(bbAction).or(bbTrigger);

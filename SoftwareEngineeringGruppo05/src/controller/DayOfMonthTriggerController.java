@@ -40,14 +40,18 @@ public class DayOfMonthTriggerController implements Initializable, Controller {
     private LocalDate currentDate  = LocalDate.now();
     @FXML
     private CheckBox repetitionCheckBox;
+    
+    private BooleanProperty flagDayOfMonthTrigger;
         
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        flagDayOfMonthTrigger = new SimpleBooleanProperty(true);
         
         BooleanProperty isTriggerDayOfMonthSelected = dayOfMonthRB.selectedProperty();
+        flagDayOfMonthTrigger.bind(Bindings.when(isTriggerDayOfMonthSelected).then(false).otherwise(true));
         dayOfMonthSpinner.visibleProperty().bind(Bindings.createBooleanBinding(
             () -> {
                 boolean dayOfMonthTriggerSelected = isTriggerDayOfMonthSelected.get();
@@ -98,7 +102,7 @@ public class DayOfMonthTriggerController implements Initializable, Controller {
          
     @Override
     public BooleanProperty getFlag() {
-        return new SimpleBooleanProperty(false);
+        return flagDayOfMonthTrigger;
     }
     
 }

@@ -80,11 +80,9 @@ public class AudioActionController implements Initializable, Controller {
 
         // La flagAudio è vera solo quando non è stato selezionato un file
         Platform.runLater(() -> {
-            if (selectedFile == null) {
-                flagAudio.set(true);
-            } else {
-                flagAudio.set(false);
-            }
+            Platform.runLater(() -> {
+             flagAudio.setValue(selectedFile == null);
+         });
         });
          
     }

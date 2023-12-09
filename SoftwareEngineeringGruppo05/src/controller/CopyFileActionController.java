@@ -94,11 +94,7 @@ public class CopyFileActionController implements Initializable, Controller {
         Stage stage = (Stage) fileButton.getScene().getWindow();
         selectedFile = fileChooser.showOpenDialog(stage);
         Platform.runLater(() -> {
-            if (!(selectedFile == null || selectedDirectory == null)) {
-                flagCopyFile.set(false);
-            } else {
-                flagCopyFile.set(true);
-            }
+             flagCopyFile.setValue(selectedFile == null || selectedDirectory == null);
         });
     }
 
@@ -111,11 +107,7 @@ public class CopyFileActionController implements Initializable, Controller {
         selectedDirectory = directoryChooser.showDialog(stage);
         
         Platform.runLater(() -> {
-            if (!(selectedFile == null || selectedDirectory == null)) {
-                flagCopyFile.set(false);
-            } else {
-                flagCopyFile.set(true);
-            }
+            flagCopyFile.setValue(selectedFile == null || selectedDirectory == null);
         });
     }
     

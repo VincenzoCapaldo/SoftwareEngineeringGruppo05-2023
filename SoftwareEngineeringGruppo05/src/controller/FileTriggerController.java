@@ -57,7 +57,7 @@ public class FileTriggerController implements Initializable, Controller {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        flagFileTrigger = new SimpleBooleanProperty(false);
+        flagFileTrigger = new SimpleBooleanProperty(true);
 
         isFileTriggerSelected = fileTriggerRB.selectedProperty();
         hbox1.visibleProperty().bind(Bindings.createBooleanBinding(
@@ -72,11 +72,6 @@ public class FileTriggerController implements Initializable, Controller {
                         vboxFileTrigger.getChildren().removeAll(hbox1, hbox2);
                         fileTriggerBox.setPrefHeight(75);
                     } else {
-                        flagFileTrigger.bind(Bindings.createBooleanBinding(
-                           () -> fileTriggerRB.isSelected() && (selectedDirectory == null || fileNameTextField.getText().isEmpty()) ,
-                           fileNameTextField.textProperty(),
-                           isFileTriggerSelected
-                        ));
                         vboxFileTrigger.getChildren().addAll(hbox1, hbox2);
                         fileTriggerBox.setPrefHeight(163);
                     }
@@ -94,11 +89,12 @@ public class FileTriggerController implements Initializable, Controller {
 
         Stage stage = (Stage) directoryButton.getScene().getWindow();
         selectedDirectory = directoryChooser.showDialog(stage);
-        flagFileTrigger.bind(Bindings.createBooleanBinding(
-            () -> fileTriggerRB.isSelected() && (selectedDirectory == null || fileNameTextField.getText().isEmpty()) ,
-            fileNameTextField.textProperty(),
-            isFileTriggerSelected
-        ));
+        Platform.runLater(() -> {
+             flagFileTrigger.bind(Bindings.createBooleanBinding(
+                () -> selectedDirectory == null || fileNameTextField.getText().isEmpty(),
+                fileNameTextField.textProperty()
+            ));
+        });
     }
 
     @Override

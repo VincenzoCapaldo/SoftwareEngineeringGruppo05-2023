@@ -54,12 +54,16 @@ public class TimeTriggerController implements Initializable, Controller {
     private Spinner<Integer> repetitionTimeSpinnerMinutes;
     @FXML
     private VBox vboxRepetition;
+    
+    private BooleanProperty flagTimeTrigger;
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        flagTimeTrigger = new SimpleBooleanProperty(true);
         BooleanProperty isTriggerTimeSelected = timeTriggerRB.selectedProperty();
+        flagTimeTrigger.bind(Bindings.when(isTriggerTimeSelected).then(false).otherwise(true));
         boxSpinnerTriggerTime.visibleProperty().bind(Bindings.createBooleanBinding(
             () -> {
                 boolean timeTriggerSelected = isTriggerTimeSelected.get();
@@ -168,7 +172,7 @@ public class TimeTriggerController implements Initializable, Controller {
     
     @Override
     public BooleanProperty getFlag() {
-        return new SimpleBooleanProperty(false);
+        return flagTimeTrigger;
     }
     
 }

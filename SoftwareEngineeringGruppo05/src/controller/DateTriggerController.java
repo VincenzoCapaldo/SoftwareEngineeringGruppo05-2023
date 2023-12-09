@@ -39,14 +39,17 @@ public class DateTriggerController implements Initializable, Controller {
     private BooleanProperty isTriggerDateSelected = new SimpleBooleanProperty(false);
     @FXML
     private DatePicker datePicker;
+    
+    private BooleanProperty flagDateTrigger;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
-        isTriggerDateSelected.bind(dateTriggerRB.selectedProperty());
+        flagDateTrigger= new SimpleBooleanProperty(true);
+        isTriggerDateSelected = dateTriggerRB.selectedProperty();
+        flagDateTrigger.bind(Bindings.when(isTriggerDateSelected).then(false).otherwise(true));
         datePicker.visibleProperty().bind(Bindings.createBooleanBinding(
             () -> {
                 boolean timeTriggerSelected = isTriggerDateSelected.get();
@@ -92,7 +95,7 @@ public class DateTriggerController implements Initializable, Controller {
 
     @Override
     public BooleanProperty getFlag() {
-        return new SimpleBooleanProperty(false);
+        return flagDateTrigger;
     }
     
 }

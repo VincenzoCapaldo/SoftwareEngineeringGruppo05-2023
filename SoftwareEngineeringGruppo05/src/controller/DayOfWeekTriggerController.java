@@ -35,14 +35,20 @@ public class DayOfWeekTriggerController implements Initializable, Controller {
     private VBox dayOfWeekVbox;
     @FXML
     private CheckBox repetitionCheckBox;
+    
+    private BooleanProperty flagDayOfWeekTrigger; 
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-       createComboDay();
+        flagDayOfWeekTrigger = new SimpleBooleanProperty(true);
+        createComboDay();
+        
         BooleanProperty isTriggerDayOfWeekSelected = dayOfWeekRB.selectedProperty();
+        
+        flagDayOfWeekTrigger.bind(Bindings.when(isTriggerDayOfWeekSelected).then(false).otherwise(true));
         dayOfWeekCombo.visibleProperty().bind(Bindings.createBooleanBinding(
             () -> {
                 boolean dayOfWeekTriggerSelected = isTriggerDayOfWeekSelected.get();
@@ -94,6 +100,6 @@ public class DayOfWeekTriggerController implements Initializable, Controller {
     
     @Override
     public BooleanProperty getFlag() {
-        return new SimpleBooleanProperty(false);
+        return flagDayOfWeekTrigger;
     }
 }

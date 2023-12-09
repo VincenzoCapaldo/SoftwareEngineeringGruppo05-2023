@@ -62,7 +62,8 @@ public class ProgramActionController implements Initializable, Controller {
                             vBoxProgram.getChildren().remove(commandTextArea);
                             hBoxProgram.getChildren().remove(browseButton);
                             programactionBox.setPrefHeight(70);
-                            commandTextArea.clear(); 
+                            commandTextArea.clear();
+                            flagProgram.setValue(true);
                         } else {
                             hBoxProgram.getChildren().add(browseButton);
                             vBoxProgram.getChildren().add(commandTextArea);
@@ -89,11 +90,7 @@ public class ProgramActionController implements Initializable, Controller {
 
         // La flagWriter è vera solo quando non è stato selezionato un file
         Platform.runLater(() -> {
-            if (selectedFile == null) {
-                flagProgram.set(true);
-            } else {
-                flagProgram.set(false);
-            }
+            flagProgram.setValue(selectedFile == null);
         });
     }
     
