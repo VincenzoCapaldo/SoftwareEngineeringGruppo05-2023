@@ -18,10 +18,12 @@ import javafx.scene.control.Spinner;
 import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import softwareengineeringgruppo05.CheckValueClass;
 import triggers.FileSizeTrigger.FileSizeUnit;
 
 /**
@@ -133,6 +135,14 @@ public class FileSizeTriggerController implements Initializable, Controller {
         sizeCombo.getItems().addAll(FileSizeUnit.values());
         sizeCombo.setValue(FileSizeUnit.B);
     }
+
+    @FXML
+    private void onSizeChanged(KeyEvent event) {
+        CheckValueClass check = new CheckValueClass();
+        check.checkValue(fileSizeSpinner, 0, 100000);
+    }
+    
+
 
 
 }
