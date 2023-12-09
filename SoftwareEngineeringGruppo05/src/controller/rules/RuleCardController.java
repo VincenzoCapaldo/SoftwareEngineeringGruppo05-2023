@@ -17,6 +17,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import model.rules.Rule;
 import model.rules.RuleManager;
@@ -40,6 +41,18 @@ public class RuleCardController implements Observer, Initializable {
     private CheckBox stateRule;
     @FXML
     private ImageView deletePicker;
+    @FXML
+    private Label nameAction;
+    @FXML
+    private Label nameTrigger;
+    @FXML
+    private Label status;
+    @FXML
+    private ImageView info;
+    
+    private boolean selected = false;
+    @FXML
+    private VBox vBoxRule;
  
     /**
      * Initializes the controller class.
@@ -47,6 +60,8 @@ public class RuleCardController implements Observer, Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         ruleManager = RuleManager.getInstance();
+        ruleBox.setPrefHeight(80);
+        vBoxRule.getChildren().removeAll(nameAction, nameTrigger, status);
     }
 
    @FXML
@@ -69,7 +84,7 @@ public class RuleCardController implements Observer, Initializable {
             modalStage.initOwner(deletePicker.getScene().getWindow());
 
             modalStage.setTitle("Delete " + rule.getName() + "?");
-            modalStage.getIcons().add(new Image("/css/email.png"));
+            modalStage.getIcons().add(new Image("view/css/email.png"));
             modalStage.setScene(new Scene(root2));
             
             // Mostra la finestra modale e blocca l'interazione con la finestra sottostante
@@ -121,6 +136,20 @@ public class RuleCardController implements Observer, Initializable {
             stateRule.setSelected(false);
             ruleBox.getStyleClass().add("deactivated_rule_background");
             ruleBox.getStyleClass().remove("main_background");
+        }
+    }
+
+    @FXML
+    private void infoSelected(MouseEvent event) {
+        if(selected){
+            ruleBox.setPrefHeight(80);
+            vBoxRule.getChildren().removeAll(nameAction, nameTrigger, status);
+            selected=false;
+        }else{
+            ruleBox.setPrefHeight(300);
+            //nameAction.setText();
+            vBoxRule.getChildren().addAll(nameAction, nameTrigger, status);
+            selected=true;
         }
     }
 

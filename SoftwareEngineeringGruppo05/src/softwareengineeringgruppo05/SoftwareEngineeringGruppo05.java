@@ -29,7 +29,7 @@ public class SoftwareEngineeringGruppo05 extends Application {
         stage.setScene(scene);
         stage.setTitle("Your rules!");
         // Imposta l'icona della finestra (accanto al titolo)
-        stage.getIcons().add(new Image("/css/book.png"));
+        stage.getIcons().add(new Image("view/css/book.png"));
         stage.show();
         
         // Imposta l'azione di chiusura della finestra

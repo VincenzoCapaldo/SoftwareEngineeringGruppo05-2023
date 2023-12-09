@@ -13,17 +13,17 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="477.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="softwareengineeringgruppo05.FXMLDocumentController">
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="477.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="softwareengineeringgruppo05.FXMLDocumentController">
    <children>
       <AnchorPane fx:id="window1" prefHeight="400.0" prefWidth="600.0" stylesheets="@../css/style.css" visible="false">
          <children>
             <SplitPane dividerPositions="0.11306532663316583" layoutX="210.0" layoutY="78.0" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0" stylesheets="@../css/style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <items>
-                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="68.0" prefWidth="598.0" stylesheets="@../css/style.css" SplitPane.resizableWithParent="false">
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="68.0" prefWidth="598.0" stylesheets="@../view/css/style.css" SplitPane.resizableWithParent="false">
                      <children>
-                        <HBox alignment="CENTER" layoutX="199.0" layoutY="-29.0" prefHeight="53.0" prefWidth="919.0" styleClass="main_background" stylesheets="@../css/style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <HBox alignment="CENTER" layoutX="199.0" layoutY="-29.0" prefHeight="53.0" prefWidth="919.0" stylesheets="@../view/css/style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
-                              <Button fx:id="rulesButton" mnemonicParsing="false" prefHeight="63.0" prefWidth="698.0" stylesheets="@../css/style.css" text="Rules">
+                              <Button fx:id="rulesButton" mnemonicParsing="false" prefHeight="63.0" prefWidth="698.0" stylesheets="@../view/css/style.css" text="Rules">
                                  <font>
                                     <Font size="20.0" />
                                  </font>
@@ -36,13 +36,13 @@
                         </HBox>
                      </children>
                   </AnchorPane>
-                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" stylesheets="@../css/style.css" SplitPane.resizableWithParent="false">
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" stylesheets="@../view/css/style.css" SplitPane.resizableWithParent="false">
                      <children>
-                        <VBox layoutX="259.0" layoutY="49.0" prefHeight="200.0" prefWidth="100.0" stylesheets="@../css/style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <VBox layoutX="259.0" layoutY="49.0" prefHeight="200.0" prefWidth="100.0" stylesheets="@../view/css/style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
-                              <ScrollPane fitToWidth="true" prefHeight="372.0" prefWidth="698.0" styleClass="main_background" stylesheets="@../css/style.css" VBox.vgrow="ALWAYS">
+                              <ScrollPane fitToWidth="true" prefHeight="372.0" prefWidth="698.0" styleClass="main_background" stylesheets="@../view/css/style.css" VBox.vgrow="ALWAYS">
                                  <content>
-                                    <VBox fx:id="scrollRules" alignment="TOP_CENTER" prefHeight="1000.0" prefWidth="683.0" stylesheets="@../css/style.css">
+                                    <VBox fx:id="scrollRules" alignment="TOP_CENTER" prefHeight="1000.0" prefWidth="683.0" stylesheets="@../view/css/style.css">
                                        <styleClass>
                                           <String fx:value="light_main_background" />
                                           <String fx:value="margin_cards" />
@@ -53,9 +53,9 @@
                                     </VBox>
                                  </content>
                               </ScrollPane>
-                              <HBox alignment="CENTER_RIGHT" prefHeight="48.0" prefWidth="698.0" styleClass="main_background" stylesheets="@../css/style.css">
+                              <HBox alignment="CENTER_RIGHT" prefHeight="48.0" prefWidth="698.0" styleClass="main_background" stylesheets="@../view/css/style.css">
                                  <children>
-                                    <Button fx:id="newRule" mnemonicParsing="false" onAction="#goToWindowThree" styleClass="white_background" stylesheets="@../css/style.css" text="New Rule">
+                                    <Button fx:id="newRule" mnemonicParsing="false" onAction="#goToWindowThree" styleClass="white_background" stylesheets="@../view/css/style.css" text="New Rule">
                                        <HBox.margin>
                                           <Insets right="20.0" />
                                        </HBox.margin>
@@ -70,24 +70,24 @@
             </SplitPane>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="window3" prefHeight="200.0" prefWidth="200.0" stylesheets="@../css/style.css">
+      <AnchorPane fx:id="window3" prefHeight="200.0" prefWidth="200.0" stylesheets="@../view/css/style.css">
          <children>
-            <VBox fx:id="boxSleeping" layoutX="250.0" layoutY="100.0" prefHeight="200.0" prefWidth="100.0" stylesheets="@../css/style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <VBox fx:id="boxSleeping" layoutX="250.0" layoutY="100.0" prefHeight="200.0" prefWidth="100.0" stylesheets="@../view/css/style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
-                  <SplitPane dividerPositions="0.5" prefHeight="544.0" prefWidth="600.0" stylesheets="@../css/style.css" VBox.vgrow="ALWAYS">
+                  <SplitPane dividerPositions="0.5" prefHeight="544.0" prefWidth="600.0" stylesheets="@../view/css/style.css" VBox.vgrow="ALWAYS">
                      <items>
-                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" stylesheets="@../css/style.css">
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" stylesheets="@../view/css/style.css">
                            <children>
-                              <VBox alignment="TOP_CENTER" layoutX="98.0" layoutY="66.0" prefHeight="572.0" prefWidth="346.0" stylesheets="@../css/style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                              <VBox alignment="TOP_CENTER" layoutX="98.0" layoutY="66.0" prefHeight="572.0" prefWidth="346.0" stylesheets="@../view/css/style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <children>
-                                    <HBox alignment="CENTER_LEFT" prefHeight="55.0" prefWidth="296.0" spacing="10.0" styleClass="main_background" stylesheets="@../css/style.css">
+                                    <HBox alignment="CENTER_LEFT" prefHeight="55.0" prefWidth="296.0" spacing="10.0" styleClass="main_background" stylesheets="@../view/css/style.css">
                                        <children>
-                                          <Button fx:id="goBackButton" mnemonicParsing="false" onAction="#goToHome" prefHeight="25.0" prefWidth="97.0" styleClass="white_background" stylesheets="@../css/style.css" text="GoBack">
+                                          <Button fx:id="goBackButton" mnemonicParsing="false" onAction="#goToHome" prefHeight="25.0" prefWidth="97.0" styleClass="white_background" stylesheets="@../view/css/style.css" text="GoBack">
                                              <HBox.margin>
                                                 <Insets left="20.0" />
                                              </HBox.margin>
                                           </Button>
-                                          <Label alignment="CENTER" prefHeight="46.0" prefWidth="108.0" styleClass="white_text" stylesheets="@../css/style.css" text="Action">
+                                          <Label alignment="CENTER" prefHeight="46.0" prefWidth="108.0" styleClass="white_text" stylesheets="@../view/css/style.css" text="Action">
                                              <font>
                                                 <Font name="Arial" size="22.0" />
                                              </font>
@@ -100,9 +100,9 @@
                                           </Label>
                                        </children>
                                     </HBox>
-                                    <ScrollPane fitToHeight="true" fitToWidth="true" prefHeight="2000.0" prefWidth="346.0" stylesheets="@../css/style.css">
+                                    <ScrollPane fitToHeight="true" fitToWidth="true" prefHeight="2000.0" prefWidth="346.0" stylesheets="@../view/css/style.css">
                                        <content>
-                                          <VBox fx:id="scrollAllActions" alignment="TOP_CENTER" prefHeight="2000.0" prefWidth="331.0" stylesheets="@../css/style.css">
+                                          <VBox fx:id="scrollAllActions" alignment="TOP_CENTER" prefHeight="2000.0" prefWidth="331.0" stylesheets="@../view/css/style.css">
                                              <styleClass>
                                                 <String fx:value="light_main_background" />
                                                 <String fx:value="margin_cards" />
@@ -113,13 +113,13 @@
                               </VBox>
                            </children>
                         </AnchorPane>
-                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" stylesheets="@../css/style.css">
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" stylesheets="@../view/css/style.css">
                            <children>
-                              <VBox alignment="TOP_CENTER" layoutX="98.0" layoutY="91.0" prefHeight="200.0" prefWidth="100.0" stylesheets="@../css/style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                              <VBox alignment="TOP_CENTER" layoutX="98.0" layoutY="91.0" prefHeight="200.0" prefWidth="100.0" stylesheets="@../view/css/style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <children>
-                                    <HBox alignment="CENTER" prefHeight="55.0" prefWidth="296.0" styleClass="main_background" stylesheets="@../css/style.css">
+                                    <HBox alignment="CENTER" prefHeight="55.0" prefWidth="296.0" styleClass="main_background" stylesheets="@../view/css/style.css">
                                        <children>
-                                          <Label styleClass="white_text" stylesheets="@../css/style.css" text="Trigger">
+                                          <Label styleClass="white_text" stylesheets="@../view/css/style.css" text="Trigger">
                                              <font>
                                                 <Font name="Arial" size="22.0" />
                                              </font>
@@ -129,9 +129,9 @@
                                           </Label>
                                        </children>
                                     </HBox>
-                                    <ScrollPane fitToHeight="true" fitToWidth="true" maxHeight="1.7976931348623157E308" prefHeight="2000.0" prefWidth="346.0" stylesheets="@../css/style.css">
+                                    <ScrollPane fitToHeight="true" fitToWidth="true" maxHeight="1.7976931348623157E308" prefHeight="2000.0" prefWidth="346.0" stylesheets="@../view/css/style.css">
                                        <content>
-                                          <VBox fx:id="scrollAllTriggers" alignment="TOP_CENTER" prefHeight="2000.0" prefWidth="331.0" stylesheets="@../css/style.css">
+                                          <VBox fx:id="scrollAllTriggers" alignment="TOP_CENTER" prefHeight="2000.0" prefWidth="331.0" stylesheets="@../view/css/style.css">
                                              <styleClass>
                                                 <String fx:value="light_main_background" />
                                                 <String fx:value="margin_cards" />
@@ -145,9 +145,9 @@
                         </AnchorPane>
                      </items>
                   </SplitPane>
-                  <HBox alignment="CENTER" prefHeight="50.0" prefWidth="3000.0" styleClass="main_background" stylesheets="@../css/style.css">
+                  <HBox alignment="CENTER" prefHeight="50.0" prefWidth="3000.0" styleClass="main_background" stylesheets="@../view/css/style.css">
                      <children>
-                        <Label prefHeight="17.0" prefWidth="53.0" styleClass="white_text" stylesheets="@../css/style.css" text="Name">
+                        <Label prefHeight="17.0" prefWidth="53.0" styleClass="white_text" stylesheets="@../view/css/style.css" text="Name">
                            <font>
                               <Font size="17.0" />
                            </font>
@@ -155,12 +155,12 @@
                               <Insets bottom="10.0" left="30.0" top="10.0" />
                            </HBox.margin>
                         </Label>
-                        <TextField fx:id="nameRuleTextField" prefHeight="25.0" prefWidth="170.0" promptText="New Rule" stylesheets="@../css/style.css">
+                        <TextField fx:id="nameRuleTextField" prefHeight="25.0" prefWidth="170.0" promptText="New Rule" stylesheets="@../view/css/style.css">
                            <HBox.margin>
                               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                            </HBox.margin>
                         </TextField>
-                        <Button fx:id="createRuleButton" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#goToWindowOne" prefHeight="25.0" prefWidth="102.0" styleClass="white_background" stylesheets="@../css/style.css" text="Create Rule">
+                        <Button fx:id="createRuleButton" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#goToWindowOne" prefHeight="25.0" prefWidth="102.0" styleClass="white_background" stylesheets="@../view/css/style.css" text="Create Rule">
                            <HBox.margin>
                               <Insets bottom="10.0" left="250.0" right="10.0" top="10.0" />
                            </HBox.margin>
