@@ -2,6 +2,7 @@ package manager;
 
 import triggers.DayOfWeekTrigger.DayOfWeekTrigger;
 import controller.DayOfWeekTriggerController;
+import rules.Rule;
 import triggers.Trigger;
 
 /**
@@ -10,6 +11,8 @@ import triggers.Trigger;
  */
 public class DayOfWeekTriggerManager extends TriggerManager{
     
+    DayOfWeekTrigger trigger;
+    
     public DayOfWeekTriggerManager() {
         super("/triggers/DayOfWeekTrigger/DayOfWeekTrigger.fxml");
     }
@@ -17,7 +20,12 @@ public class DayOfWeekTriggerManager extends TriggerManager{
     @Override
     public Trigger createTrigger() {
         DayOfWeekTriggerController dowtc = ((DayOfWeekTriggerController)super.getController());
-        DayOfWeekTrigger dowt = new DayOfWeekTrigger(dowtc.getDayOfWeek(),dowtc.repetitionIsSelected());
-        return dowt;
+        trigger = new DayOfWeekTrigger(dowtc.getDayOfWeek(),dowtc.repetitionIsSelected());
+        return trigger;
+    }
+
+    @Override
+    public void addObserver(Rule rule) {
+        trigger.addObserver(rule);
     }
 }

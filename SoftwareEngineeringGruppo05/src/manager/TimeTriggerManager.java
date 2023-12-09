@@ -2,6 +2,7 @@ package manager;
 
 import triggers.TimeTrigger.TimeTrigger;
 import controller.TimeTriggerController;
+import rules.Rule;
 import triggers.Trigger;
 
 /**
@@ -10,6 +11,8 @@ import triggers.Trigger;
  */
 public class TimeTriggerManager extends TriggerManager{
     
+    TimeTrigger trigger;
+    
     public TimeTriggerManager() {
         super("/triggers/TimeTrigger/TimeTrigger.fxml");
     }
@@ -17,8 +20,14 @@ public class TimeTriggerManager extends TriggerManager{
     @Override
     public Trigger createTrigger() {
         TimeTriggerController ttc = ((TimeTriggerController)super.getController());
-        TimeTrigger tt = new TimeTrigger(ttc.getHours(), ttc.getMinutes(), ttc.repetitionIsSelected(), ttc.getSleeping());
-        return tt;
+        trigger = new TimeTrigger(ttc.getHours(), ttc.getMinutes(), ttc.repetitionIsSelected(), ttc.getSleeping());
+        return trigger;
     }
+
+    @Override
+    public void addObserver(Rule rule) {
+        trigger.addObserver(rule);
+    }
+    
     
 }

@@ -18,6 +18,7 @@ public class RuleCreator {
         Action action = actionManager.get(selectedAction).createAction(); 
         Trigger trigger = triggerManager.get(selectedTrigger).createTrigger();
         Rule rule = new Rule(ruleName,action,trigger);
+        triggerManager.get(selectedTrigger).addObserver(rule);
         RuleManager ruleManager = RuleManager.getInstance();
         ruleManager.addRule(rule);
     }

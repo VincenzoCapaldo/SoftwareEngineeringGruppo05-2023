@@ -2,6 +2,7 @@ package manager;
 
 import triggers.DateTrigger.DateTrigger;
 import controller.DateTriggerController;
+import rules.Rule;
 import triggers.Trigger;
 
 /**
@@ -10,6 +11,8 @@ import triggers.Trigger;
  */
 public class DateTriggerManager extends TriggerManager{
     
+    DateTrigger trigger;
+    
     public DateTriggerManager() {
         super("/triggers/DateTrigger/DateTrigger.fxml");
     }
@@ -17,8 +20,13 @@ public class DateTriggerManager extends TriggerManager{
     @Override
     public Trigger createTrigger() {
         DateTriggerController dtc = ((DateTriggerController)super.getController());
-        DateTrigger dt = new DateTrigger(dtc.getDate());
-        return dt;
+        trigger = new DateTrigger(dtc.getDate());
+        return trigger;
+    }
+
+    @Override
+    public void addObserver(Rule rule) {
+        trigger.addObserver(rule);
     }
     
 }

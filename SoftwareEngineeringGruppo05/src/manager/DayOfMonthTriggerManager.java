@@ -2,6 +2,7 @@ package manager;
 
 import triggers.DayOfMonthTrigger.DayOfMonthTrigger;
 import controller.DayOfMonthTriggerController;
+import rules.Rule;
 import triggers.Trigger;
 
 /**
@@ -10,6 +11,8 @@ import triggers.Trigger;
  */
 public class DayOfMonthTriggerManager extends TriggerManager{
     
+    DayOfMonthTrigger trigger;
+    
     public DayOfMonthTriggerManager() {
         super("/triggers/DayOfMonthTrigger/DayOfMonthTrigger.fxml");
     }
@@ -17,7 +20,12 @@ public class DayOfMonthTriggerManager extends TriggerManager{
     @Override
     public Trigger createTrigger() {
         DayOfMonthTriggerController domtc = ((DayOfMonthTriggerController)super.getController());
-        DayOfMonthTrigger domt = new DayOfMonthTrigger(domtc.getDayOfMonth(),domtc.repetitionIsSelected());
-        return domt;
+        trigger = new DayOfMonthTrigger(domtc.getDayOfMonth(),domtc.repetitionIsSelected());
+        return trigger;
+    }
+
+    @Override
+    public void addObserver(Rule rule) {
+        trigger.addObserver(rule);
     }
 }

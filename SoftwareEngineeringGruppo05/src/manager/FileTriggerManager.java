@@ -2,6 +2,7 @@ package manager;
 
 import triggers.FileTrigger.FileTrigger;
 import controller.FileTriggerController;
+import rules.Rule;
 import triggers.Trigger;
 
 /**
@@ -10,6 +11,8 @@ import triggers.Trigger;
  */
 public class FileTriggerManager extends TriggerManager{
     
+    FileTrigger trigger;
+    
     public FileTriggerManager() {
         super("/triggers/FileTrigger/FileTrigger.fxml");
     }
@@ -17,8 +20,13 @@ public class FileTriggerManager extends TriggerManager{
     @Override
     public Trigger createTrigger() {
         FileTriggerController ftc = ((FileTriggerController)super.getController());
-        FileTrigger ft = new FileTrigger(ftc.getDirectoryPath(), ftc.getFileName());
-        return ft;
+        trigger = new FileTrigger(ftc.getDirectoryPath(), ftc.getFileName());
+        return trigger;
+    }
+
+    @Override
+    public void addObserver(Rule rule) {
+        trigger.addObserver(rule);
     }
     
 }

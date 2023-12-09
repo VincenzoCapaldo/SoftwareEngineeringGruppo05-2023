@@ -7,6 +7,7 @@ import java.util.logging.Logger;
 import javafx.beans.property.BooleanProperty;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.HBox;
+import rules.Rule;
 import triggers.Trigger;
 
 /**
@@ -47,4 +48,5 @@ public abstract class TriggerManager implements Manager{
     
     public abstract Trigger createTrigger();
     
+    public abstract void addObserver(Rule rule);
 }

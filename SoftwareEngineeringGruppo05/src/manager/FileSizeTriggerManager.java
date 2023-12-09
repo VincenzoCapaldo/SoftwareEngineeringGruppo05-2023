@@ -2,6 +2,7 @@ package manager;
 
 import triggers.FileSizeTrigger.FileSizeTrigger;
 import controller.FileSizeTriggerController;
+import rules.Rule;
 import triggers.Trigger;
 
 /**
@@ -10,6 +11,8 @@ import triggers.Trigger;
  */
 public class FileSizeTriggerManager extends TriggerManager{
     
+    FileSizeTrigger trigger;
+    
     public FileSizeTriggerManager() {
         super("/triggers/FileSizeTrigger/FileSizeTrigger.fxml");
     }
@@ -17,8 +20,13 @@ public class FileSizeTriggerManager extends TriggerManager{
     @Override
     public Trigger createTrigger() {
         FileSizeTriggerController fstc = ((FileSizeTriggerController)super.getController());
-        FileSizeTrigger fst = new FileSizeTrigger(fstc.getFilePath(), fstc.getSize());
-        return fst;
+        trigger = new FileSizeTrigger(fstc.getFilePath(), fstc.getSize());
+        return trigger;
+    }
+
+    @Override
+    public void addObserver(Rule rule) {
+        trigger.addObserver(rule);
     }
     
 }

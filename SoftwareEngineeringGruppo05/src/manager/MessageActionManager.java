@@ -18,6 +18,7 @@ public class MessageActionManager extends ActionManager{
     public Action createAction() {
         MessageActionController mac = ((MessageActionController)super.getController());
         MessageAction ma = new MessageAction(mac.getTextArea());
+        ma.addObserver(mac);
         return ma;
     }
 }
