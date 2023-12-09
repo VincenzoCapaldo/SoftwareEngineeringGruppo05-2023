@@ -42,6 +42,7 @@ import controller.Controller;
 import java.util.LinkedHashMap;
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.SimpleBooleanProperty;
+import manager.ProgramTriggerManager;
 
 /**
  * FXML Controller class
@@ -124,7 +125,7 @@ public class FXMLDocumentController implements Initializable {
         triggerManager.put("Date", new DateTriggerManager());
         triggerManager.put("File", new FileTriggerManager());
         triggerManager.put("FileSize", new FileSizeTriggerManager());
-        //triggerManager.put("Program", new ProgramTriggerManager());
+        triggerManager.put("Program", new ProgramTriggerManager());
         
         window3.visibleProperty().set(true);
         window1.visibleProperty().set(false);

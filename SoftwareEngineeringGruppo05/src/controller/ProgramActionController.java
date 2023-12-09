@@ -50,15 +50,15 @@ public class ProgramActionController implements Initializable, Controller {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         flagProgram = new SimpleBooleanProperty(true);
-        BooleanProperty isWriterActionSelected = programActionRB.selectedProperty();
+        BooleanProperty isProgramActionSelected = programActionRB.selectedProperty();
  
         commandTextArea.visibleProperty().bind(Bindings.createBooleanBinding(
             () -> {
-                boolean writerActionSelected = isWriterActionSelected.get();
+                boolean programActionSelected = isProgramActionSelected.get();
 
                 // Aggiungi o rimuovi il pulsante e la textArea dal layout in base allo stato del RadioButton: azione eseguita dal thread principale
                 Platform.runLater(() -> {
-                        if (!writerActionSelected) {
+                        if (!programActionSelected) {
                             vBoxProgram.getChildren().remove(commandTextArea);
                             hBoxProgram.getChildren().remove(browseButton);
                             programactionBox.setPrefHeight(70);
@@ -70,9 +70,9 @@ public class ProgramActionController implements Initializable, Controller {
                             programactionBox.setPrefHeight(181);
                         }
                 });
-                return writerActionSelected;
+                return programActionSelected;
             },
-            isWriterActionSelected
+            isProgramActionSelected
         ));
  
     }    
@@ -81,14 +81,11 @@ public class ProgramActionController implements Initializable, Controller {
     private void browseProgram(ActionEvent event) {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Select a executable program");
-
-        /*fileChooser.getExtensionFilters().addAll(
-            new FileChooser.ExtensionFilter("Executable program", "*.bat"));*/
         
         Stage stage = (Stage) browseButton.getScene().getWindow();
         selectedFile = fileChooser.showOpenDialog(stage);
 
-        // La flagWriter è vera solo quando non è stato selezionato un file
+        // La flagProgram è vera solo quando non è stato selezionato un file
         Platform.runLater(() -> {
             flagProgram.setValue(selectedFile == null);
         });
