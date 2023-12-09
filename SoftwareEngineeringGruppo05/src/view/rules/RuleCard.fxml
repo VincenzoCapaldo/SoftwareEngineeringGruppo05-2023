@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<HBox fx:id="ruleBox" alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="600.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.rules.RuleCardController">
+<HBox fx:id="ruleBox" alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="240.0" prefWidth="600.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.rules.RuleCardController">
    <children>
       <VBox fx:id="vBoxRule" prefHeight="260.0" prefWidth="694.0">
          <children>
@@ -64,14 +64,6 @@
                </VBox.margin>
             </Label>
             <Label fx:id="repetition" prefHeight="30.0" prefWidth="429.0" styleClass="white_text" text="Label">
-               <font>
-                  <Font size="20.0" />
-               </font>
-               <VBox.margin>
-                  <Insets top="10.0" />
-               </VBox.margin>
-            </Label>
-            <Label fx:id="status" prefHeight="30.0" prefWidth="429.0" styleClass="white_text" text="Label">
                <font>
                   <Font size="20.0" />
                </font>

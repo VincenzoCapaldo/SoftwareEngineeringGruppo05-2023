@@ -48,8 +48,6 @@ public class RuleCardController implements Observer, Initializable {
     @FXML
     private Label repetition;
     @FXML
-    private Label status;
-    @FXML
     private ImageView info;
     
     private boolean selected = false;
@@ -62,8 +60,8 @@ public class RuleCardController implements Observer, Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         ruleManager = RuleManager.getInstance();
-        ruleBox.setPrefHeight(80);
-        vBoxRule.getChildren().removeAll(nameAction, nameTrigger, repetition, status);
+        ruleBox.setPrefHeight(100);
+        vBoxRule.getChildren().removeAll(nameAction, nameTrigger, repetition);
     }
 
    @FXML
@@ -144,16 +142,15 @@ public class RuleCardController implements Observer, Initializable {
     @FXML
     private void infoSelected(MouseEvent event) {
         if(selected){
-            ruleBox.setPrefHeight(80);
-            vBoxRule.getChildren().removeAll(nameAction, nameTrigger, repetition, status);
+            ruleBox.setPrefHeight(100);
+            vBoxRule.getChildren().removeAll(nameAction, nameTrigger, repetition);
             selected = false;
         }else{
-            ruleBox.setPrefHeight(250);
+            ruleBox.setPrefHeight(240);
             nameAction.setText("Azione : " + rule.getAction().toString());
             nameTrigger.setText("Trigger : " + rule.getTrigger().toString());
             repetition.setText("Repetition : " + rule.getTrigger().isRepeated());
-            status.setText("Status : " + (rule.getState() ? "Active" : "Inactive"));
-            vBoxRule.getChildren().addAll(nameAction, nameTrigger, repetition, status);
+            vBoxRule.getChildren().addAll(nameAction, nameTrigger, repetition);
             selected = true;
         }
     }
