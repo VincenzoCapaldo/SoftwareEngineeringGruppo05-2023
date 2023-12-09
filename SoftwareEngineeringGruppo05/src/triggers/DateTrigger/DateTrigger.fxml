@@ -24,7 +24,7 @@
                   <Insets left="20.0" top="20.0" />
                </VBox.margin>
             </RadioButton>
-            <DatePicker fx:id="datePicker">
+            <DatePicker fx:id="datePicker" editable="false">
                <VBox.margin>
                   <Insets left="20.0" top="20.0" />
                </VBox.margin>

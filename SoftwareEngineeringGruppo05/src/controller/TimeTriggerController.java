@@ -174,5 +174,23 @@ public class TimeTriggerController implements Initializable, Controller {
     public BooleanProperty getFlag() {
         return flagTimeTrigger;
     }
+
+    @FXML
+    private void onChangedDayRepetition(KeyEvent event) {
+        CheckValueClass check = new CheckValueClass();
+        check.checkValue(repetitionTimeSpinnerDays, 0, 366);
+    }
+
+    @FXML
+    private void onChangedHourRepetition(KeyEvent event) {
+        CheckValueClass check = new CheckValueClass();
+        check.checkValue(repetitionTimeSpinnerHours, 0, 23);
+    }
+
+    @FXML
+    private void onChangedMinuteRepetition(KeyEvent event) {
+        CheckValueClass check = new CheckValueClass();
+        check.checkValue(repetitionTimeSpinnerMinutes, 0, 59);
+    }
     
 }

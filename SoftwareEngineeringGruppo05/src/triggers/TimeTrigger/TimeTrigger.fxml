@@ -46,9 +46,9 @@
                   </CheckBox>
                   <HBox fx:id="hboxRepetition" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                      <children>
-                        <Spinner fx:id="repetitionTimeSpinnerDays" prefHeight="25.0" prefWidth="75.0" />
-                        <Spinner fx:id="repetitionTimeSpinnerHours" prefHeight="25.0" prefWidth="75.0" />
-                        <Spinner fx:id="repetitionTimeSpinnerMinutes" prefHeight="25.0" prefWidth="75.0" />
+                        <Spinner fx:id="repetitionTimeSpinnerDays" editable="true" onKeyReleased="#onChangedDayRepetition" prefHeight="25.0" prefWidth="75.0" />
+                        <Spinner fx:id="repetitionTimeSpinnerHours" editable="true" onKeyReleased="#onChangedHourRepetition" prefHeight="25.0" prefWidth="75.0" />
+                        <Spinner fx:id="repetitionTimeSpinnerMinutes" editable="true" onKeyReleased="#onChangedMinuteRepetition" prefHeight="25.0" prefWidth="75.0" />
                      </children>
                      <VBox.margin>
                         <Insets top="20.0" />
