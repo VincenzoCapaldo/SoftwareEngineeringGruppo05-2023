@@ -22,6 +22,7 @@ public class RuleTest {
 
     @Before
     public void setUp() {
+        //crea una regola di prova
         action = new MessageAction("Ciao");
         trigger = new TimeTrigger(11,37,true,Duration.ofMinutes(1));
         rule = new Rule("TestRule", action, trigger);

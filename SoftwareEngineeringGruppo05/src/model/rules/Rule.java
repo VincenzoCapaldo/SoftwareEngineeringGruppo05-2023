@@ -49,11 +49,11 @@ public class Rule extends Observable implements Serializable, Observer{
 
     @Override
     public void update(Observable subject, Object arg) {
-        Trigger trigger = (Trigger) subject;
-        if (trigger.isVerified()){
-            this.getAction().execute();
-            if(!trigger.isRepeated()){
-                RuleManager.getInstance().deactivateRule(this);
+        Trigger trigger = (Trigger) subject; //il trigger è l'Observable
+        if (trigger.isVerified()){ //se il trigger è scattato
+            this.getAction().execute(); //esegue la regola
+            if(!trigger.isRepeated()){ //se non c'è ripetizione
+                RuleManager.getInstance().deactivateRule(this); //disattiva la regola (dopo averla eseguita)
             }
         }
     }

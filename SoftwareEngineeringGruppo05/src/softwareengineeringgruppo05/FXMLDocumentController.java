@@ -42,10 +42,10 @@ import controller.Controller;
 import java.util.LinkedHashMap;
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.SimpleBooleanProperty;
+import manager.actions.CompositeActionManager;
 import manager.triggers.ProgramTriggerManager;
 
 /**
- * FXML Controller class
  *
  * @author enzo0
  */
@@ -118,6 +118,7 @@ public class FXMLDocumentController implements Initializable {
         actionManager.put("MoveFile", new MoveFileActionManager());
         actionManager.put("DeleteFile", new DeleteFileActionManager());
         actionManager.put("Program", new ProgramActionManager());
+        //actionManager.put("Composite", new CompositeActionManager());
         
         triggerManager.put("Time", new TimeTriggerManager());
         triggerManager.put("DayOfWeek", new DayOfWeekTriggerManager());
@@ -144,7 +145,7 @@ public class FXMLDocumentController implements Initializable {
         BooleanBinding bbRuleName = Bindings.createBooleanBinding(
         () -> nameRuleTextField.getText().trim().isEmpty(),
         nameRuleTextField.textProperty()
-);
+        );
         
         //se non è selezionata almeno un'azione o almeno un trigger bb2=true
         BooleanBinding bbToggleGroup = actionToggleGroup.selectedToggleProperty().isNull().or(triggerToggleGroup.selectedToggleProperty().isNull());

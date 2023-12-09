@@ -24,10 +24,12 @@ public class RuleManagerTest {
 
     @Before
     public void setUp() {       
+        //crea una regola di prova
         action = new MessageAction("Ciao");
-        trigger = new TimeTrigger(11,37);
-        Duration d = Duration.ofMinutes(1);
-        rule = new Rule("TestRule", action, trigger, true, true, d);
+        trigger = new TimeTrigger(11,37,true,Duration.ofMinutes(1));
+        rule = new Rule("TestRule", action, trigger);
+        
+        //istanzia il RuleManager
         ruleManager = RuleManager.getInstance(); 
     }
 
@@ -42,13 +44,15 @@ public class RuleManagerTest {
 
     @Test
     public void testGetRules() {
+        //aggiunge una regola e poi controlla se il set di chiavi è vuoto
         ruleManager.addRule(rule);
         Set<Rule> rules = ruleManager.getRules();
         assertFalse(rules.isEmpty());
-    }
+    }    
     
     @Test
     public void testAddRule() {
+        //verifica se la regola aggiunta è presente nel set di chiavi
         ruleManager.addRule(rule);
         Set<Rule> rules = ruleManager.getRules();
         assertTrue(rules.contains(rule));
@@ -56,6 +60,7 @@ public class RuleManagerTest {
     
     @Test
     public void testDeleteRule() {
+        //aggiunge ed elimina una regola, poi controlla se è contenuta nel set di regole
         ruleManager.addRule(rule);
         ruleManager.deleteRule(rule);
         Set<Rule> rules = ruleManager.getRules();
@@ -63,13 +68,15 @@ public class RuleManagerTest {
     }
     
     public void testDeactivateRule() {
+        //disattiva la regola e controlla se lo stato è diventato false
         ruleManager.deactivateRule(rule);
         boolean expResult = false;
         boolean result = rule.getState();
         assertEquals(expResult, result);
     }
-    
+
     public void testReactivateRule() {
+        //disattiva e riattiva la regola, poi controlla se lo stato è diventato true
         ruleManager.deactivateRule(rule);
         ruleManager.reactivateRule(rule);
         boolean expResult = true;
