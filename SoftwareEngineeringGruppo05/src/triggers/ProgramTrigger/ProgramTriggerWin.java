@@ -21,7 +21,10 @@ public class ProgramTriggerWin extends ProgramTrigger{
 
     @Override
     public void checkTrigger() {
-  
+        
+        this.setVerified(false);
+        setChanged();
+        
         try {
             Process process = Runtime.getRuntime().exec("cmd /c " + this.getProgramPath() + " " + this.getCommandLine());
             int exitCode = process.waitFor();

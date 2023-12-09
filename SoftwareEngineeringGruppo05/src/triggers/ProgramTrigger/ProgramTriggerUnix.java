@@ -22,7 +22,7 @@ public class ProgramTriggerUnix extends ProgramTrigger{
     public void checkTrigger() {
         
         this.setVerified(false);
-        
+        setChanged();
         try {
             Process process = Runtime.getRuntime().exec("./" + this.getProgramPath() + " " + this.getCommandLine());
             int exitCode = process.waitFor();
