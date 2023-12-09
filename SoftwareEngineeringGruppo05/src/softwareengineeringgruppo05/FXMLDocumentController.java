@@ -140,8 +140,11 @@ public class FXMLDocumentController implements Initializable {
             scrollAllTriggers.getChildren().add(am.getHbox());
         }
         
-        //se il nome della regola non è inserito bb1=true
-        BooleanBinding bbRuleName = nameRuleTextField.textProperty().isEmpty();
+        //se il nome della regola non è inserito o è di solo spazi vuoti bb1=true
+        BooleanBinding bbRuleName = Bindings.createBooleanBinding(
+        () -> nameRuleTextField.getText().trim().isEmpty(),
+        nameRuleTextField.textProperty()
+);
         
         //se non è selezionata almeno un'azione o almeno un trigger bb2=true
         BooleanBinding bbToggleGroup = actionToggleGroup.selectedToggleProperty().isNull().or(triggerToggleGroup.selectedToggleProperty().isNull());
@@ -232,7 +235,7 @@ public class FXMLDocumentController implements Initializable {
         //restituisce il trigger selezionato dall'utente
         RadioButton selectedTrigger = (RadioButton) triggerToggleGroup.getSelectedToggle();
         
-        RuleCreator.createRule(nameRuleTextField.getText(), actionManager, selectedAction.getText(), triggerManager, selectedTrigger.getText()); 
+        RuleCreator.createRule(nameRuleTextField.getText().trim(), actionManager, selectedAction.getText(), triggerManager, selectedTrigger.getText()); 
         
         loadAllRules();
     
