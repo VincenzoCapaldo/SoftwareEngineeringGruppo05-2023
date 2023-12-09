@@ -257,7 +257,7 @@ public class FXMLDocumentController implements Initializable {
             try {
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 
-                fxmlLoader.setLocation(getClass().getResource("/rules/RuleCard.fxml")); 
+                fxmlLoader.setLocation(getClass().getResource("/view/rules/RuleCard.fxml")); 
                 HBox ruleBox = fxmlLoader.load();
 
                 RuleCardController ruleCardController = fxmlLoader.getController();
