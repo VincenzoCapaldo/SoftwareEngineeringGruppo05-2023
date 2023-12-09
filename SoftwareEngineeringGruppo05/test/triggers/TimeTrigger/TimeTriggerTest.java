@@ -43,7 +43,7 @@ public class TimeTriggerTest {
      * Test of checkTrigger method, of class TimeTrigger.
      */
     @Test
-    public void testCheckTrigger() {
+    public void testCheckTrigger1() {
 
         int hours = LocalTime.now().getHour();
         int minutes = LocalTime.now().getMinute();
@@ -54,5 +54,32 @@ public class TimeTriggerTest {
         assertEquals(expResult,result);
         
     }
+    
+    @Test
+    public void testCheckTrigger2() {
+
+        int hours = LocalTime.now().getHour();
+        int minutes = LocalTime.now().getMinute()+1;
+        TimeTrigger instance = new TimeTrigger(hours,minutes,false,Duration.ZERO);
+        instance.checkTrigger();
+        boolean result = instance.isVerified();
+        boolean expResult = true;
+        assertEquals(expResult,result);
+        
+    }
+    
+    /*          Non si ha a disposizione abbatanza tempo per attendere la fine del test
+    @Test
+    public void testCheckTrigger3() {
+
+        int hours = LocalTime.now().getHour();
+        int minutes = LocalTime.now().getMinute()-1;
+        TimeTrigger instance = new TimeTrigger(hours,minutes,false,Duration.ZERO);
+        instance.checkTrigger();
+        boolean result = instance.isVerified();
+        boolean expResult = true;
+        assertEquals(expResult,result);
+        
+    }*/
 
 }
