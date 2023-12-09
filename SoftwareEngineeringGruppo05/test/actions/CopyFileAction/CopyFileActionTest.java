@@ -18,8 +18,8 @@ import java.util.logging.Logger;
 public class CopyFileActionTest {
 
     private Action action;
-    private final String filePath = "test/actions/CopyFileAction/source/prova.txt";
-    private final String newPath = "test/actions/CopyFileAction/destination";
+    private final String filePath = "test/actions/CopyFileAction/source/prova.txt"; //file da copiare
+    private final String newPath = "test/actions/CopyFileAction/destination"; //cartella di destinazione
 
     @Before
     public void setUp() {
@@ -31,7 +31,7 @@ public class CopyFileActionTest {
         Path pathSource = Paths.get(filePath);    
         Path pathDestination = Paths.get(newPath + "/prova.txt");    
         
-        // creo un file di prova nella cartella source
+        // creo il file di prova nella cartella source
         try {
             Files.createFile(pathSource);
         } catch (IOException ex) {
@@ -59,9 +59,14 @@ public class CopyFileActionTest {
         } catch (IOException ex) {
             Logger.getLogger(CopyFileActionTest.class.getName()).log(Level.SEVERE, null, ex);
         }
-    
     }
 
+    @Test(expected = RuntimeException.class)
+    public void testFileNotFoundExcute(){
+        CopyFileAction cfa = new CopyFileAction("test/actions/CopyFileAction/source/fileInesistente.txt",newPath); //file inesistente
+        cfa.execute();
+    }
+    
     @Test(expected = RuntimeException.class)
     public void testAdd() {
         action.add(action);

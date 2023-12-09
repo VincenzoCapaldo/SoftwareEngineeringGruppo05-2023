@@ -18,18 +18,19 @@ import java.util.logging.Logger;
 public class DeleteFileActionTest {
 
     private Action action;
-    private final String filePath = "test/actions/DeleteFileAction/prova.txt";
-
+    private final String directoryPath = "test/actions/DeleteFileAction"; //directory del file da eliminare
+    private final String nameFile = "prova.txt"; //nome del file da eliminare
+    
     @Before
     public void setUp() {
-        action = new DeleteFileAction(filePath);
+        action = new DeleteFileAction(directoryPath, nameFile);
     }
 
     @Test
     public void testExecute() {
-        Path path = Paths.get(filePath);    
+        Path path = Paths.get(directoryPath + "/" + nameFile);    
         
-        // creo un file di prova
+        // creo il file di prova
         try {
             Files.createFile(path);
         } catch (IOException ex) {
@@ -39,10 +40,15 @@ public class DeleteFileActionTest {
         action.execute();
 
         // verifico che non ci sia più il file nella cartella
-        assertFalse(Files.exists(Paths.get(filePath)));  
-        
+        assertFalse(Files.exists(path));  
     }
-
+    
+    @Test(expected = RuntimeException.class)
+    public void testFileNotFoundExcute(){
+        DeleteFileAction dfa = new DeleteFileAction(directoryPath,"fileInesistente.txt"); //file inesistente
+        dfa.execute();
+    }
+    
     @Test(expected = RuntimeException.class)
     public void testAdd() {
         action.add(action);

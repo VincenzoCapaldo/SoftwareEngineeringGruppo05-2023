@@ -16,39 +16,25 @@ public class Rule extends Observable implements Serializable, Observer{
     private Trigger trigger;
     private boolean state;
 
-
     public Rule(String name, Action action, Trigger trigger) {
         this.name = name;
         this.action = action;
         this.trigger = trigger;
         this.state = true;
-
     }
 
     public String getName(){
         return name;
     }
     
-    public void setName(String name){
-        this.name = name;
-    }
-    
     public Action getAction(){
         return action;
-    }
-    
-    public void setAction(Action action){
-        this.action = action;
     }
     
     public Trigger getTrigger(){
         return trigger;
     }
     
-    public void setTrigger(Trigger trigger){
-        this.trigger = trigger;
-    }
-
     public boolean getState() {
         return state;
     }

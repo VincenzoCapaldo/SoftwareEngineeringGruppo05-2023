@@ -1,4 +1,4 @@
-package actions.WriterAction;
+package actions.WriteFileAction;
 
 import model.actions.WriteFileAction;
 import org.junit.*;
@@ -19,10 +19,10 @@ import java.util.logging.Logger;
  *
  * @author Paolo
  */
-public class WriterActionTest {
+public class WriteFileActionTest {
     
     private Action action;
-    private final String filePath = "test/actions/WriterAction/prova.txt";
+    private final String filePath = "test/actions/WriteFileAction/prova.txt";
     private final String message = "Hello World!";
     
     @Before
@@ -34,35 +34,28 @@ public class WriterActionTest {
     public void testExecute() {
         Path path = Paths.get(filePath);    
         
-        // creo un file di prova
-        try {
-            Files.createFile(path);
-        } catch (IOException ex) {
-            Logger.getLogger(WriterActionTest.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
         // scrivo qualcosa nel file di prova
         String introMessage = "Good Morning!\n";
         try (PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter(filePath)))){
             pw.write(introMessage);
         } catch (IOException ex) {
-            Logger.getLogger(WriterActionTest.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(WriteFileActionTest.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        action.execute(); // eseguo WriterAction
+        action.execute();
         
         // leggo il contenuto del file come una lista di stringhe
         List<String> lines = null;
         try {
             lines = Files.readAllLines(path);
         } catch (IOException ex) {
-            Logger.getLogger(WriterActionTest.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(WriteFileActionTest.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         // verifico se l'ultima riga del file contiene il messaggio inserito dall'utente
         assertTrue(lines.get(lines.size()-1).endsWith(message));
     }
-    
+        
     @Test(expected = RuntimeException.class)
     public void testAdd() {
         action.add(action);

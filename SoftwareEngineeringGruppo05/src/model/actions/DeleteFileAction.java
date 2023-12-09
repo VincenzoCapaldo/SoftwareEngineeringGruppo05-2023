@@ -4,8 +4,6 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -32,13 +30,13 @@ public class DeleteFileAction implements Action{
             //elimina il file con il Path indicato
         
         } catch (IOException ex) {
-            Logger.getLogger(DeleteFileAction.class.getName()).log(Level.SEVERE, null, ex);
+            throw new RuntimeException();
         }
     }
 
     @Override
     public void add(Action a) {
-         throw new UnsupportedOperationException("Cannot add an action to DeleteFileAction.");
+        throw new UnsupportedOperationException("Cannot add an action to DeleteFileAction.");
     }
 
     @Override

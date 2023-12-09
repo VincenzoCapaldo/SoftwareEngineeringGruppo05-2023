@@ -18,8 +18,8 @@ import java.util.logging.Logger;
 public class MoveFileActionTest {
     
     private Action action;
-    private final String filePath = "test/actions/MoveFileAction/source/prova.txt";
-    private final String newPath = "test/actions/MoveFileAction/destination";
+    private final String filePath = "test/actions/MoveFileAction/source/prova.txt"; //file da spostare
+    private final String newPath = "test/actions/MoveFileAction/destination"; //cartella di destinazione
     
     @Before
     public void setUp() {
@@ -31,7 +31,7 @@ public class MoveFileActionTest {
         Path pathSource = Paths.get(filePath);    
         Path pathDestination = Paths.get(newPath + "/prova.txt");    
         
-        // creo un file di prova nella cartella source
+        // creo il file di prova nella cartella source
         try {
             Files.createFile(pathSource);
         } catch (IOException ex) {
@@ -52,6 +52,12 @@ public class MoveFileActionTest {
         } catch (IOException ex) {
             Logger.getLogger(MoveFileActionTest.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+    
+    @Test(expected = RuntimeException.class)
+    public void testFileNotFoundExcute(){
+        MoveFileAction mfa = new MoveFileAction("test/actions/MoveFileAction/source/fileInesistente.txt",newPath); //file inesistente
+        mfa.execute();
     }
     
     @Test(expected = RuntimeException.class)

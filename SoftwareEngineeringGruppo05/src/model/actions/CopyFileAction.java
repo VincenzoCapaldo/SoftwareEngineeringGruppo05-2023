@@ -5,8 +5,6 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -36,13 +34,13 @@ public class CopyFileAction implements Action{
             //copia il file dal sourcePath al destinationPath con eventuale sovrascrittura
             
         } catch (IOException ex) {
-            Logger.getLogger(CopyFileAction.class.getName()).log(Level.SEVERE, null, ex);
+            throw new RuntimeException();
         }
     }
 
     @Override
     public void add(Action a) {
-         throw new UnsupportedOperationException("Cannot add an action to CopyFileAction.");
+        throw new UnsupportedOperationException("Cannot add an action to CopyFileAction.");
     }
 
     @Override

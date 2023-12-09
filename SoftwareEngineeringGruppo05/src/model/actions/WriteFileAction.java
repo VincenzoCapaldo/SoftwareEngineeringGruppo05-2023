@@ -4,16 +4,14 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
  * @author Paolo
  */
 public class WriteFileAction implements Action{
-    public String filePath;
-    public String message;
+    private String filePath; //path del file su cui scrivere
+    private String message; //messaggio da scrivere alla fine del file
 
     public WriteFileAction(String filePath, String message) {
         this.filePath = filePath;
@@ -26,13 +24,13 @@ public class WriteFileAction implements Action{
         //il parametro true imposterà la modalità di apertura del file su "append", consentendo di scrivere alla fine del file anziché sovrascriverlo.
             pw.append(message);
         } catch (IOException ex) {
-            Logger.getLogger(WriteFileAction.class.getName()).log(Level.SEVERE, null, ex);
+            throw new RuntimeException();
         }
     }
 
     @Override
     public void add(Action a){
-         throw new UnsupportedOperationException("Cannot add an action to WriterAction.");
+        throw new UnsupportedOperationException("Cannot add an action to WriterAction.");
     }
     
     @Override

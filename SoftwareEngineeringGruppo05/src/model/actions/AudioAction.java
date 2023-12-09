@@ -2,11 +2,8 @@ package model.actions;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.sound.sampled.AudioFileFormat;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
@@ -35,7 +32,7 @@ public class AudioAction implements Action {
             AudioInputStream ais = new AudioInputStream(is, aff.getFormat(), aff.getByteLength()); // Crea un AudioInputStream dal file audio
             clip.open(ais); // Apre il Clip con l'AudioInputStream
         }catch (LineUnavailableException | UnsupportedAudioFileException | IOException ex) {
-            Logger.getLogger(AudioAction.class.getName()).log(Level.SEVERE, null, ex);
+            throw new RuntimeException();
         }
     }
     
@@ -46,7 +43,7 @@ public class AudioAction implements Action {
     
     @Override
     public void add(Action a){
-         throw new UnsupportedOperationException("Cannot add an action to AudioAction.");
+        throw new UnsupportedOperationException("Cannot add an action to AudioAction.");
     }
     
     @Override
