@@ -1,32 +1,32 @@
-package manager;
+package creator.actions;
 
+import model.actions.Action;
+import javafx.beans.property.BooleanProperty;
+import javafx.fxml.FXMLLoader;
 import controller.Controller;
+import creator.Creator;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javafx.beans.property.BooleanProperty;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.HBox;
-import model.rules.Rule;
-import model.triggers.Trigger;
 
 /**
  *
  * @author Paolo
  */
-public abstract class TriggerManager implements Manager{
+public abstract class ActionCreator implements Creator{
     
     private FXMLLoader fxmlLoader;
     private Controller controller;
     private HBox hbox;
     
-    public TriggerManager(String path) {
+    public ActionCreator(String path) {
         fxmlLoader = new FXMLLoader();
         fxmlLoader.setLocation(getClass().getResource(path));
         try {
             hbox = fxmlLoader.load();
         } catch (IOException ex) {
-            Logger.getLogger(TriggerManager.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ActionCreator.class.getName()).log(Level.SEVERE, null, ex);
         }
         controller = fxmlLoader.getController();
     }
@@ -46,8 +46,6 @@ public abstract class TriggerManager implements Manager{
         return controller.getFlag();
     }
     
-    public abstract Trigger createTrigger();
+    public abstract Action createAction();
     
-    public abstract void addObserver(Rule rule);
-
 }

@@ -1,7 +1,6 @@
-package manager.triggers;
+package creator.triggers;
 
 import controller.triggers.ProgramTriggerController;
-import manager.TriggerManager;
 import model.rules.Rule;
 import model.triggers.CreateProgramTrigger;
 import model.triggers.ProgramTrigger;
@@ -11,11 +10,11 @@ import model.triggers.Trigger;
  *
  * @author maria
  */
-public class ProgramTriggerManager extends TriggerManager{
+public class ProgramTriggerCreator extends TriggerCreator{
 
     ProgramTrigger trigger;
     
-    public ProgramTriggerManager() {
+    public ProgramTriggerCreator() {
         super("/view/triggers/ProgramTrigger.fxml");
     }
     

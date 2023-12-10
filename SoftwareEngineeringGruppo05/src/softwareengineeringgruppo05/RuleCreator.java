@@ -1,9 +1,9 @@
 package softwareengineeringgruppo05;
 
-import model.actions.Action;
+import creator.actions.ActionCreator;
+import creator.triggers.TriggerCreator;
 import java.util.Map;
-import manager.ActionManager;
-import manager.TriggerManager;
+import model.actions.Action;
 import model.rules.Rule;
 import model.rules.RuleManager;
 import model.triggers.Trigger;
@@ -14,13 +14,14 @@ import model.triggers.Trigger;
  */
 public class RuleCreator {
 
-    public static void createRule(String ruleName, Map<String,ActionManager> actionManager, String selectedAction, Map<String,TriggerManager> triggerManager, String selectedTrigger){
-        Action action = actionManager.get(selectedAction).createAction(); 
-        Trigger trigger = triggerManager.get(selectedTrigger).createTrigger();
-        Rule rule = new Rule(ruleName,action,trigger);
-        triggerManager.get(selectedTrigger).addObserver(rule);
-        RuleManager ruleManager = RuleManager.getInstance();
-        ruleManager.addRule(rule);
+    //crea la regola in accordo al nome, all'azione e al trigger scelti dall'utente
+    public static void createRule(String ruleName, Map<String,ActionCreator> actions, String selectedAction, Map<String,TriggerCreator> triggers, String selectedTrigger){
+        Action action = actions.get(selectedAction).createAction(); //crea l'azione scelta
+        Trigger trigger = triggers.get(selectedTrigger).createTrigger(); //crea il trigger scelto
+        Rule rule = new Rule(ruleName,action,trigger); //crea la regola
+        triggers.get(selectedTrigger).addObserver(rule); //la regola osserva il trigger 
+        RuleManager ruleManager = RuleManager.getInstance(); //ottiene il RuleManager
+        ruleManager.addRule(rule); //aggiunge al regola al RuleManager
     }
     
 }

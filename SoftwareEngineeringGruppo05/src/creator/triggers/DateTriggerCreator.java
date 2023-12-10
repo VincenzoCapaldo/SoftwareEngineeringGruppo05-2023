@@ -1,8 +1,7 @@
-package manager.triggers;
+package creator.triggers;
 
 import model.triggers.DateTrigger;
 import controller.triggers.DateTriggerController;
-import manager.TriggerManager;
 import model.rules.Rule;
 import model.triggers.Trigger;
 
@@ -10,11 +9,11 @@ import model.triggers.Trigger;
  *
  * @author Paolo
  */
-public class DateTriggerManager extends TriggerManager{
+public class DateTriggerCreator extends TriggerCreator{
     
     DateTrigger trigger;
     
-    public DateTriggerManager() {
+    public DateTriggerCreator() {
         super("/view/triggers/DateTrigger.fxml");
     }
 

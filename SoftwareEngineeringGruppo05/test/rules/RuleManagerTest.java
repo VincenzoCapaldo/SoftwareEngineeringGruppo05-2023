@@ -44,23 +44,25 @@ public class RuleManagerTest {
 
     @Test
     public void testGetRules() {
-        //aggiunge una regola e poi controlla se il set di chiavi è vuoto
+        //aggiunge la regola e poi controlla che il set di regole non è vuoto
         ruleManager.addRule(rule);
         Set<Rule> rules = ruleManager.getRules();
         assertFalse(rules.isEmpty());
+        ruleManager.deleteRule(rule); //pulizia
     }    
     
     @Test
     public void testAddRule() {
-        //verifica se la regola aggiunta è presente nel set di chiavi
+        //aggiunge la regola e poi controlla che è presente nel set di regole
         ruleManager.addRule(rule);
         Set<Rule> rules = ruleManager.getRules();
         assertTrue(rules.contains(rule));
+        ruleManager.deleteRule(rule); //pulizia
     }
     
     @Test
     public void testDeleteRule() {
-        //aggiunge ed elimina una regola, poi controlla se è contenuta nel set di regole
+        //aggiunge ed elimina la regola, poi controlla che non è contenuta nel set di regole
         ruleManager.addRule(rule);
         ruleManager.deleteRule(rule);
         Set<Rule> rules = ruleManager.getRules();
@@ -76,7 +78,7 @@ public class RuleManagerTest {
     }
 
     public void testReactivateRule() {
-        //disattiva e riattiva la regola, poi controlla se lo stato è diventato true
+        //disattiva e riattiva la regola, poi controlla se lo stato è tornato true
         ruleManager.deactivateRule(rule);
         ruleManager.reactivateRule(rule);
         boolean expResult = true;

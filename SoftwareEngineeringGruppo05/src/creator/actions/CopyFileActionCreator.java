@@ -1,17 +1,16 @@
-package manager.actions;
+package creator.actions;
 
 import model.actions.Action;
 import model.actions.CopyFileAction;
 import controller.actions.CopyFileActionController;
-import manager.ActionManager;
 
 /**
  *
  * @author Paolo
  */
-public class CopyFileActionManager extends ActionManager{
+public class CopyFileActionCreator extends ActionCreator{
     
-    public CopyFileActionManager() {
+    public CopyFileActionCreator() {
         super("/view/actions/CopyFileAction.fxml");
     }
 

@@ -1,17 +1,16 @@
-package manager.actions;
+package creator.actions;
 
 import model.actions.Action;
 import model.actions.WriteFileAction;
 import controller.actions.WriteFileActionController;
-import manager.ActionManager;
 
 /**
  *
  * @author Paolo
  */
-public class WriteFileActionManager extends ActionManager{
+public class WriteFileActionCreator extends ActionCreator{
     
-    public WriteFileActionManager() {
+    public WriteFileActionCreator() {
         super("/view/actions/WriteFileAction.fxml");
     }
     

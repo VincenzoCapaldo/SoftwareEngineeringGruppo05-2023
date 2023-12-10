@@ -1,8 +1,7 @@
-package manager.triggers;
+package creator.triggers;
 
 import model.triggers.DayOfWeekTrigger;
 import controller.triggers.DayOfWeekTriggerController;
-import manager.TriggerManager;
 import model.rules.Rule;
 import model.triggers.Trigger;
 
@@ -10,11 +9,11 @@ import model.triggers.Trigger;
  *
  * @author Paolo
  */
-public class DayOfWeekTriggerManager extends TriggerManager{
+public class DayOfWeekTriggerCreator extends TriggerCreator{
     
     DayOfWeekTrigger trigger;
     
-    public DayOfWeekTriggerManager() {
+    public DayOfWeekTriggerCreator() {
         super("/view/triggers/DayOfWeekTrigger.fxml");
     }
     

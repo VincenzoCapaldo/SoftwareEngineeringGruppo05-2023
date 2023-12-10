@@ -1,4 +1,4 @@
-package manager;
+package creator;
 
 import controller.Controller;
 import javafx.beans.property.BooleanProperty;
@@ -8,7 +8,7 @@ import javafx.scene.layout.HBox;
  *
  * @author Paolo
  */
-interface Manager {
+public interface Creator {
     public HBox getHbox();
     public Controller getController();
     public BooleanProperty isNotCompleted();

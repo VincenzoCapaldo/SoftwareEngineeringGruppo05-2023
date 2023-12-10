@@ -1,17 +1,16 @@
-package manager.actions;
+package creator.actions;
 
 import model.actions.Action;
 import model.actions.MessageAction;
 import controller.actions.MessageActionController;
-import manager.ActionManager;
 
 /**
  *
  * @author Paolo
  */
-public class MessageActionManager extends ActionManager{
+public class MessageActionCreator extends ActionCreator{
     
-    public MessageActionManager() {
+    public MessageActionCreator() {
         super("/view/actions/MessageAction.fxml");
     }
     

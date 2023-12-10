@@ -1,8 +1,7 @@
-package manager.triggers;
+package creator.triggers;
 
 import model.triggers.TimeTrigger;
 import controller.triggers.TimeTriggerController;
-import manager.TriggerManager;
 import model.rules.Rule;
 import model.triggers.Trigger;
 
@@ -10,11 +9,11 @@ import model.triggers.Trigger;
  *
  * @author Paolo
  */
-public class TimeTriggerManager extends TriggerManager{
+public class TimeTriggerCreator extends TriggerCreator{
     
     TimeTrigger trigger;
     
-    public TimeTriggerManager() {
+    public TimeTriggerCreator() {
         super("/view/triggers/TimeTrigger.fxml");
     }
     

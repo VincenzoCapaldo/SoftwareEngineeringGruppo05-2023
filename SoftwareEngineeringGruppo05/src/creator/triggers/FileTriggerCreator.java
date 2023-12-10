@@ -1,8 +1,7 @@
-package manager.triggers;
+package creator.triggers;
 
 import model.triggers.FileTrigger;
 import controller.triggers.FileTriggerController;
-import manager.TriggerManager;
 import model.rules.Rule;
 import model.triggers.Trigger;
 
@@ -10,11 +9,11 @@ import model.triggers.Trigger;
  *
  * @author Paolo
  */
-public class FileTriggerManager extends TriggerManager{
+public class FileTriggerCreator extends TriggerCreator{
     
     FileTrigger trigger;
     
-    public FileTriggerManager() {
+    public FileTriggerCreator() {
         super("/view/triggers/FileTrigger.fxml");
     }
     

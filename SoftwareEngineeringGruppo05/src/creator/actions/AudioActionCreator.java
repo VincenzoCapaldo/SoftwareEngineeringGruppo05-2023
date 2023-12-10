@@ -1,17 +1,16 @@
-package manager.actions;
+package creator.actions;
 
 import model.actions.Action;
 import model.actions.AudioAction;
 import controller.actions.AudioActionController;
-import manager.ActionManager;
 
 /**
  *
  * @author Paolo
  */
-public class AudioActionManager extends ActionManager{
+public class AudioActionCreator extends ActionCreator{
     
-    public AudioActionManager() {
+    public AudioActionCreator() {
         super("/view/actions/AudioAction.fxml");
     }
 

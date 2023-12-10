@@ -23,27 +23,11 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import model.rules.Rule;
 import model.rules.RuleManager;
-import manager.actions.AudioActionManager;
-import manager.ActionManager;
-import manager.actions.CopyFileActionManager;
-import manager.actions.DeleteFileActionManager;
-import manager.actions.MessageActionManager;
-import manager.actions.MoveFileActionManager;
-import manager.actions.ProgramActionManager;
-import manager.actions.WriteFileActionManager;
-import manager.triggers.DateTriggerManager;
-import manager.triggers.DayOfMonthTriggerManager;
-import manager.triggers.DayOfWeekTriggerManager;
-import manager.triggers.FileSizeTriggerManager;
-import manager.triggers.FileTriggerManager;
-import manager.triggers.TimeTriggerManager;
-import manager.TriggerManager;
-import controller.Controller;
+import creator.actions.ActionCreator;
+import creator.triggers.TriggerCreator;
 import java.util.LinkedHashMap;
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.SimpleBooleanProperty;
-import manager.actions.CompositeActionManager;
-import manager.triggers.ProgramTriggerManager;
 
 /**
  *
@@ -52,15 +36,11 @@ import manager.triggers.ProgramTriggerManager;
 public class FXMLDocumentController implements Initializable {
 
     @FXML
-    private AnchorPane window1;//finestra riepilogo regole
-    @FXML
-    private Button rulesButton;
+    private AnchorPane window1;
     @FXML
     private VBox scrollRules;
     @FXML
-    private Button newRule;
-    @FXML
-    private AnchorPane window3;//finestra creazione regola
+    private AnchorPane window3;
     @FXML
     private VBox scrollAllActions;
     @FXML
@@ -73,31 +53,21 @@ public class FXMLDocumentController implements Initializable {
     private ToggleGroup actionToggleGroup;
     private ToggleGroup triggerToggleGroup;    
     
-    private RuleManager ruleManager;
-
-    private Controller controller;
-
-    @FXML
-    private VBox boxSleeping;
-    @FXML
-    private Button goBackButton;
-
-    private Map<String,ActionManager> actionManager = new LinkedHashMap<>();
-    private Map<String,TriggerManager> triggerManager = new LinkedHashMap<>();
+    private Map<String,ActionCreator> actions = new LinkedHashMap<>();
+    private Map<String,TriggerCreator> triggers = new LinkedHashMap<>();
         
-    /**
-     * Initializes the controller class.
-     */
+    private RuleManager ruleManager;
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        
         window1.visibleProperty().set(true);
         window3.visibleProperty().set(false);
         
-        ruleManager = RuleManager.getInstance();//istanziamento del RuleManager
-        
-        ruleManager.loadRules();//carica le regole dal file
+        ruleManager = RuleManager.getInstance(); //preleva l'istanza del RuleManager
+        ruleManager.loadRules(); //carica le regole da file
+        loadRuleCards();//carica le regole graficamente
     
-        loadAllRules();//caricamento grafico delle regole
     }    
 
     //passaggio da window1 a window3 quando si seleziona createRuleButton 
@@ -111,32 +81,18 @@ public class FXMLDocumentController implements Initializable {
         actionToggleGroup = new ToggleGroup();
         triggerToggleGroup = new ToggleGroup();
         
-        actionManager.put("Audio", new AudioActionManager());
-        actionManager.put("Message", new MessageActionManager());
-        actionManager.put("WriteFile", new WriteFileActionManager());
-        actionManager.put("CopyFile", new CopyFileActionManager());
-        actionManager.put("MoveFile", new MoveFileActionManager());
-        actionManager.put("DeleteFile", new DeleteFileActionManager());
-        actionManager.put("Program", new ProgramActionManager());
-        //actionManager.put("Composite", new CompositeActionManager());
-        
-        triggerManager.put("Time", new TimeTriggerManager());
-        triggerManager.put("DayOfWeek", new DayOfWeekTriggerManager());
-        triggerManager.put("DayOfMonth", new DayOfMonthTriggerManager());
-        triggerManager.put("Date", new DateTriggerManager());
-        triggerManager.put("File", new FileTriggerManager());
-        triggerManager.put("FileSize", new FileSizeTriggerManager());
-        triggerManager.put("Program", new ProgramTriggerManager());
+        AvailableActions.createActionCreators(actions);
+        AvailableTriggers.createTriggerCreators(triggers);
         
         window3.visibleProperty().set(true);
         window1.visibleProperty().set(false);
 
-        for (ActionManager am : actionManager.values()){
+        for (ActionCreator am : actions.values()){
             am.getController().setToggleGroup(actionToggleGroup);
             scrollAllActions.getChildren().add(am.getHbox());
         }
         
-        for (TriggerManager am : triggerManager.values()){
+        for (TriggerCreator am : triggers.values()){
             am.getController().setToggleGroup(triggerToggleGroup);
             scrollAllTriggers.getChildren().add(am.getHbox());
         }
@@ -150,14 +106,14 @@ public class FXMLDocumentController implements Initializable {
         //se non è selezionata almeno un'azione o almeno un trigger bb2=true
         BooleanBinding bbToggleGroup = actionToggleGroup.selectedToggleProperty().isNull().or(triggerToggleGroup.selectedToggleProperty().isNull());
 
-        ActionManager[] actionManagers = actionManager.values().toArray(new ActionManager[0]);
+        ActionCreator[] actionManagers = actions.values().toArray(new ActionCreator[0]);
         BooleanBinding bbAction = null;
         BooleanBinding currentBindingAction = null;
         for(int i=0; i<actionManagers.length-1; i=i+2){
-            ActionManager am = actionManagers[i];
+            ActionCreator am = actionManagers[i];
             // Controlla se c'è un ActionManager successivo
             if (i + 1 < actionManagers.length) {
-                ActionManager nextAm = actionManagers[i + 1];
+                ActionCreator nextAm = actionManagers[i + 1];
                 // Inizializza la BooleanBinding con l'and tra lo stato "non completato" di am e nextAm
                 currentBindingAction = Bindings.and(am.isNotCompleted(), nextAm.isNotCompleted());
                 // Se bbAction è già inizializzata, effettua l'and con la nuova BooleanBinding
@@ -171,7 +127,7 @@ public class FXMLDocumentController implements Initializable {
         }
         
         if (actionManagers.length % 2 != 0) {
-            ActionManager lastAm = actionManagers[actionManagers.length - 1];
+            ActionCreator lastAm = actionManagers[actionManagers.length - 1];
             BooleanProperty currentBinding = lastAm.isNotCompleted();
             if (bbAction != null) {
                     bbAction = bbAction.and(currentBinding);
@@ -182,14 +138,14 @@ public class FXMLDocumentController implements Initializable {
         }
     
         
-        TriggerManager[] triggerManagers = triggerManager.values().toArray(new TriggerManager[0]);
+        TriggerCreator[] triggerManagers = triggers.values().toArray(new TriggerCreator[0]);
         BooleanBinding bbTrigger = null;
         BooleanBinding currentBindingTrigger = null;
         for(int i=0; i<triggerManagers.length; i=i+2){
-            TriggerManager tm = triggerManagers[i];
+            TriggerCreator tm = triggerManagers[i];
             // Controlla se c'è un TriggerManager successivo
             if (i + 1 < triggerManagers.length) {
-                TriggerManager nextTm = triggerManagers[i + 1];
+                TriggerCreator nextTm = triggerManagers[i + 1];
 
                 // Inizializza la BooleanBinding con l'and tra lo stato "non completato" di tm e nextTm
                 currentBindingTrigger = Bindings.and(tm.isNotCompleted(), nextTm.isNotCompleted());
@@ -205,7 +161,7 @@ public class FXMLDocumentController implements Initializable {
         }
         
         if (triggerManagers.length % 2 != 0) {
-            TriggerManager lastTm = triggerManagers[triggerManagers.length - 1];
+            TriggerCreator lastTm = triggerManagers[triggerManagers.length - 1];
             BooleanProperty currentBinding = lastTm.isNotCompleted();
             if (bbTrigger != null) {
                     bbTrigger = bbTrigger.and(currentBinding);
@@ -215,7 +171,6 @@ public class FXMLDocumentController implements Initializable {
                 }
         }
 
-        
         //se non è stato inserito il nome della regola O non è selezionata un'azione/ trigger O l'azione selezionata non è completa bb=true
         BooleanBinding bb = bbRuleName.or(bbToggleGroup).or(bbAction).or(bbTrigger);
         
@@ -236,9 +191,10 @@ public class FXMLDocumentController implements Initializable {
         //restituisce il trigger selezionato dall'utente
         RadioButton selectedTrigger = (RadioButton) triggerToggleGroup.getSelectedToggle();
         
-        RuleCreator.createRule(nameRuleTextField.getText().trim(), actionManager, selectedAction.getText(), triggerManager, selectedTrigger.getText()); 
+        //crea la regola in accordo al nome, all'azione e al trigger scelti dall'utente
+        RuleCreator.createRule(nameRuleTextField.getText().trim(), actions, selectedAction.getText(), triggers, selectedTrigger.getText()); 
         
-        loadAllRules();
+        loadRuleCards();
     
     }
     
@@ -247,23 +203,23 @@ public class FXMLDocumentController implements Initializable {
     private void goToHome(ActionEvent event) {
         window1.visibleProperty().set(true);
         window3.visibleProperty().set(false);
-        loadAllRules();
+        loadRuleCards();
     }
     
     //caricamento delle ruleCards 
-    private void loadAllRules(){
+    private void loadRuleCards(){
         
-        scrollRules.getChildren().clear();
+        scrollRules.getChildren().clear(); //pulisce scrollRules
         
-        Set<Rule> rules = ruleManager.getRules();
+        ruleManager = RuleManager.getInstance(); //preleva l'istanza del RuleManager
+        Set<Rule> rules = ruleManager.getRules(); //preleva le regole
 
         for (Rule rule : rules) {
             try {
                 FXMLLoader fxmlLoader = new FXMLLoader();
-                
                 fxmlLoader.setLocation(getClass().getResource("/view/rules/RuleCard.fxml")); 
                 HBox ruleBox = fxmlLoader.load();
-
+                
                 RuleCardController ruleCardController = fxmlLoader.getController();
                 ruleCardController.setRule(rule);
                 

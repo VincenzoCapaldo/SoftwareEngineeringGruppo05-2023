@@ -1,8 +1,7 @@
-package manager.triggers;
+package creator.triggers;
 
 import model.triggers.DayOfMonthTrigger;
 import controller.triggers.DayOfMonthTriggerController;
-import manager.TriggerManager;
 import model.rules.Rule;
 import model.triggers.Trigger;
 
@@ -10,11 +9,11 @@ import model.triggers.Trigger;
  *
  * @author Paolo
  */
-public class DayOfMonthTriggerManager extends TriggerManager{
+public class DayOfMonthTriggerCreator extends TriggerCreator{
     
     DayOfMonthTrigger trigger;
     
-    public DayOfMonthTriggerManager() {
+    public DayOfMonthTriggerCreator() {
         super("/view/triggers/DayOfMonthTrigger.fxml");
     }
     

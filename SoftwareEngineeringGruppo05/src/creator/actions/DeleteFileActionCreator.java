@@ -1,17 +1,16 @@
-package manager.actions;
+package creator.actions;
 
 import model.actions.Action;
 import model.actions.DeleteFileAction;
 import controller.actions.DeleteFileActionController;
-import manager.ActionManager;
 
 /**
  *
  * @author Paolo
  */
-public class DeleteFileActionManager extends ActionManager{
+public class DeleteFileActionCreator extends ActionCreator{
     
-    public DeleteFileActionManager() {
+    public DeleteFileActionCreator() {
         super("/view/actions/DeleteFileAction.fxml");
     }
     

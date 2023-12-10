@@ -1,17 +1,16 @@
-package manager.actions;
+package creator.actions;
 
 import model.actions.Action;
 import model.actions.MoveFileAction;
 import controller.actions.MoveFileActionController;
-import manager.ActionManager;
 
 /**
  *
  * @author Paolo
  */
-public class MoveFileActionManager extends ActionManager{
+public class MoveFileActionCreator extends ActionCreator{
     
-    public MoveFileActionManager() {
+    public MoveFileActionCreator() {
         super("/view/actions/MoveFileAction.fxml");
     }
     

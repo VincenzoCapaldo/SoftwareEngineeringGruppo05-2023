@@ -1,16 +1,15 @@
-package manager.actions;
+package creator.actions;
 
 import model.actions.Action;
-import manager.ActionManager;
 import model.actions.CompositeAction;
 
 /**
  *
  * @author Paolo
  */
-public class CompositeActionManager extends ActionManager{
+public class CompositeActionCreator extends ActionCreator{
     
-    public CompositeActionManager() {
+    public CompositeActionCreator() {
         super("/view/actions/CompositeAction.fxml");
     }
 

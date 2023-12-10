@@ -1,18 +1,17 @@
-package manager.actions;
+package creator.actions;
 
 import model.actions.Action;
 import model.actions.CreateProgramAction;
 import model.actions.ProgramAction;
 import controller.actions.ProgramActionController;
-import manager.ActionManager;
 
 /**
  *
  * @author Paolo
  */
-public class ProgramActionManager extends ActionManager{
+public class ProgramActionCreator extends ActionCreator{
     
-    public ProgramActionManager() {
+    public ProgramActionCreator() {
         super("/view/actions/ProgramAction.fxml");
     }
     

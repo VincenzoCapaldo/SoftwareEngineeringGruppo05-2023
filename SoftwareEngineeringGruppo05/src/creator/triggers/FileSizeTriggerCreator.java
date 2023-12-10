@@ -1,8 +1,7 @@
-package manager.triggers;
+package creator.triggers;
 
 import model.triggers.FileSizeTrigger;
 import controller.triggers.FileSizeTriggerController;
-import manager.TriggerManager;
 import model.rules.Rule;
 import model.triggers.Trigger;
 
@@ -10,11 +9,11 @@ import model.triggers.Trigger;
  *
  * @author Paolo
  */
-public class FileSizeTriggerManager extends TriggerManager{
+public class FileSizeTriggerCreator extends TriggerCreator{
     
     FileSizeTrigger trigger;
     
-    public FileSizeTriggerManager() {
+    public FileSizeTriggerCreator() {
         super("/view/triggers/FileSizeTrigger.fxml");
     }
     
