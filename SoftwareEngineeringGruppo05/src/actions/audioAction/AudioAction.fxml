@@ -7,9 +7,9 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<HBox fx:id="soundActionBox" alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="80.0" prefWidth="320.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="actions.audioAction.AudioActionController">
+<HBox fx:id="soundActionBox" alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="80.0" prefWidth="320.0" stylesheets="@../../css/style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="actions.audioAction.AudioActionController">
    <children>
-      <CheckBox fx:id="audioCB" mnemonicParsing="false" onAction="#audioActionSelected" text="Audio">
+      <CheckBox fx:id="audioCB" mnemonicParsing="false" onAction="#audioActionSelected" styleClass="white_text" stylesheets="@../../css/style.css" text="Audio">
          <font>
             <Font size="21.0" />
          </font>

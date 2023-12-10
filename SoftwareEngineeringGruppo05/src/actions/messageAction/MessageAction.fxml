@@ -12,10 +12,13 @@
    <children>
       <VBox fx:id="vboxMessage" prefHeight="50.0" prefWidth="320.0" stylesheets="@../../css/style.css">
          <children>
-            <CheckBox fx:id="messageCB" mnemonicParsing="false" onAction="#messageActionSelected" text="Message">
+            <CheckBox fx:id="messageCB" mnemonicParsing="false" onAction="#messageActionSelected" styleClass="white_text" stylesheets="@../../css/style.css" text="Message">
                <font>
                   <Font size="21.0" />
                </font>
+               <VBox.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </VBox.margin>
             </CheckBox>
             <TextArea fx:id="messageTextArea" prefHeight="119.0" prefWidth="105.0" promptText="Write a message..." styleClass="white_background" stylesheets="@../../css/style.css">
                <VBox.margin>

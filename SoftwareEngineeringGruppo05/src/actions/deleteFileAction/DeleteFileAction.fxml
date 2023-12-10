@@ -10,11 +10,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<HBox fx:id="deleteFileActionBox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="163.0" prefWidth="320.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="actions.deleteFileAction.DeleteFileActionController">
+<HBox fx:id="deleteFileActionBox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="163.0" prefWidth="320.0" stylesheets="@../../css/style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="actions.deleteFileAction.DeleteFileActionController">
    <children>
       <VBox fx:id="vboxDeleteFile" prefHeight="106.0" prefWidth="300.0" spacing="10.0" stylesheets="@../css/style.css">
          <children>
-            <CheckBox fx:id="deleteFileCB" mnemonicParsing="false" onAction="#deleteFileActionSelected" text="DeleteFile">
+            <CheckBox fx:id="deleteFileCB" mnemonicParsing="false" onAction="#deleteFileActionSelected" styleClass="white_text" stylesheets="@../../css/style.css" text="DeleteFile">
                <font>
                   <Font size="21.0" />
                </font>
