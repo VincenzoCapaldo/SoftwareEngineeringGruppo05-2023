@@ -19,13 +19,15 @@ public class AudioActionTest {
     }
     
     @Test(expected = RuntimeException.class)
-    public void testFortmatFileAudioAction(){
+    public void testFortmatFileExcecute(){
         AudioAction aa = new AudioAction("test/actions/AudioAction/formatoSbagliato.txt"); //estensione errata
+        aa.execute();
     }
     
     @Test(expected = RuntimeException.class)
-    public void testFileNotFoundAudioAction(){
+    public void testFileNotFoundExcecute(){
         AudioAction aa = new AudioAction("test/actions/AudioAction/fileInesistente.wav"); //file inesistente
+        aa.execute();
     }
     
     @Test(expected = RuntimeException.class)
