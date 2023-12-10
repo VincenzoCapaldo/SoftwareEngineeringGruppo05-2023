@@ -17,7 +17,11 @@ public class DeleteFileActionCreator extends ActionCreator{
     @Override
     public Action createAction() {
         DeleteFileActionController dfac = ((DeleteFileActionController)super.getController());
-        DeleteFileAction dfa = new DeleteFileAction(dfac.getDirectoryPath(),dfac.getFileName());
+        DeleteFileAction dfa = null;
+        if(dfac.getCB().isSelected()){
+            dfa = new DeleteFileAction(dfac.getDirectoryPath(),dfac.getFileName());
+        }
         return dfa;
     }
+    
 }

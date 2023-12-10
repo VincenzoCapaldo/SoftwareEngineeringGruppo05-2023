@@ -17,7 +17,11 @@ public class WriteFileActionCreator extends ActionCreator{
     @Override
     public Action createAction() {
         WriteFileActionController wfac = ((WriteFileActionController)super.getController());
-        WriteFileAction wfa = new WriteFileAction(wfac.getFilePath(), wfac.getTextArea());
+        WriteFileAction wfa = null;
+        if(wfac.getCB().isSelected()){
+            wfa = new WriteFileAction(wfac.getFilePath(), wfac.getTextArea());
+        }
         return wfa;
     }
+    
 }

@@ -4,7 +4,6 @@
  */
 package controller.triggers;
 
-import controller.Controller;
 import java.io.File;
 import java.net.URL;
 import java.time.LocalTime;
@@ -35,7 +34,7 @@ import softwareengineeringgruppo05.CheckValueClass;
  *
  * @author maria
  */
-public class ProgramTriggerController implements Initializable, Controller {
+public class ProgramTriggerController implements Initializable, TriggerController {
 
     @FXML
     private HBox programactionBox;

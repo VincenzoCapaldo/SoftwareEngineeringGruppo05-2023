@@ -19,23 +19,20 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
-import controller.Controller;
+import javafx.scene.control.CheckBox;
 
 /**
  * FXML Controller class
  *
  * @author enzo0
  */
-public class DeleteFileActionController implements Initializable, Controller {
+public class DeleteFileActionController implements Initializable, ActionController {
 
     @FXML
     private HBox deleteFileActionBox;
     @FXML
     private VBox vboxDeleteFile;
-    @FXML
     private RadioButton deleteFileActionRB;
-    @FXML
-    private ToggleGroup selectActionTG;
     @FXML
     private HBox hbox1;
     @FXML
@@ -53,13 +50,15 @@ public class DeleteFileActionController implements Initializable, Controller {
     private BooleanProperty flagDeleteFile;
     @FXML
     private VBox vbox1;
+    @FXML
+    private CheckBox deleteFileCB;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        flagDeleteFile = new SimpleBooleanProperty(true);
+        /*flagDeleteFile = new SimpleBooleanProperty(true);
         
         BooleanProperty isDeleteFileActionSelected = deleteFileActionRB.selectedProperty();
       
@@ -90,7 +89,7 @@ public class DeleteFileActionController implements Initializable, Controller {
                 return DeleteFileSelected;
             },
             isDeleteFileActionSelected
-        ));
+        ));*/
     }    
 
     @FXML
@@ -109,11 +108,6 @@ public class DeleteFileActionController implements Initializable, Controller {
         });
     }
     
-    @Override
-    public void setToggleGroup(ToggleGroup toggleGroup) {
-        deleteFileActionRB.setToggleGroup(toggleGroup);
-    }
-    
     public String getDirectoryPath(){
         return this.selectedDirectory.getAbsolutePath();
     }
@@ -125,6 +119,11 @@ public class DeleteFileActionController implements Initializable, Controller {
     @Override
     public BooleanProperty getFlag() {
         return flagDeleteFile;
+    }
+
+    @Override
+    public CheckBox getCB() {
+        return deleteFileCB;
     }
 
 }

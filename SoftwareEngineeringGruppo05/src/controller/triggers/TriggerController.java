@@ -1,4 +1,4 @@
-package controller;
+package controller.triggers;
 
 import javafx.beans.property.BooleanProperty;
 import javafx.scene.control.ToggleGroup;
@@ -7,7 +7,7 @@ import javafx.scene.control.ToggleGroup;
  *
  * @author maria
  */
-public interface Controller {
+public interface TriggerController {
     public void setToggleGroup(ToggleGroup toggleGroup);
     public BooleanProperty getFlag();
 }

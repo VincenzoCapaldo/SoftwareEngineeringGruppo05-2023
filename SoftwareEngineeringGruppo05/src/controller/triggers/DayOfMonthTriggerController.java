@@ -1,6 +1,5 @@
 package controller.triggers;
 
-import controller.Controller;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
@@ -25,7 +24,7 @@ import softwareengineeringgruppo05.CheckValueClass;
  *
  * @author maria
  */
-public class DayOfMonthTriggerController implements Initializable, Controller {
+public class DayOfMonthTriggerController implements Initializable, TriggerController {
 
     @FXML
     private HBox dayOfMonthBox;

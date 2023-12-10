@@ -3,7 +3,7 @@ package creator.actions;
 import model.actions.Action;
 import javafx.beans.property.BooleanProperty;
 import javafx.fxml.FXMLLoader;
-import controller.Controller;
+import controller.actions.ActionController;
 import creator.Creator;
 import java.io.IOException;
 import java.util.logging.Level;
@@ -17,7 +17,7 @@ import javafx.scene.layout.HBox;
 public abstract class ActionCreator implements Creator{
     
     private FXMLLoader fxmlLoader;
-    private Controller controller;
+    private ActionController controller;
     private HBox hbox;
     
     public ActionCreator(String path) {
@@ -36,8 +36,7 @@ public abstract class ActionCreator implements Creator{
         return hbox;
     }
 
-    @Override
-    public Controller getController() {
+    public ActionController getController() {
         return controller;
     }
     

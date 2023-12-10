@@ -3,9 +3,8 @@
 <?import java.lang.String?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.TextArea?>
-<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
@@ -16,14 +15,11 @@
          <children>
             <HBox fx:id="hboxWriter" alignment="CENTER_LEFT" prefHeight="71.0" prefWidth="261.0" spacing="50.0">
                <children>
-                  <RadioButton fx:id="writeActionRB" mnemonicParsing="false" prefHeight="31.0" prefWidth="170.0" styleClass="white_text" stylesheets="@../../css/style.css" text="WriteFile">
+                  <CheckBox fx:id="writeFileCB" mnemonicParsing="false" text="WriteFile">
                      <font>
                         <Font size="21.0" />
                      </font>
-                     <toggleGroup>
-                        <ToggleGroup fx:id="selectActionTG" />
-                     </toggleGroup>
-                  </RadioButton>
+                  </CheckBox>
                   <Button fx:id="browseButton" mnemonicParsing="false" onAction="#browseFile" prefHeight="32.0" prefWidth="85.0" styleClass="white_background" stylesheets="@../../css/style.css" text="Browse">
                      <HBox.margin>
                         <Insets />

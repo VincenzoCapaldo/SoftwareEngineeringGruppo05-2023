@@ -97,7 +97,7 @@ public class FXMLDocumentController implements Initializable {
         scrollAllActions.getChildren().clear();
         scrollAllTriggers.getChildren().clear();
         
-        actionToggleGroup = new ToggleGroup();
+        //actionToggleGroup = new ToggleGroup();
         triggerToggleGroup = new ToggleGroup();
         
         AvailableActions.createActionCreators(actions);
@@ -107,9 +107,8 @@ public class FXMLDocumentController implements Initializable {
         window1.visibleProperty().set(false);
         window2.visibleProperty().set(false);
         
-
         for (ActionCreator am : actions.values()){
-            am.getController().setToggleGroup(actionToggleGroup);
+            //am.getController().setToggleGroup(actionToggleGroup);
             scrollAllActions.getChildren().add(am.getHbox());
         }
         
@@ -117,7 +116,7 @@ public class FXMLDocumentController implements Initializable {
             am.getController().setToggleGroup(triggerToggleGroup);
             scrollAllTriggers.getChildren().add(am.getHbox());
         }
-        
+        /*
         //se il nome della regola non è inserito o è di solo spazi vuoti bb1=true
         BooleanBinding bbRuleName = Bindings.createBooleanBinding(
         () -> nameRuleTextField.getText().trim().isEmpty(),
@@ -157,7 +156,7 @@ public class FXMLDocumentController implements Initializable {
                     bbAction = currentBinding.and(new SimpleBooleanProperty(true));
                 }
         }
-    
+        */
         
         TriggerCreator[] triggerManagers = triggers.values().toArray(new TriggerCreator[0]);
         BooleanBinding bbTrigger = null;
@@ -193,9 +192,9 @@ public class FXMLDocumentController implements Initializable {
         }
 
         //se non è stato inserito il nome della regola O non è selezionata un'azione/ trigger O l'azione selezionata non è completa bb=true
-        BooleanBinding bb = bbRuleName.or(bbToggleGroup).or(bbAction).or(bbTrigger);
+        //BooleanBinding bb = bbRuleName.or(bbToggleGroup).or(bbAction).or(bbTrigger);
         
-        createRuleButton.disableProperty().bind(bb);  
+        //createRuleButton.disableProperty().bind(bb);  
         
     }
 
@@ -208,13 +207,13 @@ public class FXMLDocumentController implements Initializable {
         window2.visibleProperty().set(false);
         
         //restituisce l'azione selezionata dall'utente
-        RadioButton selectedAction = (RadioButton) actionToggleGroup.getSelectedToggle();
+        //RadioButton selectedAction = (RadioButton) actionToggleGroup.getSelectedToggle();
         
         //restituisce il trigger selezionato dall'utente
         RadioButton selectedTrigger = (RadioButton) triggerToggleGroup.getSelectedToggle();
         
         //crea la regola in accordo al nome, all'azione e al trigger scelti dall'utente
-        RuleCreator.createRule(nameRuleTextField.getText().trim(), actions, selectedAction.getText(), triggers, selectedTrigger.getText()); 
+        RuleCreator.createRule(nameRuleTextField.getText().trim(), actions, triggers, selectedTrigger.getText()); 
         
         loadRuleCards();
     
@@ -267,7 +266,7 @@ public class FXMLDocumentController implements Initializable {
         AvailableActions.createActionCreators(actions);
         
         for (ActionCreator am : actions.values()){
-            am.getController().setToggleGroup(actionToggleGroup);
+            //am.getController().setToggleGroup(actionToggleGroup);
             scrollActionsComposite.getChildren().add(am.getHbox());
         }
         

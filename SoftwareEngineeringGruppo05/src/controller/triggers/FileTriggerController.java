@@ -1,6 +1,5 @@
 package controller.triggers;
 
-import controller.Controller;
 import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -26,7 +25,7 @@ import javafx.stage.Stage;
  *
  * @author enzo0
  */
-public class FileTriggerController implements Initializable, Controller {
+public class FileTriggerController implements Initializable, TriggerController {
 
     @FXML
     private HBox fileTriggerBox;

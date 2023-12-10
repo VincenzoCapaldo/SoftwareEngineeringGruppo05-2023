@@ -17,7 +17,11 @@ public class MoveFileActionCreator extends ActionCreator{
     @Override
     public Action createAction() {
         MoveFileActionController mfac = ((MoveFileActionController)super.getController());
-        MoveFileAction mfa = new MoveFileAction(mfac.getFilePath(), mfac.getDirectoryPath());
+        MoveFileAction mfa = null;
+        if(mfac.getCB().isSelected()){
+            mfa = new MoveFileAction(mfac.getFilePath(),mfac.getDirectoryPath());
+        }
         return mfa;
     }
+    
 }

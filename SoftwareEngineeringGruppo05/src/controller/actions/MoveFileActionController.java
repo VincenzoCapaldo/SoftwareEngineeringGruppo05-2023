@@ -19,23 +19,21 @@ import javafx.scene.layout.VBox;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import controller.Controller;
+import javafx.scene.control.CheckBox;
+import controller.triggers.TriggerController;
 
 /**
  * FXML Controller class
  *
  * @author enzo0
  */
-public class MoveFileActionController implements Initializable, Controller {
+public class MoveFileActionController implements Initializable, ActionController {
 
     @FXML
     private HBox moveFileActionBox;
     @FXML
     private VBox vboxMoveFile;
-    @FXML
     private RadioButton moveFileActionRB;
-    @FXML
-    private ToggleGroup selectActionTG;
     @FXML
     private HBox hboxMoveFileOptions;
     @FXML
@@ -50,13 +48,15 @@ public class MoveFileActionController implements Initializable, Controller {
     private File selectedFile;
     private File selectedDirectory;
     private BooleanProperty flagMoveFile;
+    @FXML
+    private CheckBox moveFileCB;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        flagMoveFile = new SimpleBooleanProperty(true);
+        /*flagMoveFile = new SimpleBooleanProperty(true);
         BooleanProperty isMoveFileActionSelected = moveFileActionRB.selectedProperty();
         
         hboxMoveFileOptions.visibleProperty().bind(Bindings.createBooleanBinding(
@@ -80,7 +80,7 @@ public class MoveFileActionController implements Initializable, Controller {
                 return MoveFileSelected;
             },
             isMoveFileActionSelected
-        ));
+        ));*/
     }    
 
     @FXML
@@ -108,11 +108,6 @@ public class MoveFileActionController implements Initializable, Controller {
         });
     }
     
-    @Override
-    public void setToggleGroup(ToggleGroup toggleGroup) {
-        moveFileActionRB.setToggleGroup(toggleGroup);
-    }
-    
     public String getFilePath(){
         return this.selectedFile.getAbsolutePath();
     }
@@ -124,6 +119,11 @@ public class MoveFileActionController implements Initializable, Controller {
     @Override
     public BooleanProperty getFlag() {
         return flagMoveFile;
+    }
+
+    @Override
+    public CheckBox getCB() {
+        return moveFileCB;
     }
     
 }

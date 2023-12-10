@@ -29,5 +29,4 @@ public class TimeTriggerCreator extends TriggerCreator{
         trigger.addObserver(rule);
     }
     
-    
 }

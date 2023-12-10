@@ -1,6 +1,5 @@
 package controller.triggers;
 
-import controller.Controller;
 import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -32,7 +31,7 @@ import model.triggers.FileSizeUnit;
  *
  * @author enzo0
  */
-public class FileSizeTriggerController implements Initializable, Controller {
+public class FileSizeTriggerController implements Initializable, TriggerController {
 
     @FXML
     private HBox fileSizeTriggerBox;

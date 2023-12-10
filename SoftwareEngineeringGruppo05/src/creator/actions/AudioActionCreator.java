@@ -17,8 +17,11 @@ public class AudioActionCreator extends ActionCreator{
     @Override
     public Action createAction() {
         AudioActionController aac = ((AudioActionController)super.getController());
-        AudioAction aa = new AudioAction(aac.getFilePath());
+        AudioAction aa = null;
+        if (aac.getCB().isSelected()){
+            aa = new AudioAction(aac.getFilePath());
+        }
         return aa;
-    }
+    }    
     
 }

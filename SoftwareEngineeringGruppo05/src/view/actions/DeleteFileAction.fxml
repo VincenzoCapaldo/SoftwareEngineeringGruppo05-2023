@@ -3,26 +3,22 @@
 <?import java.lang.String?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<HBox fx:id="deleteFileActionBox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="163.0" prefWidth="320.0" stylesheets="@../../css/style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.actions.DeleteFileActionController">
+<HBox fx:id="deleteFileActionBox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="163.0" prefWidth="320.0" stylesheets="@../../css/style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.actions.DeleteFileActionController">
    <children>
       <VBox fx:id="vboxDeleteFile" prefHeight="106.0" prefWidth="300.0" spacing="10.0" stylesheets="@../../css/style.css">
          <children>
-            <RadioButton fx:id="deleteFileActionRB" mnemonicParsing="false" prefHeight="31.0" prefWidth="142.0" styleClass="white_text" stylesheets="@../../css/style.css" text="DeleteFile">
+            <CheckBox fx:id="deleteFileCB" mnemonicParsing="false" text="DeleteFile">
                <font>
                   <Font size="21.0" />
                </font>
-               <toggleGroup>
-                  <ToggleGroup fx:id="selectActionTG" />
-               </toggleGroup>
-            </RadioButton>
+            </CheckBox>
             <VBox fx:id="vbox1" prefHeight="76.0" prefWidth="221.0" spacing="5.0" stylesheets="@../../css/style.css">
                <children>
                   <HBox fx:id="hbox1" alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="10.0" stylesheets="@../../css/style.css">

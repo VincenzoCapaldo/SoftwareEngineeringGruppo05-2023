@@ -1,6 +1,5 @@
 package controller.triggers;
 
-import controller.Controller;
 import java.net.URL;
 import java.time.Duration;
 import java.time.LocalTime;
@@ -27,7 +26,7 @@ import softwareengineeringgruppo05.CheckValueClass;
  *
  * @author maria
  */
-public class TimeTriggerController implements Initializable, Controller {
+public class TimeTriggerController implements Initializable, TriggerController {
 
     @FXML
     private HBox timeTriggerBox;

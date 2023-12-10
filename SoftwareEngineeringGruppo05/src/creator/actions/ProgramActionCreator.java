@@ -18,8 +18,11 @@ public class ProgramActionCreator extends ActionCreator{
     @Override
     public Action createAction() {
         ProgramActionController pac = ((ProgramActionController)super.getController());
-        CreateProgramAction cpa = new CreateProgramAction();
-        ProgramAction pa = cpa.createProgramAction(pac.getFilePath(), pac.getTextArea());
+        ProgramAction pa = null;
+        if(pac.getCB().isSelected()){
+            CreateProgramAction cpa = new CreateProgramAction();
+            pa = cpa.createProgramAction(pac.getFilePath(), pac.getTextArea());
+        }
         return pa;
     }
     

@@ -17,7 +17,10 @@ public class CopyFileActionCreator extends ActionCreator{
     @Override
     public Action createAction() {
         CopyFileActionController cfac = ((CopyFileActionController)super.getController());
-        CopyFileAction cfa = new CopyFileAction(cfac.getFilePath(),cfac.getDirectoryPath());
+        CopyFileAction cfa = null;
+        if(cfac.getCB().isSelected()){
+            cfa = new CopyFileAction(cfac.getFilePath(),cfac.getDirectoryPath());
+        }
         return cfa;
     }
     

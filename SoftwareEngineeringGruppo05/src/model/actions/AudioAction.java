@@ -16,15 +16,16 @@ import javax.sound.sampled.UnsupportedAudioFileException;
  * @author Paolo
  */
 public class AudioAction implements Action {
-    private Clip clip;
+    private String pathName;
     
-    /* Costruttore che accetta il percorso del file audio come stringa */
     public AudioAction(String pathName) {
-        this(new File(pathName));
+        this.pathName = pathName;
     }
     
-    /* Costruttore che accetta un oggetto File rappresentante il file audio */
-    public AudioAction(File file) {
+    @Override
+    public void execute() {
+        Clip clip = null;
+        File file = new File(pathName);
         try{
             clip = AudioSystem.getClip(); // Ottiene un Clip dalla Java Sound API
             InputStream is = new FileInputStream(file); // Crea un InputStream dal file audio
@@ -34,10 +35,6 @@ public class AudioAction implements Action {
         }catch (LineUnavailableException | UnsupportedAudioFileException | IOException ex) {
             throw new RuntimeException();
         }
-    }
-    
-    @Override
-    public void execute() {
         clip.start();
     }
     

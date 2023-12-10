@@ -19,23 +19,21 @@ import javafx.scene.layout.VBox;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import controller.Controller;
+import javafx.scene.control.CheckBox;
+import controller.triggers.TriggerController;
 
 /**
  * FXML Controller class
  *
  * @author enzo0
  */
-public class CopyFileActionController implements Initializable, Controller {
+public class CopyFileActionController implements Initializable, ActionController {
 
     @FXML
     private HBox copyFileActionBox;
     @FXML
     private VBox vboxCopyFile;
-    @FXML
     private RadioButton copyFileActionRB;
-    @FXML
-    private ToggleGroup selectActionTG;
     @FXML
     private Button fileButton;
     @FXML
@@ -51,13 +49,15 @@ public class CopyFileActionController implements Initializable, Controller {
     private Label toLabel;
     @FXML
     private HBox hboxCopyFileOptions;
+    @FXML
+    private CheckBox copyFileCB;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        flagCopyFile = new SimpleBooleanProperty(true);
+        /*flagCopyFile = new SimpleBooleanProperty(true);
         BooleanProperty isCopyFileActionSelected = copyFileActionRB.selectedProperty();
         
         hboxCopyFileOptions.visibleProperty().bind(Bindings.createBooleanBinding(
@@ -83,7 +83,7 @@ public class CopyFileActionController implements Initializable, Controller {
             },
             isCopyFileActionSelected
         ));
-         
+         */
     }    
 
     @FXML
@@ -111,11 +111,6 @@ public class CopyFileActionController implements Initializable, Controller {
         });
     }
     
-    @Override
-    public void setToggleGroup(ToggleGroup toggleGroup) {
-        copyFileActionRB.setToggleGroup(toggleGroup);
-    }
-    
     public String getFilePath(){
         return this.selectedFile.getAbsolutePath();
     }
@@ -127,6 +122,11 @@ public class CopyFileActionController implements Initializable, Controller {
     @Override
     public BooleanProperty getFlag() {
         return flagCopyFile;
+    }
+
+    @Override
+    public CheckBox getCB() {
+        return copyFileCB;
     }
 
 }

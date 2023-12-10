@@ -15,7 +15,7 @@ import model.triggers.Trigger;
  */
 public class DayOfWeekTrigger extends Observable implements Trigger {
 
-    DayOfWeek dayOfWeek;
+    private DayOfWeek dayOfWeek;
     private boolean repetition;
     private boolean verified;
 

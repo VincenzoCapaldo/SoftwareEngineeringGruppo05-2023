@@ -3,25 +3,21 @@
 <?import java.lang.String?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.RadioButton?>
-<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<HBox fx:id="copyFileActionBox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="118.0" prefWidth="320.0" stylesheets="@../../css/style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.actions.CopyFileActionController">
+<HBox fx:id="copyFileActionBox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="118.0" prefWidth="320.0" stylesheets="@../../css/style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.actions.CopyFileActionController">
    <children>
       <VBox fx:id="vboxCopyFile" prefHeight="118.0" prefWidth="320.0" spacing="10.0" stylesheets="@../../css/style.css">
          <children>
-            <RadioButton fx:id="copyFileActionRB" mnemonicParsing="false" prefHeight="31.0" prefWidth="142.0" styleClass="white_text" stylesheets="@../../css/style.css" text="CopyFile">
+            <CheckBox fx:id="copyFileCB" mnemonicParsing="false" text="CopyFile">
                <font>
                   <Font size="21.0" />
                </font>
-               <toggleGroup>
-                  <ToggleGroup fx:id="selectActionTG" />
-               </toggleGroup>
-            </RadioButton>
+            </CheckBox>
             <HBox fx:id="hboxCopyFileOptions" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="5.0">
                <children>
                   <Label fx:id="copyLabel" prefHeight="21.0" prefWidth="58.0" styleClass="white_text" stylesheets="@../../css/style.css" text="Copy">

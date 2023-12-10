@@ -18,21 +18,18 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import controller.Controller;
+import javafx.scene.control.CheckBox;
 
 /**
  * FXML Controller class
  *
  * @author enzo0
  */
-public class WriteFileActionController implements Initializable, Controller {
+public class WriteFileActionController implements Initializable, ActionController {
 
     @FXML
     private HBox writerActionBox;
-    @FXML
     private RadioButton writeActionRB;
-    @FXML
-    private ToggleGroup selectActionTG;
     @FXML
     private Button browseButton;
     @FXML
@@ -43,12 +40,14 @@ public class WriteFileActionController implements Initializable, Controller {
     private VBox vboxWriter;
     @FXML
     private HBox hboxWriter;
+    @FXML
+    private CheckBox writeFileCB;
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        flagWriter = new SimpleBooleanProperty(true);
+        /*flagWriter = new SimpleBooleanProperty(true);
         BooleanProperty isWriterActionSelected = writeActionRB.selectedProperty();
 
         messageTextArea.visibleProperty().bind(Bindings.createBooleanBinding(
@@ -73,7 +72,7 @@ public class WriteFileActionController implements Initializable, Controller {
             isWriterActionSelected
         ));
         
-        
+        */
     }    
 
     @FXML
@@ -96,11 +95,6 @@ public class WriteFileActionController implements Initializable, Controller {
         });
     }
     
-    @Override
-    public void setToggleGroup(ToggleGroup toggleGroup) {
-        writeActionRB.setToggleGroup(toggleGroup);
-    }
-    
     public String getTextArea(){
         return messageTextArea.getText();
     }
@@ -113,4 +107,10 @@ public class WriteFileActionController implements Initializable, Controller {
     public BooleanProperty getFlag() {
         return flagWriter;
     }
+
+    @Override
+    public CheckBox getCB() {
+        return writeFileCB;
+    }
+
 }

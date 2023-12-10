@@ -18,23 +18,20 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import controller.Controller;
+import javafx.scene.control.CheckBox;
 
 /**
  * FXML Controller class
  *
  * @author Luca
  */
-public class ProgramActionController implements Initializable, Controller {
+public class ProgramActionController implements Initializable, ActionController {
 
     @FXML
     private VBox vBoxProgram;
     @FXML
     private TextArea commandTextArea;
-    @FXML
     private RadioButton programActionRB;
-    @FXML
-    private ToggleGroup selectActionTG;
     @FXML
     private Button browseButton;
     private File selectedFile;
@@ -43,13 +40,15 @@ public class ProgramActionController implements Initializable, Controller {
     private HBox programactionBox;
     @FXML
     private HBox hBoxProgram;
+    @FXML
+    private CheckBox programCB;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        flagProgram = new SimpleBooleanProperty(true);
+        /*flagProgram = new SimpleBooleanProperty(true);
         BooleanProperty isProgramActionSelected = programActionRB.selectedProperty();
  
         commandTextArea.visibleProperty().bind(Bindings.createBooleanBinding(
@@ -74,7 +73,7 @@ public class ProgramActionController implements Initializable, Controller {
             },
             isProgramActionSelected
         ));
- 
+ */
     }    
 
     @FXML
@@ -91,11 +90,6 @@ public class ProgramActionController implements Initializable, Controller {
         });
     }
     
-    @Override
-    public void setToggleGroup(ToggleGroup toggleGroup) {
-        programActionRB.setToggleGroup(toggleGroup);
-    }
-    
     public String getTextArea(){
         return commandTextArea.getText();
     }
@@ -109,5 +103,9 @@ public class ProgramActionController implements Initializable, Controller {
         return flagProgram;
     }
 
+    @Override
+    public CheckBox getCB() {
+        return programCB;
+    }
     
 }

@@ -1,6 +1,5 @@
 package creator.triggers;
 
-import controller.Controller;
 import creator.Creator;
 import java.io.IOException;
 import java.util.logging.Level;
@@ -10,6 +9,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.HBox;
 import model.rules.Rule;
 import model.triggers.Trigger;
+import controller.triggers.TriggerController;
 
 /**
  *
@@ -18,7 +18,7 @@ import model.triggers.Trigger;
 public abstract class TriggerCreator implements Creator{
     
     private FXMLLoader fxmlLoader;
-    private Controller controller;
+    private TriggerController controller;
     private HBox hbox;
     
     public TriggerCreator(String path) {
@@ -37,8 +37,7 @@ public abstract class TriggerCreator implements Creator{
         return hbox;
     }
 
-    @Override
-    public Controller getController() {
+    public TriggerController getController() {
         return controller;
     }
     

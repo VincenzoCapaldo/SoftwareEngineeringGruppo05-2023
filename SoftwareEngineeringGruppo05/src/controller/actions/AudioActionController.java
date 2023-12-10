@@ -1,6 +1,5 @@
 package controller.actions;
 
-import controller.Controller;
 import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -12,6 +11,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.HBox;
@@ -23,26 +23,26 @@ import javafx.stage.Stage;
  *
  * @author enzo0
  */
-public class AudioActionController implements Initializable, Controller {
+public class AudioActionController implements Initializable, ActionController {
 
     @FXML
     private HBox soundActionBox;
-    @FXML
     private RadioButton soundActionRB;
-    @FXML
-    private ToggleGroup selectActionTG;
     @FXML
     private Button browseButton;
     
     private File selectedFile;
     private BooleanProperty flagAudio;
+    private CheckBox AudioCB;
+    @FXML
+    private CheckBox audioCB;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        flagAudio = new SimpleBooleanProperty(true);
+        /*flagAudio = new SimpleBooleanProperty(true);
         BooleanProperty isSoundActionSelected = soundActionRB.selectedProperty();
         
         // Creazione di un binding personalizzato per la visibilità del pulsante
@@ -52,7 +52,7 @@ public class AudioActionController implements Initializable, Controller {
 
                 /* Aggiungi o rimuovi il pulsante dal layout e modifica la dimensione della card di condeguenza 
                 in base allo stato del RadioButton: azione eseguita dal thread principale*/
-                Platform.runLater(() -> {
+            /*    Platform.runLater(() -> {
                         if (!soundActionSelected) {
                             soundActionBox.getChildren().remove(browseButton);
                             soundActionBox.setPrefHeight(65);
@@ -65,7 +65,7 @@ public class AudioActionController implements Initializable, Controller {
                 return soundActionSelected;
             },
             isSoundActionSelected
-        ));
+        ));*/
     }   
 
     @FXML
@@ -89,17 +89,17 @@ public class AudioActionController implements Initializable, Controller {
     }
     
     @Override
-    public void setToggleGroup(ToggleGroup toggleGroup) {
-        soundActionRB.setToggleGroup(toggleGroup);
+    public CheckBox getCB(){
+        return audioCB;
+    }
+    
+    @Override
+    public BooleanProperty getFlag() {
+        return flagAudio;
     }
     
     public String getFilePath(){
         return this.selectedFile.getAbsolutePath();
-    }
-
-    @Override
-    public BooleanProperty getFlag() {
-        return flagAudio;
     }
 
 }

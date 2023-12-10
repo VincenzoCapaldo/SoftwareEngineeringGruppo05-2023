@@ -17,8 +17,11 @@ public class MessageActionCreator extends ActionCreator{
     @Override
     public Action createAction() {
         MessageActionController mac = ((MessageActionController)super.getController());
-        MessageAction ma = new MessageAction(mac.getTextArea());
-        ma.addObserver(mac);
+        MessageAction ma = null;
+        if (mac.getCB().isSelected()){
+            ma = new MessageAction(mac.getTextArea());
+            ma.addObserver(mac);
+        }
         return ma;
     }
 }

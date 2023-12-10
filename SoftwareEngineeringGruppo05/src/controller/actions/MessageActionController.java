@@ -21,7 +21,7 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import controller.Controller;
+import javafx.scene.control.CheckBox;
 import model.actions.MessageAction;
 
 /**
@@ -29,27 +29,26 @@ import model.actions.MessageAction;
  *
  * @author enzo0
  */
-public class MessageActionController implements Initializable, Controller, Observer {
+public class MessageActionController implements Initializable, ActionController, Observer {
 
     @FXML
     private HBox messageActionBox;
-    @FXML
     private RadioButton messageActionRB;
-    @FXML
-    private ToggleGroup selectActionTG;
     @FXML
     private TextArea messageTextArea;
     @FXML
     private VBox vboxMessage;
     
     private BooleanProperty flagMessage;
+    @FXML
+    private CheckBox messageCB;
     
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        flagMessage = new SimpleBooleanProperty(true);
+        /*flagMessage = new SimpleBooleanProperty(true);
         BooleanProperty isMessageActionSelected = messageActionRB.selectedProperty();
         
          flagMessage.bind(Bindings.createBooleanBinding(
@@ -76,18 +75,17 @@ public class MessageActionController implements Initializable, Controller, Obser
                 return messageActionSelected;
             },
             isMessageActionSelected
-        ));
+        ));*/
     }    
-    
-    @Override
-    public void setToggleGroup(ToggleGroup toggleGroup) {
-        messageActionRB.setToggleGroup(toggleGroup);
-    }
     
     public String getTextArea(){
         return messageTextArea.getText();
     }
 
+    public CheckBox getCB(){
+        return messageCB;
+    }
+    
     @Override
     public BooleanProperty getFlag() {
         return flagMessage;

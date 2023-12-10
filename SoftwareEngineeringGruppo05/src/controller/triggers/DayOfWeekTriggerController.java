@@ -1,6 +1,5 @@
 package controller.triggers;
 
-import controller.Controller;
 import java.net.URL;
 import java.time.DayOfWeek;
 import java.util.ResourceBundle;
@@ -22,7 +21,7 @@ import javafx.scene.layout.VBox;
  *
  * @author maria
  */
-public class DayOfWeekTriggerController implements Initializable, Controller {
+public class DayOfWeekTriggerController implements Initializable, TriggerController {
 
     @FXML
     private RadioButton dayOfWeekRB;

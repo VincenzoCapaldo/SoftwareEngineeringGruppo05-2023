@@ -4,7 +4,6 @@
  */
 package controller.triggers;
 
-import controller.Controller;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
@@ -26,7 +25,7 @@ import javafx.scene.layout.VBox;
  *
  * @author maria
  */
-public class DateTriggerController implements Initializable, Controller {
+public class DateTriggerController implements Initializable, TriggerController {
 
     @FXML
     private HBox dateTriggerBox;
