@@ -1,7 +1,5 @@
 package triggers.programTrigger;
 
-import actions.programAction.CreatorProgramActionUnix;
-import actions.programAction.CreatorProgramActionWin;
 import triggers.TriggerCreator;
 import rule.Rule;
 import triggers.Trigger;
@@ -23,9 +21,9 @@ public class ProgramTriggerCreator extends TriggerCreator{
         ProgramTriggerController ptc = ((ProgramTriggerController)super.getController());
         String os = System.getProperty("os.name").toLowerCase();        
         if(os.contains("win")){
-            trigger = new CreatorProgramTriggerWin(ptc.getFilePath(), ptc.getTextArea(), ptc.getExitStatus()).create();
+            trigger = new CreatorProgramTriggerWin(ptc.getFilePath(), ptc.getTextArea(), ptc.getExitStatus()).create();  //crea il trigger per Windows
         }else if(os.contains("nix") || os.contains("nux") || os.contains("mac")){
-            trigger = new CreatorProgramTriggerUnix(ptc.getFilePath(), ptc.getTextArea(), ptc.getExitStatus()).create();
+            trigger = new CreatorProgramTriggerUnix(ptc.getFilePath(), ptc.getTextArea(), ptc.getExitStatus()).create();  //crea il trigger per Unix-like (Linux, macOS, ecc.)
         }
         return trigger;
     }

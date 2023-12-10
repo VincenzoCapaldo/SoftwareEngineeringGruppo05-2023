@@ -21,6 +21,7 @@ import java.util.logging.Logger;
  * @author Paolo
  */
 public class RuleManager implements Serializable{
+    
     private static RuleManager instance;
     private Map<Rule,Thread> mapRules; //mappa contenente le regole e i corrispettivi threads che le controllano
     private String filePath; //path del file di salvataggio

@@ -3,12 +3,9 @@ package triggers;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javafx.beans.property.BooleanProperty;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.HBox;
 import rule.Rule;
-import triggers.Trigger;
-import triggers.TriggerController;
 
 /**
  *
@@ -21,6 +18,7 @@ public abstract class TriggerCreator {
     private HBox hbox;
     
     public TriggerCreator(String path) {
+        // crea l'FXML e gli associa il corrispettivo controller
         fxmlLoader = new FXMLLoader();
         fxmlLoader.setLocation(getClass().getResource(path));
         try {
@@ -39,12 +37,8 @@ public abstract class TriggerCreator {
         return controller;
     }
     
-    public BooleanProperty isNotCompleted(){
-        return controller.getFlag();
-    }
-    
     public abstract Trigger createTrigger();
     
-    public abstract void addObserver(Rule rule);
+    public abstract void addObserver(Rule rule); //la regola osserva il trigger
 
 }

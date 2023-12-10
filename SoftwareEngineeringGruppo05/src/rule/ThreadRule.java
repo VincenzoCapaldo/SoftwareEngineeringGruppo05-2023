@@ -1,7 +1,5 @@
 package rule;
 
-import rule.Rule;
-
 /**
  *
  * @author Paolo
@@ -15,7 +13,7 @@ public class ThreadRule implements Runnable {
         
     @Override
     public void run() {
-        rule.getTrigger().checkTrigger();
+        rule.getTrigger().checkTrigger(); //fa partire il controllo del trigger
     }
 
 }

@@ -1,8 +1,6 @@
 package triggers.dateTrigger;
 
 import triggers.TriggerCreator;
-import triggers.dateTrigger.DateTrigger;
-import triggers.dateTrigger.DateTriggerController;
 import rule.Rule;
 import triggers.Trigger;
 
@@ -21,7 +19,7 @@ public class DateTriggerCreator extends TriggerCreator{
     @Override
     public Trigger createTrigger() {
         DateTriggerController dtc = ((DateTriggerController)super.getController());
-        trigger = new DateTrigger(dtc.getDate());
+        trigger = new DateTrigger(dtc.getDate()); //crea il trigger
         return trigger;
     }
 

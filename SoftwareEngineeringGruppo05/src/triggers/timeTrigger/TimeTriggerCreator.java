@@ -1,8 +1,6 @@
 package triggers.timeTrigger;
 
 import triggers.TriggerCreator;
-import triggers.timeTrigger.TimeTrigger;
-import triggers.timeTrigger.TimeTriggerController;
 import rule.Rule;
 import triggers.Trigger;
 
@@ -21,7 +19,7 @@ public class TimeTriggerCreator extends TriggerCreator{
     @Override
     public Trigger createTrigger() {
         TimeTriggerController ttc = ((TimeTriggerController)super.getController());
-        trigger = new TimeTrigger(ttc.getHours(), ttc.getMinutes(), ttc.repetitionIsSelected(), ttc.getSleeping());
+        trigger = new TimeTrigger(ttc.getHours(), ttc.getMinutes(), ttc.repetitionIsSelected(), ttc.getSleeping()); //crea il trigger
         return trigger;
     }
 

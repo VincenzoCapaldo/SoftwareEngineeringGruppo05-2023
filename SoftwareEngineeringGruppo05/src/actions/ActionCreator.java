@@ -1,6 +1,5 @@
 package actions;
 
-import javafx.beans.property.BooleanProperty;
 import javafx.fxml.FXMLLoader;
 import java.io.IOException;
 import java.util.logging.Level;
@@ -35,10 +34,6 @@ public abstract class ActionCreator {
 
     public ActionController getController() {
         return controller;
-    }
-    
-    public BooleanProperty isNotCompleted(){
-        return controller.getFlag();
     }
     
     public abstract Action createAction();

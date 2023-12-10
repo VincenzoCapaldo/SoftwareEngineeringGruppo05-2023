@@ -1,8 +1,6 @@
 package triggers.dayOfMonthTrigger;
 
 import triggers.TriggerCreator;
-import triggers.dayOfMonthTrigger.DayOfMonthTrigger;
-import triggers.dayOfMonthTrigger.DayOfMonthTriggerController;
 import rule.Rule;
 import triggers.Trigger;
 
@@ -21,7 +19,7 @@ public class DayOfMonthTriggerCreator extends TriggerCreator{
     @Override
     public Trigger createTrigger() {
         DayOfMonthTriggerController domtc = ((DayOfMonthTriggerController)super.getController());
-        trigger = new DayOfMonthTrigger(domtc.getDayOfMonth(),domtc.repetitionIsSelected());
+        trigger = new DayOfMonthTrigger(domtc.getDayOfMonth(),domtc.repetitionIsSelected());  //crea il trigger
         return trigger;
     }
 

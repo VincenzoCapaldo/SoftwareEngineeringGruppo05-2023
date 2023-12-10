@@ -17,19 +17,17 @@ public class ProgramActionUnix extends ProgramAction{
     @Override
     public void execute() {
         
-        String command = "xdg-open ";
+        String command = "xdg-open "; //comando per avviare un programma in Unix-like (Linux, macOS, ecc.)
         
         if(this.getProgramPath().contains(".jar")){
-            command = "java -jar ";
+            command = "java -jar "; //comando per gli eseguibili .jar
         }
         
         try {
-            Runtime.getRuntime().exec(command + this.getProgramPath() + " " + this.getCommandLine());
+            Runtime.getRuntime().exec(command + this.getProgramPath() + " " + this.getCommandLine()); //esegue il comando
         } catch (IOException ex) {
             Logger.getLogger(ProgramActionWin.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-    
-    
+       
 }

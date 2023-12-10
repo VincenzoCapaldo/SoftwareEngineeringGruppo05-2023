@@ -1,8 +1,6 @@
 package triggers.fileSizeTrigger;
 
 import triggers.TriggerCreator;
-import triggers.fileSizeTrigger.FileSizeTrigger;
-import triggers.fileSizeTrigger.FileSizeTriggerController;
 import rule.Rule;
 import triggers.Trigger;
 
@@ -21,7 +19,7 @@ public class FileSizeTriggerCreator extends TriggerCreator{
     @Override
     public Trigger createTrigger() {
         FileSizeTriggerController fstc = ((FileSizeTriggerController)super.getController());
-        trigger = new FileSizeTrigger(fstc.getFilePath(), fstc.getSize());
+        trigger = new FileSizeTrigger(fstc.getFilePath(), fstc.getSize()); //crea il trigger
         return trigger;
     }
 

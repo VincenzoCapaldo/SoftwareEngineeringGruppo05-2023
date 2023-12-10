@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package actions.programAction;
 
 /**
@@ -16,7 +12,7 @@ public class CreatorProgramActionWin extends CreatorProgramAction{
 
     @Override
     public ProgramAction create() {
-        return new ProgramActionWin(this.getPath(), this.getParameters());
+        return new ProgramActionWin(this.getPath(), this.getParameters()); //crea l'azione per Windows
     }
     
 }

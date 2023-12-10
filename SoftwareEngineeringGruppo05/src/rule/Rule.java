@@ -11,6 +11,7 @@ import triggers.Trigger;
  * @author maria
  */
 public class Rule extends Observable implements Serializable, Observer{
+    
     private String name;
     private Action action;
     private Trigger trigger;

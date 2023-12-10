@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package actions.programAction;
 
 /**
@@ -16,7 +12,7 @@ public class CreatorProgramActionUnix extends CreatorProgramAction{
 
     @Override
     public ProgramAction create() {
-        return new ProgramActionUnix(this.getPath(),this.getParameters());
+        return new ProgramActionUnix(this.getPath(),this.getParameters()); //crea l'azione per Unix-like (Linux, macOS, ecc.)
     }
     
 }

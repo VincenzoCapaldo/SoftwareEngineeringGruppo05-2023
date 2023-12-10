@@ -1,5 +1,6 @@
 package softwareengineeringgruppo05;
 
+import rule.RuleCreator;
 import actions.ActionController;
 import rule.RuleCardController;
 import java.io.IOException;
@@ -126,7 +127,7 @@ public class FXMLDocumentController implements Initializable {
                 ActionCreator nextAm = actionManagers[i + 1];
                 ActionController nextAc = nextAm.getController();
                 // Inizializza la BooleanBinding con l'and tra lo stato "non completato" di am e nextAm
-                currentBindingAction = Bindings.or(am.isNotCompleted(), nextAm.isNotCompleted());
+                currentBindingAction = Bindings.or(am.getController().getFlag(), nextAm.getController().getFlag());
                 
                 currentSelectedAction = Bindings.or(ac.getCB().selectedProperty(), nextAc.getCB().selectedProperty());
                 // Se bbAction è già inizializzata, effettua l'and con la nuova BooleanBinding
@@ -144,7 +145,7 @@ public class FXMLDocumentController implements Initializable {
         
         if (actionManagers.length % 2 != 0) {
             ActionCreator lastAm = actionManagers[actionManagers.length - 1];
-            BooleanProperty currentBinding = lastAm.isNotCompleted();
+            BooleanProperty currentBinding = lastAm.getController().getFlag();
             BooleanProperty currentSelected = lastAm.getController().getCB().selectedProperty();
             if (bbAction != null && selectedAction != null) {
                     bbAction = bbAction.or(currentBinding);
@@ -167,7 +168,7 @@ public class FXMLDocumentController implements Initializable {
                 TriggerCreator nextTm = triggerManagers[i + 1];
 
                 // Inizializza la BooleanBinding con l'and tra lo stato "non completato" di tm e nextTm
-                currentBindingTrigger = Bindings.and(tm.isNotCompleted(), nextTm.isNotCompleted());
+                currentBindingTrigger = Bindings.and(tm.getController().getFlag(), nextTm.getController().getFlag());
 
                 // Se bbTrigger è già inizializzata, effettua l'and con la nuova BooleanBinding
                 if (bbTrigger != null) {
@@ -181,7 +182,7 @@ public class FXMLDocumentController implements Initializable {
         
         if (triggerManagers.length % 2 != 0) {
             TriggerCreator lastTm = triggerManagers[triggerManagers.length - 1];
-            BooleanProperty currentBinding = lastTm.isNotCompleted();
+            BooleanProperty currentBinding = lastTm.getController().getFlag();
             if (bbTrigger != null) {
                     bbTrigger = bbTrigger.and(currentBinding);
             } else {

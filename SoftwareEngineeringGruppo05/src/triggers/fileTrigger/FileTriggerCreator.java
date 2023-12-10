@@ -1,8 +1,6 @@
 package triggers.fileTrigger;
 
 import triggers.TriggerCreator;
-import triggers.fileTrigger.FileTrigger;
-import triggers.fileTrigger.FileTriggerController;
 import rule.Rule;
 import triggers.Trigger;
 
@@ -21,7 +19,7 @@ public class FileTriggerCreator extends TriggerCreator{
     @Override
     public Trigger createTrigger() {
         FileTriggerController ftc = ((FileTriggerController)super.getController());
-        trigger = new FileTrigger(ftc.getDirectoryPath(), ftc.getFileName());
+        trigger = new FileTrigger(ftc.getDirectoryPath(), ftc.getFileName()); //crea il trigger
         return trigger;
     }
 

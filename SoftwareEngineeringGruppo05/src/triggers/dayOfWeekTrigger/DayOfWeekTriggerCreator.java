@@ -1,8 +1,6 @@
 package triggers.dayOfWeekTrigger;
 
 import triggers.TriggerCreator;
-import triggers.dayOfWeekTrigger.DayOfWeekTrigger;
-import triggers.dayOfWeekTrigger.DayOfWeekTriggerController;
 import rule.Rule;
 import triggers.Trigger;
 
@@ -21,7 +19,7 @@ public class DayOfWeekTriggerCreator extends TriggerCreator{
     @Override
     public Trigger createTrigger() {
         DayOfWeekTriggerController dowtc = ((DayOfWeekTriggerController)super.getController());
-        trigger = new DayOfWeekTrigger(dowtc.getDayOfWeek(),dowtc.repetitionIsSelected());
+        trigger = new DayOfWeekTrigger(dowtc.getDayOfWeek(),dowtc.repetitionIsSelected()); //crea il trigger
         return trigger;
     }
 
