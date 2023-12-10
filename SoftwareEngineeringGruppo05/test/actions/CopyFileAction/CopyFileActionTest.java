@@ -28,10 +28,12 @@ public class CopyFileActionTest {
     @Test
     public void testExecute() {
         Path pathSource = Paths.get(filePath);    
-        Path pathDestination = Paths.get(newPath + "/prova.txt");    
-        
+        Path pathDestination = Paths.get(newPath + "/prova.txt");  
+
         // creo il file di prova nella cartella source
         try {
+            Files.createDirectories(Paths.get("test/actions/CopyFileAction/source"));
+            Files.createDirectories(Paths.get("test/actions/CopyFileAction/destination"));
             Files.createFile(pathSource);
         } catch (IOException ex) {
             Logger.getLogger(CopyFileActionTest.class.getName()).log(Level.SEVERE, null, ex);
@@ -48,13 +50,15 @@ public class CopyFileActionTest {
         // elimino il file di prova nella cartella source
         try {
             Files.delete(pathSource);
+            Files.delete(Paths.get("test/actions/CopyFileAction/source"));
         } catch (IOException ex) {
             Logger.getLogger(CopyFileActionTest.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         // elimino il file di prova nella cartella destination
         try {
-            Files.delete(pathDestination);
+            Files.delete(pathDestination);    
+            Files.delete(Paths.get("test/actions/CopyFileAction/destination"));
         } catch (IOException ex) {
             Logger.getLogger(CopyFileActionTest.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -76,4 +80,12 @@ public class CopyFileActionTest {
         action.remove(action);
     }
 
+    @Test
+    public void testToString() {
+
+        String expResult = "CopyFile";
+        String result = action.toString();
+        assertEquals(expResult, result);
+
+    }
 }

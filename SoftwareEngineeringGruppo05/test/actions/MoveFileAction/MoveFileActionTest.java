@@ -32,6 +32,8 @@ public class MoveFileActionTest {
         
         // creo il file di prova nella cartella source
         try {
+            Files.createDirectories(Paths.get("test/actions/MoveFileAction/source"));
+            Files.createDirectories(Paths.get("test/actions/MoveFileAction/destination"));
             Files.createFile(pathSource);
         } catch (IOException ex) {
             Logger.getLogger(MoveFileActionTest.class.getName()).log(Level.SEVERE, null, ex);
@@ -48,6 +50,8 @@ public class MoveFileActionTest {
         // elimino il file di prova nella cartella destination
         try {
             Files.delete(pathDestination);
+            Files.delete(Paths.get("test/actions/MoveFileAction/source"));
+            Files.delete(Paths.get("test/actions/MoveFileAction/destination"));
         } catch (IOException ex) {
             Logger.getLogger(MoveFileActionTest.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -67,6 +71,15 @@ public class MoveFileActionTest {
     @Test(expected = RuntimeException.class)
     public void testRemove() {
         action.remove(action);
+    }
+    
+    @Test
+    public void testToString() {
+
+        String expResult = "MoveFile";
+        String result = action.toString();
+        assertEquals(expResult, result);
+
     }
     
 }

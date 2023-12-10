@@ -10,7 +10,7 @@ import static org.junit.Assert.*;
  */
 public class MessageActionTest {
    
-    MessageAction action;
+    private MessageAction action;
     private final String message = "prova"; //messaggio di prova
             
             
@@ -34,6 +34,15 @@ public class MessageActionTest {
     @Test(expected = RuntimeException.class)
     public void testRemove() {
         action.remove(action);
+    }
+    
+    @Test
+    public void testToString() {
+
+        String expResult = "Message";
+        String result = action.toString();
+        assertEquals(expResult, result);
+
     }
     
 }

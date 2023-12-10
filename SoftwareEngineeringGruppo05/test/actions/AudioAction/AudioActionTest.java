@@ -2,6 +2,7 @@ package actions.AudioAction;
 
 import actions.audioAction.AudioAction;
 import org.junit.*;
+import static org.junit.Assert.assertEquals;
 
 /**
  *
@@ -37,6 +38,15 @@ public class AudioActionTest {
     @Test(expected = RuntimeException.class)
     public void testRemove() {
         action.remove(action);
+    }
+    
+    @Test
+    public void testToString() {
+
+        String expResult = "Audio";
+        String result = action.toString();
+        assertEquals(expResult, result);
+
     }
     
 }

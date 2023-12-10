@@ -12,6 +12,13 @@ import java.time.LocalTime;
  */
 public class TimeTriggerTest {
 
+    private TimeTrigger tt;
+    
+    @Before
+    public void setUp(){
+        tt = new TimeTrigger(0,0,false,Duration.ZERO);
+    }
+    
     /**
      * Test of isVerified method, of class TimeTrigger.
      */
@@ -19,9 +26,9 @@ public class TimeTriggerTest {
     public void testIsVerified() {
 
 
-        TimeTrigger instance = new TimeTrigger(0,0,false,Duration.ZERO);
+        
         boolean expResult = false;
-        boolean result = instance.isVerified();
+        boolean result = tt.isVerified();
         assertEquals(expResult, result);
 
     }
@@ -33,9 +40,9 @@ public class TimeTriggerTest {
     public void testIsRepeated() {
 
 
-        TimeTrigger instance = new TimeTrigger(0,0,false,Duration.ZERO);
+        
         boolean expResult = false;
-        boolean result = instance.isRepeated();
+        boolean result = tt.isRepeated();
         assertEquals(expResult, result);
 
     }
@@ -82,5 +89,15 @@ public class TimeTriggerTest {
         assertEquals(expResult,result);
         
     }*/
+    
+    @Test
+    public void testToString() {
+
+
+        String expResult = "Time";
+        String result = tt.toString();
+        assertEquals(expResult, result);
+
+    }
 
 }

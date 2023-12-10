@@ -64,5 +64,14 @@ public class WriteFileActionTest {
     public void testRemove() {
         action.remove(action);
     }
+    
+    @Test
+    public void testToString() {
+
+        String expResult = "WriteFile";
+        String result = action.toString();
+        assertEquals(expResult, result);
+
+    }
 
 }

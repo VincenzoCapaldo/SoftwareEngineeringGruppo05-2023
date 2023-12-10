@@ -57,5 +57,14 @@ public class DeleteFileActionTest {
     public void testRemove() {
         action.remove(action);
     }
+    
+    @Test
+    public void testToString() {
+
+        String expResult = "DeleteFile";
+        String result = action.toString();
+        assertEquals(expResult, result);
+
+    }
 
 }
