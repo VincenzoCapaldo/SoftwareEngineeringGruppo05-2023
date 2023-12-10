@@ -1,7 +1,6 @@
 package actions.moveFileAction;
 
 import actions.Action;
-import actions.moveFileAction.MoveFileActionController;
 import actions.ActionCreator;
 
 /**
@@ -18,8 +17,8 @@ public class MoveFileActionCreator extends ActionCreator{
     public Action createAction() {
         MoveFileActionController mfac = ((MoveFileActionController)super.getController());
         MoveFileAction mfa = null;
-        if(mfac.getCB().isSelected()){
-            mfa = new MoveFileAction(mfac.getFilePath(),mfac.getDirectoryPath());
+        if(mfac.getCB().isSelected()){ //se è selezionata la checkbox
+            mfa = new MoveFileAction(mfac.getFilePath(),mfac.getDirectoryPath()); //crea l'azione
         }
         return mfa;
     }

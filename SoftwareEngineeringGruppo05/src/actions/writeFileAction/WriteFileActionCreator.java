@@ -1,7 +1,6 @@
 package actions.writeFileAction;
 
 import actions.Action;
-import actions.writeFileAction.WriteFileActionController;
 import actions.ActionCreator;
 
 /**
@@ -18,8 +17,8 @@ public class WriteFileActionCreator extends ActionCreator{
     public Action createAction() {
         WriteFileActionController wfac = ((WriteFileActionController)super.getController());
         WriteFileAction wfa = null;
-        if(wfac.getCB().isSelected()){
-            wfa = new WriteFileAction(wfac.getFilePath(), wfac.getTextArea());
+        if(wfac.getCB().isSelected()){ //se è selezionata la checkbox
+            wfa = new WriteFileAction(wfac.getFilePath(), wfac.getTextArea()); //crea l'azione
         }
         return wfa;
     }

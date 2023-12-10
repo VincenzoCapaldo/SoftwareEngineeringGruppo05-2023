@@ -1,7 +1,6 @@
 package actions.copyFileAction;
 
 import actions.Action;
-import actions.copyFileAction.CopyFileActionController;
 import actions.ActionCreator;
 
 /**
@@ -18,8 +17,8 @@ public class CopyFileActionCreator extends ActionCreator{
     public Action createAction() {
         CopyFileActionController cfac = ((CopyFileActionController)super.getController());
         CopyFileAction cfa = null;
-        if(cfac.getCB().isSelected()){
-            cfa = new CopyFileAction(cfac.getFilePath(),cfac.getDirectoryPath());
+        if(cfac.getCB().isSelected()){ //se è selezionata la checkbox
+            cfa = new CopyFileAction(cfac.getFilePath(),cfac.getDirectoryPath()); //crea l'azione
         }
         return cfa;
     }

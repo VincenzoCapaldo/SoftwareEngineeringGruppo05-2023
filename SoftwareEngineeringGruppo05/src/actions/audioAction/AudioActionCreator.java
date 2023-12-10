@@ -1,7 +1,6 @@
 package actions.audioAction;
 
 import actions.Action;
-import actions.audioAction.AudioActionController;
 import actions.ActionCreator;
 
 /**
@@ -18,8 +17,8 @@ public class AudioActionCreator extends ActionCreator{
     public Action createAction() {
         AudioActionController aac = ((AudioActionController)super.getController());
         AudioAction aa = null;
-        if (aac.getCB().isSelected()){
-            aa = new AudioAction(aac.getFilePath());
+        if (aac.getCB().isSelected()){ //se è selezionata la checkbox
+            aa = new AudioAction(aac.getFilePath()); //crea l'azione
         }
         return aa;
     }    

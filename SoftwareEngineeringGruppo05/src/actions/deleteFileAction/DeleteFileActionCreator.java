@@ -1,7 +1,6 @@
 package actions.deleteFileAction;
 
 import actions.Action;
-import actions.deleteFileAction.DeleteFileActionController;
 import actions.ActionCreator;
 
 /**
@@ -18,8 +17,8 @@ public class DeleteFileActionCreator extends ActionCreator{
     public Action createAction() {
         DeleteFileActionController dfac = ((DeleteFileActionController)super.getController());
         DeleteFileAction dfa = null;
-        if(dfac.getCB().isSelected()){
-            dfa = new DeleteFileAction(dfac.getDirectoryPath(),dfac.getFileName());
+        if(dfac.getCB().isSelected()){ //se è selezionata la checkbox
+            dfa = new DeleteFileAction(dfac.getDirectoryPath(),dfac.getFileName()); //crea l'azione
         }
         return dfa;
     }

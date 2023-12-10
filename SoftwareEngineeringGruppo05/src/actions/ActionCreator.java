@@ -1,9 +1,7 @@
 package actions;
 
-import actions.Action;
 import javafx.beans.property.BooleanProperty;
 import javafx.fxml.FXMLLoader;
-import actions.ActionController;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;

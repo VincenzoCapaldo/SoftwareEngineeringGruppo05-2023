@@ -2,7 +2,6 @@ package actions;
 
 import javafx.beans.property.BooleanProperty;
 import javafx.scene.control.CheckBox;
-import triggers.TriggerController;
 
 /**
  *
