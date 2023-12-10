@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package actions.programAction;
 
 import java.io.IOException;
@@ -20,8 +16,15 @@ public class ProgramActionUnix extends ProgramAction{
 
     @Override
     public void execute() {
+        
+        String command = "xdg-open ";
+        
+        if(this.getProgramPath().contains(".jar")){
+            command = "java -jar ";
+        }
+        
         try {
-            Runtime.getRuntime().exec("xdg-open " + this.getProgramPath() + " " + this.getCommandLine());
+            Runtime.getRuntime().exec(command + this.getProgramPath() + " " + this.getCommandLine());
         } catch (IOException ex) {
             Logger.getLogger(ProgramActionWin.class.getName()).log(Level.SEVERE, null, ex);
         }

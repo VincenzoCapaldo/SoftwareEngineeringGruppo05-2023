@@ -1,10 +1,5 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package triggers.programTrigger;
 
-import actions.programAction.ProgramActionWin;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -25,8 +20,14 @@ public class ProgramTriggerWin extends ProgramTrigger{
         this.setVerified(false);
         setChanged();
         
+        String command = "cmd /c ";
+        
+        if(this.getProgramPath().contains(".jar")){
+            command += "java -jar ";
+        }
+        
         try {
-            Process process = Runtime.getRuntime().exec("cmd /c " + this.getProgramPath() + " " + this.getCommandLine());
+            Process process = Runtime.getRuntime().exec(command + this.getProgramPath() + " " + this.getCommandLine());
             int exitCode = process.waitFor();
             
             if(exitCode == this.getExpectedExitValue()){
