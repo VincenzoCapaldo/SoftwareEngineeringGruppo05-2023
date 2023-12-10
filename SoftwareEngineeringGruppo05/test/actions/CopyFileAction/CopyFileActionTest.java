@@ -1,6 +1,6 @@
 package actions.CopyFileAction;
 
-import model.actions.CopyFileAction;
+import actions.copyFileAction.CopyFileAction;
 import org.junit.*;
 import static org.junit.Assert.*;
 import java.io.IOException;

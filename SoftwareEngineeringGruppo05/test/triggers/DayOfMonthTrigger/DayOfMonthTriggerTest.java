@@ -4,7 +4,7 @@
  */
 package triggers.DayOfMonthTrigger;
 
-import model.triggers.DayOfMonthTrigger;
+import triggers.dayOfMonthTrigger.DayOfMonthTrigger;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;

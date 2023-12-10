@@ -1,6 +1,6 @@
 package triggers.TimeTrigger;
 
-import model.triggers.TimeTrigger;
+import triggers.timeTrigger.TimeTrigger;
 import java.time.Duration;
 import org.junit.*;
 import static org.junit.Assert.*;

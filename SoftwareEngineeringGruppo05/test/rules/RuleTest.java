@@ -1,13 +1,13 @@
 package rules;
 
-import model.rules.Rule;
+import rule.Rule;
 import org.junit.*;
 import static org.junit.Assert.*;
-import model.actions.Action;
-import model.actions.MessageAction;
+import actions.Action;
+import actions.messageAction.MessageAction;
 import java.time.Duration;
-import model.triggers.TimeTrigger;
-import model.triggers.Trigger;
+import triggers.timeTrigger.TimeTrigger;
+import triggers.Trigger;
 
 /**
  *

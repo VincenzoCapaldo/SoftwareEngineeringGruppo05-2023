@@ -1,6 +1,6 @@
 package softwareengineeringgruppo05;
 
-import controller.rules.RuleCardController;
+import rule.RuleCardController;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Map;
@@ -21,10 +21,10 @@ import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import model.rules.Rule;
-import model.rules.RuleManager;
-import creator.actions.ActionCreator;
-import creator.triggers.TriggerCreator;
+import rule.Rule;
+import rule.RuleManager;
+import actions.ActionCreator;
+import triggers.TriggerCreator;
 import java.util.LinkedHashMap;
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.SimpleBooleanProperty;

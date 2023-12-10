@@ -1,13 +1,13 @@
 package softwareengineeringgruppo05;
 
-import creator.triggers.TriggerCreator;
-import creator.triggers.DateTriggerCreator;
-import creator.triggers.DayOfMonthTriggerCreator;
-import creator.triggers.DayOfWeekTriggerCreator;
-import creator.triggers.FileSizeTriggerCreator;
-import creator.triggers.FileTriggerCreator;
-import creator.triggers.ProgramTriggerCreator;
-import creator.triggers.TimeTriggerCreator;
+import triggers.TriggerCreator;
+import triggers.dateTrigger.DateTriggerCreator;
+import triggers.dayOfMonthTrigger.DayOfMonthTriggerCreator;
+import triggers.dayOfWeekTrigger.DayOfWeekTriggerCreator;
+import triggers.fileSizeTrigger.FileSizeTriggerCreator;
+import triggers.fileTrigger.FileTriggerCreator;
+import triggers.programTrigger.ProgramTriggerCreator;
+import triggers.timeTrigger.TimeTriggerCreator;
 import java.util.Map;
 
 /**

@@ -1,6 +1,6 @@
 package actions.MessageAction;
 
-import model.actions.MessageAction;
+import actions.messageAction.MessageAction;
 import org.junit.*;
 import static org.junit.Assert.*;
 

@@ -1,6 +1,6 @@
 package actions.AudioAction;
 
-import model.actions.AudioAction;
+import actions.audioAction.AudioAction;
 import org.junit.*;
 
 /**

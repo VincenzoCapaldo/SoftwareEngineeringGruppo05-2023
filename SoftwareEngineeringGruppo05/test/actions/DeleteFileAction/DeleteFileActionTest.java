@@ -1,6 +1,6 @@
 package actions.DeleteFileAction;
 
-import model.actions.DeleteFileAction;
+import actions.deleteFileAction.DeleteFileAction;
 import org.junit.*;
 import static org.junit.Assert.*;
 import java.io.IOException;

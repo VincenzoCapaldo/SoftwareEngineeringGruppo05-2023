@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<HBox fx:id="dateTriggerBox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="137.0" prefWidth="320.0" stylesheets="@../../css/style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="triggers.dateTrigger.DateTriggerController">
+   <children>
+      <VBox fx:id="dateTriggerVbox" prefHeight="56.0" prefWidth="320.0" stylesheets="@../css/style.css">
+         <children>
+            <RadioButton fx:id="dateTriggerRB" mnemonicParsing="false" prefHeight="35.0" prefWidth="121.0" styleClass="white_text" stylesheets="@../../css/style.css" text="Date">
+               <font>
+                  <Font size="22.0" />
+               </font>
+               <toggleGroup>
+                  <ToggleGroup fx:id="selectActionTG" />
+               </toggleGroup>
+               <VBox.margin>
+                  <Insets left="20.0" top="20.0" />
+               </VBox.margin>
+            </RadioButton>
+            <DatePicker fx:id="datePicker" editable="false">
+               <VBox.margin>
+                  <Insets left="20.0" top="20.0" />
+               </VBox.margin>
+            </DatePicker>
+         </children>
+         <styleClass>
+            <String fx:value="main_background" />
+            <String fx:value="round_border" />
+         </styleClass>
+      </VBox>
+   </children>
+   <styleClass>
+      <String fx:value="round_border" />
+      <String fx:value="main_background" />
+   </styleClass>
+</HBox>

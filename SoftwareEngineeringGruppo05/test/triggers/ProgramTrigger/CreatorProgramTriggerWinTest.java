@@ -4,8 +4,8 @@
  */
 package triggers.ProgramTrigger;
 
-import model.triggers.ProgramTrigger;
-import model.triggers.CreatorProgramTriggerWin;
+import triggers.programTrigger.ProgramTrigger;
+import triggers.programTrigger.CreatorProgramTriggerWin;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;

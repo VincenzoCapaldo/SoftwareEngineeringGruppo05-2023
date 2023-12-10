@@ -8,7 +8,7 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
-import model.rules.RuleManager;
+import rule.RuleManager;
 
 /**
  *
@@ -32,7 +32,7 @@ public class SoftwareEngineeringGruppo05 extends Application {
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.setTitle("Your rules!"); //titolo della finestra
-        stage.getIcons().add(new Image("view/css/book.png")); //icona della finestra
+        stage.getIcons().add(new Image("css/book.png")); //icona della finestra
         stage.show();
         
         stage.setOnCloseRequest(this::handleWindowClose); // Imposta l'azione di chiusura della finestra

@@ -1,14 +1,13 @@
 package softwareengineeringgruppo05;
 
-import creator.actions.ActionCreator;
-import creator.actions.AudioActionCreator;
-import creator.triggers.TriggerCreator;
+import actions.ActionCreator;
+import triggers.TriggerCreator;
 import java.util.Map;
-import model.actions.Action;
-import model.actions.CompositeAction;
-import model.rules.Rule;
-import model.rules.RuleManager;
-import model.triggers.Trigger;
+import actions.Action;
+import actions.compositeAction.CompositeAction;
+import rule.Rule;
+import rule.RuleManager;
+import triggers.Trigger;
 
 /**
  *

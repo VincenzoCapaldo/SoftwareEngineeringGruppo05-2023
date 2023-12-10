@@ -1,13 +1,13 @@
 package softwareengineeringgruppo05;
 
-import creator.actions.ActionCreator;
-import creator.actions.AudioActionCreator;
-import creator.actions.CopyFileActionCreator;
-import creator.actions.DeleteFileActionCreator;
-import creator.actions.MessageActionCreator;
-import creator.actions.MoveFileActionCreator;
-import creator.actions.ProgramActionCreator;
-import creator.actions.WriteFileActionCreator;
+import actions.ActionCreator;
+import actions.audioAction.AudioActionCreator;
+import actions.copyFileAction.CopyFileActionCreator;
+import actions.deleteFileAction.DeleteFileActionCreator;
+import actions.messageAction.MessageActionCreator;
+import actions.moveFileAction.MoveFileActionCreator;
+import actions.programAction.ProgramActionCreator;
+import actions.writeFileAction.WriteFileActionCreator;
 import java.util.Map;
 
 /**

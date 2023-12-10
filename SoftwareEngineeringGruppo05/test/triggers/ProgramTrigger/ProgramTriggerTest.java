@@ -4,7 +4,7 @@
  */
 package triggers.ProgramTrigger;
 
-import model.triggers.ProgramTrigger;
+import triggers.programTrigger.ProgramTrigger;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;

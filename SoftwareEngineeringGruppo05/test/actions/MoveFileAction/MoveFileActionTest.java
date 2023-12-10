@@ -1,6 +1,6 @@
 package actions.MoveFileAction;
 
-import model.actions.MoveFileAction;
+import actions.moveFileAction.MoveFileAction;
 import org.junit.*;
 import static org.junit.Assert.*;
 import java.io.IOException;

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<HBox fx:id="timeTriggerBox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="230.0" prefWidth="320.0" stylesheets="@../../css/style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="triggers.timeTrigger.TimeTriggerController">
+   <children>
+      <VBox fx:id="vboxSpinner" prefHeight="56.0" prefWidth="320.0" stylesheets="@../css/style.css">
+         <children>
+            <RadioButton fx:id="timeTriggerRB" mnemonicParsing="false" prefHeight="35.0" prefWidth="121.0" styleClass="white_text" stylesheets="@../../css/style.css" text="Time">
+               <font>
+                  <Font size="22.0" />
+               </font>
+               <toggleGroup>
+                  <ToggleGroup fx:id="selectActionTG" />
+               </toggleGroup>
+               <VBox.margin>
+                  <Insets left="20.0" top="20.0" />
+               </VBox.margin>
+            </RadioButton>
+            <HBox fx:id="boxSpinnerTriggerTime" alignment="CENTER" prefHeight="34.0" prefWidth="241.0" spacing="20.0">
+               <children>
+                  <Spinner fx:id="timeSpinnerHours" editable="true" onKeyReleased="#onChangedHour" prefHeight="26.0" prefWidth="102.0" />
+                  <Spinner fx:id="timeSpinnerMinutes" editable="true" onKeyReleased="#onChangedMinute" prefHeight="26.0" prefWidth="102.0" />
+               </children>
+               <VBox.margin>
+                  <Insets top="20.0" />
+               </VBox.margin>
+            </HBox>
+            <VBox fx:id="vboxRepetition" prefHeight="112.0" prefWidth="320.0">
+               <children>
+                  <CheckBox fx:id="repetitionCheckBox" mnemonicParsing="false" onAction="#repetitionCheckBoxOnAction" styleClass="white_text" stylesheets="@../../css/style.css" text="Repeate">
+                     <font>
+                        <Font size="21.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                  </CheckBox>
+                  <HBox fx:id="hboxRepetition" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                     <children>
+                        <Spinner fx:id="repetitionTimeSpinnerDays" editable="true" onKeyReleased="#onChangedDayRepetition" prefHeight="25.0" prefWidth="75.0" />
+                        <Spinner fx:id="repetitionTimeSpinnerHours" editable="true" onKeyReleased="#onChangedHourRepetition" prefHeight="25.0" prefWidth="75.0" />
+                        <Spinner fx:id="repetitionTimeSpinnerMinutes" editable="true" onKeyReleased="#onChangedMinuteRepetition" prefHeight="25.0" prefWidth="75.0" />
+                     </children>
+                     <VBox.margin>
+                        <Insets top="20.0" />
+                     </VBox.margin>
+                  </HBox>
+               </children>
+               <padding>
+                  <Insets bottom="20.0" left="25.0" right="20.0" top="10.0" />
+               </padding>
+            </VBox>
+         </children>
+         <styleClass>
+            <String fx:value="main_background" />
+            <String fx:value="round_border" />
+         </styleClass>
+      </VBox>
+   </children>
+   <styleClass>
+      <String fx:value="round_border" />
+      <String fx:value="main_background" />
+   </styleClass>
+</HBox>
