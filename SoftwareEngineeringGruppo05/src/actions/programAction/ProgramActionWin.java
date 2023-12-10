@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package actions.programAction;
 
 import java.io.IOException;
@@ -21,8 +17,14 @@ public class ProgramActionWin extends ProgramAction{
     @Override
     public void execute() {
         
+        String command = "cmd /c start ";
+        
+        if(this.getProgramPath().contains(".jar")){
+            command += "java -jar ";
+        }
+        
         try {
-            Runtime.getRuntime().exec("cmd /c start " + this.getProgramPath() + " " + this.getCommandLine());
+            Runtime.getRuntime().exec(command + this.getProgramPath() + " " + this.getCommandLine());
         } catch (IOException ex) {
             Logger.getLogger(ProgramActionWin.class.getName()).log(Level.SEVERE, null, ex);
         }

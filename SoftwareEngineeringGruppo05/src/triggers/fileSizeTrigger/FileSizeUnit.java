@@ -6,10 +6,10 @@ package triggers.fileSizeTrigger;
  */
 public enum FileSizeUnit {
     B("Byte", 1),
-    KB("Kilobyte", (long) Math.pow(10, 3)),
-    MB("Megabyte", (long) Math.pow(10, 6)),
-    GB("Gigabyte", (long) Math.pow(10, 9)),
-    TB("Terabyte", (long) Math.pow(10, 12));
+    KB("Kilobyte", (long) Math.pow(2, 10)),
+    MB("Megabyte", (long) Math.pow(2, 20)),
+    GB("Gigabyte", (long) Math.pow(2, 30)),
+    TB("Terabyte", (long) Math.pow(2, 40));
 
     private final String label;
     private final long multiplier;
