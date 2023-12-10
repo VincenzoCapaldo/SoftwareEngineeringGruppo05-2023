@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="477.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="softwareengineeringgruppo05.FXMLDocumentController">
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="477.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="softwareengineeringgruppo05.FXMLDocumentController">
    <children>
       <AnchorPane fx:id="window1" prefHeight="400.0" prefWidth="600.0" stylesheets="@../view/css/style.css" visible="false">
          <children>
@@ -70,7 +70,7 @@
             </SplitPane>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="window3" prefHeight="200.0" prefWidth="200.0" stylesheets="@../view/css/style.css" visible="false">
+      <AnchorPane fx:id="window3" prefHeight="200.0" prefWidth="200.0" stylesheets="@../view/css/style.css">
          <children>
             <VBox layoutX="250.0" layoutY="100.0" prefHeight="200.0" prefWidth="100.0" stylesheets="@../view/css/style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
@@ -80,13 +80,8 @@
                            <children>
                               <VBox alignment="TOP_CENTER" layoutX="98.0" layoutY="66.0" prefHeight="572.0" prefWidth="346.0" stylesheets="@../view/css/style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <children>
-                                    <HBox alignment="CENTER_LEFT" prefHeight="55.0" prefWidth="296.0" spacing="10.0" styleClass="main_background" stylesheets="@../view/css/style.css">
+                                    <HBox alignment="CENTER" prefHeight="55.0" prefWidth="296.0" spacing="10.0" styleClass="main_background" stylesheets="@../view/css/style.css">
                                        <children>
-                                          <Button fx:id="compositeACtionButton" mnemonicParsing="false" onAction="#goToWindow2" prefHeight="26.0" prefWidth="133.0" styleClass="white_background" stylesheets="@../view/css/style.css" text="CompositeAction">
-                                             <HBox.margin>
-                                                <Insets left="10.0" />
-                                             </HBox.margin>
-                                          </Button>
                                           <Label alignment="CENTER" prefHeight="47.0" prefWidth="88.0" styleClass="white_text" stylesheets="@../view/css/style.css" text="Action">
                                              <font>
                                                 <Font name="Arial" size="22.0" />
@@ -174,75 +169,6 @@
                   </HBox>
                </children>
             </VBox>
-         </children>
-      </AnchorPane>
-      <AnchorPane fx:id="window2" prefHeight="400.0" prefWidth="600.0" stylesheets="@../view/css/style.css">
-         <children>
-            <SplitPane dividerPositions="0.11306532663316583" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0" stylesheets="@../view/css/style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-               <items>
-                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="68.0" prefWidth="598.0" stylesheets="@../view/css/style.css" SplitPane.resizableWithParent="false">
-                     <children>
-                        <HBox alignment="CENTER" layoutX="199.0" layoutY="-29.0" prefHeight="53.0" prefWidth="919.0" stylesheets="@../view/css/style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                           <children>
-                              <Button mnemonicParsing="false" prefHeight="63.0" prefWidth="698.0" stylesheets="@../view/css/style.css" text="CompositeAction">
-                                 <font>
-                                    <Font size="20.0" />
-                                 </font>
-                                 <styleClass>
-                                    <String fx:value="main_background" />
-                                    <String fx:value="white_text" />
-                                 </styleClass>
-                              </Button>
-                           </children>
-                        </HBox>
-                     </children>
-                  </AnchorPane>
-                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" stylesheets="@../view/css/style.css" SplitPane.resizableWithParent="false">
-                     <children>
-                        <VBox layoutX="259.0" layoutY="49.0" prefHeight="200.0" prefWidth="100.0" stylesheets="@../view/css/style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                           <children>
-                              <ScrollPane fitToWidth="true" prefHeight="372.0" prefWidth="698.0" styleClass="main_background" stylesheets="@../view/css/style.css" VBox.vgrow="ALWAYS">
-                                 <content>
-                                    <VBox fx:id="scrollActionsComposite" alignment="TOP_CENTER" prefHeight="1000.0" prefWidth="683.0" stylesheets="@../view/css/style.css">
-                                       <styleClass>
-                                          <String fx:value="light_main_background" />
-                                          <String fx:value="margin_cards" />
-                                       </styleClass>
-                                       <padding>
-                                          <Insets top="10.0" />
-                                       </padding>
-                                    </VBox>
-                                 </content>
-                              </ScrollPane>
-                              <HBox alignment="CENTER_RIGHT" prefHeight="48.0" prefWidth="698.0" spacing="20.0" styleClass="main_background" stylesheets="@../view/css/style.css">
-                                 <children>
-                                    <Button fx:id="goBackButton1" mnemonicParsing="false" onAction="#goToHome" prefHeight="25.0" prefWidth="97.0" styleClass="white_background" stylesheets="@../view/css/style.css" text="GoBack" />
-                                    <Label contentDisplay="RIGHT" prefHeight="17.0" prefWidth="53.0" styleClass="white_text" stylesheets="@../view/css/style.css" text="Name">
-                                       <font>
-                                          <Font size="17.0" />
-                                       </font>
-                                       <HBox.margin>
-                                          <Insets left="20.0" />
-                                       </HBox.margin>
-                                    </Label>
-                                    <TextField fx:id="nameCompositeAction" prefHeight="25.0" prefWidth="170.0" promptText="New CompositeAction" stylesheets="@../view/css/style.css">
-                                       <HBox.margin>
-                                          <Insets right="150.0" />
-                                       </HBox.margin>
-                                    </TextField>
-                                    <Button fx:id="newAction" mnemonicParsing="false" onAction="#createNewAction" styleClass="white_background" stylesheets="@../view/css/style.css" text="New Action">
-                                       <HBox.margin>
-                                          <Insets right="20.0" />
-                                       </HBox.margin>
-                                    </Button>
-                                 </children>
-                              </HBox>
-                           </children>
-                        </VBox>
-                     </children>
-                  </AnchorPane>
-               </items>
-            </SplitPane>
          </children>
       </AnchorPane>
    </children>

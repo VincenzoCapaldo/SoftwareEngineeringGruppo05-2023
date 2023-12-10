@@ -32,4 +32,12 @@ public class CompositeAction implements Action {
         actions.remove(action); //rimuove azione dalla lista
     }
     
+    @Override
+    public String toString(){
+        String allActions = "";
+        for (Action action : actions) {
+            allActions += action.toString() + " "; //itero la lista di azioni per eseguirle
+        }
+        return allActions;
+    }
 }

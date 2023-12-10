@@ -63,25 +63,13 @@ public class FXMLDocumentController implements Initializable {
     private Button newRule;
     @FXML
     private Button goBackButton;
-    @FXML
     private AnchorPane window2;
-    @FXML
-    private Button newAction;
-    @FXML
-    private Button goBackButton1;
-    @FXML
-    private Button compositeACtionButton;
-    @FXML
-    private TextField nameCompositeAction;
-    @FXML
-    private VBox scrollActionsComposite;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
         window1.visibleProperty().set(true);
         window3.visibleProperty().set(false);
-        window2.visibleProperty().set(false);
         
         ruleManager = RuleManager.getInstance(); //preleva l'istanza del RuleManager
         ruleManager.loadRules(); //carica le regole da file
@@ -105,7 +93,6 @@ public class FXMLDocumentController implements Initializable {
         
         window3.visibleProperty().set(true);
         window1.visibleProperty().set(false);
-        window2.visibleProperty().set(false);
         
         for (ActionCreator am : actions.values()){
             //am.getController().setToggleGroup(actionToggleGroup);
@@ -204,7 +191,6 @@ public class FXMLDocumentController implements Initializable {
         
         window1.visibleProperty().set(true);
         window3.visibleProperty().set(false);
-        window2.visibleProperty().set(false);
         
         //restituisce l'azione selezionata dall'utente
         //RadioButton selectedAction = (RadioButton) actionToggleGroup.getSelectedToggle();
@@ -224,7 +210,6 @@ public class FXMLDocumentController implements Initializable {
     private void goToHome(ActionEvent event) {
         window1.visibleProperty().set(true);
         window3.visibleProperty().set(false);
-        window2.visibleProperty().set(false);
         loadRuleCards();
     }
     
@@ -255,70 +240,4 @@ public class FXMLDocumentController implements Initializable {
         
     }
 
-    @FXML
-    private void goToWindow2(ActionEvent event) {
-        nameCompositeAction.clear();
-        scrollActionsComposite.getChildren().clear();
-        window2.visibleProperty().set(true);
-        window1.visibleProperty().set(false);
-        window3.visibleProperty().set(false);
-        
-        AvailableActions.createActionCreators(actions);
-        
-        for (ActionCreator am : actions.values()){
-            //am.getController().setToggleGroup(actionToggleGroup);
-            scrollActionsComposite.getChildren().add(am.getHbox());
-        }
-        
-        //se il nome dell'azione non è inserito o è di solo spazi vuoti bbName=true
-        BooleanBinding bbName = Bindings.createBooleanBinding(
-        () -> nameCompositeAction.getText().trim().isEmpty(),
-        nameCompositeAction.textProperty()
-        );
-
-        
-        ActionCreator[] actionManagers = actions.values().toArray(new ActionCreator[0]);
-        BooleanBinding bbAction = null;
-        BooleanBinding currentBindingAction = null;
-        for(int i=0; i<actionManagers.length-1; i=i+2){
-            ActionCreator am = actionManagers[i];
-            // Controlla se c'è un ActionManager successivo
-            if (i + 1 < actionManagers.length) {
-                ActionCreator nextAm = actionManagers[i + 1];
-                // Inizializza la BooleanBinding con l'and tra lo stato "non completato" di am e nextAm
-                currentBindingAction = Bindings.and(am.isNotCompleted(), nextAm.isNotCompleted());
-                // Se bbAction è già inizializzata, effettua l'and con la nuova BooleanBinding
-                if (bbAction != null) {
-                    bbAction = bbAction.and(currentBindingAction);
-                } else {
-                    // Altrimenti, inizializza bbAction con la prima BooleanBinding
-                    bbAction = currentBindingAction;
-                }
-            }
-        }
-        
-        if (actionManagers.length % 2 != 0) {
-            ActionCreator lastAm = actionManagers[actionManagers.length - 1];
-            BooleanProperty currentBinding = lastAm.isNotCompleted();
-            if (bbAction != null) {
-                    bbAction = bbAction.and(currentBinding);
-            } else {
-                    // Altrimenti, inizializza bbAction con la prima BooleanBinding
-                    bbAction = currentBinding.and(new SimpleBooleanProperty(true));
-                }
-        }
-        
-        //se non è stato inserito il nome dell'azione O l'azione selezionata non è completa bb=true
-        BooleanBinding bb = bbName.or(bbAction);
-        
-        newAction.disableProperty().bind(bb);  
-    
-    }
-
-    @FXML
-    private void createNewAction(ActionEvent event) {
-        
-    }
-
-    
 }
