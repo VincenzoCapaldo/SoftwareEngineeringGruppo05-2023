@@ -48,6 +48,13 @@ public class DeleteFileActionTest {
         dfa.execute();
     }
     
+    @Test
+    public void testToString() {
+        String expResult = "DeleteFile";
+        String result = action.toString();
+        assertEquals(expResult, result);
+    }
+    
     @Test(expected = RuntimeException.class)
     public void testAdd() {
         action.add(action);
@@ -56,15 +63,6 @@ public class DeleteFileActionTest {
     @Test(expected = RuntimeException.class)
     public void testRemove() {
         action.remove(action);
-    }
-    
-    @Test
-    public void testToString() {
-
-        String expResult = "DeleteFile";
-        String result = action.toString();
-        assertEquals(expResult, result);
-
     }
 
 }

@@ -5,7 +5,6 @@ import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.application.Platform;
-import javafx.beans.binding.Bindings;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.event.ActionEvent;
@@ -14,7 +13,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.RadioButton;
-import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.HBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -28,19 +26,14 @@ public class AudioActionController implements Initializable, ActionController {
 
     @FXML
     private HBox soundActionBox;
-    private RadioButton soundActionRB;
     @FXML
     private Button browseButton;
+    @FXML
+    private CheckBox audioCB;
     
     private File selectedFile;
     private BooleanProperty flagAudio;
 
-    @FXML
-    private CheckBox audioCB;
-
-    /**
-     * Initializes the controller class.
-     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         flagAudio = new SimpleBooleanProperty(false);

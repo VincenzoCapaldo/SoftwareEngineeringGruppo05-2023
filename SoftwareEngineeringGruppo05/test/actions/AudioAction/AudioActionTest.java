@@ -30,6 +30,13 @@ public class AudioActionTest {
         aa.execute();
     }
     
+    @Test
+    public void testToString() {
+        String expResult = "Audio";
+        String result = action.toString();
+        assertEquals(expResult, result);
+    }
+    
     @Test(expected = RuntimeException.class)
     public void testAdd() {
         action.add(action);
@@ -38,15 +45,6 @@ public class AudioActionTest {
     @Test(expected = RuntimeException.class)
     public void testRemove() {
         action.remove(action);
-    }
-    
-    @Test
-    public void testToString() {
-
-        String expResult = "Audio";
-        String result = action.toString();
-        assertEquals(expResult, result);
-
     }
     
 }

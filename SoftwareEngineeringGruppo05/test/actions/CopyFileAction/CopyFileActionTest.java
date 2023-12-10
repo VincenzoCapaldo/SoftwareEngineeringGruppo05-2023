@@ -30,7 +30,7 @@ public class CopyFileActionTest {
         Path pathSource = Paths.get(filePath);    
         Path pathDestination = Paths.get(newPath + "/prova.txt");  
 
-        // creo il file di prova nella cartella source
+        // creo la cartella source, la cartella destination e il file di prova
         try {
             Files.createDirectories(Paths.get("test/actions/CopyFileAction/source"));
             Files.createDirectories(Paths.get("test/actions/CopyFileAction/destination"));
@@ -47,16 +47,10 @@ public class CopyFileActionTest {
         // verifico che ci sia il file nella cartella destination
         assertTrue(Files.exists(pathDestination));
         
-        // elimino il file di prova nella cartella source
+        // elimino la cartella source, la cartella destination e il file di prova (da entrambe le cartelle)
         try {
             Files.delete(pathSource);
             Files.delete(Paths.get("test/actions/CopyFileAction/source"));
-        } catch (IOException ex) {
-            Logger.getLogger(CopyFileActionTest.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        // elimino il file di prova nella cartella destination
-        try {
             Files.delete(pathDestination);    
             Files.delete(Paths.get("test/actions/CopyFileAction/destination"));
         } catch (IOException ex) {
@@ -70,6 +64,13 @@ public class CopyFileActionTest {
         cfa.execute();
     }
     
+    @Test
+    public void testToString() {
+        String expResult = "CopyFile";
+        String result = action.toString();
+        assertEquals(expResult, result);
+    }
+    
     @Test(expected = RuntimeException.class)
     public void testAdd() {
         action.add(action);
@@ -80,12 +81,4 @@ public class CopyFileActionTest {
         action.remove(action);
     }
 
-    @Test
-    public void testToString() {
-
-        String expResult = "CopyFile";
-        String result = action.toString();
-        assertEquals(expResult, result);
-
-    }
 }

@@ -8,7 +8,6 @@ import java.util.Observable;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import triggers.Trigger;
-import triggers.Trigger;
 
 /**
  *
@@ -16,8 +15,8 @@ import triggers.Trigger;
  */
 public class FileSizeTrigger extends Observable implements Trigger{
     
-    private String filePath;
-    private long size; 
+    private String filePath; //file che fa scattare il trigger
+    private long size; //dimensione del file che fa scattare il trigger
     private boolean verified;
     
     public FileSizeTrigger(String filePath, long size){
@@ -43,9 +42,9 @@ public class FileSizeTrigger extends Observable implements Trigger{
         verified = false;
         setChanged();
             
-        while (!verified) {
+        while (!verified) { //controlla finchè non è verificato
             try {
-                if(Files.size(sourcePath) > size){
+                if(Files.size(sourcePath) > size){ //se la dimensione del file è maggiore di quella specificata
                     verified = true;
                     setChanged();
                     notifyObservers();

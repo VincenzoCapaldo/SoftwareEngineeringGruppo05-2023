@@ -1,9 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/UnitTests/JUnit4TestClass.java to edit this template
- */
 package actions.ProgramAction;
-
 
 import actions.programAction.*;
 import java.io.IOException;
@@ -21,14 +16,12 @@ import static org.junit.Assert.*;
  */
 public class ProgramActionTest {
     
-    
     private ProgramAction pa;
     private String directory;
     private String filePath;
 
     @Before
-    public void setUp() {
-        
+    public void setUp() {    
         // percorso del file che deve essere creato dal test ed eliminato dal programma avviato da Program Action
         filePath  = System.getProperty("user.dir") + "/test/actions/ProgramAction/test_program/ciao.txt";
         
@@ -37,38 +30,22 @@ public class ProgramActionTest {
         pa = (new CreateProgramAction()).createProgramAction(directory, filePath);
     }
     
-    /**
-     * Test of getProgramPath method, of class ProgramAction.
-     */
     @Test
     public void testGetProgramPath() {
-
-
         String expResult = directory;
         String result = pa.getProgramPath();
         assertEquals(expResult, result);
-
     }
 
-    /**
-     * Test of getCommandLine method, of class ProgramAction.
-     */
     @Test
     public void testGetCommandLine() {
-
-
         String expResult = filePath;
         String result = pa.getCommandLine();
         assertEquals(expResult, result);
-
     }
 
-    /**
-     * Test of execute method, of class ProgramAction.
-     */
     @Test
     public void testExecute() {
-
         // Creo il file usato per il test
         try {
             Files.createFile(Paths.get(filePath));
@@ -98,20 +75,14 @@ public class ProgramActionTest {
         pa.remove(pa);
     }
 
-    /**
-     * Test of toString method, of class ProgramAction.
-     */
     @Test
     public void testToString() {
-
         String expResult = "Program";
         String result = pa.toString();
         assertEquals(expResult, result);
-
     }
     
     // Classe utilizzata per la creazione della classe ProgramAction che varia in base al sistema operativo
-    
     public class CreateProgramAction {
     
     private CreatorProgramAction createProgramAction;

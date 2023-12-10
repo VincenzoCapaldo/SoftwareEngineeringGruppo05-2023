@@ -25,7 +25,6 @@ import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import softwareengineeringgruppo05.CheckValuesClass;
-import triggers.fileSizeTrigger.FileSizeUnit;
 
 /**
  * FXML Controller class
@@ -36,36 +35,24 @@ public class FileSizeTriggerController implements Initializable, TriggerControll
 
     @FXML
     private HBox fileSizeTriggerBox;
-    private VBox vboxFileTrigger;
-    private RadioButton fileTriggerRB;
-    @FXML
-    private ToggleGroup selectActionTG;
     @FXML
     private HBox hbox1;
-    @FXML
-    private Label fileLabel;
     @FXML
     private Button browseButton;
     @FXML
     private HBox hbox2;
-    @FXML
-    private Label sizeLabel;
-    private TextField fileNameTextField;
     @FXML
     private ComboBox<FileSizeUnit> sizeCombo;
     @FXML
     private RadioButton fileSizeTriggerRB;
     @FXML
     private VBox vboxFileSizeTrigger;
-    
+    @FXML
+    private Spinner<Integer> fileSizeSpinner;
     
     private BooleanProperty flagFileSizeTrigger; 
     private File selectedFile;
-    @FXML
-    private Spinner<Integer> fileSizeSpinner;
-    /**
-     * Initializes the controller class.
-     */
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         createCombo();
@@ -105,8 +92,7 @@ public class FileSizeTriggerController implements Initializable, TriggerControll
         Platform.runLater(() -> {
              flagFileSizeTrigger.setValue(selectedFile == null);
          });
-        
-        
+         
     }
     
     @Override

@@ -16,9 +16,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextArea;
-import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.Image;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -34,41 +32,35 @@ public class MessageActionController implements Initializable, ActionController,
 
     @FXML
     private HBox messageActionBox;
-
     @FXML
     private TextArea messageTextArea;
     @FXML
     private VBox vboxMessage;
-    
-    private BooleanProperty flagMessage;
     @FXML
     private CheckBox messageCB;
     
-    /**
-     * Initializes the controller class.
-     */
+    private BooleanProperty flagMessage;
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         flagMessage = new SimpleBooleanProperty(false);
-        
         
         flagMessage.bind(Bindings.createBooleanBinding(
                 () ->  messageCB.isSelected() && messageTextArea.getText().isEmpty(),
                 messageCB.selectedProperty(),
                 messageTextArea.textProperty()
-        ));
-        
+        ));    
         
         vboxMessage.getChildren().remove(messageTextArea);
         messageActionBox.setPrefHeight(70);
         messageTextArea.clear();
-
     }    
     
     public String getTextArea(){
         return messageTextArea.getText();
     }
 
+    @Override
     public CheckBox getCB(){
         return messageCB;
     }
@@ -77,7 +69,6 @@ public class MessageActionController implements Initializable, ActionController,
     public BooleanProperty getFlag() {
         return flagMessage;
     }
-
 
     @FXML
     private void messageActionSelected(ActionEvent event) {
@@ -122,4 +113,5 @@ public class MessageActionController implements Initializable, ActionController,
             });
   
     }
+
 }

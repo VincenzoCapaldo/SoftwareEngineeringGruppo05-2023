@@ -14,7 +14,7 @@ import triggers.Trigger;
  */
 public class DateTrigger extends Observable implements Trigger{
     
-    private LocalDate data;
+    private LocalDate data; //data in cui scatta il trigger
     private boolean verified;
     
     public DateTrigger(LocalDate data){
@@ -37,11 +37,12 @@ public class DateTrigger extends Observable implements Trigger{
         verified = false;
         setChanged();
                
-        if(LocalDate.now().equals(data)){
+        if(LocalDate.now().equals(data)){ //se la data corrisponde alla data attuale
             verified = true;
             setChanged();
             notifyObservers();
         }else{
+            //aspetta il tempo necessario ad arrivare alla data richiesta
             long wait;
             wait = Duration.between(LocalDate.now().atTime(LocalTime.now()), data.atTime(LocalTime.MIDNIGHT)).toMillis();
             try {

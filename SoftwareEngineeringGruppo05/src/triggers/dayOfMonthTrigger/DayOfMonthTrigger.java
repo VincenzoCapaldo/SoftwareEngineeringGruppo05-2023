@@ -15,7 +15,7 @@ import triggers.Trigger;
  */
 public class DayOfMonthTrigger extends Observable implements Trigger{
 
-    private int dayOfMonth;
+    private int dayOfMonth; //giorno del mese in cui scatta il trigger
     private boolean repetition;
     private boolean verified;
    
@@ -43,11 +43,12 @@ public class DayOfMonthTrigger extends Observable implements Trigger{
         verified = false;
         setChanged();
             
-        if (LocalDate.now().getDayOfMonth() == this.dayOfMonth) {    
+        if (LocalDate.now().getDayOfMonth() == this.dayOfMonth) { //se il giorno del mese corrisponde al giorno del mese attuale  
             verified = true;
             setChanged();
             notifyObservers();
         } else {
+            //aspetta il tempo necessario ad arrivare al giorno del mese richiesto
             long wait;
             int difference = this.dayOfMonth - LocalDate.now().getDayOfMonth();
             if(difference > 0){
@@ -69,6 +70,7 @@ public class DayOfMonthTrigger extends Observable implements Trigger{
             verified = false;
             setChanged();
             try {
+                //aspetta il tempo necessario ad arrivare nuovamente al giorno del mese richiesto
                 Thread.sleep(YearMonth.now().lengthOfMonth() * MILLISECONDS_DAY - Duration.between(LocalTime.MIDNIGHT, LocalTime.now()).toMillis());
                 verified = true;
                 setChanged();

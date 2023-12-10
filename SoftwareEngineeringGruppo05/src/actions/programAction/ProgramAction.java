@@ -1,10 +1,6 @@
 package actions.programAction;
 
 import actions.Action;
-import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import actions.Action;
 
 /**
  *
@@ -12,7 +8,7 @@ import actions.Action;
  */
 public abstract class ProgramAction implements Action{
     
-    private String programPath;
+    private String programPath; 
     private String commandLine;
 
     public ProgramAction(String programPath, String commandLine) {

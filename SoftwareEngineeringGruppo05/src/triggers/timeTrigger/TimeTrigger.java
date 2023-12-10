@@ -13,9 +13,9 @@ import triggers.Trigger;
  */
 public class TimeTrigger extends Observable implements Trigger{
     
-    private LocalTime time;
+    private LocalTime time; //orario in cui scatta il trigger
     private boolean repetition;
-    private Duration sleeping;
+    private Duration sleeping; //durata della ripetizione
     private boolean verified;
     
     private static final int MILLISECONDS_DAY = 86400000; //millisecondi in un giorno    
@@ -41,11 +41,12 @@ public class TimeTrigger extends Observable implements Trigger{
         verified = false;
         setChanged();
             
-        if(LocalTime.now().getHour()==this.time.getHour() && LocalTime.now().getMinute()==this.time.getMinute()){
+        if(LocalTime.now().getHour()==this.time.getHour() && LocalTime.now().getMinute()==this.time.getMinute()){ //se l'orario corrisponde all'orario attuale  
             verified = true;
             setChanged();
             notifyObservers();
         }else{
+            //aspetta il tempo necessario ad arrivare all'orario richiesto
             long wait;
             if(LocalTime.now().isBefore(time)){
                 wait = Duration.between(LocalTime.now(), time).toMillis();
@@ -66,6 +67,7 @@ public class TimeTrigger extends Observable implements Trigger{
             verified = false;
             setChanged();
             try {
+                //aspetta il tempo necessario ad arrivare nuovamente all'orario richiesto
                 Thread.sleep(sleeping.toMillis());
                 verified = true;
                 setChanged();

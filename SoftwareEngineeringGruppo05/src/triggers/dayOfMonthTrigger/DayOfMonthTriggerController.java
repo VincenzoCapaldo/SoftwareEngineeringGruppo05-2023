@@ -34,19 +34,13 @@ public class DayOfMonthTriggerController implements Initializable, TriggerContro
     @FXML
     private RadioButton dayOfMonthRB;
     @FXML
-    private ToggleGroup selectActionTG;
-    @FXML
     private Spinner<Integer> dayOfMonthSpinner;
-    
-    private LocalDate currentDate  = LocalDate.now();
     @FXML
     private CheckBox repetitionCheckBox;
     
+    private LocalDate currentDate  = LocalDate.now();
     private BooleanProperty flagDayOfMonthTrigger;
         
-    /**
-     * Initializes the controller class.
-     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         flagDayOfMonthTrigger = new SimpleBooleanProperty(true);

@@ -5,16 +5,13 @@ import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.application.Platform;
-import javafx.beans.binding.Bindings;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextArea;
-import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
@@ -34,8 +31,6 @@ public class ProgramActionController implements Initializable, ActionController 
     private TextArea commandTextArea;
     @FXML
     private Button browseButton;
-    private File selectedFile;
-    private BooleanProperty flagProgram;
     @FXML
     private HBox programactionBox;
     @FXML
@@ -43,9 +38,9 @@ public class ProgramActionController implements Initializable, ActionController 
     @FXML
     private CheckBox programCB;
 
-    /**
-     * Initializes the controller class.
-     */
+    private File selectedFile;
+    private BooleanProperty flagProgram;
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         flagProgram = new SimpleBooleanProperty(false);
@@ -53,7 +48,6 @@ public class ProgramActionController implements Initializable, ActionController 
         hBoxProgram.getChildren().remove(browseButton);
         programactionBox.setPrefHeight(70);
         commandTextArea.clear();
-       
     }    
 
     @FXML

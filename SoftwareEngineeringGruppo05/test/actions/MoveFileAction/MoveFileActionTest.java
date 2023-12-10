@@ -30,7 +30,7 @@ public class MoveFileActionTest {
         Path pathSource = Paths.get(filePath);    
         Path pathDestination = Paths.get(newPath + "/prova.txt");    
         
-        // creo il file di prova nella cartella source
+        // creo la cartella source, la cartella destination e il file di prova
         try {
             Files.createDirectories(Paths.get("test/actions/MoveFileAction/source"));
             Files.createDirectories(Paths.get("test/actions/MoveFileAction/destination"));
@@ -47,7 +47,7 @@ public class MoveFileActionTest {
         // verifico che ci sia il file nella cartella destination
         assertTrue(Files.exists(pathDestination));
         
-        // elimino il file di prova nella cartella destination
+        // elimino la cartella source, la cartella destination e il file di prova (dalla cartella destination)
         try {
             Files.delete(pathDestination);
             Files.delete(Paths.get("test/actions/MoveFileAction/source"));
@@ -63,6 +63,13 @@ public class MoveFileActionTest {
         mfa.execute();
     }
     
+    @Test
+    public void testToString() {
+        String expResult = "MoveFile";
+        String result = action.toString();
+        assertEquals(expResult, result);
+    }
+    
     @Test(expected = RuntimeException.class)
     public void testAdd() {
         action.add(action);
@@ -71,15 +78,6 @@ public class MoveFileActionTest {
     @Test(expected = RuntimeException.class)
     public void testRemove() {
         action.remove(action);
-    }
-    
-    @Test
-    public void testToString() {
-
-        String expResult = "MoveFile";
-        String result = action.toString();
-        assertEquals(expResult, result);
-
     }
     
 }

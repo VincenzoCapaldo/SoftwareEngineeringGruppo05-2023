@@ -5,7 +5,6 @@ import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.application.Platform;
-import javafx.beans.binding.Bindings;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.event.ActionEvent;
@@ -13,15 +12,12 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.scene.control.CheckBox;
-import triggers.TriggerController;
 
 /**
  * FXML Controller class
@@ -33,16 +29,9 @@ public class CopyFileActionController implements Initializable, ActionController
     @FXML
     private HBox copyFileActionBox;
     @FXML
-    private VBox vboxCopyFile;
-    @FXML
     private Button fileButton;
     @FXML
     private Button directoryButton;
-    
-    private File selectedFile;
-    private File selectedDirectory;
-    
-    private BooleanProperty flagCopyFile;
     @FXML
     private Label copyLabel;
     @FXML
@@ -52,16 +41,16 @@ public class CopyFileActionController implements Initializable, ActionController
     @FXML
     private CheckBox copyFileCB;
 
-    /**
-     * Initializes the controller class.
-     */
+    private File selectedFile;
+    private File selectedDirectory;
+    
+    private BooleanProperty flagCopyFile;
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         flagCopyFile = new SimpleBooleanProperty(false);
         hboxCopyFileOptions.getChildren().removeAll(copyLabel, fileButton, toLabel, directoryButton);
-        //hboxCopyFileOptions.setPrefHeight(70);
         copyFileActionBox.setPrefHeight(80);
-        //vboxCopyFile.setPrefHeight(70);   
     }    
 
     @FXML

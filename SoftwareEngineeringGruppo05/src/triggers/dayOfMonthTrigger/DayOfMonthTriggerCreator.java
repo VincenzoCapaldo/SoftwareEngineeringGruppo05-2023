@@ -27,4 +27,5 @@ public class DayOfMonthTriggerCreator extends TriggerCreator{
     public void addObserver(Rule rule) {
         trigger.addObserver(rule);
     }
+    
 }

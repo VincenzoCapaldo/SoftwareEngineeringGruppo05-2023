@@ -34,8 +34,6 @@ public class TimeTriggerController implements Initializable, TriggerController {
     @FXML
     private RadioButton timeTriggerRB;
     @FXML
-    private ToggleGroup selectActionTG;
-    @FXML
     private Spinner<Integer> timeSpinnerHours;
     @FXML
     private Spinner<Integer> timeSpinnerMinutes;
@@ -57,9 +55,7 @@ public class TimeTriggerController implements Initializable, TriggerController {
     private VBox vboxRepetition;
     
     private BooleanProperty flagTimeTrigger;
-    /**
-     * Initializes the controller class.
-     */
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         flagTimeTrigger = new SimpleBooleanProperty(true);

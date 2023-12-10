@@ -21,28 +21,15 @@ public class PopUpController implements Initializable {
     @FXML
     private AnchorPane messageWindow;
 
-    /**
-     * Initializes the controller class.
-     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        
     }    
     
-    /**
-     * Sets the text of the messageString Label.
-     *
-     * @param newText The new text to be set in the Label.
-     */
      public void setLabelText(String newText) {
         messageString.setText(newText);
     }
 
-      /**
-     * Handles the action when the close button is clicked. Closes the PopUp window.
-     *
-     * @param event The ActionEvent triggered by clicking the close button.
-     */
     @FXML
     private void closePopUp(ActionEvent event) {
         // Get the current Stage and close the PopUp window

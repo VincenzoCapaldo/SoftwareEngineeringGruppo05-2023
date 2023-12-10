@@ -20,25 +20,24 @@ public class ProgramTriggerUnix extends ProgramTrigger{
         this.setVerified(false);
         setChanged();
         
-        String command = "./ ";
+        String command = "./ "; //comando per eseguire un programma in Unix-like (Linux, macOS, ecc.)
         
         if(this.getProgramPath().contains(".jar")){
-            command = "java -jar ";
+            command = "java -jar "; //comando per gli eseguibili .jar
         }
         
         try {
-            Process process = Runtime.getRuntime().exec(command + this.getProgramPath() + " " + this.getCommandLine());
-            int exitCode = process.waitFor();
+            Process process = Runtime.getRuntime().exec(command + this.getProgramPath() + " " + this.getCommandLine()); //esegue il comando
+            int exitCode = process.waitFor(); //attende la terminazione del programma
             
+            //controlla se l'exit code è uguale a quello atteso
             if(exitCode == this.getExpectedExitValue()){
                 this.setVerified(true);
                 setChanged();
                 notifyObservers();
             }
             
-        } catch (IOException ex) {
-            Logger.getLogger(ProgramTriggerUnix.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (InterruptedException ex) {
+        } catch (IOException | InterruptedException ex) {
             Logger.getLogger(ProgramTriggerUnix.class.getName()).log(Level.SEVERE, null, ex);
         }
         

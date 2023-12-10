@@ -22,7 +22,7 @@ public class WriteFileActionTest {
     
     private WriteFileAction action;
     private final String filePath = "test/actions/WriteFileAction/prova.txt";  //percorso del file in cui scrivere
-    private final String message = "Hello World!";                             //messaggio da scrivere nel file
+    private final String message = "Hello World!"; //messaggio da scrivere nel file
     
     @Before
     public void setUp() {
@@ -54,7 +54,14 @@ public class WriteFileActionTest {
         // verifico se l'ultima riga del file contiene il messaggio inserito dall'utente
         assertTrue(lines.get(lines.size()-1).endsWith(message));
     }
-        
+    
+    @Test
+    public void testToString() {
+        String expResult = "WriteFile";
+        String result = action.toString();
+        assertEquals(expResult, result);
+    }
+    
     @Test(expected = RuntimeException.class)
     public void testAdd() {
         action.add(action);
@@ -63,15 +70,6 @@ public class WriteFileActionTest {
     @Test(expected = RuntimeException.class)
     public void testRemove() {
         action.remove(action);
-    }
-    
-    @Test
-    public void testToString() {
-
-        String expResult = "WriteFile";
-        String result = action.toString();
-        assertEquals(expResult, result);
-
     }
 
 }

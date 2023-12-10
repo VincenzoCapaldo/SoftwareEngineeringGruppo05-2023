@@ -31,17 +31,11 @@ public class DateTriggerController implements Initializable, TriggerController {
     @FXML
     private RadioButton dateTriggerRB;
     @FXML
-    private ToggleGroup selectActionTG;
-    
-    private BooleanProperty isTriggerDateSelected = new SimpleBooleanProperty(false);
-    @FXML
     private DatePicker datePicker;
     
+    private BooleanProperty isTriggerDateSelected = new SimpleBooleanProperty(false);
     private BooleanProperty flagDateTrigger;
 
-    /**
-     * Initializes the controller class.
-     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         flagDateTrigger= new SimpleBooleanProperty(true);

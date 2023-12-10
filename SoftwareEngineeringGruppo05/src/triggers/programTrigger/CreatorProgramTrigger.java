@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package triggers.programTrigger;
 
 /**
@@ -10,9 +6,9 @@ package triggers.programTrigger;
  */
 public abstract class CreatorProgramTrigger {
     
-    private String path;
-    private String parameters;
-    private int expectedExitValue;
+    private String path; //path del programma da eseguire
+    private String parameters; //eventuali parametri
+    private int expectedExitValue; //exit value atteso
 
     public CreatorProgramTrigger(String path, String parameters, int expectedExitValue) {
         this.path = path;
@@ -20,8 +16,6 @@ public abstract class CreatorProgramTrigger {
         this.expectedExitValue = expectedExitValue;
     }
     
-    public abstract ProgramTrigger create();
-
     public String getPath() {
         return path;
     }
@@ -34,6 +28,6 @@ public abstract class CreatorProgramTrigger {
         return expectedExitValue;
     }
     
-    
+     public abstract ProgramTrigger create();
     
 }

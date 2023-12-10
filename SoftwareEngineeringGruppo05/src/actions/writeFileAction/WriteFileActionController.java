@@ -4,17 +4,13 @@ import actions.ActionController;
 import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
-import javafx.application.Platform;
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.BooleanProperty;
-import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleBooleanProperty;
-import javafx.beans.property.SimpleObjectProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -35,8 +31,6 @@ public class WriteFileActionController implements Initializable, ActionControlle
     private Button browseButton;
     @FXML
     private TextArea messageTextArea;
-    private File selectedFile;
-    private BooleanProperty flagWriter;
     @FXML
     private VBox vboxWriter;
     @FXML
@@ -44,10 +38,10 @@ public class WriteFileActionController implements Initializable, ActionControlle
     @FXML
     private CheckBox writeFileCB;
 
-      private SimpleBooleanProperty selectedFilePresent;
-    /**
-     * Initializes the controller class.
-     */
+    private File selectedFile;
+    private BooleanProperty flagWriter;
+    private SimpleBooleanProperty selectedFilePresent;
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         flagWriter = new SimpleBooleanProperty(false);
@@ -59,16 +53,14 @@ public class WriteFileActionController implements Initializable, ActionControlle
         messageTextArea.clear();
         
         // La flagWriter è vera solo quando non è stato selezionato un file
-       flagWriter.bind(Bindings.createBooleanBinding(
+        flagWriter.bind(Bindings.createBooleanBinding(
             () -> writeFileCB.isSelected() && (selectedFile == null || messageTextArea.getText().isEmpty()),
             writeFileCB.selectedProperty(),
             selectedFilePresent,
             messageTextArea.textProperty()
         ));
 
-
     }    
-
 
     @FXML
     private void browseFile(ActionEvent event) {

@@ -1,11 +1,6 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package triggers.programTrigger;
 
 import java.util.Observable;
-import triggers.Trigger;
 import triggers.Trigger;
 
 /**
@@ -41,7 +36,6 @@ public abstract class ProgramTrigger extends Observable implements Trigger{
         this.verified = verified;
     }
 
-    
     @Override
     public boolean isVerified() {
         return this.verified;

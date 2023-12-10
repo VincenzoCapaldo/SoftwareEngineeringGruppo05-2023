@@ -9,7 +9,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import triggers.timeTrigger.TimeTrigger;
 import triggers.Trigger;
-import triggers.Trigger;
 
 /**
  *
@@ -17,12 +16,12 @@ import triggers.Trigger;
  */
 public class DayOfWeekTrigger extends Observable implements Trigger {
 
-    private DayOfWeek dayOfWeek;
+    private DayOfWeek dayOfWeek; //giorno della settimana in cui scatta il trigger
     private boolean repetition;
     private boolean verified;
 
     private static final int MILLISECONDS_DAY = 86400000; //millisecondi in un giorno
-    private static final int LENGHT_OF_WEEK = 7;
+    private static final int LENGHT_OF_WEEK = 7; //giorni in una settimana
 
     public DayOfWeekTrigger(DayOfWeek dayOfWeek, boolean repetition) {
         this.dayOfWeek = dayOfWeek;
@@ -46,11 +45,12 @@ public class DayOfWeekTrigger extends Observable implements Trigger {
         verified = false;
         setChanged();
             
-        if (LocalDateTime.now().getDayOfWeek().equals(dayOfWeek)) {
+        if (LocalDateTime.now().getDayOfWeek().equals(dayOfWeek)) { //se il giorno della settimana corrisponde al giorno della settimana attuale
             verified = true;
             setChanged();
             notifyObservers();
         } else {
+            //aspetta il tempo necessario ad arrivare al giorno della settimana richiesto
             long wait;
             int difference = dayOfWeek.getValue() - LocalDateTime.now().getDayOfWeek().getValue();
             if (difference > 0) {
@@ -69,6 +69,7 @@ public class DayOfWeekTrigger extends Observable implements Trigger {
         }
         
         while (repetition) {
+            //aspetta il tempo necessario ad arrivare nuovamente al giorno della settimana richiesto
             verified = false;
             setChanged();
             try {

@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package triggers.programTrigger;
 
 /**
@@ -16,7 +12,7 @@ public class CreatorProgramTriggerUnix extends CreatorProgramTrigger{
 
     @Override
     public ProgramTrigger create() {
-        return new ProgramTriggerUnix(this.getPath(), this.getParameters(), this.getExpectedExitValue());
+        return new ProgramTriggerUnix(this.getPath(), this.getParameters(), this.getExpectedExitValue()); //crea il trigger per Unix-like (Linux, macOS, ecc.)
     }
     
 }

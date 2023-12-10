@@ -53,9 +53,6 @@ public class ProgramTriggerController implements Initializable, TriggerControlle
     private File selectedFile;
     private BooleanProperty flagProgramTrigger;
 
-    /**
-     * Initializes the controller class.
-     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         createSpinner();
@@ -131,16 +128,13 @@ public class ProgramTriggerController implements Initializable, TriggerControlle
        // Rimuovi gli Spinner esistenti, se presenti
         hbox2.getChildren().remove(exitStatusSpinner);
 
-
         // Creazione di nuove SpinnerValueFactory con valori massimo e minimo
         SpinnerValueFactory<Integer> valueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 1000000, 0);
         
-
         // Impostazione della SpinnerValueFactory per gli Spinner
         exitStatusSpinner.setValueFactory(valueFactory);
         
-        hbox2.getChildren().add(exitStatusSpinner);
-        
+        hbox2.getChildren().add(exitStatusSpinner);    
     }
     
 }

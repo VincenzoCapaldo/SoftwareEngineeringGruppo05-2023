@@ -13,9 +13,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
-import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.DirectoryChooser;
@@ -45,17 +43,14 @@ public class DeleteFileActionController implements Initializable, ActionControll
     private Label fromLabel;
     @FXML
     private Button directoryButton;
-    
-    private File selectedDirectory;
-    private BooleanProperty flagDeleteFile;
     @FXML
     private VBox vbox1;
     @FXML
-    private CheckBox deleteFileCB;
+    
+    private CheckBox deleteFileCB; 
+    private File selectedDirectory;
+    private BooleanProperty flagDeleteFile;
 
-    /**
-     * Initializes the controller class.
-     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         flagDeleteFile = new SimpleBooleanProperty(false);

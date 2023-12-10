@@ -5,7 +5,6 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Observable;
 import triggers.Trigger;
-import triggers.Trigger;
 
 /**
  *
@@ -13,8 +12,8 @@ import triggers.Trigger;
  */
 public class FileTrigger extends Observable implements Trigger{
     
-    private String directoryPath;
-    private String filePath;
+    private String directoryPath; //cartella del file che fa scattare il trigger
+    private String filePath; //file che fa scattare il trigger
     private boolean verified;
     
     public FileTrigger(String directoryPath, String filePath){
@@ -40,8 +39,8 @@ public class FileTrigger extends Observable implements Trigger{
         verified = false;
         setChanged();
             
-        while (!verified) {
-            if (Files.exists(sourcePath)) {
+        while (!verified) { //controlla finchè non è verificato
+            if (Files.exists(sourcePath)) { //se il file esiste
                 verified = true;
                 setChanged();
                 notifyObservers();

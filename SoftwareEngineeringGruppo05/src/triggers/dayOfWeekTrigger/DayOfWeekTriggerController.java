@@ -27,8 +27,6 @@ public class DayOfWeekTriggerController implements Initializable, TriggerControl
     @FXML
     private RadioButton dayOfWeekRB;
     @FXML
-    private ToggleGroup selectActionTG;
-    @FXML
     private ComboBox<DayOfWeek> dayOfWeekCombo;
     @FXML
     private HBox dayOfWeekBox;
@@ -39,9 +37,6 @@ public class DayOfWeekTriggerController implements Initializable, TriggerControl
     
     private BooleanProperty flagDayOfWeekTrigger; 
 
-    /**
-     * Initializes the controller class.
-     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         flagDayOfWeekTrigger = new SimpleBooleanProperty(true);

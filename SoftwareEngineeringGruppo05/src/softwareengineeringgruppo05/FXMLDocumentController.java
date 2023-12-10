@@ -52,20 +52,13 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private Button createRuleButton;
     
-    private ToggleGroup actionToggleGroup;
     private ToggleGroup triggerToggleGroup;    
     
     private Map<String,ActionCreator> actions = new LinkedHashMap<>();
     private Map<String,TriggerCreator> triggers = new LinkedHashMap<>();
         
     private RuleManager ruleManager;
-    @FXML
-    private Button rulesButton;
-    @FXML
-    private Button newRule;
-    @FXML
-    private Button goBackButton;
-    private AnchorPane window2;
+
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -87,7 +80,6 @@ public class FXMLDocumentController implements Initializable {
         scrollAllActions.getChildren().clear();
         scrollAllTriggers.getChildren().clear();
         
-        //actionToggleGroup = new ToggleGroup();
         triggerToggleGroup = new ToggleGroup();
         
         AvailableActions.createActionCreators(actions);
@@ -104,6 +96,8 @@ public class FXMLDocumentController implements Initializable {
             am.getController().setToggleGroup(triggerToggleGroup);
             scrollAllTriggers.getChildren().add(am.getHbox());
         } 
+        
+        /* Il seguente codice è per il binding */ 
         
         //se il nome della regola non è inserito o è di solo spazi vuoti bb1=true
         BooleanBinding bbRuleName = Bindings.createBooleanBinding(
@@ -157,7 +151,6 @@ public class FXMLDocumentController implements Initializable {
                 }
         }
         
-        
         TriggerCreator[] triggerManagers = triggers.values().toArray(new TriggerCreator[0]);
         BooleanBinding bbTrigger = null;
         BooleanBinding currentBindingTrigger = null;
@@ -191,7 +184,6 @@ public class FXMLDocumentController implements Initializable {
                 }
         }
 
-
         //se non è stato inserito il nome della regola O non è selezionata un'azione/ trigger O l'azione selezionata non è completa bb=true
         BooleanBinding bbSelectedActionNot = Bindings.not(selectedAction);
         System.out.println("bbSelectedActionNot" + bbSelectedActionNot);
@@ -207,9 +199,6 @@ public class FXMLDocumentController implements Initializable {
         
         window1.visibleProperty().set(true);
         window3.visibleProperty().set(false);
-        
-        //restituisce l'azione selezionata dall'utente
-        //RadioButton selectedAction = (RadioButton) actionToggleGroup.getSelectedToggle();
         
         //restituisce il trigger selezionato dall'utente
         RadioButton selectedTrigger = (RadioButton) triggerToggleGroup.getSelectedToggle();

@@ -35,17 +35,11 @@ public class FileTriggerController implements Initializable, TriggerController {
     @FXML
     private RadioButton fileTriggerRB;
     @FXML
-    private ToggleGroup selectActionTG;
-    @FXML
     private HBox hbox1;
-    @FXML
-    private Label fromLabel;
     @FXML
     private Button directoryButton;
     @FXML
     private HBox hbox2;
-    @FXML
-    private Label checkLabel;
     @FXML
     private TextField fileNameTextField;
     
@@ -53,9 +47,6 @@ public class FileTriggerController implements Initializable, TriggerController {
     private BooleanProperty flagFileTrigger; 
     private BooleanProperty isFileTriggerSelected;
     
-    /**
-     * Initializes the controller class.
-     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         flagFileTrigger = new SimpleBooleanProperty(true);
