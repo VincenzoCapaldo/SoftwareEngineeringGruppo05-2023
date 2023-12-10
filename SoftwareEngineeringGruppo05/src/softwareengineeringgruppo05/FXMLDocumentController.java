@@ -42,7 +42,7 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private VBox scrollRules;
     @FXML
-    private AnchorPane window3;
+    private AnchorPane window2;
     @FXML
     private VBox scrollAllActions;
     @FXML
@@ -58,13 +58,12 @@ public class FXMLDocumentController implements Initializable {
     private Map<String,TriggerCreator> triggers = new LinkedHashMap<>();
         
     private RuleManager ruleManager;
-
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
         window1.visibleProperty().set(true);
-        window3.visibleProperty().set(false);
+        window2.visibleProperty().set(false);
         
         ruleManager = RuleManager.getInstance(); //preleva l'istanza del RuleManager
         ruleManager.loadRules(); //carica le regole da file
@@ -72,9 +71,9 @@ public class FXMLDocumentController implements Initializable {
     
     }    
 
-    //passaggio da window1 a window3 quando si seleziona createRuleButton 
+    //passaggio da window1 a window2 quando si seleziona createRuleButton 
     @FXML
-    private void goToWindowThree(ActionEvent event) throws IOException {
+    private void goToWindowTwo(ActionEvent event) throws IOException {
         //pulizia campi 
         nameRuleTextField.clear();
         scrollAllActions.getChildren().clear();
@@ -85,7 +84,7 @@ public class FXMLDocumentController implements Initializable {
         AvailableActions.createActionCreators(actions);
         AvailableTriggers.createTriggerCreators(triggers);
         
-        window3.visibleProperty().set(true);
+        window2.visibleProperty().set(true);
         window1.visibleProperty().set(false);
         
         for (ActionCreator am : actions.values()){
@@ -186,7 +185,6 @@ public class FXMLDocumentController implements Initializable {
 
         //se non è stato inserito il nome della regola O non è selezionata un'azione/ trigger O l'azione selezionata non è completa bb=true
         BooleanBinding bbSelectedActionNot = Bindings.not(selectedAction);
-        System.out.println("bbSelectedActionNot" + bbSelectedActionNot);
         BooleanBinding bb = bbRuleName.or(bbTriggerToggleGroup).or(bbAction).or(bbTrigger).or(bbSelectedActionNot);
         
         createRuleButton.disableProperty().bind(bb);  
@@ -198,7 +196,7 @@ public class FXMLDocumentController implements Initializable {
     private void goToWindowOne(ActionEvent event) throws IOException {
         
         window1.visibleProperty().set(true);
-        window3.visibleProperty().set(false);
+        window2.visibleProperty().set(false);
         
         //restituisce il trigger selezionato dall'utente
         RadioButton selectedTrigger = (RadioButton) triggerToggleGroup.getSelectedToggle();
@@ -214,7 +212,7 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private void goToHome(ActionEvent event) {
         window1.visibleProperty().set(true);
-        window3.visibleProperty().set(false);
+        window2.visibleProperty().set(false);
         loadRuleCards();
     }
     

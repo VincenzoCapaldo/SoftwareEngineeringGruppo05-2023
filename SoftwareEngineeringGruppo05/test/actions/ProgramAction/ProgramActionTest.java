@@ -6,8 +6,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.*;
 import static org.junit.Assert.*;
 
 /**
@@ -23,10 +22,10 @@ public class ProgramActionTest {
     @Before
     public void setUp() {    
         // percorso del file che deve essere creato dal test ed eliminato dal programma avviato da Program Action
-        filePath  = System.getProperty("user.dir") + "/test/actions/ProgramAction/test_program/ciao.txt";
-        
+        filePath = "test/actions/ProgramAction/ciao.txt";
+        //System.getProperty("user.dir") +
         // percorso del programma che deve essere avviato da Program Action
-        directory = System.getProperty("user.dir") + "/test/actions/ProgramAction/test_program/program.jar";
+        directory = "test/actions/ProgramAction/program.jar";
         pa = (new CreateProgramAction()).createProgramAction(directory, filePath);
     }
     
