@@ -1,10 +1,9 @@
 package triggers.programTrigger;
 
+import actions.programAction.CreatorProgramActionUnix;
+import actions.programAction.CreatorProgramActionWin;
 import triggers.TriggerCreator;
-import triggers.programTrigger.ProgramTriggerController;
 import rule.Rule;
-import triggers.programTrigger.CreateProgramTrigger;
-import triggers.programTrigger.ProgramTrigger;
 import triggers.Trigger;
 
 /**
@@ -22,8 +21,12 @@ public class ProgramTriggerCreator extends TriggerCreator{
     @Override
     public Trigger createTrigger() {
         ProgramTriggerController ptc = ((ProgramTriggerController)super.getController());
-        CreateProgramTrigger cpt = new CreateProgramTrigger();
-        trigger = cpt.createProgramTrigger(ptc.getFilePath(), ptc.getTextArea(), ptc.getExitStatus());
+        String os = System.getProperty("os.name").toLowerCase();        
+        if(os.contains("win")){
+            trigger = new CreatorProgramTriggerWin(ptc.getFilePath(), ptc.getTextArea(), ptc.getExitStatus()).create();
+        }else if(os.contains("nix") || os.contains("nux") || os.contains("mac")){
+            trigger = new CreatorProgramTriggerUnix(ptc.getFilePath(), ptc.getTextArea(), ptc.getExitStatus()).create();
+        }
         return trigger;
     }
 

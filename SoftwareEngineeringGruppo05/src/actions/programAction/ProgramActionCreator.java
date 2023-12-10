@@ -1,9 +1,6 @@
 package actions.programAction;
 
 import actions.Action;
-import actions.programAction.CreateProgramAction;
-import actions.programAction.ProgramAction;
-import actions.programAction.ProgramActionController;
 import actions.ActionCreator;
 
 /**
@@ -21,10 +18,14 @@ public class ProgramActionCreator extends ActionCreator{
         ProgramActionController pac = ((ProgramActionController)super.getController());
         ProgramAction pa = null;
         if(pac.getCB().isSelected()){
-            CreateProgramAction cpa = new CreateProgramAction();
-            pa = cpa.createProgramAction(pac.getFilePath(), pac.getTextArea());
+            String os = System.getProperty("os.name").toLowerCase();        
+            if(os.contains("win")){
+                pa = new CreatorProgramActionWin(pac.getFilePath(), pac.getTextArea()).create();
+            }else if(os.contains("nix") || os.contains("nux") || os.contains("mac")){
+                pa = new CreatorProgramActionUnix(pac.getFilePath(), pac.getTextArea()).create();
+            }
         }
         return pa;
-    }
+    }   
     
 }
