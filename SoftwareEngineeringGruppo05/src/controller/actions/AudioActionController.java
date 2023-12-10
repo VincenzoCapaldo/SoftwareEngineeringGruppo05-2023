@@ -50,7 +50,8 @@ public class AudioActionController implements Initializable, Controller {
             () -> {
                 boolean soundActionSelected = isSoundActionSelected.get();
 
-                // Aggiungi o rimuovi il pulsante dal layout in base allo stato del RadioButton: azione eseguita dal thread principale
+                /* Aggiungi o rimuovi il pulsante dal layout e modifica la dimensione della card di condeguenza 
+                in base allo stato del RadioButton: azione eseguita dal thread principale*/
                 Platform.runLater(() -> {
                         if (!soundActionSelected) {
                             soundActionBox.getChildren().remove(browseButton);

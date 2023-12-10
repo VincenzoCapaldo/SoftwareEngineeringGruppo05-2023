@@ -8,6 +8,7 @@ import creator.actions.MessageActionCreator;
 import creator.actions.MoveFileActionCreator;
 import creator.actions.ProgramActionCreator;
 import creator.actions.WriteFileActionCreator;
+import creator.actions.CompositeActionCreator;
 import java.util.Map;
 
 /**
@@ -25,7 +26,7 @@ public class AvailableActions {
         actions.put("MoveFile", new MoveFileActionCreator());
         actions.put("DeleteFile", new DeleteFileActionCreator());
         actions.put("Program", new ProgramActionCreator());
-        //actionCreators.put("Composite", new CompositeActionManager());
+        actions.put("Composite", new CompositeActionCreator());
     }
 
 }
