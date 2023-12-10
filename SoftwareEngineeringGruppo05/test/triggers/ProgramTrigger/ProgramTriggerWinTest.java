@@ -24,7 +24,7 @@ public class ProgramTriggerWinTest {
     @Test
     public void testCheckTrigger() {
 
-        String directory = System.getProperty("user.dir") + "/test/triggers/ProgramTrigger/test_program_win/program.exe";
+        String directory = System.getProperty("user.dir") + "/test/triggers/ProgramTrigger/test_program_win/program.jar";
         
         ProgramTriggerWin instance = new ProgramTriggerWin(directory,"12",0);
         instance.checkTrigger();
