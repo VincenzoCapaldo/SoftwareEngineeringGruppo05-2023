@@ -33,7 +33,7 @@ public class AudioActionController implements Initializable, ActionController {
     
     private File selectedFile;
     private BooleanProperty flagAudio;
-    private CheckBox AudioCB;
+
     @FXML
     private CheckBox audioCB;
 
@@ -42,8 +42,10 @@ public class AudioActionController implements Initializable, ActionController {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        /*flagAudio = new SimpleBooleanProperty(true);
-        BooleanProperty isSoundActionSelected = soundActionRB.selectedProperty();
+        flagAudio = new SimpleBooleanProperty(true);
+        soundActionBox.getChildren().remove(browseButton);
+        soundActionBox.setPrefHeight(65);
+        /*BooleanProperty isSoundActionSelected = soundActionRB.selectedProperty();
         
         // Creazione di un binding personalizzato per la visibilità del pulsante
         browseButton.visibleProperty().bind(Bindings.createBooleanBinding(
@@ -81,10 +83,8 @@ public class AudioActionController implements Initializable, ActionController {
 
         // La flagAudio è vera solo quando non è stato selezionato un file
         Platform.runLater(() -> {
-            Platform.runLater(() -> {
              flagAudio.setValue(selectedFile == null);
          });
-        });
          
     }
     
@@ -100,6 +100,18 @@ public class AudioActionController implements Initializable, ActionController {
     
     public String getFilePath(){
         return this.selectedFile.getAbsolutePath();
+    }
+
+    @FXML
+    private void audioActionSelected(ActionEvent event) {
+        if(audioCB.isSelected()){
+            soundActionBox.getChildren().add(browseButton);
+            soundActionBox.setPrefHeight(80);
+        }else{
+            soundActionBox.getChildren().remove(browseButton);
+            soundActionBox.setPrefHeight(65);
+            flagAudio.set(true);    
+        }
     }
 
 }

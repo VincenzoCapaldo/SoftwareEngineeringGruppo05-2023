@@ -9,29 +9,29 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<HBox fx:id="copyFileActionBox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="118.0" prefWidth="320.0" stylesheets="@../../css/style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.actions.CopyFileActionController">
+<HBox fx:id="copyFileActionBox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="118.0" prefWidth="320.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.actions.CopyFileActionController">
    <children>
-      <VBox fx:id="vboxCopyFile" prefHeight="118.0" prefWidth="320.0" spacing="10.0" stylesheets="@../../css/style.css">
+      <VBox fx:id="vboxCopyFile" prefHeight="118.0" prefWidth="320.0" spacing="10.0" stylesheets="@../css/style.css">
          <children>
-            <CheckBox fx:id="copyFileCB" mnemonicParsing="false" text="CopyFile">
+            <CheckBox fx:id="copyFileCB" mnemonicParsing="false" onAction="#copyFileActionSelected" text="CopyFile">
                <font>
                   <Font size="21.0" />
                </font>
             </CheckBox>
             <HBox fx:id="hboxCopyFileOptions" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="5.0">
                <children>
-                  <Label fx:id="copyLabel" prefHeight="21.0" prefWidth="58.0" styleClass="white_text" stylesheets="@../../css/style.css" text="Copy">
+                  <Label fx:id="copyLabel" prefHeight="21.0" prefWidth="58.0" styleClass="white_text" stylesheets="@../css/style.css" text="Copy">
                      <font>
                         <Font size="15.0" />
                      </font>
                   </Label>
-                  <Button fx:id="fileButton" mnemonicParsing="false" onAction="#fileButtonAction" prefHeight="34.0" prefWidth="64.0" styleClass="white_background" stylesheets="@../../css/style.css" text="File" />
-                  <Label fx:id="toLabel" prefHeight="21.0" prefWidth="28.0" styleClass="white_text" stylesheets="@../../css/style.css" text="To">
+                  <Button fx:id="fileButton" mnemonicParsing="false" onAction="#fileButtonAction" prefHeight="34.0" prefWidth="64.0" styleClass="white_background" stylesheets="@../css/style.css" text="File" />
+                  <Label fx:id="toLabel" prefHeight="21.0" prefWidth="28.0" styleClass="white_text" stylesheets="@../css/style.css" text="To">
                      <font>
                         <Font size="15.0" />
                      </font>
                   </Label>
-                  <Button fx:id="directoryButton" mnemonicParsing="false" onAction="#directoryButtonAction" prefHeight="34.0" prefWidth="93.0" styleClass="white_background" stylesheets="@../../css/style.css" text="Directory" />
+                  <Button fx:id="directoryButton" mnemonicParsing="false" onAction="#directoryButtonAction" prefHeight="34.0" prefWidth="93.0" styleClass="white_background" stylesheets="@../css/style.css" text="Directory" />
                </children>
                <padding>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />

@@ -32,7 +32,6 @@ public class DeleteFileActionController implements Initializable, ActionControll
     private HBox deleteFileActionBox;
     @FXML
     private VBox vboxDeleteFile;
-    private RadioButton deleteFileActionRB;
     @FXML
     private HBox hbox1;
     @FXML
@@ -58,9 +57,14 @@ public class DeleteFileActionController implements Initializable, ActionControll
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        /*flagDeleteFile = new SimpleBooleanProperty(true);
-        
-        BooleanProperty isDeleteFileActionSelected = deleteFileActionRB.selectedProperty();
+        flagDeleteFile = new SimpleBooleanProperty(true);
+        hbox1.getChildren().removeAll(deleteLabel, fileNameTextField);
+        hbox2.getChildren().removeAll(fromLabel, directoryButton);
+        vbox1.getChildren().removeAll(hbox1, hbox2);
+        vboxDeleteFile.getChildren().removeAll(vbox1);
+        deleteFileActionBox.setPrefHeight(70);
+        fileNameTextField.clear();
+        /*BooleanProperty isDeleteFileActionSelected = deleteFileActionRB.selectedProperty();
       
         vbox1.visibleProperty().bind(Bindings.createBooleanBinding(
             () -> {
@@ -124,6 +128,24 @@ public class DeleteFileActionController implements Initializable, ActionControll
     @Override
     public CheckBox getCB() {
         return deleteFileCB;
+    }
+
+    @FXML
+    private void deleteFileActionSelected(ActionEvent event) {
+        if(deleteFileCB.isSelected()){
+            vboxDeleteFile.getChildren().addAll(vbox1);
+            vbox1.getChildren().addAll(hbox1, hbox2);
+            hbox1.getChildren().addAll(deleteLabel, fileNameTextField);
+            hbox2.getChildren().addAll(fromLabel, directoryButton);
+            deleteFileActionBox.setPrefHeight(163);
+        }else{
+            hbox1.getChildren().removeAll(deleteLabel, fileNameTextField);
+            hbox2.getChildren().removeAll(fromLabel, directoryButton);
+            vbox1.getChildren().removeAll(hbox1, hbox2);
+            vboxDeleteFile.getChildren().removeAll(vbox1);
+            deleteFileActionBox.setPrefHeight(70);
+            fileNameTextField.clear();
+        }
     }
 
 }

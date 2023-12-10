@@ -33,7 +33,6 @@ public class CopyFileActionController implements Initializable, ActionController
     private HBox copyFileActionBox;
     @FXML
     private VBox vboxCopyFile;
-    private RadioButton copyFileActionRB;
     @FXML
     private Button fileButton;
     @FXML
@@ -57,8 +56,13 @@ public class CopyFileActionController implements Initializable, ActionController
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        /*flagCopyFile = new SimpleBooleanProperty(true);
-        BooleanProperty isCopyFileActionSelected = copyFileActionRB.selectedProperty();
+        flagCopyFile = new SimpleBooleanProperty(true);
+        hboxCopyFileOptions.getChildren().removeAll(copyLabel, fileButton, toLabel, directoryButton);
+        //hboxCopyFileOptions.setPrefHeight(70);
+        copyFileActionBox.setPrefHeight(80);
+        //vboxCopyFile.setPrefHeight(70);
+        flagCopyFile.set(true);    
+        /*BooleanProperty isCopyFileActionSelected = copyFileActionRB.selectedProperty();
         
         hboxCopyFileOptions.visibleProperty().bind(Bindings.createBooleanBinding(
             () -> {
@@ -127,6 +131,19 @@ public class CopyFileActionController implements Initializable, ActionController
     @Override
     public CheckBox getCB() {
         return copyFileCB;
+    }
+
+    @FXML
+    private void copyFileActionSelected(ActionEvent event) {
+        if(copyFileCB.isSelected()){
+            hboxCopyFileOptions.getChildren().addAll(copyLabel, fileButton, toLabel, directoryButton);
+            copyFileActionBox.setPrefHeight(120);
+            
+        }else{
+            hboxCopyFileOptions.getChildren().removeAll(copyLabel, fileButton, toLabel, directoryButton);
+            copyFileActionBox.setPrefHeight(80);
+    
+        }
     }
 
 }
