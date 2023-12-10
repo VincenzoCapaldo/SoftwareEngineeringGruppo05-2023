@@ -127,7 +127,7 @@ public class MessageActionController implements Initializable, ActionController,
 
             Platform.runLater(() -> {
                 try{
-                    FXMLLoader fxmlLoader= new FXMLLoader(getClass().getResource("/view/actions/PopUp.fxml"));
+                    FXMLLoader fxmlLoader= new FXMLLoader(getClass().getResource("/actions/messageAction/PopUp.fxml"));
                     Parent root1= (Parent) fxmlLoader.load();
 
                     // prende il controller dopo aver caricato FXML file

@@ -68,7 +68,7 @@ public class RuleCardController implements Observer, Initializable {
         
         try{
             //carico il file fxml relativo alla finestra di conferma cancellazione regola
-            FXMLLoader fxmlLoader= new FXMLLoader(getClass().getResource("rule/DeleteRuleConfirmPopUp.fxml"));
+            FXMLLoader fxmlLoader= new FXMLLoader(getClass().getResource("/rule/DeleteRuleConfirmPopUp.fxml"));
             Parent root2= (Parent) fxmlLoader.load();
 
             //carico il controller del popup per passargli le informazioni che ha bisogno per effettuare le azioni

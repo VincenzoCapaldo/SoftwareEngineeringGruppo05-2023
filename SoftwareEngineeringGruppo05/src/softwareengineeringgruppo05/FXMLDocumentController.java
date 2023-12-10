@@ -218,7 +218,7 @@ public class FXMLDocumentController implements Initializable {
         BooleanBinding bbAction4Not = Bindings.not(bbAction4);
         BooleanBinding bb = bbRuleName.or(bbTriggerToggleGroup).or(bbActionNot).or(bbTrigger).or(bbAction4Not);
         
-        createRuleButton.disableProperty().bind(bb);  
+        //createRuleButton.disableProperty().bind(bb);  
         
     }
 
@@ -261,7 +261,7 @@ public class FXMLDocumentController implements Initializable {
         for (Rule rule : rules) {
             try {
                 FXMLLoader fxmlLoader = new FXMLLoader();
-                fxmlLoader.setLocation(getClass().getResource("/view/rules/RuleCard.fxml")); 
+                fxmlLoader.setLocation(getClass().getResource("/rule/RuleCard.fxml")); 
                 HBox ruleBox = fxmlLoader.load();
                 
                 RuleCardController ruleCardController = fxmlLoader.getController();
