@@ -60,34 +60,7 @@ public class CopyFileActionController implements Initializable, ActionController
         hboxCopyFileOptions.getChildren().removeAll(copyLabel, fileButton, toLabel, directoryButton);
         //hboxCopyFileOptions.setPrefHeight(70);
         copyFileActionBox.setPrefHeight(80);
-        //vboxCopyFile.setPrefHeight(70);
-        flagCopyFile.set(true);    
-        /*BooleanProperty isCopyFileActionSelected = copyFileActionRB.selectedProperty();
-        
-        hboxCopyFileOptions.visibleProperty().bind(Bindings.createBooleanBinding(
-            () -> {
-                boolean CopyFileSelected = isCopyFileActionSelected.get();
-
-                // Aggiungi o rimuovi elementi dal layout in base allo stato del RadioButton.
-                Platform.runLater(() -> {
-                        if (!CopyFileSelected) {
-                            hboxCopyFileOptions.getChildren().removeAll(copyLabel, fileButton, toLabel, directoryButton);
-                            hboxCopyFileOptions.setPrefHeight(70);
-                            copyFileActionBox.setPrefHeight(80);
-                            vboxCopyFile.setPrefHeight(70);
-                            flagCopyFile.set(true);    
-                        } else {
-                            hboxCopyFileOptions.getChildren().addAll(copyLabel, fileButton, toLabel, directoryButton);
-                            copyFileActionBox.setPrefHeight(118);
-                            hboxCopyFileOptions.setPrefHeight(118);
-                            vboxCopyFile.setPrefHeight(118);
-                        }
-                });
-                return CopyFileSelected;
-            },
-            isCopyFileActionSelected
-        ));
-         */
+        //vboxCopyFile.setPrefHeight(70);   
     }    
 
     @FXML
@@ -98,7 +71,7 @@ public class CopyFileActionController implements Initializable, ActionController
         Stage stage = (Stage) fileButton.getScene().getWindow();
         selectedFile = fileChooser.showOpenDialog(stage);
         Platform.runLater(() -> {
-             flagCopyFile.setValue(selectedFile == null || selectedDirectory == null);
+             flagCopyFile.setValue(selectedFile != null && selectedDirectory != null);
         });
     }
 
@@ -111,7 +84,7 @@ public class CopyFileActionController implements Initializable, ActionController
         selectedDirectory = directoryChooser.showDialog(stage);
         
         Platform.runLater(() -> {
-            flagCopyFile.setValue(selectedFile == null || selectedDirectory == null);
+            flagCopyFile.setValue(selectedFile != null && selectedDirectory != null);
         });
     }
     
@@ -138,11 +111,11 @@ public class CopyFileActionController implements Initializable, ActionController
         if(copyFileCB.isSelected()){
             hboxCopyFileOptions.getChildren().addAll(copyLabel, fileButton, toLabel, directoryButton);
             copyFileActionBox.setPrefHeight(120);
-            
+            flagCopyFile.set(false); 
         }else{
             hboxCopyFileOptions.getChildren().removeAll(copyLabel, fileButton, toLabel, directoryButton);
             copyFileActionBox.setPrefHeight(80);
-    
+            flagCopyFile.set(true); 
         }
     }
 

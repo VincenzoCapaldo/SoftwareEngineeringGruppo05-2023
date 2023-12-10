@@ -45,29 +45,6 @@ public class AudioActionController implements Initializable, ActionController {
         flagAudio = new SimpleBooleanProperty(true);
         soundActionBox.getChildren().remove(browseButton);
         soundActionBox.setPrefHeight(65);
-        /*BooleanProperty isSoundActionSelected = soundActionRB.selectedProperty();
-        
-        // Creazione di un binding personalizzato per la visibilità del pulsante
-        browseButton.visibleProperty().bind(Bindings.createBooleanBinding(
-            () -> {
-                boolean soundActionSelected = isSoundActionSelected.get();
-
-                /* Aggiungi o rimuovi il pulsante dal layout e modifica la dimensione della card di condeguenza 
-                in base allo stato del RadioButton: azione eseguita dal thread principale*/
-            /*    Platform.runLater(() -> {
-                        if (!soundActionSelected) {
-                            soundActionBox.getChildren().remove(browseButton);
-                            soundActionBox.setPrefHeight(65);
-                            flagAudio.set(true);    
-                        } else {
-                            soundActionBox.getChildren().add(browseButton);
-                            soundActionBox.setPrefHeight(80);
-                        }
-                });
-                return soundActionSelected;
-            },
-            isSoundActionSelected
-        ));*/
     }   
 
     @FXML
@@ -81,9 +58,9 @@ public class AudioActionController implements Initializable, ActionController {
         Stage stage = (Stage) browseButton.getScene().getWindow();
         selectedFile = fileChooser.showOpenDialog(stage);
 
-        // La flagAudio è vera solo quando non è stato selezionato un file
+        // La flagAudio è vera solo quando è stato selezionato un file
         Platform.runLater(() -> {
-             flagAudio.setValue(selectedFile == null);
+             flagAudio.setValue(selectedFile != null);
          });
          
     }
@@ -107,6 +84,7 @@ public class AudioActionController implements Initializable, ActionController {
         if(audioCB.isSelected()){
             soundActionBox.getChildren().add(browseButton);
             soundActionBox.setPrefHeight(80);
+            flagAudio.set(false); 
         }else{
             soundActionBox.getChildren().remove(browseButton);
             soundActionBox.setPrefHeight(65);

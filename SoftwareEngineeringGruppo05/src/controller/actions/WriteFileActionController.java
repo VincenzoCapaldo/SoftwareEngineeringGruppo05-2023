@@ -47,32 +47,11 @@ public class WriteFileActionController implements Initializable, ActionControlle
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        /*flagWriter = new SimpleBooleanProperty(true);
-        BooleanProperty isWriterActionSelected = writeActionRB.selectedProperty();
-
-        messageTextArea.visibleProperty().bind(Bindings.createBooleanBinding(
-            () -> {
-                boolean writerActionSelected = isWriterActionSelected.get();
-
-                // Aggiungi o rimuovi il pulsante e la textArea dal layout in base allo stato del RadioButton: azione eseguita dal thread principale
-                Platform.runLater(() -> {
-                        if (!writerActionSelected) {
-                            vboxWriter.getChildren().remove(messageTextArea);
-                            hboxWriter.getChildren().remove(browseButton);
-                            writerActionBox.setPrefHeight(70);
-                            messageTextArea.clear(); 
-                        } else {
-                            hboxWriter.getChildren().add(browseButton);
-                            vboxWriter.getChildren().add(messageTextArea);
-                            writerActionBox.setPrefHeight(181);
-                        }
-                });
-                return writerActionSelected;
-            },
-            isWriterActionSelected
-        ));
-        
-        */
+        flagWriter = new SimpleBooleanProperty(true);
+        vboxWriter.getChildren().remove(messageTextArea);
+        hboxWriter.getChildren().remove(browseButton);
+        writerActionBox.setPrefHeight(70);
+        messageTextArea.clear();
     }    
 
     @FXML
@@ -89,7 +68,7 @@ public class WriteFileActionController implements Initializable, ActionControlle
         // La flagWriter è vera solo quando non è stato selezionato un file
         Platform.runLater(() -> {
              flagWriter.bind(Bindings.createBooleanBinding(
-                () -> selectedFile == null || messageTextArea.getText().isEmpty(),
+                () -> selectedFile != null && !(messageTextArea.getText().isEmpty()),
                 messageTextArea.textProperty()
             ));
         });
@@ -111,6 +90,22 @@ public class WriteFileActionController implements Initializable, ActionControlle
     @Override
     public CheckBox getCB() {
         return writeFileCB;
+    }
+
+    @FXML
+    private void writeFileActionSelected(ActionEvent event) {
+        if(writeFileCB.isSelected()){
+            hboxWriter.getChildren().add(browseButton);
+            vboxWriter.getChildren().add(messageTextArea);
+            writerActionBox.setPrefHeight(181);
+            flagWriter.set(false);
+        }else{
+            vboxWriter.getChildren().remove(messageTextArea);
+            hboxWriter.getChildren().remove(browseButton);
+            writerActionBox.setPrefHeight(70);
+            messageTextArea.clear(); 
+            flagWriter.set(true);
+        }
     }
 
 }

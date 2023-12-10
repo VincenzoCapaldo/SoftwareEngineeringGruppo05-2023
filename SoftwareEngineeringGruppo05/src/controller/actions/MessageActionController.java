@@ -9,6 +9,7 @@ import javafx.application.Platform;
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -48,8 +49,21 @@ public class MessageActionController implements Initializable, ActionController,
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        /*flagMessage = new SimpleBooleanProperty(true);
-        BooleanProperty isMessageActionSelected = messageActionRB.selectedProperty();
+        flagMessage = new SimpleBooleanProperty(true);
+        
+        /*
+        flagMessage.bind(Bindings.createBooleanBinding(
+                () -> !(messageTextArea.getText().isEmpty()),
+                messageTextArea.textProperty()
+        ));*/
+        
+        
+        vboxMessage.getChildren().remove(messageTextArea);
+        messageActionBox.setPrefHeight(70);
+        messageTextArea.clear();
+        
+        
+        /*BooleanProperty isMessageActionSelected = messageActionRB.selectedProperty();
         
          flagMessage.bind(Bindings.createBooleanBinding(
                 () -> messageTextArea.getText().isEmpty(),
@@ -91,6 +105,22 @@ public class MessageActionController implements Initializable, ActionController,
         return flagMessage;
     }
 
+
+    @FXML
+    private void messageActionSelected(ActionEvent event) {
+        if(messageCB.isSelected()){
+            vboxMessage.getChildren().add(messageTextArea);
+            messageActionBox.setPrefHeight(168);
+            flagMessage.set(true);
+        }else{
+            vboxMessage.getChildren().remove(messageTextArea);
+            messageActionBox.setPrefHeight(70);
+            messageTextArea.clear();
+            flagMessage.set(true);
+        }
+        
+    }
+    
     @Override
     public void update(Observable subject, Object arg) {
         MessageAction messageSubject = (MessageAction) subject;
@@ -121,5 +151,4 @@ public class MessageActionController implements Initializable, ActionController,
             });
   
     }
-
 }

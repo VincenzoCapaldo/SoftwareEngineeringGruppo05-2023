@@ -8,11 +8,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<HBox fx:id="messageActionBox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="168.0" prefWidth="320.0" stylesheets="@../../css/style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.actions.MessageActionController">
+<HBox fx:id="messageActionBox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="168.0" prefWidth="320.0" stylesheets="@../../css/style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.actions.MessageActionController">
    <children>
       <VBox fx:id="vboxMessage" prefHeight="50.0" prefWidth="320.0" stylesheets="@../../css/style.css">
          <children>
-            <CheckBox fx:id="messageCB" mnemonicParsing="false" text="Message">
+            <CheckBox fx:id="messageCB" mnemonicParsing="false" onAction="#messageActionSelected" text="Message">
                <font>
                   <Font size="21.0" />
                </font>

@@ -103,7 +103,9 @@ public class FXMLDocumentController implements Initializable {
             am.getController().setToggleGroup(triggerToggleGroup);
             scrollAllTriggers.getChildren().add(am.getHbox());
         }
-        /*
+        
+        
+        
         //se il nome della regola non è inserito o è di solo spazi vuoti bb1=true
         BooleanBinding bbRuleName = Bindings.createBooleanBinding(
         () -> nameRuleTextField.getText().trim().isEmpty(),
@@ -111,11 +113,11 @@ public class FXMLDocumentController implements Initializable {
         );
         
         //se non è selezionata almeno un'azione o almeno un trigger bb2=true
-        BooleanBinding bbToggleGroup = actionToggleGroup.selectedToggleProperty().isNull().or(triggerToggleGroup.selectedToggleProperty().isNull());
-
+        BooleanBinding bbTriggerToggleGroup = triggerToggleGroup.selectedToggleProperty().isNull();
+        
         ActionCreator[] actionManagers = actions.values().toArray(new ActionCreator[0]);
         BooleanBinding bbAction = null;
-        BooleanBinding currentBindingAction = null;
+        BooleanBinding currentBindingAction = null;        
         for(int i=0; i<actionManagers.length-1; i=i+2){
             ActionCreator am = actionManagers[i];
             // Controlla se c'è un ActionManager successivo
@@ -143,7 +145,7 @@ public class FXMLDocumentController implements Initializable {
                     bbAction = currentBinding.and(new SimpleBooleanProperty(true));
                 }
         }
-        */
+        
         
         TriggerCreator[] triggerManagers = triggers.values().toArray(new TriggerCreator[0]);
         BooleanBinding bbTrigger = null;
@@ -178,10 +180,45 @@ public class FXMLDocumentController implements Initializable {
                 }
         }
 
-        //se non è stato inserito il nome della regola O non è selezionata un'azione/ trigger O l'azione selezionata non è completa bb=true
-        //BooleanBinding bb = bbRuleName.or(bbToggleGroup).or(bbAction).or(bbTrigger);
+        ActionCreator[] actionCreatorsbb4 = actions.values().toArray(new ActionCreator[0]);
+        BooleanBinding bbAction4 = null;
         
-        //createRuleButton.disableProperty().bind(bb);  
+        BooleanBinding currentBindingActionbb4 = null;        
+        for(int i=0; i<actionCreatorsbb4.length-1; i=i+2){
+            ActionCreator am = actionCreatorsbb4[i];
+            // Controlla se c'è un ActionManager successivo
+            if (i + 1 < actionCreatorsbb4.length) {
+                ActionCreator nextAm = actionCreatorsbb4[i + 1];
+                // Inizializza la BooleanBinding con l'and tra lo stato "non completato" di am e nextAm
+                currentBindingActionbb4 = Bindings.or(am.getController().getCB().selectedProperty(), nextAm.getController().getCB().selectedProperty());
+                // Se bbAction è già inizializzata, effettua l'and con la nuova BooleanBinding
+                if (bbAction4 != null) {
+                    bbAction4 = bbAction4.and(currentBindingActionbb4);
+                } else {
+                    // Altrimenti, inizializza bbAction con la prima BooleanBinding
+                    bbAction4 = currentBindingActionbb4;
+                }
+            }
+        }
+        
+        if (actionCreatorsbb4.length % 2 != 0) {
+            ActionCreator lastAm = actionCreatorsbb4[actionCreatorsbb4.length - 1];
+            BooleanProperty currentBinding = lastAm.isNotCompleted();
+            if (bbAction4 != null) {
+                    bbAction4 = bbAction4.and(currentBinding);
+            } else {
+                    // Altrimenti, inizializza bbAction con la prima BooleanBinding
+                    bbAction4 = currentBinding.and(new SimpleBooleanProperty(true));
+                }
+        }
+        
+        
+        //se non è stato inserito il nome della regola O non è selezionata un'azione/ trigger O l'azione selezionata non è completa bb=true
+        BooleanBinding bbActionNot = Bindings.not(bbAction);
+        BooleanBinding bbAction4Not = Bindings.not(bbAction4);
+        BooleanBinding bb = bbRuleName.or(bbTriggerToggleGroup).or(bbActionNot).or(bbTrigger).or(bbAction4Not);
+        
+        createRuleButton.disableProperty().bind(bb);  
         
     }
 

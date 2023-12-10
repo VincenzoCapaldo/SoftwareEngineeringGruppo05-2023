@@ -56,31 +56,13 @@ public class MoveFileActionController implements Initializable, ActionController
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        /*flagMoveFile = new SimpleBooleanProperty(true);
-        BooleanProperty isMoveFileActionSelected = moveFileActionRB.selectedProperty();
+        flagMoveFile = new SimpleBooleanProperty(true);
+        hboxMoveFileOptions.getChildren().removeAll(moveLabel, fileButton, toLabel, directoryButton);
+        moveFileActionBox.setPrefHeight(70);
+        vboxMoveFile.setPrefHeight(70);
         
-        hboxMoveFileOptions.visibleProperty().bind(Bindings.createBooleanBinding(
-            () -> {
-                boolean MoveFileSelected = isMoveFileActionSelected.get();
-
-                // Aggiungi o rimuovi elementi dal layout in base allo stato del RadioButton.
-                Platform.runLater(() -> {
-                        if (!MoveFileSelected) {
-                            hboxMoveFileOptions.getChildren().removeAll(moveLabel, fileButton, toLabel, directoryButton);
-                            moveFileActionBox.setPrefHeight(70);
-                            vboxMoveFile.setPrefHeight(70);
-                            flagMoveFile.set(true);    
-                        } else {
-                            hboxMoveFileOptions.getChildren().addAll(moveLabel, fileButton, toLabel, directoryButton);
-                            moveFileActionBox.setPrefHeight(118);
-                            hboxMoveFileOptions.setPrefHeight(118);
-                            vboxMoveFile.setPrefHeight(118);
-                        }
-                });
-                return MoveFileSelected;
-            },
-            isMoveFileActionSelected
-        ));*/
+        
+        
     }    
 
     @FXML
@@ -91,7 +73,7 @@ public class MoveFileActionController implements Initializable, ActionController
         Stage stage = (Stage) fileButton.getScene().getWindow();
         selectedFile = fileChooser.showOpenDialog(stage);
         Platform.runLater(() -> {
-            flagMoveFile.setValue(selectedFile == null || selectedDirectory == null);
+            flagMoveFile.setValue(selectedFile != null && selectedDirectory != null);
         });
     }
 
@@ -104,7 +86,7 @@ public class MoveFileActionController implements Initializable, ActionController
         selectedDirectory = directoryChooser.showDialog(stage);
         
         Platform.runLater(() -> {
-           flagMoveFile.setValue(selectedFile == null || selectedDirectory == null);
+           flagMoveFile.setValue(selectedFile != null && selectedDirectory != null);
         });
     }
     
@@ -124,6 +106,19 @@ public class MoveFileActionController implements Initializable, ActionController
     @Override
     public CheckBox getCB() {
         return moveFileCB;
+    }
+
+    @FXML
+    private void moveFileActionSelected(ActionEvent event) {
+        if(moveFileCB.isSelected()){
+            hboxMoveFileOptions.getChildren().addAll(moveLabel, fileButton, toLabel, directoryButton);
+            moveFileActionBox.setPrefHeight(118);
+            flagMoveFile.set(false);
+        }else{
+            hboxMoveFileOptions.getChildren().removeAll(moveLabel, fileButton, toLabel, directoryButton);
+            moveFileActionBox.setPrefHeight(70);
+            flagMoveFile.set(true);
+        }
     }
     
 }

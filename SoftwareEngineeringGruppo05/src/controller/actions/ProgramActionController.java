@@ -48,8 +48,13 @@ public class ProgramActionController implements Initializable, ActionController 
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        /*flagProgram = new SimpleBooleanProperty(true);
-        BooleanProperty isProgramActionSelected = programActionRB.selectedProperty();
+        flagProgram = new SimpleBooleanProperty(true);
+        vBoxProgram.getChildren().remove(commandTextArea);
+        hBoxProgram.getChildren().remove(browseButton);
+        programactionBox.setPrefHeight(70);
+        commandTextArea.clear();
+        
+        /*BooleanProperty isProgramActionSelected = programActionRB.selectedProperty();
  
         commandTextArea.visibleProperty().bind(Bindings.createBooleanBinding(
             () -> {
@@ -84,9 +89,9 @@ public class ProgramActionController implements Initializable, ActionController 
         Stage stage = (Stage) browseButton.getScene().getWindow();
         selectedFile = fileChooser.showOpenDialog(stage);
 
-        // La flagProgram è vera solo quando non è stato selezionato un file
+        // La flagProgram è vera solo quando è stato selezionato un file
         Platform.runLater(() -> {
-            flagProgram.setValue(selectedFile == null);
+            flagProgram.setValue(selectedFile != null);
         });
     }
     
@@ -106,6 +111,23 @@ public class ProgramActionController implements Initializable, ActionController 
     @Override
     public CheckBox getCB() {
         return programCB;
+    }
+
+    @FXML
+    private void programActionSelected(ActionEvent event) {
+        if(programCB.isSelected()){
+            hBoxProgram.getChildren().add(browseButton);
+            vBoxProgram.getChildren().add(commandTextArea);
+            programactionBox.setPrefHeight(181);
+            flagProgram.setValue(false);
+        }else{
+            vBoxProgram.getChildren().remove(commandTextArea);
+            hBoxProgram.getChildren().remove(browseButton);
+            programactionBox.setPrefHeight(70);
+            commandTextArea.clear();
+            flagProgram.setValue(true);
+        }
+        
     }
     
 }

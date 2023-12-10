@@ -64,36 +64,6 @@ public class DeleteFileActionController implements Initializable, ActionControll
         vboxDeleteFile.getChildren().removeAll(vbox1);
         deleteFileActionBox.setPrefHeight(70);
         fileNameTextField.clear();
-        /*BooleanProperty isDeleteFileActionSelected = deleteFileActionRB.selectedProperty();
-      
-        vbox1.visibleProperty().bind(Bindings.createBooleanBinding(
-            () -> {
-                boolean DeleteFileSelected = isDeleteFileActionSelected.get();
-
-                // Aggiungi o rimuovi elementi dal layout in base allo stato del RadioButton.
-                Platform.runLater(() -> {
-                        if (!DeleteFileSelected) {
-                            hbox1.getChildren().removeAll(deleteLabel, fileNameTextField);
-                            hbox2.getChildren().removeAll(fromLabel, directoryButton);
-                            vbox1.getChildren().removeAll(hbox1, hbox2);
-                            vboxDeleteFile.getChildren().removeAll(vbox1);
-                            deleteFileActionBox.setPrefHeight(70);
-                            vboxDeleteFile.setPrefHeight(70);
-                            fileNameTextField.clear();
-                        } else {
-                            vboxDeleteFile.getChildren().addAll(vbox1);
-                            vbox1.getChildren().addAll(hbox1, hbox2);
-                            hbox1.getChildren().addAll(deleteLabel, fileNameTextField);
-                            
-                            hbox2.getChildren().addAll(fromLabel, directoryButton);
-                            deleteFileActionBox.setPrefHeight(163);
-                            vboxDeleteFile.setPrefHeight(163);
-                        }
-                });
-                return DeleteFileSelected;
-            },
-            isDeleteFileActionSelected
-        ));*/
     }    
 
     @FXML
@@ -106,7 +76,7 @@ public class DeleteFileActionController implements Initializable, ActionControll
         
         Platform.runLater(() -> {
              flagDeleteFile.bind(Bindings.createBooleanBinding(
-                () -> selectedDirectory == null || fileNameTextField.getText().isEmpty(),
+                () -> selectedDirectory != null && !(fileNameTextField.getText().isEmpty()),
                 fileNameTextField.textProperty()
             ));
         });
@@ -138,6 +108,7 @@ public class DeleteFileActionController implements Initializable, ActionControll
             hbox1.getChildren().addAll(deleteLabel, fileNameTextField);
             hbox2.getChildren().addAll(fromLabel, directoryButton);
             deleteFileActionBox.setPrefHeight(163);
+            flagDeleteFile.set(false);
         }else{
             hbox1.getChildren().removeAll(deleteLabel, fileNameTextField);
             hbox2.getChildren().removeAll(fromLabel, directoryButton);
@@ -145,6 +116,7 @@ public class DeleteFileActionController implements Initializable, ActionControll
             vboxDeleteFile.getChildren().removeAll(vbox1);
             deleteFileActionBox.setPrefHeight(70);
             fileNameTextField.clear();
+            flagDeleteFile.set(true);
         }
     }
 
