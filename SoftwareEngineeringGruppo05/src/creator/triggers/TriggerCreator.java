@@ -1,6 +1,5 @@
 package creator.triggers;
 
-import creator.Creator;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -15,7 +14,7 @@ import controller.triggers.TriggerController;
  *
  * @author Paolo
  */
-public abstract class TriggerCreator implements Creator{
+public abstract class TriggerCreator {
     
     private FXMLLoader fxmlLoader;
     private TriggerController controller;
@@ -32,7 +31,6 @@ public abstract class TriggerCreator implements Creator{
         controller = fxmlLoader.getController();
     }
     
-    @Override
     public HBox getHbox() {
         return hbox;
     }
@@ -41,7 +39,6 @@ public abstract class TriggerCreator implements Creator{
         return controller;
     }
     
-    @Override
     public BooleanProperty isNotCompleted(){
         return controller.getFlag();
     }

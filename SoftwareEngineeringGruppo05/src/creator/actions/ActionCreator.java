@@ -4,7 +4,6 @@ import model.actions.Action;
 import javafx.beans.property.BooleanProperty;
 import javafx.fxml.FXMLLoader;
 import controller.actions.ActionController;
-import creator.Creator;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -14,13 +13,14 @@ import javafx.scene.layout.HBox;
  *
  * @author Paolo
  */
-public abstract class ActionCreator implements Creator{
+public abstract class ActionCreator {
     
     private FXMLLoader fxmlLoader;
     private ActionController controller;
     private HBox hbox;
     
     public ActionCreator(String path) {
+        // crea l'FXML e gli associa il corrispettivo controller
         fxmlLoader = new FXMLLoader();
         fxmlLoader.setLocation(getClass().getResource(path));
         try {
@@ -31,7 +31,6 @@ public abstract class ActionCreator implements Creator{
         controller = fxmlLoader.getController();
     }
     
-    @Override
     public HBox getHbox() {
         return hbox;
     }
@@ -40,7 +39,6 @@ public abstract class ActionCreator implements Creator{
         return controller;
     }
     
-    @Override
     public BooleanProperty isNotCompleted(){
         return controller.getFlag();
     }
