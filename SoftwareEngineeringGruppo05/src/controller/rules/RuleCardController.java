@@ -146,10 +146,12 @@ public class RuleCardController implements Observer, Initializable {
             vBoxRule.getChildren().removeAll(nameAction, nameTrigger, repetition);
             selected = false;
         }else{
+            String repetitionState = null;            
+            repetitionState = rule.getTrigger().isRepeated() ? "True" : "Only Once";
             ruleBox.setPrefHeight(240);
-            nameAction.setText("Azione : " + rule.getAction().toString());
+            nameAction.setText("Action : " + rule.getAction().toString());
             nameTrigger.setText("Trigger : " + rule.getTrigger().toString());
-            repetition.setText("Repetition : " + rule.getTrigger().isRepeated());
+            repetition.setText("Repetition : " + repetitionState);
             vBoxRule.getChildren().addAll(nameAction, nameTrigger, repetition);
             selected = true;
         }

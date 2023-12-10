@@ -99,7 +99,7 @@ public class MessageActionController implements Initializable, Controller, Obser
 
             Platform.runLater(() -> {
                 try{
-                    FXMLLoader fxmlLoader= new FXMLLoader(getClass().getResource("/actions/MessageAction/PopUp.fxml"));
+                    FXMLLoader fxmlLoader= new FXMLLoader(getClass().getResource("/view/actions/PopUp.fxml"));
                     Parent root1= (Parent) fxmlLoader.load();
 
                     // prende il controller dopo aver caricato FXML file
@@ -111,7 +111,7 @@ public class MessageActionController implements Initializable, Controller, Obser
                     // Crea la finestra
                     Stage stage = new Stage();
                     stage.setTitle("New message"); // impostazione del titolo e dell'icona della finestra
-                    stage.getIcons().add(new Image("/css/message.png"));
+                    stage.getIcons().add(new Image("view/css/message.png"));
                     stage.setScene(new Scene(root1));
 
                     // mostra la finestra
