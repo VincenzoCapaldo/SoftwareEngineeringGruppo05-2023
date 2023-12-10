@@ -58,7 +58,7 @@ public class DeleteFileActionController implements Initializable, ActionControll
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        flagDeleteFile = new SimpleBooleanProperty(true);
+        flagDeleteFile = new SimpleBooleanProperty(false);
         hbox1.getChildren().removeAll(deleteLabel, fileNameTextField);
         hbox2.getChildren().removeAll(fromLabel, directoryButton);
         vbox1.getChildren().removeAll(hbox1, hbox2);
@@ -77,7 +77,7 @@ public class DeleteFileActionController implements Initializable, ActionControll
         
         Platform.runLater(() -> {
              flagDeleteFile.bind(Bindings.createBooleanBinding(
-                () -> selectedDirectory != null && !(fileNameTextField.getText().isEmpty()),
+                () -> selectedDirectory == null || fileNameTextField.getText().isEmpty(),
                 fileNameTextField.textProperty()
             ));
         });
@@ -109,7 +109,7 @@ public class DeleteFileActionController implements Initializable, ActionControll
             hbox1.getChildren().addAll(deleteLabel, fileNameTextField);
             hbox2.getChildren().addAll(fromLabel, directoryButton);
             deleteFileActionBox.setPrefHeight(163);
-            flagDeleteFile.set(false);
+            flagDeleteFile.set(true);
         }else{
             hbox1.getChildren().removeAll(deleteLabel, fileNameTextField);
             hbox2.getChildren().removeAll(fromLabel, directoryButton);
@@ -117,7 +117,7 @@ public class DeleteFileActionController implements Initializable, ActionControll
             vboxDeleteFile.getChildren().removeAll(vbox1);
             deleteFileActionBox.setPrefHeight(70);
             fileNameTextField.clear();
-            flagDeleteFile.set(true);
+            flagDeleteFile.set(false);
         }
     }
 

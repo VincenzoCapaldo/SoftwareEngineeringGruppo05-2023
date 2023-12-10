@@ -43,7 +43,7 @@ public class AudioActionController implements Initializable, ActionController {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        flagAudio = new SimpleBooleanProperty(true);
+        flagAudio = new SimpleBooleanProperty(false);
         soundActionBox.getChildren().remove(browseButton);
         soundActionBox.setPrefHeight(65);
     }   
@@ -61,7 +61,7 @@ public class AudioActionController implements Initializable, ActionController {
 
         // La flagAudio è vera solo quando è stato selezionato un file
         Platform.runLater(() -> {
-             flagAudio.setValue(selectedFile != null);
+             flagAudio.setValue(selectedFile == null);
          });
          
     }
@@ -85,11 +85,11 @@ public class AudioActionController implements Initializable, ActionController {
         if(audioCB.isSelected()){
             soundActionBox.getChildren().add(browseButton);
             soundActionBox.setPrefHeight(80);
-            flagAudio.set(false); 
+            flagAudio.set(true); 
         }else{
             soundActionBox.getChildren().remove(browseButton);
             soundActionBox.setPrefHeight(65);
-            flagAudio.set(true);    
+            flagAudio.set(false);    
         }
     }
 

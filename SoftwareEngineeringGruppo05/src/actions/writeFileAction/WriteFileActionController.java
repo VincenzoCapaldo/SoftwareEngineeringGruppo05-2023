@@ -7,7 +7,9 @@ import java.util.ResourceBundle;
 import javafx.application.Platform;
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -29,7 +31,6 @@ public class WriteFileActionController implements Initializable, ActionControlle
 
     @FXML
     private HBox writerActionBox;
-    private RadioButton writeActionRB;
     @FXML
     private Button browseButton;
     @FXML
@@ -42,17 +43,32 @@ public class WriteFileActionController implements Initializable, ActionControlle
     private HBox hboxWriter;
     @FXML
     private CheckBox writeFileCB;
+
+      private SimpleBooleanProperty selectedFilePresent;
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        flagWriter = new SimpleBooleanProperty(true);
+        flagWriter = new SimpleBooleanProperty(false);
+        selectedFilePresent = new SimpleBooleanProperty(false);
+        
         vboxWriter.getChildren().remove(messageTextArea);
         hboxWriter.getChildren().remove(browseButton);
         writerActionBox.setPrefHeight(70);
         messageTextArea.clear();
+        
+        // La flagWriter è vera solo quando non è stato selezionato un file
+       flagWriter.bind(Bindings.createBooleanBinding(
+            () -> writeFileCB.isSelected() && (selectedFile == null || messageTextArea.getText().isEmpty()),
+            writeFileCB.selectedProperty(),
+            selectedFilePresent,
+            messageTextArea.textProperty()
+        ));
+
+
     }    
+
 
     @FXML
     private void browseFile(ActionEvent event) {
@@ -64,14 +80,9 @@ public class WriteFileActionController implements Initializable, ActionControlle
         
         Stage stage = (Stage) browseButton.getScene().getWindow();
         selectedFile = fileChooser.showOpenDialog(stage);
-
-        // La flagWriter è vera solo quando non è stato selezionato un file
-        Platform.runLater(() -> {
-             flagWriter.bind(Bindings.createBooleanBinding(
-                () -> selectedFile != null && !(messageTextArea.getText().isEmpty()),
-                messageTextArea.textProperty()
-            ));
-        });
+           
+        selectedFilePresent.set(selectedFile != null);
+  
     }
     
     public String getTextArea(){
@@ -98,13 +109,11 @@ public class WriteFileActionController implements Initializable, ActionControlle
             hboxWriter.getChildren().add(browseButton);
             vboxWriter.getChildren().add(messageTextArea);
             writerActionBox.setPrefHeight(181);
-            flagWriter.set(false);
         }else{
             vboxWriter.getChildren().remove(messageTextArea);
             hboxWriter.getChildren().remove(browseButton);
             writerActionBox.setPrefHeight(70);
             messageTextArea.clear(); 
-            flagWriter.set(true);
         }
     }
 

@@ -1,5 +1,6 @@
 package softwareengineeringgruppo05;
 
+import actions.ActionController;
 import rule.RuleCardController;
 import java.io.IOException;
 import java.net.URL;
@@ -95,16 +96,13 @@ public class FXMLDocumentController implements Initializable {
         window1.visibleProperty().set(false);
         
         for (ActionCreator am : actions.values()){
-            //am.getController().setToggleGroup(actionToggleGroup);
             scrollAllActions.getChildren().add(am.getHbox());
         }
         
         for (TriggerCreator am : triggers.values()){
             am.getController().setToggleGroup(triggerToggleGroup);
             scrollAllTriggers.getChildren().add(am.getHbox());
-        }
-        
-        
+        } 
         
         //se il nome della regola non è inserito o è di solo spazi vuoti bb1=true
         BooleanBinding bbRuleName = Bindings.createBooleanBinding(
@@ -112,37 +110,49 @@ public class FXMLDocumentController implements Initializable {
         nameRuleTextField.textProperty()
         );
         
-        //se non è selezionata almeno un'azione o almeno un trigger bb2=true
+        //se non è selezionata almeno un trigger bbTriggerToggleGroup=true
         BooleanBinding bbTriggerToggleGroup = triggerToggleGroup.selectedToggleProperty().isNull();
-        
+
         ActionCreator[] actionManagers = actions.values().toArray(new ActionCreator[0]);
         BooleanBinding bbAction = null;
+        BooleanBinding selectedAction = null;
+        BooleanBinding currentSelectedAction = null;
         BooleanBinding currentBindingAction = null;        
         for(int i=0; i<actionManagers.length-1; i=i+2){
             ActionCreator am = actionManagers[i];
+            ActionController ac = am.getController();
             // Controlla se c'è un ActionManager successivo
             if (i + 1 < actionManagers.length) {
                 ActionCreator nextAm = actionManagers[i + 1];
+                ActionController nextAc = nextAm.getController();
                 // Inizializza la BooleanBinding con l'and tra lo stato "non completato" di am e nextAm
-                currentBindingAction = Bindings.and(am.isNotCompleted(), nextAm.isNotCompleted());
+                currentBindingAction = Bindings.or(am.isNotCompleted(), nextAm.isNotCompleted());
+                
+                currentSelectedAction = Bindings.or(ac.getCB().selectedProperty(), nextAc.getCB().selectedProperty());
                 // Se bbAction è già inizializzata, effettua l'and con la nuova BooleanBinding
-                if (bbAction != null) {
-                    bbAction = bbAction.and(currentBindingAction);
+                if (bbAction != null && selectedAction != null) {
+                    bbAction = bbAction.or(currentBindingAction);
+                    selectedAction = selectedAction.or(currentSelectedAction);
                 } else {
                     // Altrimenti, inizializza bbAction con la prima BooleanBinding
                     bbAction = currentBindingAction;
+                    selectedAction = currentSelectedAction;
                 }
+
             }
         }
         
         if (actionManagers.length % 2 != 0) {
             ActionCreator lastAm = actionManagers[actionManagers.length - 1];
             BooleanProperty currentBinding = lastAm.isNotCompleted();
-            if (bbAction != null) {
-                    bbAction = bbAction.and(currentBinding);
+            BooleanProperty currentSelected = lastAm.getController().getCB().selectedProperty();
+            if (bbAction != null && selectedAction != null) {
+                    bbAction = bbAction.or(currentBinding);
+                    selectedAction = selectedAction.or(currentSelected);
             } else {
                     // Altrimenti, inizializza bbAction con la prima BooleanBinding
-                    bbAction = currentBinding.and(new SimpleBooleanProperty(true));
+                    bbAction = currentBinding.or(new SimpleBooleanProperty(false));
+                    selectedAction = selectedAction.or(new SimpleBooleanProperty(false));
                 }
         }
         
@@ -180,45 +190,13 @@ public class FXMLDocumentController implements Initializable {
                 }
         }
 
-        ActionCreator[] actionCreatorsbb4 = actions.values().toArray(new ActionCreator[0]);
-        BooleanBinding bbAction4 = null;
-        
-        BooleanBinding currentBindingActionbb4 = null;        
-        for(int i=0; i<actionCreatorsbb4.length-1; i=i+2){
-            ActionCreator am = actionCreatorsbb4[i];
-            // Controlla se c'è un ActionManager successivo
-            if (i + 1 < actionCreatorsbb4.length) {
-                ActionCreator nextAm = actionCreatorsbb4[i + 1];
-                // Inizializza la BooleanBinding con l'and tra lo stato "non completato" di am e nextAm
-                currentBindingActionbb4 = Bindings.or(am.getController().getCB().selectedProperty(), nextAm.getController().getCB().selectedProperty());
-                // Se bbAction è già inizializzata, effettua l'and con la nuova BooleanBinding
-                if (bbAction4 != null) {
-                    bbAction4 = bbAction4.and(currentBindingActionbb4);
-                } else {
-                    // Altrimenti, inizializza bbAction con la prima BooleanBinding
-                    bbAction4 = currentBindingActionbb4;
-                }
-            }
-        }
-        
-        if (actionCreatorsbb4.length % 2 != 0) {
-            ActionCreator lastAm = actionCreatorsbb4[actionCreatorsbb4.length - 1];
-            BooleanProperty currentBinding = lastAm.isNotCompleted();
-            if (bbAction4 != null) {
-                    bbAction4 = bbAction4.and(currentBinding);
-            } else {
-                    // Altrimenti, inizializza bbAction con la prima BooleanBinding
-                    bbAction4 = currentBinding.and(new SimpleBooleanProperty(true));
-                }
-        }
-        
-        
+
         //se non è stato inserito il nome della regola O non è selezionata un'azione/ trigger O l'azione selezionata non è completa bb=true
-        BooleanBinding bbActionNot = Bindings.not(bbAction);
-        BooleanBinding bbAction4Not = Bindings.not(bbAction4);
-        BooleanBinding bb = bbRuleName.or(bbTriggerToggleGroup).or(bbActionNot).or(bbTrigger).or(bbAction4Not);
+        BooleanBinding bbSelectedActionNot = Bindings.not(selectedAction);
+        System.out.println("bbSelectedActionNot" + bbSelectedActionNot);
+        BooleanBinding bb = bbRuleName.or(bbTriggerToggleGroup).or(bbAction).or(bbTrigger).or(bbSelectedActionNot);
         
-        //createRuleButton.disableProperty().bind(bb);  
+        createRuleButton.disableProperty().bind(bb);  
         
     }
 

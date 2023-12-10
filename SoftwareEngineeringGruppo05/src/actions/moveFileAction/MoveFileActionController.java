@@ -34,7 +34,6 @@ public class MoveFileActionController implements Initializable, ActionController
     private HBox moveFileActionBox;
     @FXML
     private VBox vboxMoveFile;
-    private RadioButton moveFileActionRB;
     @FXML
     private HBox hboxMoveFileOptions;
     @FXML
@@ -57,13 +56,10 @@ public class MoveFileActionController implements Initializable, ActionController
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        flagMoveFile = new SimpleBooleanProperty(true);
+        flagMoveFile = new SimpleBooleanProperty(false);
         hboxMoveFileOptions.getChildren().removeAll(moveLabel, fileButton, toLabel, directoryButton);
         moveFileActionBox.setPrefHeight(70);
         vboxMoveFile.setPrefHeight(70);
-        
-        
-        
     }    
 
     @FXML
@@ -74,7 +70,7 @@ public class MoveFileActionController implements Initializable, ActionController
         Stage stage = (Stage) fileButton.getScene().getWindow();
         selectedFile = fileChooser.showOpenDialog(stage);
         Platform.runLater(() -> {
-            flagMoveFile.setValue(selectedFile != null && selectedDirectory != null);
+            flagMoveFile.setValue(selectedFile == null || selectedDirectory == null);
         });
     }
 
@@ -87,7 +83,7 @@ public class MoveFileActionController implements Initializable, ActionController
         selectedDirectory = directoryChooser.showDialog(stage);
         
         Platform.runLater(() -> {
-           flagMoveFile.setValue(selectedFile != null && selectedDirectory != null);
+           flagMoveFile.setValue(selectedFile == null || selectedDirectory == null);
         });
     }
     
@@ -114,11 +110,11 @@ public class MoveFileActionController implements Initializable, ActionController
         if(moveFileCB.isSelected()){
             hboxMoveFileOptions.getChildren().addAll(moveLabel, fileButton, toLabel, directoryButton);
             moveFileActionBox.setPrefHeight(118);
-            flagMoveFile.set(false);
+            flagMoveFile.set(true);
         }else{
             hboxMoveFileOptions.getChildren().removeAll(moveLabel, fileButton, toLabel, directoryButton);
             moveFileActionBox.setPrefHeight(70);
-            flagMoveFile.set(true);
+            flagMoveFile.set(false);
         }
     }
     

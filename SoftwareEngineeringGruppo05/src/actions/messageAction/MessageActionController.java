@@ -34,7 +34,7 @@ public class MessageActionController implements Initializable, ActionController,
 
     @FXML
     private HBox messageActionBox;
-    private RadioButton messageActionRB;
+
     @FXML
     private TextArea messageTextArea;
     @FXML
@@ -49,47 +49,20 @@ public class MessageActionController implements Initializable, ActionController,
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        flagMessage = new SimpleBooleanProperty(true);
+        flagMessage = new SimpleBooleanProperty(false);
         
-        /*
+        
         flagMessage.bind(Bindings.createBooleanBinding(
-                () -> !(messageTextArea.getText().isEmpty()),
+                () ->  messageCB.isSelected() && messageTextArea.getText().isEmpty(),
+                messageCB.selectedProperty(),
                 messageTextArea.textProperty()
-        ));*/
+        ));
         
         
         vboxMessage.getChildren().remove(messageTextArea);
         messageActionBox.setPrefHeight(70);
         messageTextArea.clear();
-        
-        
-        /*BooleanProperty isMessageActionSelected = messageActionRB.selectedProperty();
-        
-         flagMessage.bind(Bindings.createBooleanBinding(
-                () -> messageTextArea.getText().isEmpty(),
-                messageTextArea.textProperty()
-        ));
 
-        messageTextArea.visibleProperty().bind(Bindings.createBooleanBinding(
-            () -> {
-                boolean messageActionSelected = isMessageActionSelected.get();
-
-                // Aggiungi o rimuovi il pulsante dal layout in base allo stato del RadioButton: azione eseguita dal thread principale
-                Platform.runLater(() -> {
-                    if (!messageActionSelected) {
-                        vboxMessage.getChildren().remove(messageTextArea);
-                        messageActionBox.setPrefHeight(70);
-                        messageTextArea.clear();
-                    } else{ 
-                        vboxMessage.getChildren().add(messageTextArea);
-                        messageActionBox.setPrefHeight(168);                      
-                    }
-                });
-
-                return messageActionSelected;
-            },
-            isMessageActionSelected
-        ));*/
     }    
     
     public String getTextArea(){
@@ -111,12 +84,10 @@ public class MessageActionController implements Initializable, ActionController,
         if(messageCB.isSelected()){
             vboxMessage.getChildren().add(messageTextArea);
             messageActionBox.setPrefHeight(168);
-            flagMessage.set(true);
         }else{
             vboxMessage.getChildren().remove(messageTextArea);
             messageActionBox.setPrefHeight(70);
             messageTextArea.clear();
-            flagMessage.set(true);
         }
         
     }

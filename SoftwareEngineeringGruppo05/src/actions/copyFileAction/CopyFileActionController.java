@@ -57,7 +57,7 @@ public class CopyFileActionController implements Initializable, ActionController
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        flagCopyFile = new SimpleBooleanProperty(true);
+        flagCopyFile = new SimpleBooleanProperty(false);
         hboxCopyFileOptions.getChildren().removeAll(copyLabel, fileButton, toLabel, directoryButton);
         //hboxCopyFileOptions.setPrefHeight(70);
         copyFileActionBox.setPrefHeight(80);
@@ -72,7 +72,7 @@ public class CopyFileActionController implements Initializable, ActionController
         Stage stage = (Stage) fileButton.getScene().getWindow();
         selectedFile = fileChooser.showOpenDialog(stage);
         Platform.runLater(() -> {
-             flagCopyFile.setValue(selectedFile != null && selectedDirectory != null);
+             flagCopyFile.setValue(selectedFile == null || selectedDirectory == null);
         });
     }
 
@@ -85,7 +85,7 @@ public class CopyFileActionController implements Initializable, ActionController
         selectedDirectory = directoryChooser.showDialog(stage);
         
         Platform.runLater(() -> {
-            flagCopyFile.setValue(selectedFile != null && selectedDirectory != null);
+            flagCopyFile.setValue(selectedFile == null || selectedDirectory == null);
         });
     }
     
@@ -112,11 +112,11 @@ public class CopyFileActionController implements Initializable, ActionController
         if(copyFileCB.isSelected()){
             hboxCopyFileOptions.getChildren().addAll(copyLabel, fileButton, toLabel, directoryButton);
             copyFileActionBox.setPrefHeight(120);
-            flagCopyFile.set(false); 
+            flagCopyFile.set(true); 
         }else{
             hboxCopyFileOptions.getChildren().removeAll(copyLabel, fileButton, toLabel, directoryButton);
             copyFileActionBox.setPrefHeight(80);
-            flagCopyFile.set(true); 
+            flagCopyFile.set(false); 
         }
     }
 

@@ -32,7 +32,6 @@ public class ProgramActionController implements Initializable, ActionController 
     private VBox vBoxProgram;
     @FXML
     private TextArea commandTextArea;
-    private RadioButton programActionRB;
     @FXML
     private Button browseButton;
     private File selectedFile;
@@ -49,37 +48,12 @@ public class ProgramActionController implements Initializable, ActionController 
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        flagProgram = new SimpleBooleanProperty(true);
+        flagProgram = new SimpleBooleanProperty(false);
         vBoxProgram.getChildren().remove(commandTextArea);
         hBoxProgram.getChildren().remove(browseButton);
         programactionBox.setPrefHeight(70);
         commandTextArea.clear();
-        
-        /*BooleanProperty isProgramActionSelected = programActionRB.selectedProperty();
- 
-        commandTextArea.visibleProperty().bind(Bindings.createBooleanBinding(
-            () -> {
-                boolean programActionSelected = isProgramActionSelected.get();
-
-                // Aggiungi o rimuovi il pulsante e la textArea dal layout in base allo stato del RadioButton: azione eseguita dal thread principale
-                Platform.runLater(() -> {
-                        if (!programActionSelected) {
-                            vBoxProgram.getChildren().remove(commandTextArea);
-                            hBoxProgram.getChildren().remove(browseButton);
-                            programactionBox.setPrefHeight(70);
-                            commandTextArea.clear();
-                            flagProgram.setValue(true);
-                        } else {
-                            hBoxProgram.getChildren().add(browseButton);
-                            vBoxProgram.getChildren().add(commandTextArea);
-                            programactionBox.setPrefHeight(181);
-                        }
-                });
-                return programActionSelected;
-            },
-            isProgramActionSelected
-        ));
- */
+       
     }    
 
     @FXML
@@ -92,7 +66,7 @@ public class ProgramActionController implements Initializable, ActionController 
 
         // La flagProgram è vera solo quando è stato selezionato un file
         Platform.runLater(() -> {
-            flagProgram.setValue(selectedFile != null);
+            flagProgram.setValue(selectedFile == null);
         });
     }
     
@@ -120,13 +94,13 @@ public class ProgramActionController implements Initializable, ActionController 
             hBoxProgram.getChildren().add(browseButton);
             vBoxProgram.getChildren().add(commandTextArea);
             programactionBox.setPrefHeight(181);
-            flagProgram.setValue(false);
+            flagProgram.setValue(true);
         }else{
             vBoxProgram.getChildren().remove(commandTextArea);
             hBoxProgram.getChildren().remove(browseButton);
             programactionBox.setPrefHeight(70);
             commandTextArea.clear();
-            flagProgram.setValue(true);
+            flagProgram.setValue(false);
         }
         
     }
