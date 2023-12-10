@@ -3,7 +3,6 @@ package actions.WriteFileAction;
 import model.actions.WriteFileAction;
 import org.junit.*;
 import static org.junit.Assert.*;
-import model.actions.Action;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -21,7 +20,7 @@ import java.util.logging.Logger;
  */
 public class WriteFileActionTest {
     
-    private Action action;
+    private WriteFileAction action;
     private final String filePath = "test/actions/WriteFileAction/prova.txt";
     private final String message = "Hello World!";
     

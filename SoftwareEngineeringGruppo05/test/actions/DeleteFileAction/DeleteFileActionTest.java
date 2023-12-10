@@ -3,7 +3,6 @@ package actions.DeleteFileAction;
 import model.actions.DeleteFileAction;
 import org.junit.*;
 import static org.junit.Assert.*;
-import model.actions.Action;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -17,7 +16,7 @@ import java.util.logging.Logger;
  */
 public class DeleteFileActionTest {
 
-    private Action action;
+    private DeleteFileAction action;
     private final String directoryPath = "test/actions/DeleteFileAction"; //directory del file da eliminare
     private final String nameFile = "prova.txt"; //nome del file da eliminare
     

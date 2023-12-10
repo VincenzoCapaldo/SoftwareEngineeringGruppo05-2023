@@ -7,33 +7,29 @@ import java.util.Observable;
  * @author maria
  */
 public class MessageAction extends Observable implements Action {
-    private String message;
-    private boolean condition;
+    
+    private String message; //messaggio da visualizzare nel pop up
 
     public MessageAction(String message) {
         this.message = message;
-        condition = false;
     }
 
     public String getMessage() {
         return message;
     }
 
-    public boolean getCondition() {
-        return condition;
-    }
-
-    public void setCondition() {
-        condition = !condition;
-        setChanged(); 
-        notifyObservers(); 
-    }
-    
     @Override
     public void execute(){
-        setCondition();
+        //notifica il Controller per fargli visualizzare il pop up
+        setChanged(); 
+        notifyObservers();
     }
              
+    @Override
+    public String toString(){
+        return "Message";
+    }
+    
     @Override
     public void add(Action a){
          throw new UnsupportedOperationException("Cannot add an action to MessageAction.");
@@ -42,11 +38,6 @@ public class MessageAction extends Observable implements Action {
     @Override
     public void remove(Action a){
         throw new UnsupportedOperationException("Cannot remove an action from MessageAction.");
-    }
-    
-    @Override
-    public String toString(){
-        return "Message";
     }
     
 }

@@ -3,7 +3,6 @@ package actions.MoveFileAction;
 import model.actions.MoveFileAction;
 import org.junit.*;
 import static org.junit.Assert.*;
-import model.actions.Action;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -17,7 +16,7 @@ import java.util.logging.Logger;
  */
 public class MoveFileActionTest {
     
-    private Action action;
+    private MoveFileAction action;
     private final String filePath = "test/actions/MoveFileAction/source/prova.txt"; //file da spostare
     private final String newPath = "test/actions/MoveFileAction/destination"; //cartella di destinazione
     

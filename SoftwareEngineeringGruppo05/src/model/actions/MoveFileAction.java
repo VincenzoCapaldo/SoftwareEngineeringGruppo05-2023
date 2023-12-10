@@ -39,6 +39,11 @@ public class MoveFileAction implements Action{
     }
 
     @Override
+    public String toString(){
+        return "MoveFile";
+    }
+    
+    @Override
     public void add(Action a) {
         throw new UnsupportedOperationException("Cannot add an action to MoveFileAction.");
     }

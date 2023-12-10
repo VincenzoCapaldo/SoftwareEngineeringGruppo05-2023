@@ -35,6 +35,11 @@ public class DeleteFileAction implements Action{
     }
 
     @Override
+    public String toString(){
+        return "DeleteFile";
+    }
+    
+    @Override
     public void add(Action a) {
         throw new UnsupportedOperationException("Cannot add an action to DeleteFileAction.");
     }
@@ -42,11 +47,6 @@ public class DeleteFileAction implements Action{
     @Override
     public void remove(Action a) {
         throw new UnsupportedOperationException("Cannot remove an action from DeleteFileAction.");
-    }
-    
-    @Override
-    public String toString(){
-        return "DeleteFile";
     }
     
 }

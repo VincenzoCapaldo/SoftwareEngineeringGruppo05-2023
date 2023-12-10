@@ -39,6 +39,11 @@ public class CopyFileAction implements Action{
     }
 
     @Override
+    public String toString(){
+        return "CopyFile";
+    }
+    
+    @Override
     public void add(Action a) {
         throw new UnsupportedOperationException("Cannot add an action to CopyFileAction.");
     }
@@ -46,11 +51,6 @@ public class CopyFileAction implements Action{
     @Override
     public void remove(Action a) {
         throw new UnsupportedOperationException("Cannot remove an action from CopyFileAction.");
-    }
-    
-    @Override
-    public String toString(){
-        return "CopyFile";
     }
     
 }

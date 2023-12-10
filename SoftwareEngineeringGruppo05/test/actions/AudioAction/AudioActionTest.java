@@ -2,7 +2,6 @@ package actions.AudioAction;
 
 import model.actions.AudioAction;
 import org.junit.*;
-import model.actions.Action;
 
 /**
  *
@@ -10,7 +9,7 @@ import model.actions.Action;
  */
 public class AudioActionTest {
     
-    private Action action;
+    private AudioAction action;
     private final String pathFile = "test/actions/AudioAction/notificationSound.wav"; //path audio di prova
     
     @Before

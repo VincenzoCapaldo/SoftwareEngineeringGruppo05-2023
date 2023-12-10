@@ -3,7 +3,6 @@ package actions.CopyFileAction;
 import model.actions.CopyFileAction;
 import org.junit.*;
 import static org.junit.Assert.*;
-import model.actions.Action;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -17,7 +16,7 @@ import java.util.logging.Logger;
  */
 public class CopyFileActionTest {
 
-    private Action action;
+    private CopyFileAction action;
     private final String filePath = "test/actions/CopyFileAction/source/prova.txt"; //file da copiare
     private final String newPath = "test/actions/CopyFileAction/destination"; //cartella di destinazione
 

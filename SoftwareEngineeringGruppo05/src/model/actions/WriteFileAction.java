@@ -10,6 +10,7 @@ import java.io.PrintWriter;
  * @author Paolo
  */
 public class WriteFileAction implements Action{
+    
     private String filePath; //path del file su cui scrivere
     private String message; //messaggio da scrivere alla fine del file
 
@@ -27,6 +28,11 @@ public class WriteFileAction implements Action{
             throw new RuntimeException();
         }
     }
+    
+    @Override
+    public String toString(){
+        return "WriteFile";
+    }
 
     @Override
     public void add(Action a){
@@ -37,10 +43,5 @@ public class WriteFileAction implements Action{
     public void remove(Action a){
         throw new UnsupportedOperationException("Cannot remove an action from WriterAction.");
     }
-    
-    @Override
-    public String toString(){
-        return "WriteFile";
-    }
-    
+        
 }

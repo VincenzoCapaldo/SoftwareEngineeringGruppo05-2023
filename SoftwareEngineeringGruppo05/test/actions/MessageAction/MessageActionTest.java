@@ -1,20 +1,29 @@
 package actions.MessageAction;
 
 import model.actions.MessageAction;
-import model.actions.Action;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.*;
+import static org.junit.Assert.*;
 
 /**
  *
  * @author Paolo
  */
 public class MessageActionTest {
-    Action action;
-    
+   
+    MessageAction action;
+    private final String message = "prova"; //messaggio di prova
+            
+            
     @Before
     public void setUp() {
         action = new MessageAction("prova");
+    }
+    
+    @Test
+    public void testGetName() {
+        String expResult = "prova";
+        String result = action.getMessage();
+        assertEquals(expResult, result);
     }
     
     @Test(expected = RuntimeException.class)
