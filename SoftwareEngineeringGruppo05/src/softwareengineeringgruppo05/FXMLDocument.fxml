@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="507.0" prefWidth="762.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="softwareengineeringgruppo05.FXMLDocumentController">
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="507.0" prefWidth="762.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="softwareengineeringgruppo05.FXMLDocumentController">
    <children>
       <AnchorPane fx:id="window1" prefHeight="400.0" prefWidth="600.0" stylesheets="@../css/style.css" visible="false">
          <children>
@@ -21,9 +21,9 @@
                <items>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="68.0" prefWidth="598.0" stylesheets="@../view/css/style.css" SplitPane.resizableWithParent="false">
                      <children>
-                        <HBox alignment="CENTER" layoutX="199.0" layoutY="-29.0" prefHeight="53.0" prefWidth="919.0" stylesheets="@../view/css/style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <HBox alignment="CENTER" layoutX="199.0" layoutY="-29.0" prefHeight="53.0" prefWidth="919.0" styleClass="main_background" stylesheets="@../css/style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
-                              <Button fx:id="rulesButton" mnemonicParsing="false" prefHeight="63.0" prefWidth="698.0" stylesheets="@../view/css/style.css" text="Rules">
+                              <Button fx:id="rulesButton" mnemonicParsing="false" prefHeight="80.0" prefWidth="760.0" stylesheets="@../view/css/style.css" text="Rules" HBox.hgrow="ALWAYS">
                                  <font>
                                     <Font size="20.0" />
                                  </font>
