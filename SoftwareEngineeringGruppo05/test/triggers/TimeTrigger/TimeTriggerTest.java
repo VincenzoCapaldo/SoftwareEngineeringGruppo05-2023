@@ -48,7 +48,7 @@ public class TimeTriggerTest {
     }
 
     /**
-     * Test of checkTrigger method, of class TimeTrigger.
+     * Testiamo che è verificato TimeTrigger quando l'ora attuale coincide con l'ora voluta
      */
     @Test
     public void testCheckTrigger1() {
@@ -63,6 +63,8 @@ public class TimeTriggerTest {
         
     }
     
+    // Si deve attendere un minuto per terminare questo test
+    
     @Test
     public void testCheckTrigger2() {
 
@@ -76,7 +78,7 @@ public class TimeTriggerTest {
         
     }
     
-    /*          Non si ha a disposizione abbatanza tempo per attendere la fine del test
+    /*          Si dovrebbe attendere un giorno per terminare questo test
     @Test
     public void testCheckTrigger3() {
 

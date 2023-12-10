@@ -28,7 +28,11 @@ public class ProgramActionTest {
 
     @Before
     public void setUp() {
-        filePath = System.getProperty("user.dir") + "/test/actions/ProgramAction/test_program/ciao.txt";
+        
+        // percorso del file che deve essere creato dal test ed eliminato dal programma avviato da Program Action
+        filePath  = System.getProperty("user.dir") + "/test/actions/ProgramAction/test_program/ciao.txt";
+        
+        // percorso del programma che deve essere avviato da Program Action
         directory = System.getProperty("user.dir") + "/test/actions/ProgramAction/test_program/program.jar";
         pa = (new CreateProgramAction()).createProgramAction(directory, filePath);
     }
@@ -65,6 +69,7 @@ public class ProgramActionTest {
     @Test
     public void testExecute() {
 
+        // Creo il file usato per il test
         try {
             Files.createFile(Paths.get(filePath));
         } catch (IOException ex) {
@@ -73,6 +78,7 @@ public class ProgramActionTest {
         
         pa.execute();
         
+        // Attendo che il programma attivato da ProgramAction elimini il file precedente
         try {
             Thread.sleep(1000);
         } catch (InterruptedException ex) {
@@ -103,6 +109,8 @@ public class ProgramActionTest {
         assertEquals(expResult, result);
 
     }
+    
+    // Classe utilizzata per la creazione della classe ProgramAction che varia in base al sistema operativo
     
     public class CreateProgramAction {
     

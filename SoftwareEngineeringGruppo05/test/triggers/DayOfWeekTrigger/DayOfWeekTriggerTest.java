@@ -24,7 +24,7 @@ public class DayOfWeekTriggerTest {
 
     @Before
     public void setUp(){
-        dowt = new DayOfWeekTrigger(LocalDate.now().getDayOfWeek(),false);
+        dowt = new DayOfWeekTrigger(LocalDate.now().getDayOfWeek(),false); // Imposto il giorno della settimana a quello attuale
     }
     
     /**
@@ -50,6 +50,8 @@ public class DayOfWeekTriggerTest {
         assertEquals(expResult, result);
 
     }
+    
+    //Testiamo se il Trigger è verificato quando il giorno della settimana coincide con quello attuale
     
     @Test
     public void testCheckTrigger1(){

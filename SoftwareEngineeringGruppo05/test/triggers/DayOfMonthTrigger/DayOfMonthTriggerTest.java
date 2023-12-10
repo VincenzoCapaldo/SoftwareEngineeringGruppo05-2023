@@ -20,7 +20,7 @@ public class DayOfMonthTriggerTest {
     
     @Before
     public void setUp(){
-        domt = new DayOfMonthTrigger(LocalDate.now().getDayOfMonth(),false);
+        domt = new DayOfMonthTrigger(LocalDate.now().getDayOfMonth(),false); //Imposto la classe al giorno attuale
     }
     
     /**
@@ -47,6 +47,8 @@ public class DayOfMonthTriggerTest {
         assertEquals(expResult, result);
 
     }
+    
+    //Testiamo se il Trigger è verificato quando il giorno del mese coincide con quello di oggi
     
     @Test
     public void testCheckTrigger1(){

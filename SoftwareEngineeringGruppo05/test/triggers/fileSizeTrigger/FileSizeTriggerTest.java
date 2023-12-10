@@ -19,9 +19,9 @@ public class FileSizeTriggerTest {
     
     @Before
     public void setUp(){
-        //File da usare per il test
+        //percorso del file utilizzato per la prova della dimensione
         directory = System.getProperty("user.dir") + "/test/triggers/FileSizeTrigger/prova.txt";
-        fst = new FileSizeTrigger(directory, 5);
+        fst = new FileSizeTrigger(directory, 1);
     }
     
     /**
@@ -51,7 +51,7 @@ public class FileSizeTriggerTest {
     }
 
     /**
-     * Test of checkTrigger method, of class FileSizeTrigger.
+     * Testiamo che il Trigger è verificato quando la dimensione del file supera quella indicata
      */
     @Test
     public void testCheckTrigger() {

@@ -21,7 +21,8 @@ public class ProgramTriggerTest {
     
     @Before
     public void setUp(){
-        directory = System.getProperty("user.dir") + "/test/triggers/ProgramTrigger/test_program/program.jar";
+        //percorso del file che viene eseguito da ProgramTrigger
+        directory = System.getProperty("user.dir") + "/test/triggers/ProgramTrigger/test_program/program.jar";      
         pt = (new CreateProgramTrigger()).createProgramTrigger(directory,"12",1);
     }
     
@@ -127,6 +128,9 @@ public class ProgramTriggerTest {
 
     }
 
+    // Classe utilizzata per la creazione della classe ProgramTrigger che varia in base al sistema operativo
+    
+    
     public class CreateProgramTrigger {
     
     private CreatorProgramTrigger createProgramTrigger;

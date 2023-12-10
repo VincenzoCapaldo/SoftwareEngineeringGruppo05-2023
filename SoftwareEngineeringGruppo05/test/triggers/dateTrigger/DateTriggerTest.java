@@ -49,7 +49,7 @@ public class DateTriggerTest {
     }
 
     /**
-     * Test of checkTrigger method, of class DateTrigger.
+     * Testiamo che il Trigger viene verificato quando la data attuale coincide con quella voluta
      */
     @Test
     public void testCheckTrigger1() {
@@ -63,7 +63,7 @@ public class DateTriggerTest {
     }
     
     
-    /*      Bisognerebbe attendere un giorno per verificare questo test
+    /*      Bisognerebbe attendere un giorno per terminare questo test
     @Test
     public void testCheckTrigger2() {
 

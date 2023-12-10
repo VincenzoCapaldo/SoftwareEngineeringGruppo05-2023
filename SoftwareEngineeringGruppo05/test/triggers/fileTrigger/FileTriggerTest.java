@@ -3,11 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/UnitTests/JUnit4TestClass.java to edit this template
  */
 package triggers.fileTrigger;
-
-import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -24,6 +20,7 @@ public class FileTriggerTest {
     public void setUp(){
         // Cartella in cui è contenuto il file usato per il test
         directory = System.getProperty("user.dir") + "/test/triggers/FileTrigger";
+        
         ft = new FileTrigger(directory,"prova.txt");
     }
     
@@ -54,7 +51,7 @@ public class FileTriggerTest {
     }
 
     /**
-     * Test of checkTrigger method, of class FileTrigger.
+     * Testiamo che il Trigger è verificato quando viene creato il file nella directory indicata
      */
     @Test
     public void testCheckTrigger() {
