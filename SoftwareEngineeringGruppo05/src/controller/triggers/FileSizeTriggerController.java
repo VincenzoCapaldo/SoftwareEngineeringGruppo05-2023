@@ -23,7 +23,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import softwareengineeringgruppo05.CheckValueClass;
+import softwareengineeringgruppo05.CheckValuesClass;
 import model.triggers.FileSizeUnit;
 
 /**
@@ -138,11 +138,7 @@ public class FileSizeTriggerController implements Initializable, TriggerControll
 
     @FXML
     private void onSizeChanged(KeyEvent event) {
-        CheckValueClass check = new CheckValueClass();
-        check.checkValue(fileSizeSpinner, 0, 100000);
+        CheckValuesClass.checkValues(fileSizeSpinner, 0, 100000);
     }
-    
-
-
 
 }

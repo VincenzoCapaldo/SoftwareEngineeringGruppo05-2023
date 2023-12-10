@@ -1,12 +1,7 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
- */
 package controller.triggers;
 
 import java.io.File;
 import java.net.URL;
-import java.time.LocalTime;
 import java.util.ResourceBundle;
 import javafx.application.Platform;
 import javafx.beans.binding.Bindings;
@@ -16,7 +11,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.SpinnerValueFactory;
@@ -27,7 +21,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import softwareengineeringgruppo05.CheckValueClass;
+import softwareengineeringgruppo05.CheckValuesClass;
 
 /**
  * FXML Controller class
@@ -107,8 +101,7 @@ public class ProgramTriggerController implements Initializable, TriggerControlle
 
     @FXML
     private void exitStatusChanged(KeyEvent event) {
-        CheckValueClass check = new CheckValueClass();
-        check.checkValue(exitStatusSpinner, 0, 1000000);
+        CheckValuesClass.checkValues(exitStatusSpinner, 0, 1000000);
     }
     
     @Override

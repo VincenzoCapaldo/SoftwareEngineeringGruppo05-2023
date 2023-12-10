@@ -19,7 +19,7 @@ import javafx.scene.control.ToggleGroup;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import softwareengineeringgruppo05.CheckValueClass;
+import softwareengineeringgruppo05.CheckValuesClass;
 
 /**
  * FXML Controller class
@@ -102,14 +102,12 @@ public class TimeTriggerController implements Initializable, TriggerController {
     
     @FXML
     private void onChangedHour(KeyEvent event) {
-        CheckValueClass check = new CheckValueClass();
-        check.checkValue(timeSpinnerHours, 0, 23);
+        CheckValuesClass.checkValues(timeSpinnerHours, 0, 23);
     }
 
     @FXML
     private void onChangedMinute(KeyEvent event) {
-        CheckValueClass check = new CheckValueClass();
-        check.checkValue(timeSpinnerMinutes, 0, 59);
+        CheckValuesClass.checkValues(timeSpinnerMinutes, 0, 59);
     }
     
     private void createSpinners() {
@@ -177,20 +175,17 @@ public class TimeTriggerController implements Initializable, TriggerController {
 
     @FXML
     private void onChangedDayRepetition(KeyEvent event) {
-        CheckValueClass check = new CheckValueClass();
-        check.checkValue(repetitionTimeSpinnerDays, 0, 366);
+        CheckValuesClass.checkValues(repetitionTimeSpinnerDays, 0, 366);
     }
 
     @FXML
     private void onChangedHourRepetition(KeyEvent event) {
-        CheckValueClass check = new CheckValueClass();
-        check.checkValue(repetitionTimeSpinnerHours, 0, 23);
+        CheckValuesClass.checkValues(repetitionTimeSpinnerHours, 0, 23);
     }
 
     @FXML
     private void onChangedMinuteRepetition(KeyEvent event) {
-        CheckValueClass check = new CheckValueClass();
-        check.checkValue(repetitionTimeSpinnerMinutes, 0, 59);
+        CheckValuesClass.checkValues(repetitionTimeSpinnerMinutes, 0, 59);
     }
     
 }

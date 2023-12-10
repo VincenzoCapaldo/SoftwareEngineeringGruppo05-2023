@@ -6,7 +6,7 @@ import static org.junit.Assert.*;
 
 /**
  *
- * @author Paolo
+ * @author maria
  */
 public class MessageActionTest {
    

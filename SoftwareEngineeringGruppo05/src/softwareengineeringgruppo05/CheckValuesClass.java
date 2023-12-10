@@ -6,9 +6,11 @@ import javafx.scene.control.Spinner;
  *
  * @author maria
  */
-public class CheckValueClass {
+public class CheckValuesClass {
     
-    public void checkValue(Spinner<Integer> timeSpinner, int minValue, int maxValue){
+    /*classe di utilità per verificare se l'orario inserito è valido */
+    
+    public static void checkValues(Spinner<Integer> timeSpinner, int minValue, int maxValue){
         // Preleva il testo dallo spinner
         String inputText = timeSpinner.getEditor().getText();
 

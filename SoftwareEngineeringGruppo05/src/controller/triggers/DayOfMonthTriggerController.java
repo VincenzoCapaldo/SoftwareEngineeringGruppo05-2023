@@ -17,7 +17,7 @@ import javafx.scene.control.ToggleGroup;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import softwareengineeringgruppo05.CheckValueClass;
+import softwareengineeringgruppo05.CheckValuesClass;
 
 /**
  * FXML Controller class
@@ -88,8 +88,7 @@ public class DayOfMonthTriggerController implements Initializable, TriggerContro
 
     @FXML
     private void onChangedDayOfMonth(KeyEvent event) {
-        CheckValueClass check = new CheckValueClass();
-        check.checkValue(dayOfMonthSpinner, 1, 31);
+        CheckValuesClass.checkValues(dayOfMonthSpinner, 1, 31);
     }
     
      public int getDayOfMonth(){
