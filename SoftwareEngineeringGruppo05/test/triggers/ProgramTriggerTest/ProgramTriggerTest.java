@@ -1,4 +1,4 @@
-package triggers.ProgramTrigger;
+package triggers.ProgramTriggerTest;
 
 import triggers.programTrigger.*;
 import org.junit.*;
@@ -16,7 +16,7 @@ public class ProgramTriggerTest {
     @Before
     public void setUp(){
         //percorso del file che viene eseguito da ProgramTrigger
-        directory = "test/triggers/ProgramTrigger/test_program/program.jar";      
+        directory = "test/triggers/ProgramTrigger/program.jar";      
         pt = (new CreateProgramTrigger()).createProgramTrigger(directory,"12",1);
     }
     

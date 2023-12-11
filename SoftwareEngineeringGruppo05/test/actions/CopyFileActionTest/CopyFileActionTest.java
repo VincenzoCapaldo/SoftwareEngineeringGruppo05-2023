@@ -1,4 +1,4 @@
-package actions.CopyFileAction;
+package actions.CopyFileActionTest;
 
 import actions.copyFileAction.CopyFileAction;
 import org.junit.*;
@@ -17,8 +17,8 @@ import java.util.logging.Logger;
 public class CopyFileActionTest {
 
     private CopyFileAction action;
-    private final String filePath = "test/actions/CopyFileAction/source/prova.txt"; //file da copiare
-    private final String newPath = "test/actions/CopyFileAction/destination"; //cartella di destinazione
+    private final String filePath = "test/actions/CopyFileActionTest/source/prova.txt"; //file da copiare
+    private final String newPath = "test/actions/CopyFileActionTest/destination"; //cartella di destinazione
 
     @Before
     public void setUp() {
@@ -32,8 +32,8 @@ public class CopyFileActionTest {
 
         // creo la cartella source, la cartella destination e il file di prova
         try {
-            Files.createDirectories(Paths.get("test/actions/CopyFileAction/source"));
-            Files.createDirectories(Paths.get("test/actions/CopyFileAction/destination"));
+            Files.createDirectories(Paths.get("test/actions/CopyFileActionTest/source"));
+            Files.createDirectories(Paths.get("test/actions/CopyFileActionTest/destination"));
             Files.createFile(pathSource);
         } catch (IOException ex) {
             Logger.getLogger(CopyFileActionTest.class.getName()).log(Level.SEVERE, null, ex);
@@ -50,9 +50,9 @@ public class CopyFileActionTest {
         // elimino la cartella source, la cartella destination e il file di prova (da entrambe le cartelle)
         try {
             Files.delete(pathSource);
-            Files.delete(Paths.get("test/actions/CopyFileAction/source"));
+            Files.delete(Paths.get("test/actions/CopyFileActionTest/source"));
             Files.delete(pathDestination);    
-            Files.delete(Paths.get("test/actions/CopyFileAction/destination"));
+            Files.delete(Paths.get("test/actions/CopyFileActionTest/destination"));
         } catch (IOException ex) {
             Logger.getLogger(CopyFileActionTest.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -60,7 +60,7 @@ public class CopyFileActionTest {
 
     @Test(expected = RuntimeException.class)
     public void testFileNotFoundExcute(){
-        CopyFileAction cfa = new CopyFileAction("test/actions/CopyFileAction/source/fileInesistente.txt",newPath); //file inesistente
+        CopyFileAction cfa = new CopyFileAction("test/actions/CopyFileActionTest/source/fileInesistente.txt",newPath); //file inesistente
         cfa.execute();
     }
     

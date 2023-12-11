@@ -1,4 +1,4 @@
-package triggers.TimeTrigger;
+package triggers.TimeTriggerTest;
 
 import triggers.timeTrigger.TimeTrigger;
 import org.junit.*;

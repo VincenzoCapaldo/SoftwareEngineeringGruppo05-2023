@@ -1,4 +1,4 @@
-package actions.DeleteFileAction;
+package actions.DeleteFileActionTest;
 
 import actions.deleteFileAction.DeleteFileAction;
 import org.junit.*;
@@ -17,7 +17,7 @@ import java.util.logging.Logger;
 public class DeleteFileActionTest {
 
     private DeleteFileAction action;
-    private final String directoryPath = "test/actions/DeleteFileAction"; //directory del file da eliminare
+    private final String directoryPath = "test/actions/DeleteFileActionTest"; //directory del file da eliminare
     private final String nameFile = "prova.txt"; //nome del file da eliminare
     
     @Before

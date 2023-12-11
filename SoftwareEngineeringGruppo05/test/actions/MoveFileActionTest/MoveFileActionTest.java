@@ -1,4 +1,4 @@
-package actions.MoveFileAction;
+package actions.MoveFileActionTest;
 
 import actions.moveFileAction.MoveFileAction;
 import org.junit.*;
@@ -17,8 +17,8 @@ import java.util.logging.Logger;
 public class MoveFileActionTest {
     
     private MoveFileAction action;
-    private final String filePath = "test/actions/MoveFileAction/source/prova.txt"; //file da spostare
-    private final String newPath = "test/actions/MoveFileAction/destination"; //cartella di destinazione
+    private final String filePath = "test/actions/MoveFileActionTest/source/prova.txt"; //file da spostare
+    private final String newPath = "test/actions/MoveFileActionTest/destination"; //cartella di destinazione
     
     @Before
     public void setUp() {
@@ -32,8 +32,8 @@ public class MoveFileActionTest {
         
         // creo la cartella source, la cartella destination e il file di prova
         try {
-            Files.createDirectories(Paths.get("test/actions/MoveFileAction/source"));
-            Files.createDirectories(Paths.get("test/actions/MoveFileAction/destination"));
+            Files.createDirectories(Paths.get("test/actions/MoveFileActionTest/source"));
+            Files.createDirectories(Paths.get("test/actions/MoveFileActionTest/destination"));
             Files.createFile(pathSource);
         } catch (IOException ex) {
             Logger.getLogger(MoveFileActionTest.class.getName()).log(Level.SEVERE, null, ex);
@@ -50,8 +50,8 @@ public class MoveFileActionTest {
         // elimino la cartella source, la cartella destination e il file di prova (dalla cartella destination)
         try {
             Files.delete(pathDestination);
-            Files.delete(Paths.get("test/actions/MoveFileAction/source"));
-            Files.delete(Paths.get("test/actions/MoveFileAction/destination"));
+            Files.delete(Paths.get("test/actions/MoveFileActionTest/source"));
+            Files.delete(Paths.get("test/actions/MoveFileActionTest/destination"));
         } catch (IOException ex) {
             Logger.getLogger(MoveFileActionTest.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -59,7 +59,7 @@ public class MoveFileActionTest {
     
     @Test(expected = RuntimeException.class)
     public void testFileNotFoundExcute(){
-        MoveFileAction mfa = new MoveFileAction("test/actions/MoveFileAction/source/fileInesistente.txt",newPath); //file inesistente
+        MoveFileAction mfa = new MoveFileAction("test/actions/MoveFileActionTest/source/fileInesistente.txt",newPath); //file inesistente
         mfa.execute();
     }
     

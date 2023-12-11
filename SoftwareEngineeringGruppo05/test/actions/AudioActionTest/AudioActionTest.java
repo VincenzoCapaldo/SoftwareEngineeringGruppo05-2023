@@ -1,4 +1,4 @@
-package actions.AudioAction;
+package actions.AudioActionTest;
 
 import actions.audioAction.AudioAction;
 import org.junit.*;
@@ -11,7 +11,7 @@ import static org.junit.Assert.assertEquals;
 public class AudioActionTest {
     
     private AudioAction action;
-    private final String pathFile = "test/actions/AudioAction/notificationSound.wav"; //path audio di prova
+    private final String pathFile = "test/actions/AudioActionTest/notificationSound.wav"; //path audio di prova
     
     @Before
     public void setUp() {
@@ -20,13 +20,13 @@ public class AudioActionTest {
     
     @Test(expected = RuntimeException.class)
     public void testFortmatFileExcecute(){
-        AudioAction aa = new AudioAction("test/actions/AudioAction/formatoSbagliato.txt"); //estensione errata
+        AudioAction aa = new AudioAction("test/actions/AudioActionTest/formatoSbagliato.txt"); //estensione errata
         aa.execute();
     }
     
     @Test(expected = RuntimeException.class)
     public void testFileNotFoundExcecute(){
-        AudioAction aa = new AudioAction("test/actions/AudioAction/fileInesistente.wav"); //file inesistente
+        AudioAction aa = new AudioAction("test/actions/AudioActionTest/fileInesistente.wav"); //file inesistente
         aa.execute();
     }
     

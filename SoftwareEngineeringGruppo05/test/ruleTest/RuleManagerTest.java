@@ -1,4 +1,4 @@
-package rules;
+package ruleTest;
 
 import rule.RuleManager;
 import rule.Rule;

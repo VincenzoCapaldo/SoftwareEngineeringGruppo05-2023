@@ -1,4 +1,4 @@
-package actions.MessageAction;
+package actions.MessageActionTest;
 
 import actions.messageAction.MessageAction;
 import org.junit.*;

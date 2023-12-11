@@ -1,4 +1,4 @@
-package actions.WriteFileAction;
+package actions.WriteFileActionTest;
 
 import actions.writeFileAction.WriteFileAction;
 import org.junit.*;
@@ -21,7 +21,7 @@ import java.util.logging.Logger;
 public class WriteFileActionTest {
     
     private WriteFileAction action;
-    private final String filePath = "test/actions/WriteFileAction/prova.txt";  //percorso del file in cui scrivere
+    private final String filePath = "test/actions/WriteFileActionTest/prova.txt";  //percorso del file in cui scrivere
     private final String message = "Hello World!"; //messaggio da scrivere nel file
     
     @Before

@@ -1,4 +1,4 @@
-package actions.ProgramAction;
+package actions.ProgramActionTest;
 
 import actions.programAction.*;
 import java.io.IOException;
@@ -22,10 +22,10 @@ public class ProgramActionTest {
     @Before
     public void setUp() {    
         // percorso del file che deve essere creato dal test ed eliminato dal programma avviato da Program Action
-        filePath = "test/actions/ProgramAction/ciao.txt";
+        filePath = "test/actions/ProgramActionTest/ciao.txt";
         //System.getProperty("user.dir") +
         // percorso del programma che deve essere avviato da Program Action
-        directory = "test/actions/ProgramAction/program.jar";
+        directory = "test/actions/ProgramActionTest/program.jar";
         pa = (new CreateProgramAction()).createProgramAction(directory, filePath);
     }
     

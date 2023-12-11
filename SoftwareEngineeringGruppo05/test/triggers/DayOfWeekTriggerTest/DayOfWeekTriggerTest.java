@@ -1,4 +1,4 @@
-package triggers.DayOfWeekTrigger;
+package triggers.DayOfWeekTriggerTest;
 
 import triggers.dayOfWeekTrigger.DayOfWeekTrigger;
 import org.junit.*;
@@ -48,8 +48,7 @@ public class DayOfWeekTriggerTest {
         instance.checkTrigger();
         boolean expResult = true;
         boolean result = instance.isVerified();
-        assertEquals(expResult, result);
-        
+        assertEquals(expResult, result);       
     }*/
     
     /* Si dovrebbe attendere una settimana per terminare questo test

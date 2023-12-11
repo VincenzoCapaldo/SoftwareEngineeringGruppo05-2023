@@ -1,4 +1,4 @@
-package triggers.DayOfMonthTrigger;
+package triggers.DayOfMonthTriggerTest;
 
 import triggers.dayOfMonthTrigger.DayOfMonthTrigger;
 import java.time.LocalDate;
