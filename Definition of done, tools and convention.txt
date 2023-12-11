@@ -1,10 +1,8 @@
-DEFINITION OF DONE
-
-Done means:
-- codified according to established tools and conventions
-- appropriately commented
-- which meets the acceptance criteria
-- automatically tested with JUnit (first individually and then integrated)
+Definition of done:
+codified according to established tools and conventions
+appropriately commented
+which meets the acceptance criteria
+automatically tested with JUnit (first individually and then integrated)
 
 Tools:
 IDE NetBeans 12.5
@@ -23,4 +21,7 @@ The first letter of methods must be lowercase
 The first letter of classes must be uppercase
 CamelCase for multi-word names
 
+Architecture:
+MVC (Model-Control-View)
+ 
 Estimated team velocity: 48
