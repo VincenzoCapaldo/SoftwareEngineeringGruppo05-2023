@@ -64,6 +64,13 @@ public class ProgramActionTest {
         assertFalse(Files.exists(Paths.get(filePath)));
     }
 
+    @Test
+    public void testToString() {
+        String expResult = "Program";
+        String result = pa.toString();
+        assertEquals(expResult, result);
+    }
+
     @Test(expected = RuntimeException.class)
     public void testAdd() {
         pa.add(pa);
@@ -72,13 +79,6 @@ public class ProgramActionTest {
     @Test(expected = RuntimeException.class)
     public void testRemove() {
         pa.remove(pa);
-    }
-
-    @Test
-    public void testToString() {
-        String expResult = "Program";
-        String result = pa.toString();
-        assertEquals(expResult, result);
     }
     
     // Classe utilizzata per la creazione della classe ProgramAction che varia in base al sistema operativo

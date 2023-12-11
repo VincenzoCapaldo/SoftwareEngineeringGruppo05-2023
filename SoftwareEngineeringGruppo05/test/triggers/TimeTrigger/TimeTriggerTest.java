@@ -45,7 +45,7 @@ public class TimeTriggerTest {
         assertEquals(expResult,result);
     }
     
-    // Si deve attendere un minuto per terminare questo test
+    /* Si deve attendere un minuto per terminare questo test
     @Test
     public void testCheckTrigger2() {
         int hours = LocalTime.now().getHour();
@@ -55,7 +55,7 @@ public class TimeTriggerTest {
         boolean result = instance.isVerified();
         boolean expResult = true;
         assertEquals(expResult,result);
-    }
+    }*/
     
     /* Si dovrebbe attendere un giorno per terminare questo test
     @Test

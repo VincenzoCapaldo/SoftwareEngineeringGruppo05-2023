@@ -1,9 +1,9 @@
 package triggers.DayOfMonthTrigger;
 
+import triggers.dayOfMonthTrigger.DayOfMonthTrigger;
 import java.time.LocalDate;
 import org.junit.*;
 import static org.junit.Assert.assertEquals;
-import triggers.dayOfMonthTrigger.DayOfMonthTrigger;
 
 /**
  *
