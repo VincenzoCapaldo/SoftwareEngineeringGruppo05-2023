@@ -22,6 +22,6 @@ The first letter of classes must be uppercase
 CamelCase for multi-word names
 
 Architecture:
-MVC (Model-Control-View)
+MVC (Model-View-Controller)
  
 Estimated team velocity: 48
