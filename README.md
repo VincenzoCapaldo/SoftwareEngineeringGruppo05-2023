@@ -12,4 +12,8 @@
 <a href="https://docs.google.com/document/d/1qLlWgub3hV3cR61AEgt1Xu6WZ1W4jJP0yyvUI-O11kI/edit?usp=sharing"> Clicca qui </a>
 
 <h2>Sprint 3 Artifacts</h2>
-<a href="https://docs.google.com/document/d/1V37nCxUUkXqc4rFbNCnrS37-S8vljTfFN_zF1XSrlRI/edit?usp=sharing"> Clicca qui </
+<a href="https://docs.google.com/document/d/1V37nCxUUkXqc4rFbNCnrS37-S8vljTfFN_zF1XSrlRI/edit?usp=sharing"> Clicca qui </a>
+
+<h2>Sprint 3 Artifacts</h2>
+<a href="https://docs.google.com/presentation/d/1hrzRnJqQHuYT3o5FqThExaKnBoGy51FwFy4BWerEvQg/edit?pli=1#slide=id.p15"> Clicca qui </a>
+
